@@ -1,0 +1,200 @@
+{
+  "name": "staywoke-api",
+  "version": "1.0.0",
+  "description": "StayWoke API",
+  "author": "StayWoke",
+  "license": "MIT",
+  "private": false,
+  "main": "index.js",
+  "engines": {
+    "node": ">= 12.12.0",
+    "npm": ">= 6.13.4"
+  },
+  "contributors": [
+    {
+      "name": "Peter Schmalfeldt",
+      "email": "me@peterschmalfeldt.com",
+      "url": "peterschmalfeldt.com"
+    }
+  ],
+  "scripts": {
+    "start": "./scripts/staywoke-api.sh start",
+    "start:debug": "./scripts/staywoke-api.sh start debug",
+    "stop": "./scripts/staywoke-api.sh stop",
+    "cleanup": "find ~/.forever/ -name '*.log' -delete && find ./ -name '*.log' -delete && rm -fr cleanup && npm run docs:clean",
+    "docs": "jsdoc -c ./doc-conf.json -r ./app -R ./apiary.apib -d ./app/static/docs -t ./node_modules/ink-docstrap/template",
+    "docs:clean": "rm -r ./app/static/docs || true",
+    "test": "API_NODE_ENV=test mocha ./test/**/*_test.js --recursive --require esm ./test/bootstrap.js",
+    "test:single": "API_NODE_ENV=test mocha ./test/**/*_test.js --recursive --require esm ./test/bootstrap.js --grep $2",
+    "lint": "eslint --ext .js -f ./node_modules/eslint-friendly-formatter app test && echo '\n【ツ】CODE FORMATTING PERFECTION !!!\n'",
+    "coverage": "API_NODE_ENV=test nyc npm run test",
+    "check-coverage": "nyc check-coverage --statement 80 --branch 80 --function 80 --line 80",
+    "migrate": "sequelize db:migrate",
+    "migrate:create": "sequelize migration:create",
+    "migrate:rollback": "sequelize db:migrate:undo",
+    "seed": "sequelize db:seed:all",
+    "seed:create": "sequelize seed:create",
+    "seed:rollback": "sequelize db:seed:undo",
+    "elasticsearch:create": "cd ./app && node ./elasticsearch/create && cd ../",
+    "elasticsearch:update": "cd ./app && node ./elasticsearch/update && cd ../",
+    "elasticsearch:delete": "cd ./app && node ./elasticsearch/delete && cd ../",
+    "make-config": "if ( ! test -e ./app/config/local.json ); then curl -o ./app/config/local.json https://gist.githubusercontent.com/manifestinteractive/a5e9ef7ef6730cb5e0d1783c89a94a5a/raw/5443e7d7b4fc144c6a3560581f9ae8bef9153b6c/campaign-zero-local.json; fi",
+    "redis:clearcache": "redis-cli -r 1 flushall",
+    "help": "node node_modules/npm-scripts-help"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/staywoke/api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/staywoke/api/issues"
+  },
+  "homepage": "https://github.com/staywoke/api#readme",
+  "dependencies": {
+    "@bugsnag/js": "^6.5.0",
+    "async": "^3.1.0",
+    "bcrypt": "^3.0.7",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "class-extend": "^0.1.2",
+    "colors": "^1.4.0",
+    "convict": "^5.2.0",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "elasticsearch": "^16.5.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "express-rate-limit": "git://github.com/manifestinteractive/express-rate-limit.git#d615bcf3cb50cb67e6a6c05d220d7b86d7f82255",
+    "express-session": "^1.17.0",
+    "hashids": "^2.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "logzio-nodejs": "^1.0.7",
+    "mandrill-api": "^1.0.45",
+    "md5": "^2.2.1",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "mysql2": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "randomstring": "^1.1.5",
+    "redis": "^2.8.0",
+    "sequelize": "^5.21.3",
+    "sequelize-cli": "^5.5.1",
+    "sequelize-slugify": "^0.9.1",
+    "uuid": "^3.3.3",
+    "validate.js": "^0.13.1",
+    "validator": "^12.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "chai": "^4.2.0",
+    "chai-passport-strategy": "^1.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "esm": "^3.2.25",
+    "ink-docstrap": "^1.3.2",
+    "jsdoc": "^3.6.3",
+    "mocha": "^6.2.2",
+    "mock-req": "^0.2.0",
+    "mock-res": "^0.5.0",
+    "npm-scripts-help": "^0.8.0",
+    "nyc": "^15.0.0",
+    "rewire": "^4.0.1",
+    "sinon": "^8.0.1"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "report-dir": "coverage",
+    "reporter": "html",
+    "include": [
+      "app/**/*.js"
+    ],
+    "exclude": [
+      "app/static/**/*.js",
+      "**/*.spec.js"
+    ],
+    "branches": 80,
+    "lines": 80,
+    "functions": 80,
+    "statements": 80
+  },
+  "scriptshelp": {
+    "help-message": "StayWoke API NPM Commands:",
+    "help": {
+      "Desciption": "Generates List of NPM Scripts you can run"
+    },
+    "start": {
+      "Desciption": "Runs API using `forever` service after running `npm run cleanup`"
+    },
+    "start:debug": {
+      "Desciption": "Starts the API in Debug Mode so you can see Console statements in terminal"
+    },
+    "stop": {
+      "Desciption": "Stop API when run from `npm start` using `forever`"
+    },
+    "cleanup": {
+      "Desciption": "Remove files & folders generated by API that are not apart of the code base"
+    },
+    "docs": {
+      "Desciption": "Generate JSDoc Documentation"
+    },
+    "docs:clean": {
+      "Desciption": "Remove the JSDoc Documentation Folder in `./static/docs/`"
+    },
+    "test": {
+      "Desciption": "Runs complete test suite of Linting, Unit Tests & Code Coverage Reports"
+    },
+    "lint": {
+      "Desciption": "Tests Javascript Code against Linting Rules"
+    },
+    "coverage": {
+      "Desciption": "Generate Code Coverage Reports and Run Unit Tests"
+    },
+    "check-coverage": {
+      "Desciption": "Check Coverage Reports against Minimum Requirements"
+    },
+    "migrate": {
+      "Desciption": "Migrate to Latest Database Schema"
+    },
+    "migrate:create": {
+      "Desciption": "Create new Migration Template file in `./app/seeders` folder"
+    },
+    "migrate:rollback": {
+      "Desciption": "Roll Back Migration Changes"
+    },
+    "seed": {
+      "Desciption": "Run Seeders in `./app/seeders` folder"
+    },
+    "seed:create": {
+      "Desciption": "Create new Seeder Template file in `./app/seeders` folder"
+    },
+    "seed:rollback": {
+      "Desciption": "Undo Seeders"
+    },
+    "elasticsearch:create": {
+      "Desciption": "Create Elasticsearch Indexes"
+    },
+    "elasticsearch:update": {
+      "Desciption": "Update Elasticsearch Indexes"
+    },
+    "elasticsearch:delete": {
+      "Desciption": "Delete Elasticsearch Indexes"
+    },
+    "make-config": {
+      "Desciption": "Downloads sample local.json file if one was not already created"
+    },
+    "prepublish": {
+      "Desciption": "Runs any commands necessary before publishing API"
+    },
+    "redis:clearcache": {
+      "Desciption": "Clear Redis Cache"
+    }
+  }
+}
