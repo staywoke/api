@@ -4,10 +4,10 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import async from 'async'
-import request from 'request'
+const async = require('async')
+const request = require('request')
 
-import config from './config'
+const config = require('./config')
 
 const Analytics = {
   trackEvent: (apikey, category, action, label, value) => {
@@ -57,4 +57,4 @@ const Analytics = {
   }
 }
 
-export default Analytics
+module.exports = Analytics

@@ -4,19 +4,19 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
+const _ = require('lodash')
 
 /**
  * Doing domain utilities
  * @type {Object}
  */
-export default {
+module.exports = {
   /**
    * Takes a string of comma-separated numbers, e.g. "1,5,7", splits by comma and returns an array of integers, pruning out anything that's not an integer
    * @param  {string} str Comma-separated numbers
    * @return {array}
    */
-  normalizeCommaSeparatedIntegers: (str) => {
+  normalizeCommaSeparatedIntegers (str) {
     const ints = _.compact(_.map(str.split(','), (raw) => {
       const num = parseInt(_.trim(raw), 10)
       /* nyc ignore else */
@@ -35,7 +35,7 @@ export default {
    * @param obj
    * @returns {Object}
    */
-  sortByKeys: (obj) => {
+  sortByKeys (obj) {
     const keys = Object.keys(obj)
     const sortedKeys = _.sortBy(keys)
 
@@ -54,7 +54,7 @@ export default {
    * @param str
    * @returns {string}
    */
-  titleCase: (str) => {
+  titleCase (str) {
     return str.trim().replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     })

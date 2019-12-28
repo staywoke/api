@@ -4,15 +4,15 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import elasticsearch from 'elasticsearch'
+const elasticsearch = require('elasticsearch')
 
-import config from '../config'
+const config = require('../config')
 
 /**
  * Client
  * @type {object}
  */
-export default new elasticsearch.Client({
+module.exports = new elasticsearch.Client({
   host: config.get('elasticsearch.host'),
   apiVersion: config.get('elasticsearch.apiVersion'),
   requestTimeout: config.get('elasticsearch.requestTimeout'),

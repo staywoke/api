@@ -1,8 +1,8 @@
-import Promise from 'bluebird'
-import rewire from 'rewire'
-import sinon from 'sinon'
+const Promise = require('bluebird')
+const rewire = require('rewire')
+const sinon = require('sinon')
 
-import chai from 'chai'
+const chai = require('chai')
 
 const assert = chai.assert
 

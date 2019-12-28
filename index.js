@@ -1,1 +1,1 @@
-import './app/multicore'
+require('./app/multicore')

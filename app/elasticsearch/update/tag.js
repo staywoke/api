@@ -4,14 +4,14 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
+const _ = require('lodash')
 
-import config from '../../config'
-import debug from '../../debug'
-import elasticsearchClient from '../client'
+const config = require('../../config')
+const debug = require('../../debug')
+const elasticsearchClient = require('../client')
 
-import { TagDomain } from '../../api/v1/domain'
-import { TagModel } from '../../models/api'
+const { TagDomain } = require('../../api/v1/domain')
+const { TagModel } = require('../../models/api')
 
 const env = config.get('env')
 const indexType = `${env}_tag`
@@ -20,8 +20,8 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
 /**
  * Update Tag Index
  */
-export default {
-  update: () => {
+module.exports = {
+  update () {
     elasticsearchClient.search({
       index: indexName,
       size: 0,

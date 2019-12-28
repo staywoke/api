@@ -1,6 +1,6 @@
 version: '2'
 services:
-  staywoke_api:
+  docker_api:
     build:
       context: .
     links:
@@ -8,8 +8,8 @@ services:
       - elasticsearch
       - redis
     volumes:
-      - .:/home/staywoke/api/
-      - /home/staywoke/api/node_modules
+      - .:/home/developer/api/
+      - /home/developer/api/node_modules
     environment:
       API_NODE_ENV: docker
     ports:
@@ -18,8 +18,8 @@ services:
   database:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: c1v1Ls3rv1c3s
-      MYSQL_DATABASE: staywoke_api
+      MYSQL_ROOT_PASSWORD: d0cK3r^4p1
+      MYSQL_DATABASE: docker_api
   elasticsearch:
     image: elasticsearch:1.7.5
   redis:

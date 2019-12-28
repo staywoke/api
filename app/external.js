@@ -4,17 +4,17 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import md5 from 'md5'
-import Promise from 'bluebird'
+const md5 = require('md5')
+const Promise = require('bluebird')
 
-import config from './config'
-import logger from './logger'
-import redisClient from './redis'
+const config = require('./config')
+const logger = require('./logger')
+const redisClient = require('./redis')
 
 var redisCacheExpires = config.get('redis.cacheExpire')
 
 /* nyc ignore next */
-export default {
+module.exports = {
   /**
    * Get External Content
    * @param {string} url - URL of Content to Fetch

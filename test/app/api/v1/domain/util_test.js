@@ -1,6 +1,6 @@
-import chai from 'chai'
+const chai = require('chai')
 
-import { UtilDomain } from '../../../../../app/api/v1/domain'
+const { UtilDomain } = require('../../../../../app/api/v1/domain')
 
 const assert = chai.assert
 

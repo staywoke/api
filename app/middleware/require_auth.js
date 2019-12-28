@@ -4,14 +4,14 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import jwt from 'express-jwt'
+const jwt = require('express-jwt')
 
-import config from '../config'
+const config = require('../config')
 
 /**
  * Require Auth
  * @type {object}
  */
-export default jwt({
+module.exports = jwt({
   secret: config.get('secret')
 })

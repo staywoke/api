@@ -1,9 +1,11 @@
+'use strict'
+
 /**
  * @module config
  */
 
-import convict from 'convict'
-import path from 'path'
+const convict = require('convict')
+const path = require('path')
 
 /**
  * Default API Configuration
@@ -20,6 +22,7 @@ import path from 'path'
  * @property {boolean} inviteOnly=false - Whether Invite Only System should be Active
  * @property {number} inviteCap=15 - Invitation Cap Per User
  * @property {string} bugsnag - Bugsnag API Key
+ * @property {string} analytics - Google Analytics API Key
  * @property {object} hashID - Settings for Hash ID
  * @property {string} hashID.secret - Hash ID Encryption Key
  * @property {number} hashID.length=6 - Hash ID String Length
@@ -213,14 +216,16 @@ const config = convict({
     key: {
       doc: 'API Key for Mandrill, which is used for sending email. Can be retrieved/changed at: https://mandrillapp.com/settings/',
       format: String,
-      env: 'API_MANDRILL_API_KEY'
+      env: 'API_MANDRILL_API_KEY',
+      default: 'CHANGE_ME'
     }
   },
   ipinfodb: {
     key: {
       doc: 'API Key for IP Info DB',
       format: String,
-      env: 'API_IPINFO_API_KEY'
+      env: 'API_IPINFO_API_KEY',
+      default: 'CHANGE_ME'
     }
   },
   logzio: {
@@ -260,7 +265,7 @@ const config = convict({
       doc: 'Redis Password',
       format: String,
       env: 'API_REDIS_PASSWORD',
-      default: null
+      default: 'CHANGE_ME'
     },
     cacheExpire: {
       doc: 'How long to cache results in redis',
@@ -283,4 +288,4 @@ try {
   }
 }
 
-export default config
+module.exports = config

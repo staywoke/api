@@ -4,19 +4,19 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
+const _ = require('lodash')
 
 /**
  * Category
  * @type {object}
  */
-export default {
+module.exports = {
   /**
    * Prepare For API Output
    * @param {object} data - Data to be processed for API Output
    * @return {object}
    */
-  prepareForAPIOutput: (data) => {
+  prepareForAPIOutput (data) {
     const fields = [
       'name',
       'parent_id',
@@ -43,7 +43,7 @@ export default {
    * @param {object} data.subcategories - Category Subcategories
    * @return {object}
    */
-  prepareForElasticSearch: (data) => {
+  prepareForElasticSearch (data) {
     const prepData = {
       id: data.id,
       parent_id: data.parent_id,

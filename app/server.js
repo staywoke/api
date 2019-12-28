@@ -6,22 +6,22 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import bodyParser from 'body-parser'
-import Debug from 'debug'
-import dotenv from 'dotenv'
-import express from 'express'
-import rateLimit from 'express-rate-limit'
-import Sequelize from 'sequelize'
-import session from 'express-session'
-import uuid from 'uuid'
+const bodyParser = require('body-parser')
+const Debug = require('debug')
+const dotenv = require('dotenv')
+const express = require('express')
+const rateLimit = require('express-rate-limit')
+const Sequelize = require('sequelize')
+const session = require('express-session')
+const uuid = require('uuid')
 
-import analytics from './analytics'
-import config from './config'
-import db from './config/sequelize'
-import router from './router'
-import routerUtil from './api/v1/routes/util'
+const analytics = require('./analytics')
+const config = require('./config')
+const db = require('./config/sequelize')
+const router = require('./router')
+const routerUtil = require('./api/v1/routes/util')
 
-import { ApiAuthenticationModel } from './models/api'
+const { ApiAuthenticationModel } = require('./models/api')
 
 // Import Environment before Remaining Imports
 dotenv.config({
@@ -30,7 +30,7 @@ dotenv.config({
 
 const ApiAuthentication = ApiAuthenticationModel(db, Sequelize)
 const app = express()
-const debug = Debug('express:staywoke')
+const debug = Debug('express:api')
 
 const apiLimit = {
   delayAfter: 0,
@@ -282,5 +282,5 @@ const onListening = () => {
 app.on('error', onError)
 app.on('listening', onListening)
 
-export default app.listen(config.get('port'))
-export { SetupAPI as setupAPI }
+module.exports = app.listen(config.get('port'))
+module.exports.setupAPI = SetupAPI

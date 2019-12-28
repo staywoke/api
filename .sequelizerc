@@ -1,10 +1,8 @@
-import path from 'path'
-
-import config from './app/config'
-
+const path = require('path')
+const config = require('./app/config')
 const env = config.get('env')
 
-export default {
+module.exports = {
   'config': path.resolve('app/config/db-' + env + '.json'),
   'migrations-path': path.resolve('app/migrations'),
   'models-path': path.resolve('app/models'),

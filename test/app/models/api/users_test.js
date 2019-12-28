@@ -1,9 +1,9 @@
-import chai from 'chai'
-import Sequelize from 'sequelize'
+const chai = require('chai')
+const Sequelize = require('sequelize')
 
-import db from '../../../../app/config/sequelize'
+const db = require('../../../../app/config/sequelize')
 
-import { UserModel } from '../../../../app/models/api'
+const { UserModel } = require('../../../../app/models/api')
 
 const assert = chai.assert
 const User = UserModel(db, Sequelize)

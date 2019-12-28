@@ -1,15 +1,15 @@
-import Base from 'class-extend'
-import Promise from 'bluebird'
-import validate from 'validate.js'
+const Base = require('class-extend')
+const Promise = require('bluebird')
+const validate = require('validate.js')
 
-import './validators'
+require('./validators')
 
 validate.Promise = Promise
 
 /**
  * Base interface for form validation objects on the site
  */
-export default Base.extend({
+module.exports = Base.extend({
   constraints: {},
 
   validate: (data) => {

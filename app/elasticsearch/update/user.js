@@ -4,16 +4,16 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import Sequelize from 'sequelize'
+const _ = require('lodash')
+const Sequelize = require('sequelize')
 
-import config from '../../config'
-import db from '../../config/sequelize'
-import debug from '../../debug'
-import elasticsearchClient from '../client'
+const config = require('../../config')
+const db = require('../../config/sequelize')
+const debug = require('../../debug')
+const elasticsearchClient = require('../client')
 
-import { UserDomain } from '../../api/v1/domain'
-import { UserModel } from '../../models/api'
+const { UserDomain } = require('../../api/v1/domain')
+const { UserModel } = require('../../models/api')
 
 const env = config.get('env')
 const indexType = `${env}_user`
@@ -24,8 +24,8 @@ const User = UserModel(db, Sequelize)
 /**
  * Update User Index
  */
-export default {
-  update: (userId) => {
+module.exports = {
+  update (userId) {
     elasticsearchClient.search({
       index: indexName,
       size: 0,

@@ -1,5 +1,5 @@
-import chai from 'chai'
-import strategy from 'chai-passport-strategy'
+const chai = require('chai')
+const strategy = require('chai-passport-strategy')
 
 chai.use(strategy)
 

@@ -4,16 +4,16 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import jwt from 'jsonwebtoken'
+const _ = require('lodash')
+const jwt = require('jsonwebtoken')
 
-import config from '../../../../config'
+const config = require('../../../../config')
 
 /**
  * User auth utilities for creating, verifying, and refreshing auth tokens
  * @type {object}
  */
-export default {
+module.exports = {
   /**
    * @constant {number}
    */
@@ -29,7 +29,7 @@ export default {
    * @param {mixed} Open Auth ID of User
    * @return {mixed} Returns a string is a valid user id is extracted, otherwise returns false
    */
-  createAuthToken: (authID) => {
+  createAuthToken (authID) {
     if (authID === null || authID === '') {
       return false
     }
@@ -50,7 +50,7 @@ export default {
    * @param {mixed} user Either a Sequelize User model instance or a user id
    * @return {mixed} Returns a string is a valid user id is extracted, otherwise returns false
    */
-  createUserToken: (user) => {
+  createUserToken (user) {
     let userId
 
     if (_.isObject(user)) {
@@ -78,7 +78,7 @@ export default {
    * @param {mixed} ip Ip Address of User
    * @return {mixed} Returns a string is a valid user id is extracted, otherwise returns false
    */
-  createWebsiteToken: (ip) => {
+  createWebsiteToken (ip) {
     if (ip === null || ip === '') {
       return false
     }
@@ -99,7 +99,7 @@ export default {
    * @param  {string} token JWT token to refresh
    * @return {mixed}  Returns a new token string with a refreshed expiration date if valid, otherwise returns false
    */
-  refreshToken: (token) => {
+  refreshToken (token) {
     const verified = this.verifyToken(token)
     if (verified) {
       return this.createUserToken(verified.userId)
@@ -113,7 +113,7 @@ export default {
    * @param  {string} token JWT token to verify
    * @return {mixed} Returns an object of decoded token data if valid, otherwise false
    */
-  verifyToken: (token) => {
+  verifyToken (token) {
     try {
       return jwt.verify(token, config.get('secret'))
     } catch (err) {

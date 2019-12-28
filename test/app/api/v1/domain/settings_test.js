@@ -1,11 +1,11 @@
-import chai from 'chai'
-import Sequelize from 'sequelize'
-import sinon from 'sinon'
+const chai = require('chai')
+const Sequelize = require('sequelize')
+const sinon = require('sinon')
 
-import db from '../../../../../app/config/sequelize'
+const db = require('../../../../../app/config/sequelize')
 
-import { SettingsDomain } from '../../../../../app/api/v1/domain'
-import { UserModel, UserSettingNotificationModel } from '../../../../../app/models/api'
+const { SettingsDomain } = require('../../../../../app/api/v1/domain')
+const { UserModel, UserSettingNotificationModel } = require('../../../../../app/models/api')
 
 const assert = chai.assert
 

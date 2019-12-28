@@ -8,7 +8,7 @@
  * Elasticsearch Settings
  * @type {object}
  */
-export default {
+module.exports = {
   index: {
     analysis: {
       char_filter: {

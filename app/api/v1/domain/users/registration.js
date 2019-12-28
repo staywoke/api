@@ -4,19 +4,19 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import Hashids from 'hashids'
-import Promise from 'bluebird'
-import randomString from 'randomstring'
-import Sequelize from 'sequelize'
+const _ = require('lodash')
+const Hashids = require('hashids/cjs')
+const Promise = require('bluebird')
+const randomString = require('randomstring')
+const Sequelize = require('sequelize')
 
-import db from '../../../../config/sequelize'
-import config from '../../../../config'
-import email from '../email'
-import hasher from '../../../../util/hasher'
-import RegistrationForm from './registration_form'
+const db = require('../../../../config/sequelize')
+const config = require('../../../../config')
+const email = require('../email')
+const hasher = require('../../../../util/hasher')
+const RegistrationForm = require('./registration_form')
 
-import { UserModel, UserInviteModel } from '../../../../models/api'
+const { UserModel, UserInviteModel } = require('../../../../models/api')
 
 const User = UserModel(db, Sequelize)
 const UserInvite = UserInviteModel(db, Sequelize)
@@ -31,7 +31,7 @@ var hashID = new Hashids(
  * Registration
  * @type {object}
  */
-export default {
+module.exports = {
 
   /**
    * Confirmation Key Length
@@ -124,7 +124,7 @@ export default {
    * @param name
    * @returns {boolean}
    */
-  validUserName: (name) => {
+  validUserName (name) {
     const validPattern = /^[a-zA-Z0-9-_]{3,30}$/
     if (typeof name === 'string') {
       name = name.toLowerCase().trim()
@@ -137,7 +137,7 @@ export default {
    * @param name
    * @returns {boolean}
    */
-  validName: (name) => {
+  validName (name) {
     if (typeof name === 'string') {
       name = name.toLowerCase().trim()
       return (this.INVALID_NAMES.indexOf(name) === -1)
@@ -150,7 +150,7 @@ export default {
    * @param  {object} data Object of user registration data
    * @return {object} Promise
    */
-  register: (data) => {
+  register (data) {
     const self = this
     const form = new RegistrationForm()
 
@@ -164,7 +164,7 @@ export default {
    * @param  {object} data Object of validated and cleaned user data to insert into the database
    * @return {object} Promise object
    */
-  createUser: (data) => {
+  createUser (data) {
     const self = this
     const insert = _.clone(data)
 
@@ -234,7 +234,7 @@ export default {
    * @param  {string} key Activation key to find a match for
    * @return {object} Returns promise that passes the user if found
    */
-  confirmAccount: (key) => {
+  confirmAccount (key) {
     if (key && key.length === this.CONFIRMATION_KEY_LENGTH) {
       return User.findOne({
         where: {
@@ -275,7 +275,7 @@ export default {
    * @param {string} key Activation key to find a match for
    * @return {object} Returns promise that passes the user if found
    */
-  confirmEmail: (key) => {
+  confirmEmail (key) {
     if (key && key.length === this.CONFIRMATION_KEY_LENGTH) {
       return User.findOne({
         where: {
@@ -312,7 +312,7 @@ export default {
    * @param  {string} key Activation key to find a match for
    * @return {object} Returns promise that passes the user if found
    */
-  confirmPassword: (key) => {
+  confirmPassword (key) {
     if (key && key.length === this.CONFIRMATION_KEY_LENGTH) {
       return User.findOne({
         where: {
@@ -349,7 +349,7 @@ export default {
    * @param {object} data to find a match for and sets `new_password_key` & `new_password_requested`
    * @return {object} Returns promise that passes the user if found
    */
-  forgotPassword: (data) => {
+  forgotPassword (data) {
     const self = this
     if (data && data.email) {
       return User.findOne({
@@ -377,7 +377,7 @@ export default {
    * @param  {object} data to find a match for and sets `token` & `password` & `retype_password`
    * @return {object} Returns promise that passes the user if found
    */
-  resetPassword: (data) => {
+  resetPassword (data) {
     const self = this
     if (data && data.password && data.retype_password && data.token && data.token.length === self.CONFIRMATION_KEY_LENGTH) {
       if (data.password !== data.retype_password) {
@@ -416,7 +416,7 @@ export default {
    * @param  {object} id to find a match for and sets `token` & `password` & `retype_password`
    * @return {object} Returns promise that passes the user if found
    */
-  resendConfirmation: (id) => {
+  resendConfirmation (id) {
     id = parseInt(hashID.decode(id, 10))
 
     if (id > 0) {

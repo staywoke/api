@@ -5,12 +5,12 @@
  * @todo Create Unit Tests for Routes
  */
 
-import express from 'express'
+const express = require('express')
 
-import config from '../../../config'
-import util from './util'
+const config = require('../../../config')
+const util = require('./util')
 
-import { UsersAuthDomain } from '../domain'
+const { UsersAuthDomain } = require('../domain')
 
 const router = express.Router(config.router)
 
@@ -31,4 +31,4 @@ router.route('/token').get((request, response) => {
   }, request.query.fields))
 })
 
-export default router
+module.exports = router

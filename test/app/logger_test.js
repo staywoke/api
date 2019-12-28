@@ -1,6 +1,6 @@
-import chai from 'chai'
+const chai = require('chai')
 
-import logger from '../../app/logger'
+const logger = require('../../app/logger')
 
 const assert = chai.assert
 

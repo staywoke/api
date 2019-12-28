@@ -4,14 +4,14 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import bcrypt from 'bcrypt'
-import Promise from 'bluebird'
+const bcrypt = require('bcrypt')
+const Promise = require('bluebird')
 
 /**
  * Promise-based encryption generation and verification
  * @type {object}
  */
-export default {
+module.exports = {
   /**
    * Generate an encrypted string from the passed in string
    * @param  {string} str

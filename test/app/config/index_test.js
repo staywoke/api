@@ -1,6 +1,6 @@
-import chai from 'chai'
+const chai = require('chai')
 
-import config from '../../../app/config'
+const config = require('../../../app/config')
 
 const assert = chai.assert
 

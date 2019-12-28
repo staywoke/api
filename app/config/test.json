@@ -29,12 +29,6 @@
   "mandrill": {
     "key": "FAKE_KEY"
   },
-  "ipinfodb": {
-    "key": "FAKE_KEY"
-  },
-  "openStates": {
-    "key": "FAKE_KEY"
-  },
   "logzio": {
     "token": "FAKE_TOKEN",
     "type": "TEST"

@@ -1,27 +1,26 @@
-FROM node:6.9.4
-
-LABEL maintainer "Peter Schmalfeldt hello@staywoke.org"
+FROM node:12.12.0
+LABEL maintainer "Peter Schmalfeldt me@peterschmalfeldt.com"
 LABEL version="1.0"
-LABEL description="Local Development of StayWoke API"
-LABEL vendor="StayWoke"
+LABEL description="Local Development of API"
+LABEL vendor="PeterSchmalfeldt"
 
 # Create non-root user to run app with
 
-RUN useradd --user-group --create-home --shell /bin/bash staywoke
+RUN useradd --user-group --create-home --shell /bin/bash developer
 
 # Set working directory
 
-WORKDIR /home/staywoke/api
+WORKDIR /home/developer/api
 
 COPY package.json ./
 
-RUN mkdir /home/staywoke/.forever
-RUN chown -R staywoke:staywoke /home/staywoke/.forever
-RUN chown -R staywoke:staywoke /home/staywoke/api
+RUN mkdir /home/developer/.forever
+RUN chown -R developer:developer /home/developer/.forever
+RUN chown -R developer:developer /home/developer/api
 
 # Change user so that everything that's npm-installed belongs to it
 
-USER staywoke
+USER developer
 
 RUN export API_NODE_ENV=docker
 
@@ -37,9 +36,10 @@ USER root
 RUN npm install -g forever
 RUN npm install -g sequelize-cli
 
-COPY .jshintrc ./
-COPY .jshintignore ./
+COPY .eslint.js ./
+COPY .eslintignore ./
 COPY .sequelizerc ./
+COPY .env ./
 COPY .nvmrc ./
 
 COPY app ./app
@@ -55,7 +55,6 @@ RUN curl -o ./app/flat-db/countries.mmdb.gz http://geolite.maxmind.com/download/
 RUN gunzip ./app/flat-db/countries.mmdb.gz
 
 RUN chmod 755 ./scripts/docker-compose/*.sh
-RUN chown -R staywoke:staywoke /home/staywoke/api
+RUN chown -R developer:developer /home/developer/api
 
-USER staywoke
-
+USER developer

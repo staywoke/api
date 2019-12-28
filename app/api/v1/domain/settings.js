@@ -4,12 +4,12 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import Sequelize from 'sequelize'
+const _ = require('lodash')
+const Sequelize = require('sequelize')
 
-import db from '../../../config/sequelize'
+const db = require('../../../config/sequelize')
 
-import { UserModel, UserSettingNotificationModel } from '../../../models/api'
+const { UserModel, UserSettingNotificationModel } = require('../../../models/api')
 
 const User = UserModel(db, Sequelize)
 const UserSettingNotification = UserSettingNotificationModel(db, Sequelize)
@@ -18,13 +18,13 @@ const UserSettingNotification = UserSettingNotificationModel(db, Sequelize)
  * Domain Settings
  * @type {object}
  */
-export default {
+module.exports = {
   /**
    * Get User Settings
    * @param {number} userId - User ID
    * @returns {*}
    */
-  getSettings: (userId) => {
+  getSettings (userId) {
     // Set defaults for API before overwriting below
     const settings = {
       notifications: {
@@ -78,7 +78,7 @@ export default {
    * @param {string} data.profile_photo - Set Absolute URL for Profile Photo
    * @returns {*}
    */
-  updateUserProfile: (data) => {
+  updateUserProfile (data) {
     if (data) {
       return User.findOne({
         where: {
@@ -117,7 +117,7 @@ export default {
    * @param {string} data.profile_link_3 - Absolute URL for Random Website #3
    * @returns {*}
    */
-  updateSocialLinks: (data) => {
+  updateSocialLinks (data) {
     if (data) {
       return User.findOne({
         where: {
@@ -153,7 +153,7 @@ export default {
    * @param {boolean} data.email_mentioned_in_comment=true - Set whether to notify via Email for Mentions in Comments
    * @returns {*}
    */
-  updateEmailNotifications: (data) => {
+  updateEmailNotifications (data) {
     if (data) {
       return UserSettingNotification.findOne({
         where: {
@@ -196,7 +196,7 @@ export default {
    * @param {boolean} data.web_mentioned_in_comment=true - Set whether to notify via Web for Mentions in Comments
    * @returns {*}
    */
-  updateWebNotifications: (data) => {
+  updateWebNotifications (data) {
     if (data) {
       return UserSettingNotification.findOne({
         where: {

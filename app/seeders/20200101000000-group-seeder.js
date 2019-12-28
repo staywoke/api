@@ -1,6 +1,7 @@
-export default {
+module.exports = {
   up: (queryInterface) => {
-    return queryInterface.bulkInsert('groups', [{
+    return queryInterface.bulkInsert('groups', [
+      {
         name: 'API Developer',
         slug: 'api-developer',
         created_date: new Date(),
@@ -53,10 +54,10 @@ export default {
     }).catch((err) => {
       if (err && err.errors) {
         for (let i = 0; i < err.errors.length; i++) {
-          console.error('× SEED ERROR', err.errors[i].type, err.errors[i].message, err.errors[i].path, err.errors[i].value)
+          console.error(`\n× SEED ERROR: ${err.errors[i].type} ${err.errors[i].message} ${err.errors[i].path} ${err.errors[i].value}\n`)
         }
       } else if (err && err.message) {
-        console.error('× SEED ERROR', err.message)
+        console.error(`\n× SEED ERROR: ${err.message}\n`)
       }
     })
   },

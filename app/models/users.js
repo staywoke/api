@@ -1,13 +1,15 @@
+'use strict'
+
 /**
- * @module models/api/users
+ * @module models/users
  * @version 1.0.0
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import Hashids from 'hashids'
+const _ = require('lodash')
+const Hashids = require('hashids/cjs')
 
-import config from '../../config'
+const config = require('../config')
 
 const hashID = new Hashids(
   config.get('hashID.secret'),
@@ -15,113 +17,113 @@ const hashID = new Hashids(
   config.get('hashID.alphabet')
 )
 
-export default (sequelize, type) => {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('users', {
     id: {
-      type: type.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     activated: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false
     },
     username: {
-      type: type.STRING(30),
+      type: DataTypes.STRING(30),
       allowNull: false
     },
     password: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: false
     },
     email: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: false
     },
     first_name: {
-      type: type.STRING(50),
+      type: DataTypes.STRING(50),
       allowNull: true
     },
     last_name: {
-      type: type.STRING(50),
+      type: DataTypes.STRING(50),
       allowNull: true
     },
     company_name: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     profile_name: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     profile_photo: {
-      type: type.STRING(255),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     location: {
-      type: type.STRING(50),
+      type: DataTypes.STRING(50),
       allowNull: true
     },
     profile_link_website: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     profile_link_twitter: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     profile_link_1: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     profile_link_2: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     profile_link_3: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     bio: {
-      type: type.STRING(255),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     banned: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false
     },
     banned_reason: {
-      type: type.STRING,
+      type: DataTypes.STRING,
       allowNull: true
     },
     new_password: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     new_password_key: {
-      type: type.STRING(25),
+      type: DataTypes.STRING(25),
       allowNull: true
     },
     new_password_requested: {
-      type: type.DATE,
+      type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: type.fn('NOW')
+      defaultValue: DataTypes.NOW
     },
     new_email: {
-      type: type.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     new_email_key: {
-      type: type.STRING(25),
+      type: DataTypes.STRING(25),
       allowNull: true
     },
     new_email_requested: {
-      type: type.DATE,
+      type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: type.fn('NOW')
+      defaultValue: DataTypes.NOW
     }
   }, {
     indexes: [

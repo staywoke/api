@@ -4,19 +4,19 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
+const _ = require('lodash')
 
 /**
  * Domain Tag
  * @type {object}
  */
-export default {
+module.exports = {
   /**
    * Prepare For API Output
    * @param {object} data - Data to be processed for API Output
    * @return {object}
    */
-  prepareForAPIOutput: (data) => {
+  prepareForAPIOutput (data) {
     const fields = [
       'name',
       'slug'
@@ -33,7 +33,7 @@ export default {
    * @param {object} data.slug - Tag Slug
    * @return {object}
    */
-  prepareForElasticSearch: (data) => {
+  prepareForElasticSearch (data) {
     return {
       id: data.id,
       name: data.name,

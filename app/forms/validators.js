@@ -1,4 +1,4 @@
-import validate from 'validate.js'
+const validate = require('validate.js')
 
 validate.validators.modelFieldValueUnique = (value, params, data) => {
   return new validate.Promise((resolve, reject) => {

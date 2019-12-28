@@ -1,14 +1,14 @@
-import chai from 'chai'
-import jwt from 'jsonwebtoken'
-import moment from 'moment'
-import Sequelize from 'sequelize'
-import sinon from 'sinon'
+const chai = require('chai')
+const jwt = require('jsonwebtoken')
+const moment = require('moment')
+const Sequelize = require('sequelize')
+const sinon = require('sinon')
 
-import db from '../../../../../../app/config/sequelize'
-import config from '../../../../../../app/config'
+const db = require('../../../../../../app/config/sequelize')
+const config = require('../../../../../../app/config')
 
-import { UserModel } from '../../../../../../app/models/api'
-import { UsersAuthDomain } from '../../../../../../app/api/v1/domain'
+const { UserModel } = require('../../../../../../app/models/api')
+const { UsersAuthDomain } = require('../../../../../../app/api/v1/domain')
 
 const assert = chai.assert
 

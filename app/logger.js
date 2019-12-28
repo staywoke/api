@@ -4,8 +4,8 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import config from './config'
-import logger from 'logzio-nodejs'
+const config = require('./config')
+const logger = require('logzio-nodejs')
 
 let log
 
@@ -35,4 +35,4 @@ if (config.get('env') !== 'test') {
   }
 }
 
-export default log
+module.exports = log

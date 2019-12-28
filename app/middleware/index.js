@@ -4,12 +4,12 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import RequireAuth from './require_auth'
+const RequireAuth = require('./require_auth')
 
 /**
  * Middlewear
  * @type {object}
  */
-export default {
+module.exports = {
   RequireAuth
 }

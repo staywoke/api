@@ -4,61 +4,64 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import mandrill from 'mandrill-api/mandrill'
-import Promise from 'bluebird'
+const _ = require('lodash')
+const mandrill = require('mandrill-api/mandrill')
+const Promise = require('bluebird')
 
-import config from '../../../config'
+const config = require('../../../config')
 
 /**
  * Email domain services object
  * @type {object}
  */
-export default {
+module.exports = {
   /**
    * Get a Mandrill client with promisified `messages` methods, which means
    * all methods will have an `Async` suffix, e.g. `sendTemplate` becomes
    * `sendTemplateAsync` and can utilize chained `.then()` and `.catch()` calls
    * @return {object}
    */
-  getClient: _.memoize(() => {
-    const client = new mandrill.Mandrill(config.get('mandrill.key'))
+  getClient () {
+    return _.memoize(() => {
+      const client = new mandrill.Mandrill(config.get('mandrill.key'))
 
-    /* nyc ignore next */
-    Promise.promisifyAll(client.messages, {
-      // We need a custom promisifier since Mandrill methods seem to take two callback arguments (success, then error)
-      promisifier: (originalMethod) => {
-        const promisified = function () {
-          const self = this
-          const args = [].slice.call(arguments)
-          return new Promise((resolve, reject) => {
-            args.push(resolve)
-            args.push(reject)
-            originalMethod.apply(self, args)
-          })
+      /* nyc ignore next */
+      Promise.promisifyAll(client.messages, {
+        // We need a custom promisifier since Mandrill methods seem to take two callback arguments (success, then error)
+        promisifier: (originalMethod) => {
+          const promisified = function () {
+            const self = this
+            const args = [].slice.call(arguments)
+            return new Promise((resolve, reject) => {
+              args.push(resolve)
+              args.push(reject)
+              originalMethod.apply(self, args)
+            })
+          }
+
+          return promisified
         }
+      })
 
-        return promisified
-      }
+      return client
     })
-
-    return client
-  }),
+  },
 
   /**
    * Get Base URL for Web Application
    * @returns {string} Base URL for Web App
    */
-  getBaseURL: () => {
+  getBaseURL () {
     switch (config.get('env')) {
-      case 'local':
-        return 'http://127.0.0.1:5050'
-
       case 'staging':
         return 'https://staging.website.com'
 
       case 'production':
         return 'https://website.com'
+
+      case 'local':
+      default:
+        return 'http://127.0.0.1:5050'
     }
   },
 
@@ -71,7 +74,7 @@ export default {
    * @param  {string} optionalData  Optional  data to pass into template
    * @return {object}              Returns a promise object
    */
-  sendUserEmail: (templateSlug, user, geolocation, optionalData) => {
+  sendUserEmail (templateSlug, user, geolocation, optionalData) {
     const templateVariables = _.map(user.publicJSON(), (value, key) => {
       return {
         name: key,
@@ -258,7 +261,7 @@ export default {
    * @param  {object} user Sequelize User model instance object
    * @return {object}      Returns promise from sendUserEmail
    */
-  sendUserConfirmationEmail: (user) => {
+  sendUserConfirmationEmail (user) {
     return this.sendUserEmail('registration-confirmation', user)
   },
 
@@ -268,7 +271,7 @@ export default {
    * @param  {object} geolocation IP2Location JSON Object
    * @return {object}      Returns promise from sendUserEmail
    */
-  sendUserForgotPasswordEmail: (user, geolocation) => {
+  sendUserForgotPasswordEmail (user, geolocation) {
     return this.sendUserEmail('forgot-password', user, geolocation)
   },
 
@@ -278,7 +281,7 @@ export default {
    * @param  {object} geolocation IP2Location JSON Object
    * @return {object}      Returns promise from sendUserEmail
    */
-  sendUserPasswordResetEmail: (user, geolocation) => {
+  sendUserPasswordResetEmail (user, geolocation) {
     return this.sendUserEmail('password-reset', user, geolocation)
   },
 
@@ -289,7 +292,7 @@ export default {
    * @param  {string} optionalData  Optional  data to pass into template
    * @return {object}      Returns promise from sendUserEmail
    */
-  sendChangedUsernameEmail: (user, geolocation, optionalData) => {
+  sendChangedUsernameEmail (user, geolocation, optionalData) {
     return this.sendUserEmail('change-username-notice', user, geolocation, optionalData)
   },
 
@@ -300,7 +303,7 @@ export default {
    * @param  {string} optionalData  Optional  data to pass into template
    * @return {object}      Returns promise from sendUserEmail
    */
-  sendConfirmChangedEmailAddressEmail: (user, geolocation, optionalData) => {
+  sendConfirmChangedEmailAddressEmail (user, geolocation, optionalData) {
     return this.sendUserEmail('change-email-confirmation', user, geolocation, optionalData)
   },
 
@@ -311,7 +314,7 @@ export default {
    * @param  {string} optionalData  Optional  data to pass into template
    * @return {object}      Returns promise from sendUserEmail
    */
-  sendConfirmChangedPasswordEmail: (user, geolocation, optionalData) => {
+  sendConfirmChangedPasswordEmail (user, geolocation, optionalData) {
     return this.sendUserEmail('change-password-confirmation', user, geolocation, optionalData)
   }
 }

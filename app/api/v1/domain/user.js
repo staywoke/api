@@ -4,19 +4,19 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import Hashids from 'hashids'
-import md5 from 'md5'
-import randomString from 'randomstring'
-import Sequelize from 'sequelize'
+const _ = require('lodash')
+const Hashids = require('hashids/cjs')
+const md5 = require('md5')
+const randomString = require('randomstring')
+const Sequelize = require('sequelize')
 
-import db from '../../../config/sequelize'
-import email from './email'
-import hasher from '../../../util/hasher'
-import routeUtil from '../routes/util'
-import config from '../../../config'
+const db = require('../../../config/sequelize')
+const email = require('./email')
+const hasher = require('../../../util/hasher')
+const routeUtil = require('../routes/util')
+const config = require('../../../config')
 
-import { UserModel, UserFollowModel, UserInviteModel } from '../../../models/api'
+const { UserModel, UserFollowModel, UserInviteModel } = require('../../../models/api')
 
 const User = UserModel(db, Sequelize)
 const UserFollow = UserFollowModel(db, Sequelize)
@@ -26,13 +26,13 @@ const UserInvite = UserInviteModel(db, Sequelize)
  * Domain User
  * @type {object}
  */
-export default {
+module.exports = {
   /**
    * Prepare For API Output
    * @param {object} data - Data to be processed for API Output
    * @return {object}
    */
-  prepareForAPIOutput: (data) => {
+  prepareForAPIOutput (data) {
     const fields = [
       'bio',
       'company_name',
@@ -77,7 +77,7 @@ export default {
    * @param {string} data.username - Users Username
    * @return {object}
    */
-  prepareForElasticSearch: (data) => {
+  prepareForElasticSearch (data) {
     return {
       id: data.id,
       bio: data.bio,
@@ -104,7 +104,7 @@ export default {
    * @param {string} key - Hash ID of User ID
    * @returns {*}
    */
-  checkInviteCode: (key) => {
+  checkInviteCode (key) {
     const hashID = new Hashids(
       config.get('hashID.secret'),
       config.get('hashID.length'),
@@ -173,7 +173,7 @@ export default {
    * @param {object} account.username - Username of Account to be Deleted
    * @returns {*}
    */
-  deleteAccount: (account) => {
+  deleteAccount (account) {
     if (account && account.username && account.id) {
       return User.findOne({
         where: {
@@ -215,7 +215,7 @@ export default {
    * @param {callback} callback - Requested Callback Handler
    * @returns {*}
    */
-  emailAddressInUse: (emailAddress, callback) => {
+  emailAddressInUse (emailAddress, callback) {
     if (emailAddress) {
       return User.findOne({
         where: {
@@ -241,7 +241,7 @@ export default {
    * @param {string} followUsername - Username of User to Follow
    * @returns {*}
    */
-  followUser: (currentUserID, followUsername) => {
+  followUser (currentUserID, followUsername) {
     currentUserID = parseInt(currentUserID, 10)
 
     if (currentUserID && followUsername) {
@@ -295,7 +295,7 @@ export default {
    * @param {string} username -
    * @returns {*}
    */
-  getFollowers: (username) => {
+  getFollowers (username) {
     if (username) {
       return User.findOne({
         where: {
@@ -366,7 +366,7 @@ export default {
    * @param {string} username - Which Username to check
    * @returns {*}
    */
-  getFollowing: (username) => {
+  getFollowing (username) {
     if (username) {
       return User.findOne({
         where: {
@@ -438,7 +438,7 @@ export default {
    * @param {string} unfollowUsername - Which Username to check
    * @returns {*}
    */
-  unfollowUser: (currentUserID, unfollowUsername) => {
+  unfollowUser (currentUserID, unfollowUsername) {
     currentUserID = parseInt(currentUserID, 10)
 
     if (currentUserID && unfollowUsername) {
@@ -482,7 +482,7 @@ export default {
    * @param {string} ipAddress - IP Address of Request
    * @returns {*}
    */
-  updateAccount: (validUserId, newUserData, ipAddress) => {
+  updateAccount (validUserId, newUserData, ipAddress) {
     if (validUserId && newUserData) {
       return User.findOne({
         where: {
@@ -580,7 +580,7 @@ export default {
    * @param {callback} callback - Requested Callback Handler
    * @returns {*}
    */
-  usernameInUse: (username, callback) => {
+  usernameInUse (username, callback) {
     if (username) {
       return User.findOne({
         where: {

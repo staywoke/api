@@ -4,11 +4,11 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import Promise from 'bluebird'
+const Promise = require('bluebird')
 
-import config from '../../config'
-import client from '../client'
-import debug from '../../debug'
+const config = require('../../config')
+const client = require('../client')
+const debug = require('../../debug')
 
 const env = config.get('env')
 const indexType = `${env}_tag`
@@ -43,7 +43,7 @@ mapping.body[indexType] = {
  * Create Tag Index
  * @type {object}
  */
-export default client.indices.exists({
+module.exports = client.indices.exists({
   index: indexName
 }).then((exists) => {
   if (!exists) {

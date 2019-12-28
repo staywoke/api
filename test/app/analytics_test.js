@@ -1,6 +1,6 @@
-import chai from 'chai'
+const chai = require('chai')
 
-import analytics from '../../app/analytics'
+const analytics = require('../../app/analytics')
 
 const assert = chai.assert
 

@@ -4,9 +4,9 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import redis from 'redis'
+const redis = require('redis')
 
-import config from './config'
+const config = require('./config')
 
 const redisClient = redis.createClient(config.get('redis.port'), config.get('redis.host'), {
   retry_strategy: (options) => {
@@ -38,4 +38,4 @@ if (config.get('redis.password')) {
   redisClient.auth(config.get('redis.password'))
 }
 
-export default redisClient
+module.exports = redisClient

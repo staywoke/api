@@ -1,66 +1,65 @@
+'use strict'
+
 /**
- * @module models/api/user_settings_notifications
+ * @module models/user_settings_notifications
  * @version 1.0.0
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import { UserModel } from './'
-
-export default (sequelize, type) => {
-  const User = UserModel(sequelize, type)
+module.exports = (sequelize, DataTypes) => {
   const UserSettingNotification = sequelize.define('user_settings_notifications', {
     id: {
-      type: type.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     user_id: {
-      type: type.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false
     },
     email_comment_left: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     },
     email_comment_liked: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     },
     email_someone_follows: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     },
     email_mentioned_in_comment: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     },
     web_comment_left: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     },
     web_comment_liked: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     },
     web_someone_follows: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     },
     web_mentioned_in_comment: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     },
     newsletter: {
-      type: type.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true
     }
@@ -101,13 +100,18 @@ export default (sequelize, type) => {
   })
 
   /**
-   * Connect Notification Settings to User
+   * Setup Model Associations
    */
-  UserSettingNotification.belongsTo(User, {
-    foreignKey: 'user_id',
-    targetKey: 'id',
-    foreignKeyConstraint: true
-  })
+  UserSettingNotification.associate = (models) => {
+    /**
+     * Connect Notification Settings to User
+     */
+    models.user_settings_notifications.belongsTo(models.users, {
+      foreignKey: 'user_id',
+      targetKey: 'id',
+      foreignKeyConstraint: true
+    })
+  }
 
   return UserSettingNotification
 }

@@ -4,12 +4,12 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import Hasher from './hasher'
+const Hasher = require('./hasher')
 
 /**
  * Utility
  * @type {object}
  */
-export default {
+module.exports = {
   Hasher
 }

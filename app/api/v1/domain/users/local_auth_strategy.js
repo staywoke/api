@@ -4,12 +4,12 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import Sequelize from 'sequelize'
-import { Strategy as LocalStrategy } from 'passport-local'
+const Sequelize = require('sequelize')
+const { LocalStrategy } = require('passport-local').Strategy
 
-import db from '../../../../config/sequelize'
-import hasher from '../../../../util/hasher'
-import { UserModel } from '../../../../models/api'
+const db = require('../../../../config/sequelize')
+const hasher = require('../../../../util/hasher')
+const { UserModel } = require('../../../../models/api')
 
 const User = UserModel(db, Sequelize)
 
@@ -17,7 +17,7 @@ const User = UserModel(db, Sequelize)
  * Local Auth Strategy
  * @type {object}
  */
-export default new LocalStrategy(
+module.exports = new LocalStrategy(
   /**
    * @name Local Authentication Strategy
    * @property {string} username - Username for Login

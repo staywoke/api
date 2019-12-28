@@ -1,23 +1,27 @@
-import chai from 'chai'
-import Sequelize from 'sequelize'
-import sinon from 'sinon'
+const chai = require('chai')
+const Sequelize = require('sequelize')
+const sinon = require('sinon')
 
-import db from '../../../../../app/config/sequelize'
+const db = require('../../../../../app/config/sequelize')
 
-import { ProfileDomain } from '../../../../../app/api/v1/domain'
-import { UserActivityModel } from '../../../../../app/models/api'
+const { ProfileDomain } = require('../../../../../app/api/v1/domain')
+const { UserActivityModel } = require('../../../../../app/models/api')
 
 const assert = chai.assert
 
 const UserActivity = UserActivityModel(db, Sequelize)
 
 describe('Domain Profile', () => {
+  let activityFindStub
+  let notificationFindStub
+  let sandbox
+
   beforeEach(() => {
-    this.sandbox = sinon.createSandbox()
+    sandbox = sinon.createSandbox()
   })
 
   afterEach(() => {
-    this.sandbox.restore()
+    sandbox.restore()
   })
 
   it('should be defined', () => {
@@ -34,7 +38,7 @@ describe('Domain Profile', () => {
 
   describe('getActivity', () => {
     beforeEach(() => {
-      this.activityFindStub = this.sandbox.stub(UserActivity, 'findAll')
+      activityFindStub = sandbox.stub(UserActivity, 'findAll')
     })
 
     it('should return activity', (done) => {
@@ -58,7 +62,7 @@ describe('Domain Profile', () => {
         ]
       }
 
-      this.activityFindStub.returns(Promise.resolve(fakeActivity))
+      activityFindStub.returns(Promise.resolve(fakeActivity))
 
       ProfileDomain.getActivity(fakeUserID).then((foundUser) => {
         assert.isDefined(foundUser)
@@ -69,7 +73,7 @@ describe('Domain Profile', () => {
     it('should fail with no userID', (done) => {
       const fakeUserID = 123
 
-      this.activityFindStub.returns(Promise.reject('No activity found for user ' + fakeUserID))
+      activityFindStub.returns(Promise.reject('No activity found for user ' + fakeUserID))
 
       ProfileDomain.getActivity(fakeUserID).catch((error) => {
         assert.isDefined(error)
@@ -80,7 +84,7 @@ describe('Domain Profile', () => {
     it('should not return activity', (done) => {
       const fakeUserID = 123
 
-      this.activityFindStub.returns(Promise.resolve(null))
+      activityFindStub.returns(Promise.resolve(null))
 
       ProfileDomain.getActivity(fakeUserID).catch((error) => {
         assert.isDefined(error)
@@ -91,13 +95,13 @@ describe('Domain Profile', () => {
 
   describe('getNotifications', () => {
     beforeEach(() => {
-      this.notificationFindStub = this.sandbox.stub(UserActivity, 'findAll')
+      notificationFindStub = sandbox.stub(UserActivity, 'findAll')
     })
 
     it('should return notifications', (done) => {
       const fakeUserID = 123
 
-      this.notificationFindStub.returns(Promise.resolve(fakeUserID))
+      notificationFindStub.returns(Promise.resolve(fakeUserID))
 
       ProfileDomain.getNotifications(fakeUserID).then((response) => {
         assert.isDefined(response)

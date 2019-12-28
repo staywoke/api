@@ -5,11 +5,11 @@
  * @todo Create Unit Tests for Routes
  */
 
-import config from '../../../config'
-import express from 'express'
-import util from './util'
+const config = require('../../../config')
+const express = require('express')
+const util = require('./util')
 
-import { ProfileDomain, SettingsDomain } from '../domain'
+const { ProfileDomain, SettingsDomain } = require('../domain')
 
 const router = express.Router(config.router)
 
@@ -172,4 +172,4 @@ router.route('/settings/web-notifications').post((request, response) => {
   })
 })
 
-export default router
+module.exports = router

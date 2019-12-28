@@ -4,8 +4,8 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import colors from 'colors'
-import config from './config'
+const colors = require('colors')
+const config = require('./config')
 
 // Set Console Colors
 colors.setTheme({
@@ -20,7 +20,7 @@ colors.setTheme({
 const debugEnabled = config.get('debug')
 
 /* nyc ignore next */
-export default {
+module.exports = {
   success: (message) => {
     if (debugEnabled) {
       console.log(colors.success('✔ ' + message))

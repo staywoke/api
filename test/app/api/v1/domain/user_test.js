@@ -1,14 +1,14 @@
-import chai from 'chai'
-import Hashids from 'hashids'
-import randomString from 'randomstring'
-import Sequelize from 'sequelize'
-import sinon from 'sinon'
+const chai = require('chai')
+const Hashids = require('hashids/cjs')
+const randomString = require('randomstring')
+const Sequelize = require('sequelize')
+const sinon = require('sinon')
 
-import config from '../../../../../app/config'
-import db from '../../../../../app/config/sequelize'
+const config = require('../../../../../app/config')
+const db = require('../../../../../app/config/sequelize')
 
-import { UserDomain } from '../../../../../app/api/v1/domain'
-import { UserModel, UserFollowModel, UserInviteModel } from '../../../../../app/models/api'
+const { UserDomain } = require('../../../../../app/api/v1/domain')
+const { UserModel, UserFollowModel, UserInviteModel } = require('../../../../../app/models/api')
 
 const assert = chai.assert
 

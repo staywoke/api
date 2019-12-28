@@ -4,9 +4,9 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import client from './../client'
-import config from '../../config'
-import debug from '../../debug'
+const client = require('./../client')
+const config = require('../../config')
+const debug = require('../../debug')
 
 const env = config.get('env')
 const indexType = `${env}_tag`
@@ -16,7 +16,7 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
  * Delete Tag Index
  * @type {object}
  */
-export default client.indices.delete({
+module.exports = client.indices.delete({
   index: indexName
 }).then(() => {
   debug.success(`Index Deleted: ${indexName}`)

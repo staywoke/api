@@ -1,17 +1,17 @@
-import _ from 'lodash'
-import chai from 'chai'
-import Hashids from 'hashids'
-import Promise from 'bluebird'
-import randomString from 'randomstring'
-import rewire from 'rewire'
-import Sequelize from 'sequelize'
-import sinon from 'sinon'
+const _ = require('lodash')
+const chai = require('chai')
+const Hashids = require('hashids/cjs')
+const Promise = require('bluebird')
+const randomString = require('randomstring')
+const rewire = require('rewire')
+const Sequelize = require('sequelize')
+const sinon = require('sinon')
 
-import config from '../../../../../../app/config'
-import db from '../../../../../../app/config/sequelize'
+const config = require('../../../../../../app/config')
+const db = require('../../../../../../app/config/sequelize')
 
-import { UserModel } from '../../../../../../app/models/api'
-import { UsersRegistrationFormDomain } from '../../../../../../app/api/v1/domain'
+const { UserModel } = require('../../../../../../app/models/api')
+const { UsersRegistrationFormDomain } = require('../../../../../../app/api/v1/domain')
 
 const assert = chai.assert
 

@@ -1,8 +1,0 @@
-{
-  "username": "root",
-  "password": "c1v1Ls3rv1c3s",
-  "database": "staywoke_api",
-  "host": "database",
-  "dialect": "mysql",
-  "seederStorage": "sequelize"
-}

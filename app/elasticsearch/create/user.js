@@ -4,11 +4,11 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import Promise from 'bluebird'
+const Promise = require('bluebird')
 
-import client from '../client'
-import config from '../../config'
-import debug from '../../debug'
+const client = require('../client')
+const config = require('../../config')
+const debug = require('../../debug')
 
 const env = config.get('env')
 const indexType = `${env}_user`
@@ -76,7 +76,7 @@ mapping.body[indexType] = {
  * Create User Index
  * @type {object}
  */
-export default client.indices.exists({
+module.exports = client.indices.exists({
   index: indexName
 }).then((exists) => {
   if (!exists) {

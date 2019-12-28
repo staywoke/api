@@ -1,6 +1,7 @@
-import chai from 'chai'
+const chai = require('chai')
 
-import appServer, { setupAPI } from '../../app/server'
+const appServer = require('../../app/server')
+const setupAPI = require('../../app/server').setupAPI
 
 const assert = chai.assert
 

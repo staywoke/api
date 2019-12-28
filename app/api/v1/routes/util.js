@@ -4,21 +4,21 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import jwt from 'jsonwebtoken'
-import request from 'request'
-import Sequelize from 'sequelize'
+const _ = require('lodash')
+const jwt = require('jsonwebtoken')
+const request = require('request')
+const Sequelize = require('sequelize')
 
-import config from '../../../config'
-import db from '../../../config/sequelize'
+const config = require('../../../config')
+const db = require('../../../config/sequelize')
 
-import { UserActivityModel, UserLoginModel } from '../../../models/api'
+const { UserActivityModel, UserLoginModel } = require('../../../models/api')
 
 const UserActivity = UserActivityModel(db, Sequelize)
 const UserLogin = UserLoginModel(db, Sequelize)
 
 /* nyc ignore next */
-export default {
+module.exports = {
 
   /**
    * Default Response Template

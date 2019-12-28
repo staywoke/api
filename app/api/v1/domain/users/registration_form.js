@@ -4,12 +4,12 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import Sequelize from 'sequelize'
+const Sequelize = require('sequelize')
 
-import db from '../../../../config/sequelize'
-import BaseForm from '../../../../forms/base'
+const db = require('../../../../config/sequelize')
+const BaseForm = require('../../../../forms/base')
 
-import { UserModel } from '../../../../models/api'
+const { UserModel } = require('../../../../models/api')
 
 const User = UserModel(db, Sequelize)
 
@@ -17,7 +17,7 @@ const User = UserModel(db, Sequelize)
  * Registration Form Validation
  * @type {object}
  */
-export default BaseForm.extend({
+module.exports = BaseForm.extend({
   constraints: {
     username: {
       presence: true,

@@ -1,6 +1,6 @@
-import chai from 'chai'
+const chai = require('chai')
 
-import hasher from '../../../app/util/hasher'
+const hasher = require('../../../app/util/hasher')
 
 const assert = chai.assert
 

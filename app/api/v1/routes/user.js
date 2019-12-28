@@ -5,14 +5,14 @@
  * @todo Create Unit Tests for Routes
  */
 
-import express from 'express'
-import passport from 'passport'
+const express = require('express')
+const passport = require('passport')
 
-import config from '../../../config'
-import util from './util'
-import elasticsearchClient from '../../../elasticsearch/client'
+const config = require('../../../config')
+const util = require('./util')
+const elasticsearchClient = require('../../../elasticsearch/client')
 
-import { EmailDomain, UserDomain, UsersAuthDomain, UsersRegistrationDomain } from '../domain'
+const { EmailDomain, UserDomain, UsersAuthDomain, UsersRegistrationDomain } = require('../domain')
 
 const router = express.Router(config.router)
 
@@ -666,4 +666,4 @@ router.route('/user/invite/:key').get((request, response) => {
   })
 })
 
-export default router
+module.exports = router

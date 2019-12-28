@@ -5,15 +5,15 @@
  * @todo Create Unit Tests for Routes
  */
 
-import express from 'express'
-import validator from 'validator'
+const express = require('express')
+const validator = require('validator')
 
-import analytics from '../../../analytics'
-import config from '../../../config'
-import elasticsearchClient from '../../../elasticsearch/client'
-import util from './util'
+const analytics = require('../../../analytics')
+const config = require('../../../config')
+const elasticsearchClient = require('../../../elasticsearch/client')
+const util = require('./util')
 
-import { CategoryDomain } from '../domain'
+const { CategoryDomain } = require('../domain')
 
 const env = config.get('env')
 const indexType = `${env}_category`
@@ -91,4 +91,4 @@ router.route('/categories/:slug?').get((request, response) => {
   })
 })
 
-export default router
+module.exports = router

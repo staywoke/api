@@ -1,5 +1,5 @@
-import chai from 'chai'
-import util from '../../../../../app/api/v1/routes/util'
+const chai = require('chai')
+const util = require('../../../../../app/api/v1/routes/util')
 
 const assert = chai.assert
 

@@ -4,16 +4,16 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import express from 'express'
+const express = require('express')
 
-import apiUser from './user'
-import categories from './categories'
-import config from '../../../config'
-import profile from './profile'
-import settings from './settings'
-import tags from './tags'
-import token from './token'
-import unauthorized from './unauthorized'
+const apiUser = require('./user')
+const categories = require('./categories')
+const config = require('../../../config')
+const profile = require('./profile')
+const settings = require('./settings')
+const tags = require('./tags')
+const token = require('./token')
+const unauthorized = require('./unauthorized')
 
 const router = express.Router(config.router)
 const version = config.get('version')
@@ -26,4 +26,4 @@ router.use(`/${version}/`, tags)
 router.use(`/${version}/`, token)
 router.use(`/${version}/`, unauthorized)
 
-export default router
+module.exports = router

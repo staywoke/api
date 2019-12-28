@@ -4,11 +4,11 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import md5 from 'md5'
-import Sequelize from 'sequelize'
+const md5 = require('md5')
+const Sequelize = require('sequelize')
 
-import db from '../../../config/sequelize'
-import { UserModel, UserActivityModel } from '../../../models/api'
+const db = require('../../../config/sequelize')
+const { UserModel, UserActivityModel } = require('../../../models/api')
 
 const User = UserModel(db, Sequelize)
 const UserActivity = UserActivityModel(db, Sequelize)
@@ -17,13 +17,13 @@ const UserActivity = UserActivityModel(db, Sequelize)
  * Domain Profile
  * @type {object}
  */
-export default {
+module.exports = {
   /**
    * Get User Activity
    * @param {number} userId - User ID
    * @returns {*}
    */
-  getActivity: (userId) => {
+  getActivity (userId) {
     if (userId) {
       return UserActivity.findAll({
         include: [
@@ -88,7 +88,7 @@ export default {
    * Get Notifications
    * @todo: Flush This Out
    */
-  getNotifications: (userId) => {
+  getNotifications (userId) {
     return Promise.resolve(userId)
   }
 }

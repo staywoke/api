@@ -4,16 +4,16 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import _ from 'lodash'
-import Sequelize from 'sequelize'
+const _ = require('lodash')
+const Sequelize = require('sequelize')
 
-import config from '../../config'
-import db from '../../config/sequelize'
-import debug from '../../debug'
-import elasticsearchClient from '../client'
+const config = require('../../config')
+const db = require('../../config/sequelize')
+const debug = require('../../debug')
+const elasticsearchClient = require('../client')
 
-import { CategoryDomain } from '../../api/v1/domain'
-import { CategoryModel } from '../../models/api'
+const { CategoryDomain } = require('../../api/v1/domain')
+const { CategoryModel } = require('../../models/api')
 
 const env = config.get('env')
 const indexType = `${env}_category`
@@ -24,8 +24,8 @@ const Category = CategoryModel(db, Sequelize)
 /**
  * Update Category Index
  */
-export default {
-  update: () => {
+module.exports = {
+  update () {
     elasticsearchClient.search({
       index: indexName,
       size: 0,

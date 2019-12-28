@@ -4,9 +4,9 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import Category from './category'
-import Tag from './tag'
-import User from './user'
+const Category = require('./category')
+const Tag = require('./tag')
+const User = require('./user')
 
 Category.update()
 Tag.update()
@@ -16,8 +16,8 @@ User.update()
  * Update
  * @type {object}
  */
-export default {
-  Category,
-  Tag,
-  User
+module.exports = {
+  Category: Category,
+  Tag: Tag,
+  User: User
 }

@@ -1,13 +1,13 @@
-import _ from 'lodash'
-import chai from 'chai'
-import Hashids from 'hashids'
-import Promise from 'bluebird'
-import sinon from 'sinon'
-import validate from 'validate.js'
+const _ = require('lodash')
+const chai = require('chai')
+const Hashids = require('hashids/cjs')
+const Promise = require('bluebird')
+const sinon = require('sinon')
+const validate = require('validate.js')
 
-import config from '../../../../../../app/config'
+const config = require('../../../../../../app/config')
 
-import { UsersRegistrationFormDomain } from '../../../../../../app/api/v1/domain'
+const { UsersRegistrationFormDomain } = require('../../../../../../app/api/v1/domain')
 
 const assert = chai.assert
 

@@ -1,6 +1,6 @@
-import chai from 'chai'
+const chai = require('chai')
 
-import { TagDomain } from '../../../../../app/api/v1/domain'
+const { TagDomain } = require('../../../../../app/api/v1/domain')
 
 const assert = chai.assert
 

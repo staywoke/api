@@ -4,16 +4,12 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-import Category from './category'
-import Tag from './tag'
-import User from './user'
-
 /**
  * Delete
  * @type {object}
  */
-export default {
-  Category,
-  Tag,
-  User
+module.exports = {
+  Category: require('./category'),
+  Tag: require('./tag'),
+  User: require('./user')
 }

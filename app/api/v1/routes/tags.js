@@ -5,14 +5,14 @@
  * @todo Create Unit Tests for Routes
  */
 
-import express from 'express'
-import validator from 'validator'
+const express = require('express')
+const validator = require('validator')
 
-import config from '../../../config'
-import elasticsearchClient from '../../../elasticsearch/client'
-import util from './util'
+const config = require('../../../config')
+const elasticsearchClient = require('../../../elasticsearch/client')
+const util = require('./util')
 
-import { TagDomain } from '../domain'
+const { TagDomain } = require('../domain')
 
 const router = express.Router(config.router)
 
@@ -71,4 +71,4 @@ router.route('/tags').get((request, response) => {
   })
 })
 
-export default router
+module.exports = router
