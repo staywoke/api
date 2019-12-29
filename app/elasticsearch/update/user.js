@@ -5,21 +5,17 @@
  */
 
 const _ = require('lodash')
-const Sequelize = require('sequelize')
 
 const config = require('../../config')
-const db = require('../../config/sequelize')
 const debug = require('../../debug')
 const elasticsearchClient = require('../client')
+const models = require('../../models')
 
 const { UserDomain } = require('../../api/v1/domain')
-const { UserModel } = require('../../models/api')
 
 const env = config.get('env')
 const indexType = `${env}_user`
 const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
-
-const User = UserModel(db, Sequelize)
 
 /**
  * Update User Index
@@ -41,7 +37,7 @@ module.exports = {
         params.where.id = userId
       }
 
-      return User.findAll(params)
+      return models.users.findAll(params)
     }).then((user) => {
       if (user.length) {
         const bulkActions = []

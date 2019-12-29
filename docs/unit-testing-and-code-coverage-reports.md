@@ -1,4 +1,4 @@
-![StayWoke Logo](https://cdn.staywoke.org/common/github-logo.png "StayWoke Logo")
+![StayWoke Logo](https://staywoke-github.s3.us-east-1.amazonaws.com/common/logo.png "StayWoke Logo")
 
 **[↤ Developer Overview](../README.md)**
 

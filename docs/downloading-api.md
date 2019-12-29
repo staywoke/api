@@ -1,4 +1,4 @@
-![StayWoke Logo](https://cdn.staywoke.org/common/github-logo.png "StayWoke Logo")
+![StayWoke Logo](https://staywoke-github.s3.us-east-1.amazonaws.com/common/logo.png "StayWoke Logo")
 
 **[↤ Developer Overview](../README.md)**
 
@@ -27,10 +27,11 @@ Create a file located at `./app/seeders/00000000000000-api-authentication-seeder
 
 ```js
 /**
- * @TODO: Change `api_key` & `api_secret` using {@link: https://guid.it GUID}
+ * @TODO: Change `api_key` & `api_secret` `CHANGE_ME`
+ * @link: https://guid.it GUID
  */
 module.exports = {
-  up: function (queryInterface) {
+  up: (queryInterface) => {
     return queryInterface.bulkInsert('api_authentication', [
       {
         approved_whitelist: '*',
@@ -53,18 +54,18 @@ module.exports = {
       }
     ], {
       updateOnDuplicate: ['user_id', 'approved_whitelist', 'api_key', 'api_secret', 'allow_api_get', 'allow_api_post', 'allow_api_put', 'allow_api_delete', 'allow_content_management', 'allow_user_registration', 'app_name', 'app_type', 'app_purpose', 'app_description', 'status', 'daily_limit', 'modified_date']
-    }).catch(function (err) {
+    }).catch((err) => {
       if (err && err.errors) {
-        for (var i = 0; i < err.errors.length; i++) {
-          console.error('× SEED ERROR', err.errors[i].type, err.errors[i].message, err.errors[i].path, err.errors[i].value);
+        for (let i = 0; i < err.errors.length; i++) {
+          console.error(`\n× SEED ERROR: ${err.errors[i].type} ${err.errors[i].message} ${err.errors[i].path} ${err.errors[i].value}\n`)
         }
       } else if (err && err.message) {
-        console.error('× SEED ERROR', err.message);
+        console.error(`\n× SEED ERROR: ${err.message}\n`)
       }
-    });
+    })
   },
-  down: function (queryInterface) {
-    return queryInterface.bulkDelete('api_authentication', null, {});
+  down: (queryInterface) => {
+    return queryInterface.bulkDelete('api_authentication', null, {})
   }
-};
+}
 ```

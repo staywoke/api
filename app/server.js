@@ -11,24 +11,21 @@ const Debug = require('debug')
 const dotenv = require('dotenv')
 const express = require('express')
 const rateLimit = require('express-rate-limit')
-const Sequelize = require('sequelize')
 const session = require('express-session')
 const uuid = require('uuid')
 
 const analytics = require('./analytics')
 const config = require('./config')
-const db = require('./config/sequelize')
 const router = require('./router')
 const routerUtil = require('./api/v1/routes/util')
 
-const { ApiAuthenticationModel } = require('./models/api')
+const models = require('./models')
 
 // Import Environment before Remaining Imports
 dotenv.config({
   silent: true
 })
 
-const ApiAuthentication = ApiAuthenticationModel(db, Sequelize)
 const app = express()
 const debug = Debug('express:api')
 
@@ -64,7 +61,7 @@ const SetupAPI = (request, response, next) => {
   if (request.query.apikey) {
     analytics.trackEvent(request.query.apikey, 'API Key', request.query.apikey, request.url)
 
-    return ApiAuthentication.findOne({
+    return models.api_authentication.findOne({
       where: {
         api_key: request.query.apikey
       }

@@ -1,4 +1,4 @@
-![StayWoke Logo](https://cdn.staywoke.org/common/github-logo.png "StayWoke Logo")
+![StayWoke Logo](https://staywoke-github.s3.us-east-1.amazonaws.com/common/logo.png "StayWoke Logo")
 
 **[↤ Developer Overview](../README.md)**
 
@@ -8,10 +8,9 @@ Getting Setup without Docker
 Requirements
 ---
 
-* [NodeJS 6.x](https://nodejs.org/en/)
+* [NodeJS 12.x](https://nodejs.org/en/)
 * [MySQL](http://www.mysql.com/)
-* [Elasticsearch 1.7.x](https://www.elastic.co/)
-* [Redis](http://redis.io/)
+* [Elasticsearch 7.5.x](https://www.elastic.co/)
 * [Bcrypt](http://bcrypt.sourceforge.net/)
 
 
@@ -23,8 +22,9 @@ Installing Requirements
 It's recommended that you install and use [Homebrew](http://brew.sh/) for the system-level requirements for the project. Once you have it installed, you can run the following:
 
 ```bash
+brew tap elastic/tap
 brew tap homebrew/services
-brew install node mysql elasticsearch@1.7 bcrypt redis
+brew install node mysql bcrypt elastic/tap/elasticsearch-full
 ```
 
 #### Linux
@@ -65,7 +65,7 @@ For example, if you are setting up a `local` environment, you would need to crea
   "database": {
     "api": {
       "host": "localhost",
-      "database": "staywoke_api",
+      "database": "local_api",
       "username": "root",
       "password": ""
     }
@@ -78,7 +78,7 @@ For example, if you are setting up a `local` environment, you would need to crea
   },
   "logzio": {
     "token": "CHANGE_ME",
-    "type": "StayWokeAPI"
+    "type": "API"
   }
 }
 ```
@@ -89,7 +89,7 @@ For example, if you are setting up a `local` environment, you would need to crea
 {
   "username": "root",
   "password": "",
-  "database": "staywoke_api",
+  "database": "local_api",
   "host": "localhost",
   "dialect": "mysql"
 }
@@ -108,7 +108,7 @@ Accessing the API via Browser
 Once the API is up and running you can access a local URL via:
 
 ```text
-http://localhost:5000/v1/geolocation/zipcode/10001?apikey=YOUR_API_KEY&pretty
+http://localhost:5000/v1/token?apikey=YOUR_API_KEY&pretty
 ```
 
 `YOUR_API_KEY` is whatever you setup in [Downloading API](../docs/downloading-api.md)

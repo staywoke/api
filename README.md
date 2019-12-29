@@ -1,4 +1,4 @@
-![StayWoke Logo](https://cdn.staywoke.org/common/github-logo.png "StayWoke Logo")
+![StayWoke Logo](https://staywoke-github.s3.us-east-1.amazonaws.com/common/logo.png "StayWoke Logo")
 
 StayWoke API
 ===
@@ -7,15 +7,15 @@ StayWoke API
 
 __StayWoke__ is a community of learners, builders, and activists to create solutions to advance equity and justice in America.
 
-[![Donate](https://cdn.staywoke.org/donate-button.png)](https://www.paypal.me/staywoke)
+[![Donate](https://staywoke-github.s3.us-east-1.amazonaws.com/common/donate.png)](https://www.paypal.me/campaignzero)
 
 
 Using our API
 ---
 
-Our API is __[Fully Documented](https://api.staywoke.org/guide/)__ using Apiary. Currently, our API is only open for select non-commercial use.  If you are interested in obtaining an API Key ( required for access ), please contact [hello@staywoke.org](mailto:hello@staywoke.org) or [Join us on Slack](https://slack.staywoke.org/bkx7n2).
+Our API is __[Fully Documented](https://api.staywoke.org/guide/)__ using Apiary. Currently, our API is only open for select non-commercial use.  If you are interested in obtaining an API Key ( required for access ), please contact [Peter Schmalfeldt](mailto:me@peterschmalfeldt.com) or [Join us on Slack](https://staywoke.slack.com).
 
-[![API Documentation](docs/img/apiary.jpg)](http://docs.staywoke.apiary.io)
+[![API Documentation](https://staywoke-github.s3.us-east-1.amazonaws.com/api/apiary.jpg)](http://docs.staywoke.apiary.io)
 
 
 Developer Overview
@@ -33,13 +33,10 @@ Developer Overview
 * [Getting Setup without Docker](docs/getting-setup-without-docker.md)
 * [Server Configuration](docs/server-configuration.md)
 * [MySQL Configuration](docs/mysql-configuration.md)
-* [Redis Configuration](docs/redis-configuration.md)
 * [Elasticsearch Configuration](docs/elasticsearch-configuration.md)
 
 
 Join us on Slack
 ---
 
-__[Join us on Slack](https://slack.staywoke.org/bkx7n2)__ if you need help using our API, or you are interested in contributing.
-
-[![Slack Team Invite](https://cdn.staywoke.org/common/slack-invite.png)](https://slack.staywoke.org/bkx7n2)
+__[Join us on Slack](https://staywoke.slack.com)__ if you need help using our API, or you are interested in contributing.

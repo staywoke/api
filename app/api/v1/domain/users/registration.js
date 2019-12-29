@@ -8,20 +8,15 @@ const _ = require('lodash')
 const Hashids = require('hashids/cjs')
 const Promise = require('bluebird')
 const randomString = require('randomstring')
-const Sequelize = require('sequelize')
 
-const db = require('../../../../config/sequelize')
 const config = require('../../../../config')
 const email = require('../email')
 const hasher = require('../../../../util/hasher')
 const RegistrationForm = require('./registration_form')
 
-const { UserModel, UserInviteModel } = require('../../../../models/api')
+const models = require('../../../../models')
 
-const User = UserModel(db, Sequelize)
-const UserInvite = UserInviteModel(db, Sequelize)
-
-var hashID = new Hashids(
+const hashID = new Hashids(
   config.get('hashID.secret'),
   config.get('hashID.length'),
   config.get('hashID.alphabet')
@@ -171,7 +166,13 @@ module.exports = {
     let inviteID
 
     if (insert.inviteCode) {
-      inviteID = parseInt(hashID.decode(insert.inviteCode), 10)
+      try {
+        inviteID = parseInt(hashID.decode(insert.inviteCode), 10)
+      } catch (err) {
+        return Promise.reject({
+          inviteCode: ['Invalid Invite Code']
+        })
+      }
 
       if (!inviteID) {
         return Promise.reject({
@@ -210,12 +211,12 @@ module.exports = {
         insert.new_email_key = randomString.generate(self.CONFIRMATION_KEY_LENGTH)
       }
 
-      return User.create(insert).then((created) => {
+      return models.users.create(insert).then((created) => {
         if (created) {
           email.sendUserConfirmationEmail(created)
 
           if (typeof created.id !== 'undefined') {
-            return UserInvite.create({
+            return models.user_invite.create({
               user_id: inviteID,
               new_user_id: created.id
             }).then(() => {
@@ -236,7 +237,7 @@ module.exports = {
    */
   confirmAccount (key) {
     if (key && key.length === this.CONFIRMATION_KEY_LENGTH) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           new_email_key: key
         }
@@ -277,7 +278,7 @@ module.exports = {
    */
   confirmEmail (key) {
     if (key && key.length === this.CONFIRMATION_KEY_LENGTH) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           new_email_key: key
         }
@@ -314,7 +315,7 @@ module.exports = {
    */
   confirmPassword (key) {
     if (key && key.length === this.CONFIRMATION_KEY_LENGTH) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           new_password_key: key
         }
@@ -352,7 +353,7 @@ module.exports = {
   forgotPassword (data) {
     const self = this
     if (data && data.email) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           email: data.email
         }
@@ -386,7 +387,7 @@ module.exports = {
 
       const currentTimeMinus24Hours = new Date() - 24 * 60 * 60 * 1000
 
-      return User.findOne({
+      return models.users.findOne({
         where: {
           new_password_key: data.token,
           new_password_requested: {
@@ -417,12 +418,17 @@ module.exports = {
    * @return {object} Returns promise that passes the user if found
    */
   resendConfirmation (id) {
-    id = parseInt(hashID.decode(id, 10))
+    try {
+      id = parseInt(hashID.decode(id, 10))
+    } catch (err) {
+      return Promise.reject(new Error('Invalid User ID'))
+    }
+
 
     if (id > 0) {
       const self = this
 
-      return User.findOne({
+      return models.users.findOne({
         where: {
           id: id,
           activated: false

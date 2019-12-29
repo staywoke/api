@@ -199,7 +199,7 @@ const config = convict({
     apiVersion: {
       doc: 'Change the API that they client provides, specify the major version of the Elasticsearch nodes you will be connecting to.',
       format: String,
-      default: '7.2'
+      default: '7.5'
     },
     requestTimeout: {
       doc: 'Milliseconds before an HTTP request will be aborted and retried. This can also be set per request.',
@@ -246,32 +246,6 @@ const config = convict({
       format: Boolean,
       env: 'API_LOGZIO_DEBUG',
       default: false
-    }
-  },
-  redis: {
-    host: {
-      doc: 'Redis Host',
-      format: String,
-      env: 'API_REDIS_HOST',
-      default: '127.0.0.1'
-    },
-    port: {
-      doc: 'Redis Port',
-      format: 'port',
-      env: 'API_REDIS_PORT',
-      default: 6379
-    },
-    password: {
-      doc: 'Redis Password',
-      format: String,
-      env: 'API_REDIS_PASSWORD',
-      default: 'CHANGE_ME'
-    },
-    cacheExpire: {
-      doc: 'How long to cache results in redis',
-      format: Number,
-      env: 'API_REDIS_CACHE_EXPIRE',
-      default: 21600
     }
   }
 })

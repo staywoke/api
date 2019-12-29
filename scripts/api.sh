@@ -2,10 +2,10 @@
 #
 # description: Bash file to manage API Services
 #
-# author: Peter Schmalfeldt <hello@staywoke.org>
+# author: Peter Schmalfeldt <me@peterschmalfeldt.com>
 
 DIR=`dirname $0`
-APP_NAME="StayWoke API"
+APP_NAME="API"
 PATH_API="$(dirname "$DIR")"
 
 ARG1=1
@@ -22,7 +22,7 @@ NS=""
 
 __make_header(){
     TEXT=$( echo $1 | tr '\n' ' ')
-    echo -e "\n\033[48;5;22m  StayWoke › $TEXT  \033[0m\n"
+    echo -e "\n\033[48;5;22m  API › $TEXT  \033[0m\n"
 }
 
 __output(){
@@ -32,35 +32,35 @@ __output(){
 
 __success(){
     TEXT=$( echo $1 | tr '\n' ' ')
-    echo -e "\033[38;5;34m✓ StayWoke › $TEXT\033[0m\n"
+    echo -e "\033[38;5;34m✓ API › $TEXT\033[0m\n"
 }
 
 __notice(){
     TEXT=$( echo $1 | tr '\n' ' ')
-    echo -e "\033[38;5;220m→ StayWoke › $TEXT\033[0m\n"
+    echo -e "\033[38;5;220m→ API › $TEXT\033[0m\n"
 }
 
 __error(){
     TEXT=$( echo $1 | tr '\n' ' ')
-    echo -e "\033[38;5;196m× StayWoke › $TEXT\033[0m\n"
+    echo -e "\033[38;5;196m× API › $TEXT\033[0m\n"
 }
 
 __confirm(){
-    echo -ne "\n\033[38;5;220m⚠ StayWoke › $1\033[0m"
+    echo -ne "\n\033[38;5;220m⚠ API › $1\033[0m"
 }
 
-function staywoke_api(){
+function api(){
   case "$1" in
     install)
-      staywoke_api_install
+      api_install
     ;;
     start)
-      staywoke_service_check
-      staywoke_api_start
+      service_check
+      api_start
     ;;
     stop)
-      staywoke_service_check
-      staywoke_api_stop
+      service_check
+      api_stop
     ;;
     restart)
       __error "You are about to restart the $APP_NAME."
@@ -69,8 +69,8 @@ function staywoke_api(){
       read CONFIRM
       case $CONFIRM in
           y|Y|YES|yes|Yes)
-            staywoke_api_stop
-            staywoke_api_start
+            api_stop
+            api_start
           ;;
           n|N|no|NO|No)
             __notice "Skipping Restart of $APP_NAME"
@@ -80,42 +80,42 @@ function staywoke_api(){
       esac
     ;;
     reset)
-      staywoke_api_reset
+      api_reset
     ;;
     update)
-      staywoke_api_update
+      api_update
     ;;
     migrate)
-      staywoke_api_migrate
+      api_migrate
     ;;
     seed)
-      staywoke_api_seed
+      api_seed
     ;;
     status)
-      staywoke_service_check
-      staywoke_api_status
+      service_check
+      api_status
     ;;
     "-h" | "-help" | "--h" | "--help" | help)
-      staywoke_api_help
+      api_help
     ;;
     *)
       __error "Missing Argument | Loading Help ..."
-      staywoke_api_help
+      api_help
   esac
 }
 
-staywoke_api_install() {
+api_install() {
   __make_header "Installing $APP_NAME"
 
   # Change to Doing API Directory
   cd $PATH_API
 
-  staywoke_api_reset
+  api_reset
 
   npm install
 }
 
-staywoke_api_start() {
+api_start() {
   __make_header "Starting $APP_NAME"
 
   # Change to Doing API Directory
@@ -143,7 +143,7 @@ staywoke_api_start() {
     __success "Starting Elasticsearch"
 
     if [[ $OSTYPE == darwin* ]]; then
-        brew services start elasticsearch@1.7
+        brew services start elasticsearch-full
     else
         sudo systemctl start elasticsearch
     fi
@@ -158,18 +158,6 @@ staywoke_api_start() {
         brew services start mysql
     else
         sudo systemctl start mysql
-    fi
-  fi
-
-  if [[ -n $RS ]]; then
-    __notice "Redis Server Already Running"
-  else
-    __success "Starting Redis"
-
-    if [[ $OSTYPE == darwin* ]]; then
-        brew services start redis
-    else
-        sudo systemctl start redis
     fi
   fi
 
@@ -205,7 +193,7 @@ staywoke_api_start() {
   fi
 }
 
-staywoke_api_stop() {
+api_stop() {
   __make_header "Stopping $APP_NAME"
 
   # Change to Doing API Directory
@@ -241,7 +229,7 @@ staywoke_api_stop() {
         npm run -s elasticsearch:delete
 
         if [[ $OSTYPE == darwin* ]]; then
-          brew services stop elasticsearch@1.7
+          brew services stop elasticsearch-full
         else
           sudo systemctl stop elasticsearch
         fi
@@ -276,27 +264,6 @@ staywoke_api_stop() {
     __notice "MySQL was not Running"
   fi
 
-  if [[ -n $RS ]]; then
-    __confirm "Stopping Redis Server. CONTINUE? (y or n): "
-
-    read CONFIRM
-    case $CONFIRM in
-      y|Y|YES|yes|Yes)
-        if [[ $OSTYPE == darwin* ]]; then
-          brew services stop redis
-        else
-          sudo systemctl stop redis
-        fi
-      ;;
-      n|N|no|NO|No)
-      ;;
-      *)
-      __notice "Please enter only y or n"
-    esac
-  else
-    __notice "Redis Server was not Running"
-  fi
-
   if [[ -n $NS ]]; then
     __success "Stopping Node Server"
 
@@ -312,7 +279,7 @@ staywoke_api_stop() {
 
 }
 
-staywoke_api_reset() {
+api_reset() {
   __make_header "Resetting $APP_NAME"
 
   # Change to Doing API Directory
@@ -322,38 +289,38 @@ staywoke_api_reset() {
   rm -fr node_modules
 }
 
-staywoke_api_update() {
+api_update() {
   __make_header "Updating $APP_NAME"
 
   # Change to Doing API Directory
   cd $PATH_API
 
-  staywoke_api_stop
+  api_stop
 
   __success "Updating Git Repo"
   git reset --hard
   git fetch
   git pull
 
-  staywoke_api_install
-  staywoke_api_start
+  api_install
+  api_start
 }
 
-staywoke_api_migrate() {
+api_migrate() {
   __make_header "Migrating $APP_NAME Database"
 
   cd $PATH_API
   npm run -s migrate
 }
 
-staywoke_api_seed() {
+api_seed() {
   __make_header "Migrating $APP_NAME Database"
 
   cd $PATH_API
   npm run -s seed
 }
 
-staywoke_api_status() {
+api_status() {
   __make_header "$APP_NAME Status Check"
 
   if [[ -n $NX ]]; then
@@ -374,12 +341,6 @@ staywoke_api_status() {
     __error "MySQL is Not Running"
   fi
 
-  if [[ -n $RS ]]; then
-    __success "Redis Server is Running"
-  else
-    __error "Redis Server is Not Running"
-  fi
-
   if [[ -n $NS ]]; then
     __success "Node Server is Running"
   else
@@ -387,66 +348,64 @@ staywoke_api_status() {
   fi
 }
 
-staywoke_service_check() {
+service_check() {
   if [[ $OSTYPE == darwin* ]]; then
       NX=$(brew services list | grep nginx | awk '{print $2}' | grep started)
-      ES=$(brew services list | grep elasticsearch@1.7 | awk '{print $2}' | grep started)
+      ES=$(brew services list | grep elasticsearch-full | awk '{print $2}' | grep started)
       MS=$(brew services list | grep mysql | awk '{print $2}' | grep started)
-      RS=$(brew services list | grep redis | awk '{print $2}' | grep started)
       NS=$(lsof -i TCP:5000 | grep LISTEN | awk '{print $2}')
   else
       NX=$(systemctl status nginx | grep 'Main PID' | awk '{print $3}')
       ES=$(systemctl status elasticsearch | grep 'Main PID' | awk '{print $3}')
       MS=$(systemctl status mysql | grep 'Main PID' | awk '{print $3}')
-      RS=$(systemctl status redis | grep 'Main PID' | awk '{print $3}')
       NS=$(lsof -i TCP:5000 | grep LISTEN | awk '{print $2}')
   fi
 }
 
-staywoke_api_help() {
+api_help() {
   __make_header "Instructions"
 
-  echo -e "\033[38;5;34m$ staywoke_api install\033[0m\n"
+  echo -e "\033[38;5;34m$ api install\033[0m\n"
 
   echo "  Installs dependencies and NPM modules."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api start\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api start\033[0m\n"
 
-  echo "  Starts Elasticsearch, MySQL, Redis & Node Servers."
+  echo "  Starts Elasticsearch, MySQ & Node Servers."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api stop\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api stop\033[0m\n"
 
-  echo "  Stops Elasticsearch, MySQL, Redis & Node Servers."
+  echo "  Stops Elasticsearch, MySQL & Node Servers."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api restart\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api restart\033[0m\n"
 
-  echo -e "  Same as running \033[38;5;220m$ staywoke_api stop\033[0m and then \033[38;5;220m$ staywoke_api start\033[0m."
+  echo -e "  Same as running \033[38;5;220m$ api stop\033[0m and then \033[38;5;220m$ api start\033[0m."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api reset\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api reset\033[0m\n"
 
   echo "  Resets Project to Clean Installation State."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api update\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api update\033[0m\n"
 
-  echo -e "  Pulls down latest Git Repo Changes and runs \033[38;5;220m$ staywoke_api reset\033[0m."
+  echo -e "  Pulls down latest Git Repo Changes and runs \033[38;5;220m$ api reset\033[0m."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api migrate\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api migrate\033[0m\n"
 
   echo "  Updates to latest database schema."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api seed\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api seed\033[0m\n"
 
   echo "  Updates to latest database data."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api status\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api status\033[0m\n"
 
   echo "  Prints the status of all running services."
 
-  echo -e "\n\033[38;5;34m$ staywoke_api help\033[0m\n"
+  echo -e "\n\033[38;5;34m$ api help\033[0m\n"
 
   echo "  Prints this help screen."
 
   echo -e ""
 }
 
-staywoke_api $1 $2
+api $1 $2

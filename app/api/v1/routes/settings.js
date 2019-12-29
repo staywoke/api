@@ -9,7 +9,7 @@ const config = require('../../../config')
 const express = require('express')
 const util = require('./util')
 
-const { ProfileDomain, SettingsDomain } = require('../domain')
+const { SettingsDomain } = require('../domain')
 
 const router = express.Router(config.router)
 
@@ -26,7 +26,7 @@ const router = express.Router(config.router)
 router.route('/settings').get((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
-      ProfileDomain.getSettings(validUserId).then((settings) => {
+      SettingsDomain.getSettings(validUserId).then((settings) => {
         response.json(util.createAPIResponse({
           data: settings
         }, request.query.fields))

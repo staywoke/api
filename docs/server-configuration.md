@@ -1,4 +1,4 @@
-![StayWoke Logo](https://cdn.staywoke.org/common/github-logo.png "StayWoke Logo")
+![StayWoke Logo](https://staywoke-github.s3.us-east-1.amazonaws.com/common/logo.png "StayWoke Logo")
 
 **[↤ Developer Overview](../README.md)**
 
@@ -52,9 +52,6 @@ export API_MANDRILL_API_KEY='CHANGE_ME';
 export API_NODE_ENV='local';
 export API_OPENSTATES_API_KEY='CHANGE_ME';
 export API_PORT=5000;
-export API_REDIS_HOST='127.0.0.1';
-export API_REDIS_PORT=6379;
-export API_REDIS_PASSWORD='CHANGE_ME';
 export API_SESSION_KEY='CHANGE_ME';
 ```
 

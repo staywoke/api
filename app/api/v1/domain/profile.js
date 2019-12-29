@@ -5,13 +5,8 @@
  */
 
 const md5 = require('md5')
-const Sequelize = require('sequelize')
 
-const db = require('../../../config/sequelize')
-const { UserModel, UserActivityModel } = require('../../../models/api')
-
-const User = UserModel(db, Sequelize)
-const UserActivity = UserActivityModel(db, Sequelize)
+const models = require('../../../models')
 
 /**
  * Domain Profile
@@ -25,14 +20,14 @@ module.exports = {
    */
   getActivity (userId) {
     if (userId) {
-      return UserActivity.findAll({
+      return models.user_activity.findAll({
         include: [
           {
-            model: User,
+            model: models.users,
             as: 'User'
           },
           {
-            model: User,
+            model: models.users,
             as: 'Following'
           }
         ],

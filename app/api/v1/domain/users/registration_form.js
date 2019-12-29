@@ -4,14 +4,8 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const Sequelize = require('sequelize')
-
-const db = require('../../../../config/sequelize')
 const BaseForm = require('../../../../forms/base')
-
-const { UserModel } = require('../../../../models/api')
-
-const User = UserModel(db, Sequelize)
+const models = require('../../../../models')
 
 /**
  * Registration Form Validation
@@ -33,7 +27,7 @@ module.exports = BaseForm.extend({
         message: 'can only contain A - Z, 0 - 9, and _ characters'
       },
       modelFieldValueUnique: {
-        model: User,
+        model: models.users,
         field: 'username'
       }
     },
@@ -50,7 +44,7 @@ module.exports = BaseForm.extend({
       presence: true,
       email: true,
       modelFieldValueUnique: {
-        model: User,
+        model: models.users,
         field: 'email'
       }
     },

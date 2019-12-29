@@ -5,21 +5,17 @@
  */
 
 const _ = require('lodash')
-const Sequelize = require('sequelize')
 
 const config = require('../../config')
-const db = require('../../config/sequelize')
 const debug = require('../../debug')
 const elasticsearchClient = require('../client')
+const models = require('../../models')
 
 const { CategoryDomain } = require('../../api/v1/domain')
-const { CategoryModel } = require('../../models/api')
 
 const env = config.get('env')
 const indexType = `${env}_category`
 const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
-
-const Category = CategoryModel(db, Sequelize)
 
 /**
  * Update Category Index
@@ -33,16 +29,22 @@ module.exports = {
     }).then(() => {
       const params = {
         include: [{
-          model: Category,
+          model: models.categories,
           as: 'subcategories'
         }],
         where: {
           parent_id: null
         },
-        order: 'parent_id ASC'
+        sort: [
+          {
+            parent_id: {
+              order: 'asc'
+            }
+          }
+        ]
       }
 
-      return Category.findAll(params)
+      return models.categories.findAll(params)
     }).then((categories) => {
       if (categories.length) {
         const bulkActions = []

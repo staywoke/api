@@ -18,9 +18,9 @@
     }
   ],
   "scripts": {
-    "start": "./scripts/staywoke-api.sh start",
-    "start:debug": "./scripts/staywoke-api.sh start debug",
-    "stop": "./scripts/staywoke-api.sh stop",
+    "start": "./scripts/api.sh start",
+    "start:debug": "./scripts/api.sh start debug",
+    "stop": "./scripts/api.sh stop",
     "cleanup": "find ~/.forever/ -name '*.log' -delete && find ./ -name '*.log' -delete && rm -fr cleanup && npm run docs:clean",
     "docs": "jsdoc -c ./doc-conf.json -r ./app -R ./apiary.apib -d ./app/static/docs -t ./node_modules/ink-docstrap/template",
     "docs:clean": "rm -r ./app/static/docs || true",
@@ -38,8 +38,6 @@
     "elasticsearch:create": "cd ./app && node ./elasticsearch/create && cd ../",
     "elasticsearch:update": "cd ./app && node ./elasticsearch/update && cd ../",
     "elasticsearch:delete": "cd ./app && node ./elasticsearch/delete && cd ../",
-    "make-config": "if ( ! test -e ./app/config/local.json ); then curl -o ./app/config/local.json https://gist.githubusercontent.com/manifestinteractive/a5e9ef7ef6730cb5e0d1783c89a94a5a/raw/5443e7d7b4fc144c6a3560581f9ae8bef9153b6c/campaign-zero-local.json; fi",
-    "redis:clearcache": "redis-cli -r 1 flushall",
     "help": "node node_modules/npm-scripts-help"
   },
   "repository": {
@@ -79,7 +77,6 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "randomstring": "^1.1.5",
-    "redis": "^2.8.0",
     "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1",
     "sequelize-slugify": "^0.9.1",
@@ -106,6 +103,7 @@
     "mocha": "^6.2.2",
     "mock-req": "^0.2.0",
     "mock-res": "^0.5.0",
+    "nodemon": "^2.0.2",
     "npm-scripts-help": "^0.8.0",
     "nyc": "^15.0.0",
     "rewire": "^4.0.1",
@@ -128,7 +126,7 @@
     "statements": 80
   },
   "scriptshelp": {
-    "help-message": "StayWoke API NPM Commands:",
+    "help-message": "API NPM Commands:",
     "help": {
       "Desciption": "Generates List of NPM Scripts you can run"
     },
@@ -189,14 +187,8 @@
     "elasticsearch:delete": {
       "Desciption": "Delete Elasticsearch Indexes"
     },
-    "make-config": {
-      "Desciption": "Downloads sample local.json file if one was not already created"
-    },
     "prepublish": {
       "Desciption": "Runs any commands necessary before publishing API"
-    },
-    "redis:clearcache": {
-      "Desciption": "Clear Redis Cache"
     }
   }
 }

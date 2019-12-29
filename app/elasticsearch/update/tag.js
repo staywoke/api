@@ -9,9 +9,9 @@ const _ = require('lodash')
 const config = require('../../config')
 const debug = require('../../debug')
 const elasticsearchClient = require('../client')
+const models = require('../../models')
 
 const { TagDomain } = require('../../api/v1/domain')
-const { TagModel } = require('../../models/api')
 
 const env = config.get('env')
 const indexType = `${env}_tag`
@@ -28,7 +28,7 @@ module.exports = {
       body: {}
     }).then(() => {
       const params = {}
-      return TagModel.findAll(params)
+      return models.tags.findAll(params)
     }).then((tags) => {
       if (tags.length) {
         const bulkActions = []

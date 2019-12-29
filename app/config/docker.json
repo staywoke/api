@@ -26,9 +26,6 @@
     "log": "error",
     "host": "http://elasticsearch:9200"
   },
-  "redis": {
-    "host": "redis"
-  },
   "logzio": {
     "token": "whlkgELECMPjsnHWAiPrbvqJhvoXbGsp",
     "type": "DockerAPI"

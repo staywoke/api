@@ -7,15 +7,9 @@
 const _ = require('lodash')
 const jwt = require('jsonwebtoken')
 const request = require('request')
-const Sequelize = require('sequelize')
 
 const config = require('../../../config')
-const db = require('../../../config/sequelize')
-
-const { UserActivityModel, UserLoginModel } = require('../../../models/api')
-
-const UserActivity = UserActivityModel(db, Sequelize)
-const UserLogin = UserLoginModel(db, Sequelize)
+const models = require('../../../models')
 
 /* nyc ignore next */
 module.exports = {
@@ -74,7 +68,14 @@ module.exports = {
       return _.isArray(value) && value.length > 0
     })
 
-    errors.push(response.errors.length > 0)
+    if (errors && errors.length > 0 && typeof response.errors === 'undefined') {
+      response.errors = []
+    }
+
+    if (errors && errors.length > 0) {
+      response.errors = errors
+    }
+
 
     // Sort Data if a single object
     if (data && !_.isArray(data.data) && _.isObject(data.data)) {
@@ -94,6 +95,10 @@ module.exports = {
         total = 0
       } else if (_.isArray(data.data)) {
         total = data.data.length
+      }
+
+      if (typeof response.meta === 'undefined') {
+        response.meta = {}
       }
 
       response.meta.total = total
@@ -170,7 +175,7 @@ module.exports = {
 
     this.getGeoLocation(ipAddress, (geolocation) => {
       if (geolocation) {
-        UserLogin.create({
+        models.user_login.create({
           user_id: user.get('id'),
           user_agent: userAgent,
           ip_address: geolocation.ipAddress,
@@ -204,7 +209,7 @@ module.exports = {
         log.follow_user_id = data.follow_user_id
       }
 
-      UserActivity.create(log)
+      models.user_activity.create(log)
     }
 
     if (typeof callback === 'function') {

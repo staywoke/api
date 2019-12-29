@@ -4,20 +4,16 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const Sequelize = require('sequelize')
-const { LocalStrategy } = require('passport-local').Strategy
+const Strategy = require('passport-local').Strategy
 
-const db = require('../../../../config/sequelize')
 const hasher = require('../../../../util/hasher')
-const { UserModel } = require('../../../../models/api')
-
-const User = UserModel(db, Sequelize)
+const models = require('../../../../models')
 
 /**
  * Local Auth Strategy
  * @type {object}
  */
-module.exports = new LocalStrategy(
+module.exports = new Strategy(
   /**
    * @name Local Authentication Strategy
    * @property {string} username - Username for Login
@@ -25,7 +21,7 @@ module.exports = new LocalStrategy(
    * @property {callback} cb - Requested Callback Handler
    */
   (username, password, cb) => {
-    User.findOne({
+    models.users.findOne({
       where: {
         username: username.toLowerCase()
       }

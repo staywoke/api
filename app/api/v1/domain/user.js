@@ -8,19 +8,12 @@ const _ = require('lodash')
 const Hashids = require('hashids/cjs')
 const md5 = require('md5')
 const randomString = require('randomstring')
-const Sequelize = require('sequelize')
 
-const db = require('../../../config/sequelize')
+const config = require('../../../config')
 const email = require('./email')
 const hasher = require('../../../util/hasher')
+const models = require('../../../models')
 const routeUtil = require('../routes/util')
-const config = require('../../../config')
-
-const { UserModel, UserFollowModel, UserInviteModel } = require('../../../models/api')
-
-const User = UserModel(db, Sequelize)
-const UserFollow = UserFollowModel(db, Sequelize)
-const UserInvite = UserInviteModel(db, Sequelize)
 
 /**
  * Domain User
@@ -110,13 +103,20 @@ module.exports = {
       config.get('hashID.length'),
       config.get('hashID.alphabet')
     )
-    const userID = hashID.decode(key)
+
+    let userID
+
+    try {
+      userID = hashID.decode(key)
+    } catch (err) {
+      return Promise.reject('Invalid Invitation Code')
+    }
 
     if (parseInt(userID, 10)) {
-      return UserInvite.findAll({
+      return models.user_invite.findAll({
         include: [
           {
-            model: User,
+            model: models.users,
             where: {
               activated: true,
               banned: false
@@ -124,7 +124,7 @@ module.exports = {
             as: 'User'
           },
           {
-            model: User,
+            model: models.users,
             where: {
               activated: true,
               banned: false
@@ -175,7 +175,7 @@ module.exports = {
    */
   deleteAccount (account) {
     if (account && account.username && account.id) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           id: account.id,
           username: account.username,
@@ -217,7 +217,7 @@ module.exports = {
    */
   emailAddressInUse (emailAddress, callback) {
     if (emailAddress) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           email: {
             $eq: emailAddress
@@ -245,7 +245,7 @@ module.exports = {
     currentUserID = parseInt(currentUserID, 10)
 
     if (currentUserID && followUsername) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           username: followUsername,
           activated: true,
@@ -260,7 +260,7 @@ module.exports = {
           }
 
           // Check if we previously followed this user
-          return UserFollow.findOne({
+          return models.user_follows.findOne({
             where: {
               user_id: currentUserID,
               follow_user_id: followUserId
@@ -273,7 +273,7 @@ module.exports = {
               return existing.dataValues
             } else {
               // This is a new follow
-              return UserFollow.create({
+              return models.user_follows.create({
                 user_id: currentUserID,
                 follow_user_id: followUserId
               }).then((created) => {
@@ -297,7 +297,7 @@ module.exports = {
    */
   getFollowers (username) {
     if (username) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           username: username,
           activated: true,
@@ -305,10 +305,10 @@ module.exports = {
         }
       }).then((userData) => {
         if (userData) {
-          return UserFollow.findAll({
+          return models.user_follows.findAll({
             include: [
               {
-                model: User,
+                model: models.users,
                 where: {
                   activated: true,
                   banned: false
@@ -316,7 +316,7 @@ module.exports = {
                 as: 'Follower'
               },
               {
-                model: User,
+                model: models.users,
                 where: {
                   activated: true,
                   banned: false
@@ -368,7 +368,7 @@ module.exports = {
    */
   getFollowing (username) {
     if (username) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           username: username,
           activated: true,
@@ -376,10 +376,10 @@ module.exports = {
         }
       }).then((userData) => {
         if (userData) {
-          return UserFollow.findAll({
+          return models.user_follows.findAll({
             include: [
               {
-                model: User,
+                model: models.users,
                 where: {
                   activated: true,
                   banned: false
@@ -387,7 +387,7 @@ module.exports = {
                 as: 'Follower'
               },
               {
-                model: User,
+                model: models.users,
                 where: {
                   activated: true,
                   banned: false
@@ -442,7 +442,7 @@ module.exports = {
     currentUserID = parseInt(currentUserID, 10)
 
     if (currentUserID && unfollowUsername) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           username: unfollowUsername,
           activated: true,
@@ -456,7 +456,7 @@ module.exports = {
             return Promise.reject(`You Can't follow / unfollow yourself.`)
           }
 
-          return UserFollow.findOne({
+          return models.user_follows.findOne({
             where: {
               user_id: currentUserID,
               follow_user_id: unfollowUserId
@@ -484,7 +484,7 @@ module.exports = {
    */
   updateAccount (validUserId, newUserData, ipAddress) {
     if (validUserId && newUserData) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           id: validUserId,
           activated: true,
@@ -582,7 +582,7 @@ module.exports = {
    */
   usernameInUse (username, callback) {
     if (username) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           username: {
             $eq: username.toLowerCase()

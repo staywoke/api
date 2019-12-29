@@ -1,4 +1,4 @@
-![StayWoke Logo](https://cdn.staywoke.org/common/github-logo.png "StayWoke Logo")
+![StayWoke Logo](https://staywoke-github.s3.us-east-1.amazonaws.com/common/logo.png "StayWoke Logo")
 
 **[↤ Developer Overview](../README.md)**
 
@@ -10,8 +10,8 @@ Elasticsearch Configuration
 You need Elasticsearch running, which you can do if you've Brew-installed it like this:
 
 ```bash
-brew services start elasticsearch@1.7
-brew services stop elasticsearch@1.7
+brew services start elasticsearch-full
+brew services stop elasticsearch-full
 ```
 
 On Linux you can run in like this ( assuming you installed the service ):

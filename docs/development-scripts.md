@@ -1,4 +1,4 @@
-![StayWoke Logo](https://cdn.staywoke.org/common/github-logo.png "StayWoke Logo")
+![StayWoke Logo](https://staywoke-github.s3.us-east-1.amazonaws.com/common/logo.png "StayWoke Logo")
 
 **[↤ Developer Overview](../README.md)**
 
@@ -32,7 +32,6 @@ API Development Scripts:
 | `npm run make-config`          | Runs during `npm install` and downloads sample local.json file if one was not already created       |
 | `npm run prepublish`           | Runs any commands necessary before publishing API                                                   |
 | `npm run postinstall`          | This runs automatically after running `npm install`                                                 |
-| `npm run redis:clearcache`     | Clears Redis Cache                                                                                  |
 
 
 #### See all scripts

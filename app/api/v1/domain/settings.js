@@ -5,14 +5,8 @@
  */
 
 const _ = require('lodash')
-const Sequelize = require('sequelize')
 
-const db = require('../../../config/sequelize')
-
-const { UserModel, UserSettingNotificationModel } = require('../../../models/api')
-
-const User = UserModel(db, Sequelize)
-const UserSettingNotification = UserSettingNotificationModel(db, Sequelize)
+const models = require('../../../models')
 
 /**
  * Domain Settings
@@ -40,7 +34,7 @@ module.exports = {
       }
     }
 
-    return UserSettingNotification.findOne({
+    return models.user_settings_notifications.findOne({
       where: {
         user_id: userId
       }
@@ -80,7 +74,7 @@ module.exports = {
    */
   updateUserProfile (data) {
     if (data) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           id: data.id,
           activated: true,
@@ -119,7 +113,7 @@ module.exports = {
    */
   updateSocialLinks (data) {
     if (data) {
-      return User.findOne({
+      return models.users.findOne({
         where: {
           id: data.id,
           activated: true,
@@ -155,7 +149,7 @@ module.exports = {
    */
   updateEmailNotifications (data) {
     if (data) {
-      return UserSettingNotification.findOne({
+      return models.user_settings_notifications.findOne({
         where: {
           user_id: data.id
         }
@@ -168,7 +162,7 @@ module.exports = {
 
           return notification.save()
         } else {
-          return UserSettingNotification.create({
+          return models.user_settings_notifications.create({
             user_id: data.id,
             email_comment_left: data.email_comment_left,
             email_comment_liked: data.email_comment_liked,
@@ -198,7 +192,7 @@ module.exports = {
    */
   updateWebNotifications (data) {
     if (data) {
-      return UserSettingNotification.findOne({
+      return models.user_settings_notifications.findOne({
         where: {
           user_id: data.id
         }
@@ -211,7 +205,7 @@ module.exports = {
 
           return notification.save()
         } else {
-          return UserSettingNotification.create({
+          return models.user_settings_notifications.create({
             user_id: data.id,
             web_comment_left: data.web_comment_left,
             web_comment_liked: data.web_comment_liked,
