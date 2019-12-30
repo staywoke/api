@@ -15,7 +15,7 @@ Using our API
 
 Our API is __[Fully Documented](https://api.staywoke.org/guide/)__ using Apiary. Currently, our API is only open for select non-commercial use.  If you are interested in obtaining an API Key ( required for access ), please contact [Peter Schmalfeldt](mailto:me@peterschmalfeldt.com) or [Join us on Slack](https://staywoke.slack.com).
 
-[![API Documentation](https://staywoke-github.s3.us-east-1.amazonaws.com/api/apiary.jpg)](http://docs.staywoke.apiary.io)
+<img src="https://staywoke-github.s3.us-east-1.amazonaws.com/api/apiary.jpg" style="max-width: 100%;">
 
 
 Developer Overview
@@ -26,6 +26,7 @@ Developer Overview
 * [Development Scripts](docs/development-scripts.md)
 * [Unit Testing and Code Coverage Reports](docs/unit-testing-and-code-coverage-reports.md)
 * [Maintaining API](docs/maintaining-api.md)
+* [Testing Endpoints with Postman](docs/testing-endpoints.md)
 * [Troubleshooting](docs/troubleshooting.md)
 
 #### Additional Setup without Docker

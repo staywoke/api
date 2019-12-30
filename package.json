@@ -54,7 +54,6 @@
     "babel-core": "^6.26.3",
     "bcrypt": "^3.0.7",
     "bluebird": "^3.7.2",
-    "body-parser": "^1.19.0",
     "class-extend": "^0.1.2",
     "colors": "^1.4.0",
     "convict": "^5.2.0",
@@ -73,7 +72,7 @@
     "md5": "^2.2.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
-    "mysql2": "^2.0.2",
+    "mysql2": "^2.1.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "randomstring": "^1.1.5",
@@ -94,7 +93,7 @@
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "esm": "^3.2.25",
@@ -106,6 +105,7 @@
     "nodemon": "^2.0.2",
     "npm-scripts-help": "^0.8.0",
     "nyc": "^15.0.0",
+    "pre-commit": "^1.2.2",
     "rewire": "^4.0.1",
     "sinon": "^8.0.1"
   },
@@ -125,6 +125,9 @@
     "functions": 80,
     "statements": 80
   },
+  "pre-commit": [
+    "lint"
+  ],
   "scriptshelp": {
     "help-message": "API NPM Commands:",
     "help": {

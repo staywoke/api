@@ -49,7 +49,7 @@ module.exports = BaseForm.extend({
       }
     },
     inviteCode: {
-      presence: true
+      presence: false
     },
     agree: {
       presence: true

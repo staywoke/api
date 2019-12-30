@@ -37,7 +37,7 @@ module.exports = {
    * @param {string} [fields] - Comma Separated List of fields you want in the response
    * @return {object}
    */
-  createAPIResponse: (data, fields) => {
+  createAPIResponse (data, fields) {
     const filters = (fields) ? fields.split(',') : []
     const filterData = (data) => {
       return _.omitBy(data, (value, key) => {
@@ -68,14 +68,7 @@ module.exports = {
       return _.isArray(value) && value.length > 0
     })
 
-    if (errors && errors.length > 0 && typeof response.errors === 'undefined') {
-      response.errors = []
-    }
-
-    if (errors && errors.length > 0) {
-      response.errors = errors
-    }
-
+    errors.push(response.errors.length > 0)
 
     // Sort Data if a single object
     if (data && !_.isArray(data.data) && _.isObject(data.data)) {
@@ -127,7 +120,7 @@ module.exports = {
    * @param {string} ip - IP Address
    * @param {callback} callback - Requested Callback Handler
    */
-  getGeoLocation: (ip, callback) => {
+  getGeoLocation (ip, callback) {
     const params = {
       key: config.get('ipinfodb.key'),
       ip: ip,
@@ -169,7 +162,7 @@ module.exports = {
    * @param {object} user - User Object
    * @param {object} request - Node HTTP Request
    */
-  trackLogin: (user, request) => {
+  trackLogin (user, request) {
     const ipAddress = request.headers['x-forwarded-for']
     const userAgent = request.headers['user-agent']
 
@@ -198,7 +191,7 @@ module.exports = {
    * @param {callback} callback - Requested Callback Handler
    * @returns {*}
    */
-  trackActivity: (userId, type, data, callback) => {
+  trackActivity (userId, type, data, callback) {
     if (userId && type) {
       const log = {
         user_id: userId,
@@ -223,7 +216,7 @@ module.exports = {
    * @param {callback} callback - Requested Callback Handler
    * @returns {*}
    */
-  isValidUser: (request, callback) => {
+  isValidUser (request, callback) {
     const headerToken = (request.headers.authorization) ? request.headers.authorization.replace('Bearer ', '') : null
 
     if (headerToken && headerToken !== null) {
@@ -248,7 +241,7 @@ module.exports = {
    * @param str
    * @returns {string}
    */
-  titleCase: (str) => {
+  titleCase (str) {
     return str.trim().replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     })

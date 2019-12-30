@@ -151,6 +151,8 @@ module.exports = {
 
     return form.validate(data).then((cleanedData) => {
       return self.createUser(cleanedData)
+    }).catch(err => {
+      return Promise.reject(err)
     })
   },
 
@@ -183,15 +185,15 @@ module.exports = {
 
     if (self.validUserName(insert.username) === false) {
       return Promise.reject({
-        username: ['Unacceptable Username']
+        username: ['Unacceptable Username ( Contains Reserved Word )']
       })
     } else if (self.validName(insert.first_name) === false) {
       return Promise.reject({
-        first_name: ['Unacceptable First Name']
+        first_name: ['Unacceptable First Name ( Contains Reserved Word )']
       })
     } else if (self.validName(insert.last_name) === false) {
       return Promise.reject({
-        last_name: ['Unacceptable Last Name']
+        last_name: ['Unacceptable Last Name ( Contains Reserved Word )']
       })
     }
 
@@ -423,7 +425,6 @@ module.exports = {
     } catch (err) {
       return Promise.reject(new Error('Invalid User ID'))
     }
-
 
     if (id > 0) {
       const self = this

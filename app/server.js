@@ -6,7 +6,6 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const bodyParser = require('body-parser')
 const Debug = require('debug')
 const dotenv = require('dotenv')
 const express = require('express')
@@ -217,8 +216,8 @@ app.use('/guide', express.static(`${__dirname}/static/guide`))
 app.use('/.well-known', express.static(`${__dirname}/.well-known`))
 
 app.use(SetupAPI)
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
+app.use(express.json())
+app.use(express.urlencoded({
   extended: false
 }))
 app.use(limiter)
@@ -236,7 +235,7 @@ app.get('*', (req, res) => {
     errors: [
       'The API Endpoint you are trying to access does not exist.',
       'Please view our Documentation for API Usage Instructions.',
-      'http://docs.staywoke.apiary.io'
+      'https://staywoke.docs.apiary.io/'
     ]
   })))
 })

@@ -409,3 +409,9 @@ api_help() {
 }
 
 api $1 $2
+
+# Show nicer output for when user terminates API via Command Line CTRL + C
+if [[ $? -ne 0 ]]; then
+  echo ""
+  __make_header "CLI Terminated"
+fi

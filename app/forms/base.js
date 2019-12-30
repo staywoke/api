@@ -11,8 +11,11 @@ validate.Promise = Promise
  */
 module.exports = Base.extend({
   constraints: {},
-
-  validate: (data) => {
-    return validate.async(data, this.constraints)
+  validate (data) {
+    return validate.async(data, this.constraints).then(validData => {
+      return Promise.resolve(validData)
+    }, err => {
+      return Promise.reject(err)
+    })
   }
 })

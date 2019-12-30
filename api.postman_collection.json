@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "8f585f78-d63d-42f9-b09d-a30eab8721b7",
+		"name": "StayWoke API",
+		"description": "Local Developer API Support for StayWoke Platform.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Access",
+			"item": [
+				{
+					"name": "Get Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"token"
+							]
+						},
+						"description": "You will not be able to make a request to our API without a `token` sent in an\nAuthorization Header.  This `/token` endpoint is the only public endpoint open to\nallow a `token` to be requested.  This endpoint is only required for anonymous users\nthat have not logged in.  Once the user logs in, you will need to use the `token` that\nis sent back for that user, as it will be used for authenticating that specific user.\n\nOnce a user has logged in, you will need to send over their Authentication\nToken in the HTTP Header.  A `token` is returned with a successful login.  A session\ntoken is valid for 7 days.  You can refresh your token to prevent having to log in\nagain by either adding the Request Authorization Header below, or using the\n`/api/0.1/user/refresh/` endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Session",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc2NjExMDgsImV4cCI6MTU3ODI2NTkwOCwiaXNzIjoiQVBJIn0.FwB2-_9yQekE3bx4vlwYYXJ59Res0n9O9egDi8CyCww",
+								"description": "This will likely return `Invalid or expired token` unless you put in a fresh token that is connected to an actual user account ( not an anonymous account )",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/v1/user/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"user",
+								"refresh"
+							]
+						},
+						"description": "A `token` is returned with a successful login.  A session token is valid for 7 days.\nYou can refresh your token to prevent having to log in again by either adding the\nRequest Authorization Header below. `token` should be the string returned in the\n`token` parameter from a successful login."
+					},
+					"response": []
+				}
+			],
+			"description": "All access to our API will require an Authentication Token. The following endpoint will get your access to endpoints that do not require user authentication.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Account Management",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "jane_doe",
+									"description": "(string, required) - The username or email address of the account",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jane.doe@fake.com",
+									"description": "(string, required) - Email Address of the account",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "abc123",
+									"description": "(string, required) - The password to the account",
+									"type": "text"
+								},
+								{
+									"key": "retype_password",
+									"value": "abc123",
+									"description": "(string, required) - The password to the account",
+									"type": "text"
+								},
+								{
+									"key": "agree",
+									"value": "yes",
+									"description": "(string, required) - Agree to TOS - User Agreed to Terms of Service",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "Jane",
+									"description": "(string, optional) - First Name - NOTE: Apple does not like requiring personal info for registration",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Doe",
+									"description": "(string, optional) - Last Name - NOTE: Apple does not like requiring personal info for registration",
+									"type": "text"
+								},
+								{
+									"key": "inviteCode",
+									"value": "a1b2c3",
+									"description": "(string, required) - During Alpha / Beta testing, an Invitation Code is Required for registration",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/user/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"user",
+								"register",
+								""
+							]
+						},
+						"description": "API Endpoint to register new users. This should set the user's `activated` field\nto `true` unless they've included their email address. If so, `activated` is\n`false` and the user will be sent an email with a `new_email_key` key to confirm\ntheir email address to complete registration."
+					},
+					"response": []
+				}
+			],
+			"description": "The following endpoints are specifically setup to manage the logged in users account.",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "API-Key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "5A51BE1A-0EDA-1144-2D1C-18E45BF39C38",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}

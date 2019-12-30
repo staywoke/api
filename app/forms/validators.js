@@ -6,9 +6,16 @@ validate.validators.modelFieldValueUnique = (value, params, data) => {
     conditions.where[params.field] = value
     params.model.findOne(conditions).then((result) => {
       if (result) {
-        resolve('is already in use')
+        return resolve('is already in use')
       } else {
-        resolve()
+        return resolve()
+      }
+    }).catch((err) => {
+      if (err) {
+        const fields = {}
+
+        fields[params.field] = ['Invalid or Missing Parameter']
+        return reject(fields)
       }
     })
   })
