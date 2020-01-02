@@ -29,8 +29,6 @@
     });
 
     form.on("submit", function (t) {
-      console.log('data', e(this).serialize());
-
       var valid = true;
       var error_message = '';
 
@@ -72,8 +70,6 @@
         message.removeClass("error bad-email success-full");
         message.hide().html('').fadeIn();
         note.show();
-
-        console.log('data', e(this).serialize());
 
         e.ajax({
           type: method,
@@ -130,8 +126,6 @@ function trackEvent(category, action, label, value){
   if(typeof ga !== 'undefined'){
     ga('send', 'event', category, action, label, value);
   }
-
-  console.log('send', 'event', category, action, label, value);
 }
 
 (function() {

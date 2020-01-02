@@ -169,8 +169,6 @@ router.route('/user/login').post((request, response, next) => {
 router.route('/user/logout').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
-      console.log(`VALID USER: ${validUserId}`)
-      console.log(typeof validUserId)
       util.trackActivity(validUserId, 'logout', null, () => {
         response.json(util.createAPIResponse({
           data: {
