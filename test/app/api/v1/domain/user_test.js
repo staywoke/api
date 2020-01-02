@@ -1,11 +1,8 @@
 const chai = require('chai')
 const Hashids = require('hashids/cjs')
-const randomString = require('randomstring')
-const Sequelize = require('sequelize')
 const sinon = require('sinon')
 
 const config = require('../../../../../app/config')
-const db = require('../../../../../app/config/sequelize')
 
 const {
   checkInviteCode,
@@ -21,17 +18,9 @@ const {
   usernameInUse
 } = require('../../../../../app/api/v1/domain/user')
 
-const {
-  UserFollowModel,
-  UserInviteModel,
-  UserModel
-} = require('../../../../../app/models/api')
+const models = require('../../../../../app/models')
 
 const assert = chai.assert
-
-const User = UserModel(db, Sequelize)
-const UserFollow = UserFollowModel(db, Sequelize)
-const UserInvite = UserInviteModel(db, Sequelize)
 
 const hashid = new Hashids(
   config.get('hashID.secret'),
@@ -39,7 +28,7 @@ const hashid = new Hashids(
   config.get('hashID.alphabet')
 )
 
-var userAccount = {
+const userAccount = {
   id: 1,
   activated: true,
   banned: false,
@@ -95,7 +84,7 @@ describe('Domain User', () => {
 
   describe('prepareForAPIOutput', () => {
     it('prepareForAPIOutput should return correct data', () => {
-      var output = prepareForAPIOutput({ _source: userAccount })
+      const output = prepareForAPIOutput({ _source: userAccount })
 
       assert.isDefined(output.bio)
       assert.isDefined(output.company_name)
@@ -148,7 +137,7 @@ describe('Domain User', () => {
 
   describe('prepareForElasticSearch', () => {
     it('prepareForElasticSearch should return correct data', () => {
-      var output = prepareForElasticSearch(userAccount)
+      const output = prepareForElasticSearch(userAccount)
 
       assert.isDefined(output.id)
       assert.isDefined(output.bio)
@@ -202,12 +191,12 @@ describe('Domain User', () => {
 
   describe('checkInviteCode', () => {
     beforeEach(() => {
-      this.userInviteStub = this.sandbox.stub(UserInvite, 'findAll')
+      this.userInviteStub = this.sandbox.stub(models.user_invite, 'findAll')
     })
 
     it('should return invites', (done) => {
-      var fakeKey = hashid.encode(123)
-      var fakeResponse = []
+      const fakeKey = hashid.encode(123)
+      const fakeResponse = []
 
       this.userInviteStub.returns(Promise.resolve(fakeResponse))
 
@@ -219,8 +208,8 @@ describe('Domain User', () => {
     })
 
     it('should not return invites', (done) => {
-      var fakeKey = hashid.encode(123)
-      var fakeResponse = null
+      const fakeKey = hashid.encode(123)
+      const fakeResponse = null
 
       this.userInviteStub.returns(Promise.resolve(fakeResponse))
 
@@ -243,16 +232,16 @@ describe('Domain User', () => {
 
   describe('deleteAccount', (done) => {
     beforeEach(() => {
-      this.userFindStub = this.sandbox.stub(User, 'findOne')
+      this.userFindStub = this.sandbox.stub(models.users, 'findOne')
     })
 
     it('should delete user', (done) => {
-      var fakeUser = {
+      const fakeUser = {
         username: 'JaneDoe',
         id: 123
       }
 
-      var fakeFoundUser = {
+      const fakeFoundUser = {
         set: sinon.stub(),
         save: sinon.stub(),
         destroy: sinon.stub().returns(Promise.resolve({})),
@@ -280,7 +269,7 @@ describe('Domain User', () => {
     })
 
     it('should not delete user', (done) => {
-      var fakeUser = {
+      const fakeUser = {
         username: 'JaneDoe',
         id: 123
       }
@@ -307,18 +296,18 @@ describe('Domain User', () => {
 
   describe('emailAddressInUse', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
     })
 
     it('should return a result', (done) => {
-      var fakeQuery = {
+      const fakeQuery = {
         emailAddress: 'jane.doe@email.com',
         callback: function () {
           return true
         }
       }
 
-      var fakeResponse = {
+      const fakeResponse = {
         id: 123,
         username: 'JaneDoe'
       }
@@ -333,7 +322,7 @@ describe('Domain User', () => {
     })
 
     it('should error with missing callback', (done) => {
-      var fakeQuery = {
+      const fakeQuery = {
         emailAddress: 'jane.doe@email.com',
         callback: function () {
           return false
@@ -351,13 +340,13 @@ describe('Domain User', () => {
     })
 
     it('should error with missing email', (done) => {
-      var fakeQuery = {
+      const fakeQuery = {
         callback: function () {
           return false
         }
       }
 
-      var fakeResponse = {
+      const fakeResponse = {
         id: 123,
         username: 'JaneDoe'
       }
@@ -373,7 +362,7 @@ describe('Domain User', () => {
     })
 
     it('should not return a result', (done) => {
-      var fakeQuery = {
+      const fakeQuery = {
         emailAddress: 'jane.doe@email.com',
         callback: function () {
           return false
@@ -401,14 +390,14 @@ describe('Domain User', () => {
 
   describe('followUser', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
-      this.userFollowStub = this.sandbox.stub(UserFollow, 'findOne')
-      this.userFollowCreateStub = this.sandbox.stub(UserFollow, 'create')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userFollowStub = this.sandbox.stub(models.user_follows, 'findOne')
+      this.userFollowCreateStub = this.sandbox.stub(models.user_follows, 'create')
     })
 
     it('should return a result for new follow', (done) => {
-      var self = this
-      var fakeResponse = {
+      const self = this
+      const fakeResponse = {
         dataValues: {
           id: 123,
           username: 'JaneDoe'
@@ -430,7 +419,7 @@ describe('Domain User', () => {
     })
 
     it('should return a result for existing follow', (done) => {
-      var fakeResponse = {
+      const fakeResponse = {
         dataValues: {
           id: 123,
           username: 'JaneDoe'
@@ -451,7 +440,7 @@ describe('Domain User', () => {
     })
 
     it('should prevent following yourself', (done) => {
-      var fakeResponse = {
+      const fakeResponse = {
         id: 123,
         username: 'JaneDoe'
       }
@@ -468,7 +457,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error for missing user', (done) => {
-      var fakeResponse = null
+      const fakeResponse = null
 
       this.userStub.returns(Promise.resolve(fakeResponse))
       this.userFollowStub.returns(Promise.resolve(fakeResponse))
@@ -493,16 +482,16 @@ describe('Domain User', () => {
 
   describe('getFollowers', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
-      this.userFollowStub = this.sandbox.stub(UserFollow, 'findAll')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userFollowStub = this.sandbox.stub(models.user_follows, 'findAll')
     })
 
     it('should return followers', (done) => {
-      var fakeUsername = 'JaneDoe'
-      var fakeUserResponse = {
+      const fakeUsername = 'JaneDoe'
+      const fakeUserResponse = {
         id: 123
       }
-      var fakeUserFollowResponse = {}
+      const fakeUserFollowResponse = {}
 
       this.userStub.returns(Promise.resolve(fakeUserResponse))
       this.userFollowStub.returns(Promise.resolve(fakeUserFollowResponse))
@@ -515,8 +504,8 @@ describe('Domain User', () => {
     })
 
     it('should not return followers', (done) => {
-      var fakeUsername = 'JaneDoe'
-      var fakeUserFollowResponse = {}
+      const fakeUsername = 'JaneDoe'
+      const fakeUserFollowResponse = {}
 
       this.userStub.returns(Promise.resolve(null))
       this.userFollowStub.returns(Promise.resolve(fakeUserFollowResponse))
@@ -540,16 +529,16 @@ describe('Domain User', () => {
 
   describe('getFollowing', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
-      this.userFollowStub = this.sandbox.stub(UserFollow, 'findAll')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userFollowStub = this.sandbox.stub(models.user_follows, 'findAll')
     })
 
     it('should return followers', (done) => {
-      var fakeUsername = 'JaneDoe'
-      var fakeUserResponse = {
+      const fakeUsername = 'JaneDoe'
+      const fakeUserResponse = {
         id: 123
       }
-      var fakeUserFollowResponse = {}
+      const fakeUserFollowResponse = {}
 
       this.userStub.returns(Promise.resolve(fakeUserResponse))
       this.userFollowStub.returns(Promise.resolve(fakeUserFollowResponse))
@@ -562,8 +551,8 @@ describe('Domain User', () => {
     })
 
     it('should not return followers', (done) => {
-      var fakeUsername = 'JaneDoe'
-      var fakeUserFollowResponse = {}
+      const fakeUsername = 'JaneDoe'
+      const fakeUserFollowResponse = {}
 
       this.userStub.returns(Promise.resolve(null))
       this.userFollowStub.returns(Promise.resolve(fakeUserFollowResponse))
@@ -587,12 +576,12 @@ describe('Domain User', () => {
 
   describe('unfollowUser', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
-      this.userFollowStub = this.sandbox.stub(UserFollow, 'findOne')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userFollowStub = this.sandbox.stub(models.user_follows, 'findOne')
     })
 
     it('should return a result for new follow', (done) => {
-      var fakeResponse = {
+      const fakeResponse = {
         id: 123,
         username: 'JaneDoe',
         destroy: sinon.stub().returns(Promise.resolve())
@@ -609,7 +598,7 @@ describe('Domain User', () => {
     })
 
     it('should fail with message saying you cannot unfollow yourself', (done) => {
-      var fakeResponse = {
+      const fakeResponse = {
         id: 123,
         username: 'JaneDoe',
         destroy: sinon.stub().returns(Promise.resolve())
@@ -627,7 +616,7 @@ describe('Domain User', () => {
     })
 
     it('should fail with notice you are not following user', (done) => {
-      var fakeResponse = {
+      const fakeResponse = {
         id: 123,
         username: 'JaneDoe',
         destroy: sinon.stub().returns(Promise.resolve())
@@ -668,109 +657,123 @@ describe('Domain User', () => {
 
   describe('updateAccount', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
-      this.userFollowStub = this.sandbox.stub(UserFollow, 'findOne')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userFollowStub = this.sandbox.stub(models.user_follows, 'findOne')
     })
 
     it('should update account', (done) => {
-      var fakeUserID = 123
-      var fakeIpAddress = '97.96.74.114'
-      var fakeUserData = {
+      const fakeUserID = 123
+      const fakeIpAddress = '97.96.74.114'
+      const fakeUserData = {
         new_username: 'JohnDoe',
         new_email: 'john.doe@email.com',
         new_password: 'abc123'
       }
-      var fakeResponse = {
-        set: sinon.stub()
+      const fakeResponse = {
+        set: sinon.stub(),
+        save: sinon.stub().returns(Promise.resolve({}))
       }
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
       updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
-          assert.isTrue(fakeResponse.destroy.calledOnce)
-          assert.isTrue(foundUser.set.calledWith('new_email', fakeUserData.new_email))
-          assert.isTrue(foundUser.set.calledWith('new_email_key', randomString.generate(12)))
-          assert.isTrue(foundUser.set.calledWith('new_email_requested', Date.now()))
+          assert.isTrue(fakeResponse.save.calledOnce)
+          assert.isDefined(foundUser.title)
+          assert.isDefined(foundUser.messages)
+          assert.isDefined(foundUser.user)
+          assert.isTrue(foundUser.user.set.calledWith('new_email', fakeUserData.new_email))
+          assert.isTrue(foundUser.user.set.calledWith('new_email_key', sinon.match.string))
+          assert.isTrue(foundUser.user.set.calledWith('new_email_requested', sinon.match.number))
           done()
         })
     })
 
     it('should update account without password', (done) => {
-      var fakeUserID = 123
-      var fakeIpAddress = '97.96.74.114'
-      var fakeUserData = {
+      const fakeUserID = 123
+      const fakeIpAddress = '97.96.74.114'
+      const fakeUserData = {
         new_username: 'JohnDoe',
         new_email: 'john.doe@email.com'
       }
-      var fakeResponse = {
-        set: sinon.stub()
+      const fakeResponse = {
+        set: sinon.stub(),
+        save: sinon.stub().returns(Promise.resolve({}))
       }
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
       updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
-          assert.isTrue(fakeResponse.destroy.calledOnce)
+          assert.isTrue(fakeResponse.save.calledOnce)
           done()
         })
     })
 
     it('should update account using new_username only', (done) => {
-      var fakeUserID = 123
-      var fakeIpAddress = '97.96.74.114'
-      var fakeUserData = {
+      const fakeUserID = 123
+      const fakeIpAddress = '97.96.74.114'
+      const fakeUserData = {
         new_username: 'JohnDoe'
       }
-      var fakeResponse = {}
+      const fakeResponse = {
+        set: sinon.stub(),
+        save: sinon.stub().returns(Promise.resolve({}))
+      }
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
       updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
-          assert.isTrue(fakeResponse.destroy.calledOnce)
+          assert.isTrue(fakeResponse.save.calledOnce)
           done()
         })
     })
 
     it('should update account using new_email only', (done) => {
-      var fakeUserID = 123
-      var fakeIpAddress = '97.96.74.114'
-      var fakeUserData = {
+      const fakeUserID = 123
+      const fakeIpAddress = '97.96.74.114'
+      const fakeUserData = {
         new_email: 'john.doe@email.com'
       }
-      var fakeResponse = {}
+      const fakeResponse = {
+        set: sinon.stub(),
+        save: sinon.stub().returns(Promise.resolve({}))
+      }
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
       updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
-          assert.isTrue(fakeResponse.destroy.calledOnce)
+          assert.isTrue(fakeResponse.save.calledOnce)
           done()
         })
     })
 
     it('should update account using new_password only', (done) => {
-      var fakeUserID = 123
-      var fakeIpAddress = '97.96.74.114'
-      var fakeUserData = {
+      const fakeUserID = 123
+      const fakeIpAddress = '97.96.74.114'
+      const fakeUserData = {
         new_password: 'abc123'
       }
-      var fakeResponse = {}
+      const fakeResponse = {
+        set: sinon.stub(),
+        save: sinon.stub().returns(Promise.resolve({}))
+      }
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
       updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
-          assert.isTrue(fakeResponse.destroy.calledOnce)
+          assert.isTrue(fakeResponse.save.calledOnce)
           done()
         })
     })
 
     it('should fail with no matching user', (done) => {
-      var fakeUserID = 123
-      var fakeIpAddress = '97.96.74.114'
-      var fakeUserData = {
+      const fakeUserID = 123
+      const fakeIpAddress = '97.96.74.114'
+      const fakeUserData = {
         new_username: 'JohnDoe',
         new_email: 'john.doe@email.com',
         new_password: 'abc123'
@@ -798,15 +801,15 @@ describe('Domain User', () => {
 
   describe('usernameInUse', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
     })
 
     it('should return username is in use', (done) => {
-      var fakeUsername = 'JaneDoe'
-      var fakeCallback = () => {
+      const fakeUsername = 'JaneDoe'
+      const fakeCallback = () => {
         return true
       }
-      var fakeResponse = {
+      const fakeResponse = {
         id: 123,
         username: fakeUsername
       }
@@ -821,11 +824,11 @@ describe('Domain User', () => {
     })
 
     it('should return username is not in use', (done) => {
-      var fakeUsername = 'JaneDoe'
-      var fakeCallback = () => {
+      const fakeUsername = 'JaneDoe'
+      const fakeCallback = () => {
         return false
       }
-      var fakeResponse = null
+      const fakeResponse = null
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
@@ -837,7 +840,7 @@ describe('Domain User', () => {
     })
 
     it('should return invalid request', (done) => {
-      var fakeUsername = 'JaneDoe'
+      const fakeUsername = 'JaneDoe'
 
       this.userStub.returns(Promise.resolve(null))
 

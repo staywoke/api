@@ -1,24 +1,20 @@
 const chai = require('chai')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
-const Sequelize = require('sequelize')
 const sinon = require('sinon')
 
-const db = require('../../../../../../app/config/sequelize')
 const config = require('../../../../../../app/config')
 
-const { UserModel } = require('../../../../../../app/models/api')
+const models = require('../../../../../../app/models')
 const { UsersAuthDomain } = require('../../../../../../app/api/v1/domain')
 
 const assert = chai.assert
-
-const User = UserModel(db, Sequelize)
 
 describe('User Auth Tests', () => {
   describe('createUserToken', () => {
     it('should return a valid JWT web token containing the passed in users id', () => {
       const id = 456
-      const user = User.build({
+      const user = models.users.build({
         id: id
       })
 
@@ -82,18 +78,6 @@ describe('User Auth Tests', () => {
 
     afterEach(() => {
       this.sandbox.restore()
-    })
-
-    it('should update the expiration date of a valid JWT token', () => {
-      const fakeToken = 'abc123'
-      const id = 1472
-      const verifyTokenStub = this.sandbox.stub(UsersAuthDomain, 'verifyToken').returns({ userId: id })
-      const createUserTokenStub = this.sandbox.stub(UsersAuthDomain, 'createUserToken').returns(fakeToken)
-
-      assert.isTrue(verifyTokenStub.calledOnce)
-      assert.isTrue(verifyTokenStub.calledWith(fakeToken))
-      assert.isTrue(createUserTokenStub.calledOnce)
-      assert.isTrue(createUserTokenStub.calledWith(id))
     })
 
     it('should return false for an invalid token', () => {

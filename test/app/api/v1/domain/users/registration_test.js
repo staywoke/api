@@ -4,13 +4,11 @@ const Hashids = require('hashids/cjs')
 const Promise = require('bluebird')
 const randomString = require('randomstring')
 const rewire = require('rewire')
-const Sequelize = require('sequelize')
 const sinon = require('sinon')
 
 const config = require('../../../../../../app/config')
-const db = require('../../../../../../app/config/sequelize')
 
-const { UserModel } = require('../../../../../../app/models/api')
+const models = require('../../../../../../app/models')
 const { UsersRegistrationFormDomain } = require('../../../../../../app/api/v1/domain')
 
 const assert = chai.assert
@@ -20,8 +18,7 @@ const hashid = new Hashids(
   config.get('hashID.length'),
   config.get('hashID.alphabet')
 )
-const registration = rewire('../../../../../app/api/v1/domain/users/registration')
-const User = UserModel(db, Sequelize)
+const registration = rewire('../../../../../../app/api/v1/domain/users/registration')
 
 describe('User Registration', () => {
   beforeEach(() => {
@@ -98,8 +95,8 @@ describe('User Registration', () => {
   })
 
   describe('createUser', () => {
-    var restoreEmail
-    var emailStub = {
+    let restoreEmail
+    const emailStub = {
       sendUserConfirmationEmail: sinon.stub()
     }
 
@@ -112,7 +109,7 @@ describe('User Registration', () => {
     })
 
     it('should encode password and insert an active user into the database', (done) => {
-      var fakeData = {
+      const fakeData = {
         username: 'davelevinson',
         password: '4thofjuly4evr',
         email: 'dave@myemail.com',
@@ -121,24 +118,26 @@ describe('User Registration', () => {
         id: 123
       }
 
-      var encoded = 'alsfkj129847'
-      var hashGenerateStub = this.sandbox.stub().returns(Promise.resolve(encoded))
-      var userCreateStub = this.sandbox.stub(User, 'create').returns(Promise.resolve(fakeData))
+      const encoded = 'alsfkj129847'
+      const hashGenerateStub = this.sandbox.stub().returns(Promise.resolve(encoded))
+      const userCreateStub = this.sandbox.stub(models.users, 'create').returns(Promise.resolve(fakeData))
+      const userInviteCreateStub = this.sandbox.stub(models.user_invite, 'create').returns(Promise.resolve({}))
 
-      var restore = registration.__set__({
+      const restore = registration.__set__({
         hasher: {
           generate: hashGenerateStub
         },
 
-        User: User
+        User: models.users
       })
 
       registration.createUser(fakeData).then((createdUser) => {
         assert.isTrue(hashGenerateStub.calledOnce)
         assert.isTrue(hashGenerateStub.calledWith(fakeData.password))
         assert.isTrue(userCreateStub.calledOnce)
+        assert.isTrue(userInviteCreateStub.calledOnce)
 
-        var createData = userCreateStub.getCall(0).args[0]
+        const createData = userCreateStub.getCall(0).args[0]
 
         assert.equal(createData.username, fakeData.username)
         assert.equal(createData.password, encoded)
@@ -153,7 +152,7 @@ describe('User Registration', () => {
     })
 
     it('should create an email key and make user inactive with an email present', (done) => {
-      var fakeData = {
+      const fakeData = {
         username: 'davelevinson',
         password: '4thofjuly4evr',
         email: 'dave@myemail.com',
@@ -161,18 +160,18 @@ describe('User Registration', () => {
         agree: 'yes'
       }
 
-      var encoded = 'alsfkj129847'
-      var hashGenerateStub = this.sandbox.stub().returns(Promise.resolve(encoded))
-      var userCreateStub = this.sandbox.stub(User, 'create').callsFake((data) => {
+      const encoded = 'alsfkj129847'
+      const hashGenerateStub = this.sandbox.stub().returns(Promise.resolve(encoded))
+      const userCreateStub = this.sandbox.stub(models.users, 'create').callsFake((data) => {
         return Promise.resolve(data)
       })
 
-      var restore = registration.__set__({
+      const restore = registration.__set__({
         hasher: {
           generate: hashGenerateStub
         },
 
-        User: User
+        User: models.users
       })
 
       registration
@@ -182,7 +181,7 @@ describe('User Registration', () => {
           assert.isTrue(hashGenerateStub.calledWith(fakeData.password))
           assert.isTrue(userCreateStub.calledOnce)
 
-          var createData = userCreateStub.getCall(0).args[0]
+          const createData = userCreateStub.getCall(0).args[0]
 
           assert.equal(createData.username, fakeData.username)
           assert.equal(createData.password, encoded)
@@ -198,13 +197,13 @@ describe('User Registration', () => {
 
   describe('confirm', () => {
     beforeEach(() => {
-      this.userFindStub = this.sandbox.stub(User, 'findOne')
+      this.userFindStub = this.sandbox.stub(models.users, 'findOne')
     })
 
     it('should activate a user matching the activation key passed in', (done) => {
-      var self = this
-      var fakeKey = randomString.generate(registration.CONFIRMATION_KEY_LENGTH)
-      var fakeFoundUser = {
+      const self = this
+      const fakeKey = randomString.generate(registration.CONFIRMATION_KEY_LENGTH)
+      const fakeFoundUser = {
         set: sinon.stub(),
         save: sinon.stub(),
         new_email_requested: new Date().getTime()
@@ -212,7 +211,7 @@ describe('User Registration', () => {
 
       this.userFindStub.returns(Promise.resolve(fakeFoundUser))
 
-      var expectedFindOneArgs = {
+      const expectedFindOneArgs = {
         where: {
           new_email_key: fakeKey
         }
@@ -236,9 +235,9 @@ describe('User Registration', () => {
     })
 
     it('should fail when activation key not found', (done) => {
-      var self = this
-      var fakeKey = randomString.generate(registration.CONFIRMATION_KEY_LENGTH)
-      var fakeFoundUser = {
+      const self = this
+      const fakeKey = randomString.generate(registration.CONFIRMATION_KEY_LENGTH)
+      const fakeFoundUser = {
         set: sinon.stub(),
         save: sinon.stub(),
         new_email_requested: new Date().getTime()
@@ -246,7 +245,7 @@ describe('User Registration', () => {
 
       this.userFindStub.returns(Promise.reject(new Error('Activation key not found')))
 
-      var expectedFindOneArgs = {
+      const expectedFindOneArgs = {
         where: {
           new_email_key: fakeKey
         }
@@ -266,9 +265,9 @@ describe('User Registration', () => {
     })
 
     it('should fail with an empty key', (done) => {
-      var self = this
-      var fakeKey = ''
-      var fakeFoundUser = {
+      const self = this
+      const fakeKey = ''
+      const fakeFoundUser = {
         set: sinon.stub(),
         save: sinon.stub(),
         new_email_requested: new Date().getTime()
@@ -287,9 +286,9 @@ describe('User Registration', () => {
     })
 
     it('should fail with a key of the wrong length', (done) => {
-      var self = this
-      var fakeKey = randomString.generate(registration.CONFIRMATION_KEY_LENGTH - 1)
-      var fakeFoundUser = {
+      const self = this
+      const fakeKey = randomString.generate(registration.CONFIRMATION_KEY_LENGTH - 1)
+      const fakeFoundUser = {
         set: sinon.stub(),
         save: sinon.stub(),
         new_email_requested: new Date().getTime()

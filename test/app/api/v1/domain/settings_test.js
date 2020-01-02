@@ -1,16 +1,10 @@
 const chai = require('chai')
-const Sequelize = require('sequelize')
 const sinon = require('sinon')
 
-const db = require('../../../../../app/config/sequelize')
-
 const { SettingsDomain } = require('../../../../../app/api/v1/domain')
-const { UserModel, UserSettingNotificationModel } = require('../../../../../app/models/api')
+const models = require('../../../../../app/models')
 
 const assert = chai.assert
-
-const User = UserModel(db, Sequelize)
-const UserSettingNotification = UserSettingNotificationModel(db, Sequelize)
 
 describe('Domain Settings', () => {
   beforeEach(() => {
@@ -47,7 +41,7 @@ describe('Domain Settings', () => {
 
   describe('getSettings', () => {
     beforeEach(() => {
-      this.settingsStub = this.sandbox.stub(UserSettingNotification, 'findOne')
+      this.settingsStub = this.sandbox.stub(models.user_settings_notifications, 'findOne')
     })
 
     it('should return settings', (done) => {
@@ -89,7 +83,7 @@ describe('Domain Settings', () => {
 
   describe('updateUserProfile', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
     })
 
     it('should update profile', (done) => {
@@ -165,7 +159,7 @@ describe('Domain Settings', () => {
 
   describe('updateSocialLinks', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(User, 'findOne')
+      this.userStub = this.sandbox.stub(models.users, 'findOne')
     })
 
     it('should update social links', (done) => {
@@ -235,7 +229,7 @@ describe('Domain Settings', () => {
 
   describe('updateEmailNotifications', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(UserSettingNotification, 'findOne')
+      this.userStub = this.sandbox.stub(models.user_settings_notifications, 'findOne')
     })
 
     it('should update email notifications', (done) => {
@@ -275,7 +269,7 @@ describe('Domain Settings', () => {
     it('should create email notifications', (done) => {
       const self = this
 
-      this.createStub = this.sandbox.stub(UserSettingNotification, 'create')
+      this.createStub = this.sandbox.stub(models.user_settings_notifications, 'create')
 
       const fakeUserData = {
         id: 123,
@@ -325,7 +319,7 @@ describe('Domain Settings', () => {
 
   describe('updateWebNotifications', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(UserSettingNotification, 'findOne')
+      this.userStub = this.sandbox.stub(models.user_settings_notifications, 'findOne')
     })
 
     it('should update web notifications', (done) => {
@@ -365,7 +359,7 @@ describe('Domain Settings', () => {
     it('should create web notifications', (done) => {
       const self = this
 
-      this.createStub = this.sandbox.stub(UserSettingNotification, 'create')
+      this.createStub = this.sandbox.stub(models.user_settings_notifications, 'create')
 
       const fakeUserData = {
         id: 123,

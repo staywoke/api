@@ -1,12 +1,8 @@
 const chai = require('chai')
-const Sequelize = require('sequelize')
 
-const db = require('../../../../app/config/sequelize')
-
-const { UserModel } = require('../../../../app/models/api')
+const models = require('../../../../app/models')
 
 const assert = chai.assert
-const User = UserModel(db, Sequelize)
 
 describe('Models Users', () => {
   let fakeUser = {}
@@ -35,14 +31,14 @@ describe('Models Users', () => {
   }
 
   it('should be defined', (done) => {
-    assert.isDefined(User)
+    assert.isDefined(models.users)
     done()
   })
 
   it('publicJSON should be defined', (done) => {
     restore()
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
 
     assert.isDefined(user.publicJSON)
     assert.isFunction(user.publicJSON)
@@ -52,7 +48,7 @@ describe('Models Users', () => {
   it('publicJSON should be work', (done) => {
     restore()
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
     const json = user.publicJSON()
 
     assert.isDefined(json)
@@ -68,7 +64,7 @@ describe('Models Users', () => {
   it('isActive should be defined', (done) => {
     restore()
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
 
     assert.isDefined(user.isActive)
     assert.isFunction(user.isActive)
@@ -78,7 +74,7 @@ describe('Models Users', () => {
   it('isActive should work for valid user', (done) => {
     restore()
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
     const isActive = user.isActive()
 
     assert.isDefined(isActive)
@@ -92,7 +88,7 @@ describe('Models Users', () => {
     fakeUser.activated = true
     fakeUser.banned = true
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
     const isActive = user.isActive()
 
     assert.isDefined(isActive)
@@ -105,7 +101,7 @@ describe('Models Users', () => {
     fakeUser.activated = false
     fakeUser.banned = false
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
     const isActive = user.isActive()
 
     assert.isDefined(isActive)
@@ -116,7 +112,7 @@ describe('Models Users', () => {
   it('fullName should be defined', (done) => {
     restore()
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
 
     assert.isDefined(user.fullName)
     assert.isFunction(user.fullName)
@@ -126,7 +122,7 @@ describe('Models Users', () => {
   it('fullName should work', (done) => {
     restore()
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
     const fullName = user.fullName()
 
     assert.isDefined(fullName)
@@ -140,7 +136,7 @@ describe('Models Users', () => {
     fakeUser.first_name = null
     fakeUser.last_name = null
 
-    const user = User.build(fakeUser)
+    const user = models.users.build(fakeUser)
     const fullName = user.fullName()
 
     assert.isDefined(fullName)

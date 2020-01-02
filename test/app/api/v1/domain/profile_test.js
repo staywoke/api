@@ -1,15 +1,10 @@
 const chai = require('chai')
-const Sequelize = require('sequelize')
 const sinon = require('sinon')
 
-const db = require('../../../../../app/config/sequelize')
-
 const { ProfileDomain } = require('../../../../../app/api/v1/domain')
-const { UserActivityModel } = require('../../../../../app/models/api')
+const models = require('../../../../../app/models')
 
 const assert = chai.assert
-
-const UserActivity = UserActivityModel(db, Sequelize)
 
 describe('Domain Profile', () => {
   let activityFindStub
@@ -38,7 +33,7 @@ describe('Domain Profile', () => {
 
   describe('getActivity', () => {
     beforeEach(() => {
-      activityFindStub = sandbox.stub(UserActivity, 'findAll')
+      activityFindStub = sandbox.stub(models.user_activity, 'findAll')
     })
 
     it('should return activity', (done) => {
@@ -95,7 +90,7 @@ describe('Domain Profile', () => {
 
   describe('getNotifications', () => {
     beforeEach(() => {
-      notificationFindStub = sandbox.stub(UserActivity, 'findAll')
+      notificationFindStub = sandbox.stub(models.user_activity, 'findAll')
     })
 
     it('should return notifications', (done) => {

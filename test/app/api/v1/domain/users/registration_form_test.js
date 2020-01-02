@@ -18,8 +18,8 @@ const hashid = new Hashids(
 )
 
 describe('User Registration Form', () => {
-  var validData
-  var modelFieldValueUniqueStub
+  let validData
+  let modelFieldValueUniqueStub
 
   beforeEach(() => {
     this.sandbox = sinon.createSandbox()
@@ -64,7 +64,7 @@ describe('User Registration Form', () => {
   /**
    * Test a bunch of invalid values for a field on a form class
    */
-  const invalidForValues = (FormClass, field, values, cb) => {
+  const invalidForValues = (FormClass, field, values, done) => {
     return Promise.map(values, (value) => {
       const data = _.clone(validData)
       data[field] = value
@@ -72,13 +72,13 @@ describe('User Registration Form', () => {
       const form = new FormClass()
 
       return form.validate(data).then(() => {
-        cb(new Error('Form validated when it should not have'))
+        done(new Error('Form validated when it should not have'))
       }).catch((errors) => {
         assert.isTrue(field in errors)
-        assert.lengthOf(errors[field], 1)
+        assert.isTrue(errors[field].length > 0)
       })
     }).then(() => {
-      cb()
+      done()
     })
   }
 
@@ -119,8 +119,6 @@ describe('User Registration Form', () => {
       ]
 
       invalidForValues(UsersRegistrationFormDomain, 'username', invalidUsernames, done)
-
-      done()
     })
 
     it('should validate for valid values', (done) => {
