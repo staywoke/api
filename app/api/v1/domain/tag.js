@@ -6,6 +6,14 @@
 
 const _ = require('lodash')
 
+const TagES = require('../../../elasticsearch/update/tag')
+const models = require('../../../models')
+
+// Add ElasticSearch Hooks
+models.tags.afterCreate(() => { TagES.update() })
+models.tags.afterUpdate(() => { TagES.update() })
+models.tags.afterDestroy(() => { TagES.update() })
+
 /**
  * Domain Tag
  * @type {object}

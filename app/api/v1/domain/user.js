@@ -17,6 +17,13 @@ const hasher = require('../../../util/hasher')
 const models = require('../../../models')
 const routeUtil = require('../routes/util')
 
+const UserES = require('../../../elasticsearch/update/user')
+
+// Add ElasticSearch Hooks
+models.users.afterCreate((user) => { UserES.update(user.id) })
+models.users.afterUpdate((user) => { UserES.update(user.id) })
+models.users.afterDestroy((user) => { UserES.update(user.id) })
+
 /**
  * Domain User
  * @type {object}

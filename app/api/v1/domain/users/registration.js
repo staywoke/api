@@ -24,6 +24,13 @@ const hashID = new Hashids(
   config.get('hashID.alphabet')
 )
 
+const UserES = require('../../../../elasticsearch/update/user')
+
+// Add ElasticSearch Hooks
+models.users.afterCreate((user) => { UserES.update(user.id) })
+models.users.afterUpdate((user) => { UserES.update(user.id) })
+models.users.afterDestroy((user) => { UserES.update(user.id) })
+
 /**
  * Registration
  * @type {object}

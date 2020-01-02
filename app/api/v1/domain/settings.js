@@ -11,9 +11,9 @@ const models = require('../../../models')
 const UserES = require('../../../elasticsearch/update/user')
 
 // Add ElasticSearch Hooks
-models.users.afterCreate(() => { UserES.update() })
-models.users.afterUpdate(() => { UserES.update() })
-models.users.afterDestroy(() => { UserES.update() })
+models.users.afterCreate((user) => { UserES.update(user.id) })
+models.users.afterUpdate((user) => { UserES.update(user.id) })
+models.users.afterDestroy((user) => { UserES.update(user.id) })
 
 /**
  * Domain Settings
