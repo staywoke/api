@@ -25,7 +25,7 @@ USER developer
 RUN export API_NODE_ENV=docker
 
 # Install dependencies
-RUN npm install --no-optional && npm cache clean
+RUN npm install --no-optional
 
 # Switch to root and copy over the rest of our code
 # This is here, after the npm install, so that code changes don't trigger an un-caching
@@ -36,10 +36,10 @@ USER root
 RUN npm install -g forever
 RUN npm install -g sequelize-cli
 
-COPY .eslint.js ./
+COPY package.json package-lock.json ./
+COPY .eslintrc.js ./
 COPY .eslintignore ./
 COPY .sequelizerc ./
-COPY .env ./
 COPY .nvmrc ./
 
 COPY app ./app

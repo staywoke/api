@@ -8,8 +8,8 @@ Getting Setup with Docker ( Recommended )
 Requirements
 ---
 
-* [Docker](https://nodejs.org/en/)
-* [Docker Compose](http://www.mysql.com/)
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/) _( this comes pre-installed with latest version of Docker )_
 
 
 Installing
@@ -19,6 +19,7 @@ Using Docker is Super Easy once it's installed, you just need to run the followi
 
 ```bash
 cd /path/to/api
+docker pull docker.elastic.co/elasticsearch/elasticsearch:7.5.1
 docker-compose up --build
 ```
 
@@ -28,7 +29,7 @@ Accessing the API via Browser
 Once the API is up and running you can access a local URL via:
 
 ```text
-http://localhost:5000/v1/geolocation/zipcode/10001?apikey=YOUR_API_KEY&pretty
+http://localhost:5000/v1/token?apikey=YOUR_API_KEY&pretty
 ```
 
 `YOUR_API_KEY` is whatever you setup in [Downloading API](../docs/downloading-api.md)

@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   docker_api:
     build:
@@ -20,4 +20,9 @@ services:
       MYSQL_ROOT_PASSWORD: d0cK3r^4p1
       MYSQL_DATABASE: docker_api
   elasticsearch:
-    image: elasticsearch:7.5.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
