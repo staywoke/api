@@ -1,24 +1,20 @@
 const chai = require('chai')
 
-const { TagDomain } = require('../../../../../app/api/v1/domain')
+const { prepareForAPIOutput, prepareForElasticSearch } = require('../../../../../app/api/v1/domain/tag')
 
 const assert = chai.assert
 
 describe('Domain Tag', () => {
-  it('should be defined', () => {
-    assert.isDefined(TagDomain)
+  it('prepareForAPIOutput should be defined', () => {
+    assert.isDefined(prepareForAPIOutput)
   })
 
   it('prepareForAPIOutput should be defined', () => {
-    assert.isDefined(TagDomain.prepareForAPIOutput)
-  })
-
-  it('prepareForAPIOutput should be defined', () => {
-    assert.isDefined(TagDomain.prepareForElasticSearch)
+    assert.isDefined(prepareForElasticSearch)
   })
 
   it('prepareForAPIOutput should return correct data with subcategories', () => {
-    const output = TagDomain.prepareForAPIOutput({
+    const output = prepareForAPIOutput({
       _source: {
         id: 1,
         name: 'Test',
@@ -40,7 +36,7 @@ describe('Domain Tag', () => {
   })
 
   it('prepareForElasticSearch should return correct data with subcategories', () => {
-    const output = TagDomain.prepareForElasticSearch({
+    const output = prepareForElasticSearch({
       id: 1,
       name: 'Test',
       slug: 'test',
@@ -61,7 +57,7 @@ describe('Domain Tag', () => {
   })
 
   it('prepareForElasticSearch should return correct data', () => {
-    const output = TagDomain.prepareForElasticSearch({
+    const output = prepareForElasticSearch({
       id: 1,
       name: 'Test',
       slug: 'test',

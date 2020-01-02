@@ -9,6 +9,8 @@ const Hashids = require('hashids/cjs')
 const Promise = require('bluebird')
 const randomString = require('randomstring')
 
+const { Op } = require('sequelize')
+
 const config = require('../../../../config')
 const email = require('../email')
 const hasher = require('../../../../util/hasher')
@@ -217,16 +219,18 @@ module.exports = {
         if (created) {
           email.sendUserConfirmationEmail(created)
 
-          if (typeof created.id !== 'undefined') {
+          if (insert.inviteCode && typeof created.id !== 'undefined') {
             return models.user_invite.create({
               user_id: inviteID,
               new_user_id: created.id
             }).then(() => {
               return Promise.resolve(created)
             })
+          } else {
+            return Promise.resolve(created)
           }
         } else {
-          return Promise.reject(new Error('Unable to Create User'))
+          return Promise.reject('Unable to Create User')
         }
       })
     })
@@ -262,14 +266,14 @@ module.exports = {
             user.set('new_email_key', null)
             user.save()
 
-            return Promise.reject(new Error('Activation Key Expired'))
+            return Promise.reject('Activation Key Expired')
           }
         } else {
-          return Promise.reject(new Error('Activation Key not found'))
+          return Promise.reject('Activation Key not found')
         }
       })
     } else {
-      return Promise.reject(new Error('Invalid Key'))
+      return Promise.reject('Invalid Key')
     }
   },
 
@@ -299,14 +303,14 @@ module.exports = {
             return user.save()
           } else {
             user.save()
-            return Promise.reject(new Error('Email Confirmation Key Expired'))
+            return Promise.reject('Email Confirmation Key Expired')
           }
         } else {
-          return Promise.reject(new Error('Confirmation Key not found'))
+          return Promise.reject('Confirmation Key not found')
         }
       })
     } else {
-      return Promise.reject(new Error('Invalid Key'))
+      return Promise.reject('Invalid Key')
     }
   },
 
@@ -336,14 +340,14 @@ module.exports = {
             return user.save()
           } else {
             user.save()
-            return Promise.reject(new Error('Password Confirmation Key Expired'))
+            return Promise.reject('Password Confirmation Key Expired')
           }
         } else {
-          return Promise.reject(new Error('Confirmation Key not found'))
+          return Promise.reject('Confirmation Key not found')
         }
       })
     } else {
-      return Promise.reject(new Error('Invalid Key'))
+      return Promise.reject('Invalid Key')
     }
   },
 
@@ -367,11 +371,11 @@ module.exports = {
 
           return user.save()
         } else {
-          return Promise.reject(new Error('No Matching Email Found'))
+          return Promise.reject('No Matching Email Found')
         }
       })
     } else {
-      return Promise.reject(new Error('Forgot Password Request Invalid'))
+      return Promise.reject('Forgot Password Request Invalid')
     }
   },
 
@@ -384,7 +388,7 @@ module.exports = {
     const self = this
     if (data && data.password && data.retype_password && data.token && data.token.length === self.CONFIRMATION_KEY_LENGTH) {
       if (data.password !== data.retype_password) {
-        return Promise.reject(new Error('Passwords do not match'))
+        return Promise.reject('Passwords do not match')
       }
 
       const currentTimeMinus24Hours = new Date() - 24 * 60 * 60 * 1000
@@ -393,7 +397,7 @@ module.exports = {
         where: {
           new_password_key: data.token,
           new_password_requested: {
-            gt: currentTimeMinus24Hours
+            [Op.gte]: new Date(currentTimeMinus24Hours)
           }
         }
       }).then((user) => {
@@ -406,11 +410,11 @@ module.exports = {
             return user.save()
           })
         } else {
-          return Promise.reject(new Error('Request Invalid or Expired'))
+          return Promise.reject('Request Invalid or Expired')
         }
       })
     } else {
-      return Promise.reject(new Error('Request Invalid'))
+      return Promise.reject('Request Invalid')
     }
   },
 
@@ -423,7 +427,7 @@ module.exports = {
     try {
       id = parseInt(hashID.decode(id, 10))
     } catch (err) {
-      return Promise.reject(new Error('Invalid User ID'))
+      return Promise.reject('Invalid User ID')
     }
 
     if (id > 0) {
@@ -445,11 +449,11 @@ module.exports = {
 
           return Promise.resolve('Confirmation Email Resent')
         } else {
-          return Promise.reject(new Error('Reset Password Token Invalid of Expired'))
+          return Promise.reject('Reset Password Token Invalid of Expired')
         }
       })
     } else {
-      return Promise.reject(new Error('Invalid Request'))
+      return Promise.reject('Invalid Request')
     }
   }
 }

@@ -11,7 +11,7 @@ const debug = require('../../debug')
 const elasticsearchClient = require('../client')
 const models = require('../../models')
 
-const { TagDomain } = require('../../api/v1/domain')
+const { prepareForElasticSearch } = require('../../api/v1/domain/tag')
 
 const env = config.get('env')
 const indexType = `${env}_tag`
@@ -42,7 +42,7 @@ module.exports = {
             }
           })
 
-          bulkActions.push(TagDomain.prepareForElasticSearch(evt))
+          bulkActions.push(prepareForElasticSearch(evt))
         })
 
         elasticsearchClient.bulk({

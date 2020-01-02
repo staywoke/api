@@ -11,7 +11,7 @@ const debug = require('../../debug')
 const elasticsearchClient = require('../client')
 const models = require('../../models')
 
-const { UserDomain } = require('../../api/v1/domain')
+const { prepareForElasticSearch } = require('../../api/v1/domain/user')
 
 const env = config.get('env')
 const indexType = `${env}_user`
@@ -51,7 +51,7 @@ module.exports = {
             }
           })
 
-          const userData = UserDomain.prepareForElasticSearch(evt)
+          const userData = prepareForElasticSearch(evt)
 
           bulkActions.push(userData)
         })

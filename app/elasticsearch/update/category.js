@@ -11,7 +11,7 @@ const debug = require('../../debug')
 const elasticsearchClient = require('../client')
 const models = require('../../models')
 
-const { CategoryDomain } = require('../../api/v1/domain')
+const { prepareForElasticSearch } = require('../../api/v1/domain/category')
 
 const env = config.get('env')
 const indexType = `${env}_category`
@@ -58,7 +58,7 @@ module.exports = {
             }
           })
 
-          bulkActions.push(CategoryDomain.prepareForElasticSearch(evt))
+          bulkActions.push(prepareForElasticSearch(evt))
         })
 
         elasticsearchClient.bulk({

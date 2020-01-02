@@ -18,29 +18,29 @@ module.exports = new Strategy(
    * @name Local Authentication Strategy
    * @property {string} username - Username for Login
    * @property {string} password - Password for Login
-   * @property {callback} cb - Requested Callback Handler
+   * @property {callback} done - Requested Callback Handler
    */
-  (username, password, cb) => {
+  (username, password, done) => {
     models.users.findOne({
       where: {
         username: username.toLowerCase()
       }
     }).then((user) => {
       if (!user) {
-        return cb('Incorrect Username')
+        return done('Incorrect Username')
       }
 
       if (!user.isActive()) {
-        return cb('Account is Either Inactive of Banned')
+        return done('Account is Either Inactive of Banned')
       }
 
       hasher.verify(password, user.password).then((isValid) => {
         if (isValid === true) {
-          return cb(null, user)
+          return done(null, user)
         } else {
-          return cb('Incorrect Password')
+          return done('Incorrect Password')
         }
       })
-    }).catch(cb)
+    }).catch(done)
   }
 )

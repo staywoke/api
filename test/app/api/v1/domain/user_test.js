@@ -7,8 +7,25 @@ const sinon = require('sinon')
 const config = require('../../../../../app/config')
 const db = require('../../../../../app/config/sequelize')
 
-const { UserDomain } = require('../../../../../app/api/v1/domain')
-const { UserModel, UserFollowModel, UserInviteModel } = require('../../../../../app/models/api')
+const {
+  checkInviteCode,
+  deleteAccount,
+  emailAddressInUse,
+  followUser,
+  getFollowers,
+  getFollowing,
+  prepareForAPIOutput,
+  prepareForElasticSearch,
+  unfollowUser,
+  updateAccount,
+  usernameInUse
+} = require('../../../../../app/api/v1/domain/user')
+
+const {
+  UserFollowModel,
+  UserInviteModel,
+  UserModel
+} = require('../../../../../app/models/api')
 
 const assert = chai.assert
 
@@ -63,23 +80,22 @@ describe('Domain User', () => {
   })
 
   it('should be defined', () => {
-    assert.isDefined(UserDomain)
-    assert.isDefined(UserDomain.prepareForAPIOutput)
-    assert.isDefined(UserDomain.prepareForElasticSearch)
-    assert.isDefined(UserDomain.checkInviteCode)
-    assert.isDefined(UserDomain.deleteAccount)
-    assert.isDefined(UserDomain.emailAddressInUse)
-    assert.isDefined(UserDomain.followUser)
-    assert.isDefined(UserDomain.getFollowers)
-    assert.isDefined(UserDomain.getFollowing)
-    assert.isDefined(UserDomain.unfollowUser)
-    assert.isDefined(UserDomain.updateAccount)
-    assert.isDefined(UserDomain.usernameInUse)
+    assert.isDefined(prepareForAPIOutput)
+    assert.isDefined(prepareForElasticSearch)
+    assert.isDefined(checkInviteCode)
+    assert.isDefined(deleteAccount)
+    assert.isDefined(emailAddressInUse)
+    assert.isDefined(followUser)
+    assert.isDefined(getFollowers)
+    assert.isDefined(getFollowing)
+    assert.isDefined(unfollowUser)
+    assert.isDefined(updateAccount)
+    assert.isDefined(usernameInUse)
   })
 
   describe('prepareForAPIOutput', () => {
     it('prepareForAPIOutput should return correct data', () => {
-      var output = UserDomain.prepareForAPIOutput({ _source: userAccount })
+      var output = prepareForAPIOutput({ _source: userAccount })
 
       assert.isDefined(output.bio)
       assert.isDefined(output.company_name)
@@ -132,7 +148,7 @@ describe('Domain User', () => {
 
   describe('prepareForElasticSearch', () => {
     it('prepareForElasticSearch should return correct data', () => {
-      var output = UserDomain.prepareForElasticSearch(userAccount)
+      var output = prepareForElasticSearch(userAccount)
 
       assert.isDefined(output.id)
       assert.isDefined(output.bio)
@@ -195,7 +211,7 @@ describe('Domain User', () => {
 
       this.userInviteStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.checkInviteCode(fakeKey)
+      checkInviteCode(fakeKey)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -208,7 +224,7 @@ describe('Domain User', () => {
 
       this.userInviteStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.checkInviteCode(fakeKey)
+      checkInviteCode(fakeKey)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -216,7 +232,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error', (done) => {
-      UserDomain.checkInviteCode(null)
+      checkInviteCode(null)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Invalid Invitation Code')
@@ -246,7 +262,7 @@ describe('Domain User', () => {
 
       this.userFindStub.returns(Promise.resolve(fakeFoundUser))
 
-      UserDomain.deleteAccount(fakeUser)
+      deleteAccount(fakeUser)
         .then((deletedUser) => {
           assert.isTrue(fakeFoundUser.destroy.calledOnce)
           assert.isTrue(fakeFoundUser.set.calledWith('username', '~' + fakeFoundUser.username))
@@ -271,7 +287,7 @@ describe('Domain User', () => {
 
       this.userFindStub.returns(Promise.resolve(null))
 
-      UserDomain.deleteAccount(fakeUser)
+      deleteAccount(fakeUser)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'No user found for user ' + fakeUser.username)
@@ -280,7 +296,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error', (done) => {
-      UserDomain.deleteAccount(null)
+      deleteAccount(null)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -309,7 +325,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.emailAddressInUse(fakeQuery.emailAddress, fakeQuery.callback)
+      emailAddressInUse(fakeQuery.emailAddress, fakeQuery.callback)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -326,7 +342,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(null))
 
-      UserDomain.emailAddressInUse(fakeQuery.emailAddress)
+      emailAddressInUse(fakeQuery.emailAddress)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -348,7 +364,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.emailAddressInUse(null, fakeQuery.callback)
+      emailAddressInUse(null, fakeQuery.callback)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -366,7 +382,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(null))
 
-      UserDomain.emailAddressInUse(fakeQuery.emailAddress, fakeQuery.callback)
+      emailAddressInUse(fakeQuery.emailAddress, fakeQuery.callback)
         .then((foundUser) => {
           assert.isFalse(foundUser)
           done()
@@ -374,7 +390,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error', (done) => {
-      UserDomain.emailAddressInUse()
+      emailAddressInUse()
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -405,7 +421,7 @@ describe('Domain User', () => {
       this.userFollowStub.returns(Promise.resolve(false))
       this.userFollowCreateStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.followUser(321, 'JaneDoe')
+      followUser(321, 'JaneDoe')
         .then((foundUser) => {
           assert.isDefined(foundUser)
           assert.isTrue(self.userFollowCreateStub.calledOnce)
@@ -427,7 +443,7 @@ describe('Domain User', () => {
       this.userFollowStub.returns(Promise.resolve(fakeResponse))
       this.userFollowCreateStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.followUser(321, 'JaneDoe')
+      followUser(321, 'JaneDoe')
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -443,7 +459,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(fakeResponse))
       this.userFollowStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.followUser(123, 'JaneDoe')
+      followUser(123, 'JaneDoe')
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'You Can\'t follow yourself.')
@@ -457,7 +473,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(fakeResponse))
       this.userFollowStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.followUser(123, 'JaneDoe')
+      followUser(123, 'JaneDoe')
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'No user found for user JaneDoe')
@@ -466,7 +482,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error for invalid request', (done) => {
-      UserDomain.followUser()
+      followUser()
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -491,7 +507,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(fakeUserResponse))
       this.userFollowStub.returns(Promise.resolve(fakeUserFollowResponse))
 
-      UserDomain.getFollowers(fakeUsername)
+      getFollowers(fakeUsername)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -505,7 +521,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(null))
       this.userFollowStub.returns(Promise.resolve(fakeUserFollowResponse))
 
-      UserDomain.getFollowers(fakeUsername)
+      getFollowers(fakeUsername)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -513,7 +529,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error', (done) => {
-      UserDomain.getFollowers(null)
+      getFollowers(null)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -538,7 +554,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(fakeUserResponse))
       this.userFollowStub.returns(Promise.resolve(fakeUserFollowResponse))
 
-      UserDomain.getFollowing(fakeUsername)
+      getFollowing(fakeUsername)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -552,7 +568,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(null))
       this.userFollowStub.returns(Promise.resolve(fakeUserFollowResponse))
 
-      UserDomain.getFollowing(fakeUsername)
+      getFollowing(fakeUsername)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -560,7 +576,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error', (done) => {
-      UserDomain.getFollowing(null)
+      getFollowing(null)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -585,7 +601,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(fakeResponse))
       this.userFollowStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.unfollowUser(321, 'JaneDoe')
+      unfollowUser(321, 'JaneDoe')
         .then((foundUser) => {
           assert.isTrue(fakeResponse.destroy.calledOnce)
           done()
@@ -602,7 +618,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(fakeResponse))
       this.userFollowStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.unfollowUser(123, 'JaneDoe')
+      unfollowUser(123, 'JaneDoe')
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'You Can\'t follow / unfollow yourself.')
@@ -620,7 +636,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(fakeResponse))
       this.userFollowStub.returns(Promise.resolve(false))
 
-      UserDomain.unfollowUser(321, 'JaneDoe')
+      unfollowUser(321, 'JaneDoe')
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'You are not following JaneDoe')
@@ -632,7 +648,7 @@ describe('Domain User', () => {
       this.userStub.returns(Promise.resolve(null))
       this.userFollowStub.returns(Promise.resolve(false))
 
-      UserDomain.unfollowUser(321, 'JaneDoe')
+      unfollowUser(321, 'JaneDoe')
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'No user found for user JaneDoe')
@@ -641,7 +657,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error for invalid request', (done) => {
-      UserDomain.unfollowUser()
+      unfollowUser()
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -670,7 +686,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
+      updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
           assert.isTrue(fakeResponse.destroy.calledOnce)
           assert.isTrue(foundUser.set.calledWith('new_email', fakeUserData.new_email))
@@ -693,7 +709,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
+      updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
           assert.isTrue(fakeResponse.destroy.calledOnce)
           done()
@@ -710,7 +726,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
+      updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
           assert.isTrue(fakeResponse.destroy.calledOnce)
           done()
@@ -727,7 +743,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
+      updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
           assert.isTrue(fakeResponse.destroy.calledOnce)
           done()
@@ -744,7 +760,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
+      updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .then((foundUser) => {
           assert.isTrue(fakeResponse.destroy.calledOnce)
           done()
@@ -762,7 +778,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(null))
 
-      UserDomain.updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
+      updateAccount(fakeUserID, fakeUserData, fakeIpAddress)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'No matching user found.')
@@ -771,7 +787,7 @@ describe('Domain User', () => {
     })
 
     it('should fail with no params', (done) => {
-      UserDomain.updateAccount()
+      updateAccount()
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Request Invalid')
@@ -797,7 +813,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.usernameInUse(fakeUsername, fakeCallback)
+      usernameInUse(fakeUsername, fakeCallback)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -813,7 +829,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(fakeResponse))
 
-      UserDomain.usernameInUse(fakeUsername, fakeCallback)
+      usernameInUse(fakeUsername, fakeCallback)
         .then((foundUser) => {
           assert.isDefined(foundUser)
           done()
@@ -825,7 +841,7 @@ describe('Domain User', () => {
 
       this.userStub.returns(Promise.resolve(null))
 
-      UserDomain.usernameInUse(fakeUsername)
+      usernameInUse(fakeUsername)
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Invalid Request')
@@ -834,7 +850,7 @@ describe('Domain User', () => {
     })
 
     it('should throw error', (done) => {
-      UserDomain.usernameInUse()
+      usernameInUse()
         .catch((error) => {
           assert.isDefined(error)
           assert.isTrue(error === 'Username Check Request Invalid')

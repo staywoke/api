@@ -33,3 +33,16 @@ http://localhost:5000/v1/token?apikey=YOUR_API_KEY&pretty
 ```
 
 `YOUR_API_KEY` is whatever you setup in [Downloading API](../docs/downloading-api.md)
+
+
+Accessing the Docker MySQL Database
+---
+
+You can connect to your ySql docker instance using the following config options:
+
+```
+HOST: 127.0.0.1
+PORT: 8083
+USER: docker_api
+PASS: d0cK3r^4p1
+```

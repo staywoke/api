@@ -222,7 +222,7 @@ module.exports = {
     if (headerToken && headerToken !== null) {
       jwt.verify(headerToken, config.get('secret'), (err, decoded) => {
         if (err) {
-          return callback(new Error(err))
+          return callback()
         }
 
         if (decoded.userId) {

@@ -12,7 +12,7 @@
     "api": {
       "host": "database",
       "database": "docker_api",
-      "username": "root",
+      "username": "docker_api",
       "password": "d0cK3r^4p1"
     }
   },

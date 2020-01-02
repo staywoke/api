@@ -74,9 +74,9 @@ router.route('/categories/:slug?').get((request, response) => {
 
     response.json(util.createAPIResponse({
       meta: {
-        total: result.hits.total,
+        total: result.hits.total.value,
         showing: result.hits.hits.length,
-        pages: Math.ceil(result.hits.total / searchParams.size),
+        pages: Math.ceil(result.hits.total.value / searchParams.size),
         page: page
       },
       data: result.hits.hits.map(CategoryDomain.prepareForAPIOutput)

@@ -9,6 +9,8 @@ const Hashids = require('hashids/cjs')
 const md5 = require('md5')
 const randomString = require('randomstring')
 
+const { Op } = require('sequelize')
+
 const config = require('../../../config')
 const email = require('./email')
 const hasher = require('../../../util/hasher')
@@ -220,7 +222,7 @@ module.exports = {
       return models.users.findOne({
         where: {
           email: {
-            $eq: emailAddress
+            [Op.eq]: emailAddress
           }
         }
       }).then((foundUser) => {
@@ -327,7 +329,7 @@ module.exports = {
             where: {
               follow_user_id: userData.id,
               user_id: {
-                $ne: userData.id
+                [Op.ne]: userData.id
               }
             },
             order: [
@@ -398,7 +400,7 @@ module.exports = {
             where: {
               user_id: userData.id,
               follow_user_id: {
-                $ne: userData.id
+                [Op.ne]: userData.id
               }
             },
             order: [
@@ -585,7 +587,7 @@ module.exports = {
       return models.users.findOne({
         where: {
           username: {
-            $eq: username.toLowerCase()
+            [Op.eq]: username.toLowerCase()
           }
         }
       }).then((foundUser) => {

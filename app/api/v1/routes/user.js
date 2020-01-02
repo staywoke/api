@@ -12,7 +12,7 @@ const config = require('../../../config')
 const util = require('./util')
 const elasticsearchClient = require('../../../elasticsearch/client')
 
-const { EmailDomain, UserDomain, UsersAuthDomain, UsersRegistrationDomain } = require('../domain')
+const { EmailDomain, UserDomain, UsersAuthDomain, UsersLocalAuthStrategyDomain, UsersRegistrationDomain } = require('../domain')
 
 const router = express.Router(config.router)
 
@@ -51,8 +51,8 @@ router.route('/user/register').post((request, response) => {
  * @name [POST] /user/confirm/account
  * @property {string} key - Account Confirmation Key, Must Match `new_email_key` in Database
  */
-router.route('/user/confirm/account').post((request, response) => {
-  UsersRegistrationDomain.confirmAccount(request.body.key).then((user) => {
+router.route('/user/confirm/account').get((request, response) => {
+  UsersRegistrationDomain.confirmAccount(request.query.key).then((user) => {
     util.trackLogin(user, request)
 
     // Pull out public user data and generate token
@@ -75,8 +75,8 @@ router.route('/user/confirm/account').post((request, response) => {
  * @name [POST] /user/confirm/email
  * @property {string} key - Email Confirmation Key, Must Match `new_email_key` in Database
  */
-router.route('/user/confirm/email').post((request, response) => {
-  UsersRegistrationDomain.confirmEmail(request.body.key).then((user) => {
+router.route('/user/confirm/email').get((request, response) => {
+  UsersRegistrationDomain.confirmEmail(request.query.key).then((user) => {
     // Pull out public user data and generate token
     const data = user.publicJSON()
     data.token = UsersAuthDomain.createUserToken(user)
@@ -100,8 +100,8 @@ router.route('/user/confirm/email').post((request, response) => {
  * @name [POST] /user/confirm/password
  * @property {string} key - Password Confirmation Key, Must Match `new_password_key` in Database
  */
-router.route('/user/confirm/password').post((request, response) => {
-  UsersRegistrationDomain.confirmPassword(request.body.key).then((user) => {
+router.route('/user/confirm/password').get((request, response) => {
+  UsersRegistrationDomain.confirmPassword(request.query.key).then((user) => {
     // Pull out public user data and generate token
     const data = user.publicJSON()
     data.token = UsersAuthDomain.createUserToken(user)
@@ -126,27 +126,39 @@ router.route('/user/confirm/password').post((request, response) => {
  * @property {string} username - Username of Existing Account
  * @property {string} password - Password of Existing Account
  */
-router.route('/user/login').post((request, response) => {
-  passport.authenticate('local', (error, user) => {
-    if (error) {
-      response.status(401).json(util.createAPIResponse({
-        errors: error ? [error] : []
+router.route('/user/login').post((request, response, next) => {
+  try {
+    passport.use(UsersLocalAuthStrategyDomain)
+    passport.authenticate('local', (err, user, info) => {
+      // Check for Invalid User Account
+      if (err) {
+        return response.status(401).json(util.createAPIResponse({
+          errors: [err]
+        }, request.query.fields))
+      }
+
+      if (!user) {
+        return response.status(401).json(util.createAPIResponse({
+          errors: [info.message]
+        }, request.query.fields))
+      }
+
+      util.trackLogin(user, request)
+      util.trackActivity(user.get('id'), 'login')
+
+      // Pull out public user data and generate token
+      const data = user.publicJSON()
+      data.token = UsersAuthDomain.createUserToken(user)
+
+      response.json(util.createAPIResponse({
+        data: data
       }, request.query.fields))
-
-      return
-    }
-
-    util.trackLogin(user, request)
-    util.trackActivity(user.get('id'), 'login')
-
-    // Pull out public user data and generate token
-    const data = user.publicJSON()
-    data.token = UsersAuthDomain.createUserToken(user)
-
-    response.json(util.createAPIResponse({
-      data: data
+    })(request, response, next)
+  } catch (err) {
+    response.status(401).json(util.createAPIResponse({
+      errors: ['Invalid Login', err.message]
     }, request.query.fields))
-  })(request, response)
+  }
 })
 
 /**
@@ -157,6 +169,8 @@ router.route('/user/login').post((request, response) => {
 router.route('/user/logout').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
+      console.log(`VALID USER: ${validUserId}`)
+      console.log(typeof validUserId)
       util.trackActivity(validUserId, 'logout', null, () => {
         response.json(util.createAPIResponse({
           data: {
@@ -165,7 +179,7 @@ router.route('/user/logout').post((request, response) => {
         }, request.query.fields))
       })
     } else {
-      response.json(util.createAPIResponse({
+      response.status(403).json(util.createAPIResponse({
         errors: ['Invalid API Authorization Token']
       }, request.query.fields))
     }
@@ -183,130 +197,137 @@ router.route('/user/logout').post((request, response) => {
  * @property {string} [new_password] -  Allow User to Change Password
  * @property {string} password - Existing Password, Required for all changes to accounts
  */
-router.route('/user/update').post((request, response) => {
+router.route('/user/update').post((request, response, next) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
-      passport.authenticate('local', (error) => {
+      passport.use(UsersLocalAuthStrategyDomain)
+      passport.authenticate('local', (err, user, info) => {
         // Check for Invalid User Account
-        if (error) {
-          response.json(util.createAPIResponse({
-            errors: ['Incorrect Password']
+        if (err) {
+          return response.status(400).json(util.createAPIResponse({
+            errors: [err]
           }, request.query.fields))
-        } else {
-          let usernameChecked = false
-          let emailChecked = false
-          let passwordChecked = false
+        }
 
-          const updateAccount = () => {
-            if (usernameChecked && emailChecked && passwordChecked) {
-              return UserDomain.updateAccount(validUserId, request.body, request.headers['x-forwarded-for']).then((updated) => {
-                response.json(util.createAPIResponse({
-                  data: updated
-                }, request.query.fields))
-              }).catch((errors) => {
-                response.status(400)
-                response.json(util.createAPIResponse({
-                  errors: [errors.toString()]
-                }, request.query.fields))
-              })
-            }
-          }
+        if (!user) {
+          return response.status(400).json(util.createAPIResponse({
+            errors: [info.message]
+          }, request.query.fields))
+        }
 
-          // CHECK FOR ANY ERRORS BEFORE UPDATING DATA
+        let usernameChecked = false
+        let emailChecked = false
+        let passwordChecked = false
 
-          // Check if we are changing the username
-          if (request.body.new_username) {
-            // Check for invalid username
-            if (!UsersRegistrationDomain.validUserName(request.body.new_username)) {
+        const updateAccount = () => {
+          if (usernameChecked && emailChecked && passwordChecked) {
+            return UserDomain.updateAccount(validUserId, request.body, request.headers['x-forwarded-for']).then((updated) => {
+              response.json(util.createAPIResponse({
+                data: updated
+              }, request.query.fields))
+            }).catch((errors) => {
               response.status(400)
               response.json(util.createAPIResponse({
-                errors: ['Invalid Username. Required Length: 3-30, Allowed Characters: a-Z0-9_']
+                errors: [errors.toString()]
               }, request.query.fields))
-              return
-            }
-
-            // Check if old an new usernames are identical
-            if (request.body.username.toLowerCase() === request.body.new_username.toLowerCase()) {
-              response.status(400)
-              response.json(util.createAPIResponse({
-                errors: ['New Username and Current Username are identical.']
-              }, request.query.fields))
-              return
-            }
-
-            // Check if new username is already in use
-            UserDomain.usernameInUse(request.body.new_username, (inUse) => {
-              if (inUse) {
-                response.status(400)
-                response.json(util.createAPIResponse({
-                  errors: ['Username already in use.']
-                }, request.query.fields))
-              } else {
-                util.trackActivity(validUserId, 'changed_username', null, () => {})
-                usernameChecked = true
-                updateAccount()
-              }
             })
-          } else {
-            usernameChecked = true
+          }
+        }
+
+        // CHECK FOR ANY ERRORS BEFORE UPDATING DATA
+
+        // Check if we are changing the username
+        if (request.body.new_username) {
+          // Check for invalid username
+          if (!UsersRegistrationDomain.validUserName(request.body.new_username)) {
+            response.status(400)
+            response.json(util.createAPIResponse({
+              errors: ['Invalid Username. Required Length: 3-30, Allowed Characters: a-Z0-9_']
+            }, request.query.fields))
+            return
           }
 
-          // Check if we are changing the email address
-          if (request.body.new_email) {
-            // Check if old an new email addresses are identical
-            if (request.body.email.toLowerCase() === request.body.new_email.toLowerCase()) {
-              response.status(400)
-              response.json(util.createAPIResponse({
-                errors: ['New Email Address and Current Email Address are identical.']
-              }, request.query.fields))
-              return
-            }
-
-            // Check if new email address is already in use
-            UserDomain.emailAddressInUse(request.body.new_email, (inUse) => {
-              if (inUse) {
-                response.status(400)
-                response.json(util.createAPIResponse({
-                  errors: ['Email Address already in use.']
-                }, request.query.fields))
-              } else {
-                emailChecked = true
-                updateAccount()
-              }
-            })
-          } else {
-            emailChecked = true
+          // Check if old an new usernames are identical
+          if (request.body.username.toLowerCase() === request.body.new_username.toLowerCase()) {
+            response.status(400)
+            response.json(util.createAPIResponse({
+              errors: ['New Username and Current Username are identical.']
+            }, request.query.fields))
+            return
           }
 
-          // Check if we are changing the password
-          if (request.body.new_password) {
-            // Check for minimum length requirement
-            if (request.body.password.length < 6) {
+          // Check if new username is already in use
+          UserDomain.usernameInUse(request.body.new_username, (inUse) => {
+            if (inUse) {
               response.status(400)
               response.json(util.createAPIResponse({
-                errors: ['Minimum Password Length is 6 characters.']
+                errors: ['Username already in use.']
               }, request.query.fields))
-
-              return
-            } else if (request.body.password === request.body.new_password) {
-              // Check if old an new passwords are identical
-              response.status(400)
-              response.json(util.createAPIResponse({
-                errors: ['New Password and Current Password are identical.']
-              }, request.query.fields))
-
-              return
             } else {
-              passwordChecked = true
-              return updateAccount()
+              util.trackActivity(validUserId, 'changed_username', null, () => {})
+              usernameChecked = true
+              updateAccount()
             }
+          })
+        } else {
+          usernameChecked = true
+        }
+
+        // Check if we are changing the email address
+        if (request.body.new_email) {
+          // Check if old an new email addresses are identical
+          if (request.body.email.toLowerCase() === request.body.new_email.toLowerCase()) {
+            response.status(400)
+            response.json(util.createAPIResponse({
+              errors: ['New Email Address and Current Email Address are identical.']
+            }, request.query.fields))
+            return
+          }
+
+          // Check if new email address is already in use
+          UserDomain.emailAddressInUse(request.body.new_email, (inUse) => {
+            if (inUse) {
+              response.status(400)
+              response.json(util.createAPIResponse({
+                errors: ['Email Address already in use.']
+              }, request.query.fields))
+            } else {
+              emailChecked = true
+              updateAccount()
+            }
+          })
+        } else {
+          emailChecked = true
+        }
+
+        // Check if we are changing the password
+        if (request.body.new_password) {
+          // Check for minimum length requirement
+          if (request.body.password.length < 6) {
+            response.status(400)
+            response.json(util.createAPIResponse({
+              errors: ['Minimum Password Length is 6 characters.']
+            }, request.query.fields))
+
+            return
+          } else if (request.body.password === request.body.new_password) {
+            // Check if old an new passwords are identical
+            response.status(400)
+            response.json(util.createAPIResponse({
+              errors: ['New Password and Current Password are identical.']
+            }, request.query.fields))
+
+            return
           } else {
             passwordChecked = true
+            return updateAccount()
           }
-
-          return updateAccount()
+        } else {
+          passwordChecked = true
         }
-      })(request, response)
+
+        return updateAccount()
+      })(request, response, next)
     } else {
       response.json(util.createAPIResponse({
         errors: ['Invalid API Authorization Token']
@@ -321,29 +342,37 @@ router.route('/user/update').post((request, response) => {
  * @name [DELETE] /user/delete
  * @property {string} password - Existing Password, Required to Delete Account
  */
-router.route('/user/delete').delete((request, response) => {
+router.route('/user/delete').delete((request, response, next) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
-      passport.authenticate('local', (error, account) => {
-        if (error) {
-          response.json(util.createAPIResponse({
-            errors: ['Incorrect Password']
+      passport.use(UsersLocalAuthStrategyDomain)
+      passport.authenticate('local', (err, user, info) => {
+        // Check for Invalid User Account
+        if (err) {
+          return response.status(400).json(util.createAPIResponse({
+            errors: [err]
           }, request.query.fields))
-        } else {
-          UserDomain.deleteAccount(account).then(() => {
-            util.trackActivity(validUserId, 'logout', null, () => {
-              response.json(util.createAPIResponse({
-                data: account.publicJSON()
-              }))
-            }, request.query.fields)
-          }).catch((errors) => {
-            response.status(400)
-            response.json(util.createAPIResponse({
-              errors: [errors.toString()]
-            }, request.query.fields))
-          })
         }
-      })(request, response)
+
+        if (!user) {
+          return response.status(400).json(util.createAPIResponse({
+            errors: [info.message]
+          }, request.query.fields))
+        }
+
+        UserDomain.deleteAccount(user).then(() => {
+          util.trackActivity(validUserId, 'closed_account', null, () => {
+            response.json(util.createAPIResponse({
+              data: user.publicJSON()
+            }))
+          }, request.query.fields)
+        }).catch((errors) => {
+          response.status(400)
+          response.json(util.createAPIResponse({
+            errors: [errors.toString()]
+          }, request.query.fields))
+        })
+      })(request, response, next)
     } else {
       response.json(util.createAPIResponse({
         errors: ['Invalid API Authorization Token']
@@ -478,8 +507,8 @@ router.route('/user/:username/profile').get((request, response) => {
   const env = config.get('env')
   const indexType = `${env}_user`
   const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
-
   const page = 1
+  const pageSize = 30
 
   const searchParams = {
     index: indexName,
@@ -496,15 +525,17 @@ router.route('/user/:username/profile').get((request, response) => {
     }
   }
 
+  searchParams.size = pageSize
+
   elasticsearchClient.search(searchParams).then((result) => {
     const data = result.hits.hits.map(UserDomain.prepareForAPIOutput)
 
     if (data && data.length === 1) {
       response.json(util.createAPIResponse({
         meta: {
-          total: result.hits.total,
+          total: result.hits.total.value,
           showing: result.hits.hits.length,
-          pages: Math.ceil(result.hits.total / searchParams.size),
+          pages: Math.ceil(result.hits.total.value / searchParams.size),
           page: page
         },
         data: data[0]
@@ -604,8 +635,8 @@ router.route('/user/:username/unfollow').post((request, response) => {
  * @property {string} username - Username to Use
  */
 router.route('/user/:username/followers').get((request, response) => {
-  if (!request.params.username) {
-    response.json(util.createAPIResponse({
+  if (!request.params.username || request.params.username.trim() === '') {
+    response.status(400).json(util.createAPIResponse({
       errors: ['Missing Username']
     }, request.query.fields))
   }
@@ -629,8 +660,8 @@ router.route('/user/:username/followers').get((request, response) => {
  * @property {string} username - Username to Use
  */
 router.route('/user/:username/following').get((request, response) => {
-  if (!request.params.username) {
-    response.json(util.createAPIResponse({
+  if (!request.params.username || request.params.username.trim() === '') {
+    response.status(400).json(util.createAPIResponse({
       errors: ['Missing Username']
     }, request.query.fields))
   }

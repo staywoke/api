@@ -154,18 +154,28 @@ again by either adding the Request Authorization Header below, or using the
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0NTU1MTQ2NzIsImV4cCI6MTQ1NjExOTQ3MiwiaXNzIjoiQ29kZXJzIEJ1aWxkIEFQSSJ9.PZagWEzVC2sr_QjcwvqvUB9lUUlFSNIT9gzY80XWAn4"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzc5MjY2ODUsImV4cCI6MTU3ODUzMTQ4NSwiaXNzIjoiQVBJIn0.tC2KwBJyBDmyOuYCQjrmOYx0-KPPFKE6qC8sO3h09Sw"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Refresh Session [/user/refresh]
@@ -182,23 +192,55 @@ Request Authorization Header below. `token` should be the string returned in the
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {},
-          "data": {
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImlhdCI6MTQ1MTc5ODYyMSwiZXhwIjoxNDUyNDAzNDIxLCJpc3MiOiJEb2luZyBBUEkifQ.za4PspEZfeVxydO3QHSFBLm_9PcrCBRwK9HLofBY74s"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImlhdCI6MTQ1MTc5ODYyMSwiZXhwIjoxNDUyNDAzNDIxLCJpc3MiOiJEb2luZyBBUEkifQ.za4PspEZfeVxydO3QHSFBLm_9PcrCBRwK9HLofBY74s"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Invalid or expired token"
-          ],
-          "meta": {},
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Invalid or expired token"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 
@@ -246,43 +288,70 @@ their email address to complete registration.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {},
-          "data": {
-            "banned": false,
-            "id": "5",
-            "username": "test",
-            "first_name": "Test",
-            "last_name": "User",
-            "email": "test@email.com",
-            "activated": false,
-            "new_email_key": "TriqG3m344N8",
-            "modified": "2016-01-03T03:59:45.465Z",
-            "created": "2016-01-03T03:59:45.465Z",
-            "banned_reason": null,
-            "new_password_key": null,
-            "new_password_requested": null,
-            "new_email": null,
-            "profile_photo": null
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": false,
+                "banned": false,
+                "created_date": "2020-01-02T01:11:05.008Z",
+                "email": "john.doe@fake.com",
+                "first_name": "John",
+                "hash_id": "WJvqzv",
+                "id": 3,
+                "last_name": "Doe",
+                "modified_date": "2020-01-02T01:11:05.008Z",
+                "profile_name": "john_doe",
+                "username": "john_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [],
-          "field_errors": {
-            "username": [
-              "Username is already in use"
-            ],
-            "email": [
-              "Email is already in use"
-            ]
-          },
-          "meta": {},
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {
+                "username": [
+                    "Username is already in use"
+                ],
+                "email": [
+                    "Email is already in use"
+                ]
+            },
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Confirm Account [/user/confirm/account/?key={key}]
@@ -300,36 +369,78 @@ address.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {},
-          "data": {
-            "id": "5",
-            "username": "test",
-            "email": "test@email.com",
-            "first_name": "Test",
-            "last_name": "User",
-            "activated": true,
-            "banned": false,
-            "banned_reason": null,
-            "new_password_key": null,
-            "new_password_requested": null,
-            "new_email": null,
-            "new_email_key": null,
-            "profile_photo": null,
-            "created": "2016-01-02T06:00:54.303Z",
-            "modified": "2016-01-02T06:01:35.207Z",
-            "banned": false
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": null,
+                "company_name": null,
+                "created_date": "2020-01-02T02:10:23.000Z",
+                "deletedAt": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "hash_id": "LYvlRm",
+                "id": 2,
+                "last_name": "Doe",
+                "location": null,
+                "modified_date": "2020-01-02T02:15:20.457Z",
+                "new_password_key": null,
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "jane_doe",
+                "profile_photo": null,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTU3NzkzMTMyMCwiZXhwIjoxNTc4NTM2MTIwLCJpc3MiOiJBUEkifQ.GjxhhS7WLZcNrbnbULPZ1RiFUF_1ctMNZMxSx3k4Mkk",
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": ["Error Saving User Account"],
-          "meta": {},
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Activation Key not found"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Confirm Email Change [/user/confirm/email/?key={key}]
@@ -347,36 +458,78 @@ change.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {},
-          "data": {
-            "id": "5",
-            "username": "test",
-            "email": "test@email.com",
-            "first_name": "Test",
-            "last_name": "User",
-            "activated": true,
-            "banned": false,
-            "banned_reason": null,
-            "new_password_key": null,
-            "new_password_requested": null,
-            "new_email": null,
-            "new_email_key": null,
-            "profile_photo": null,
-            "created": "2016-01-02T06:00:54.303Z",
-            "modified": "2016-01-02T06:01:35.207Z",
-            "banned": false
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": null,
+                "company_name": null,
+                "created_date": "2020-01-02T02:10:23.000Z",
+                "deletedAt": null,
+                "email": "jane.doe2@fake.com",
+                "first_name": "Jane",
+                "hash_id": "LYvlRm",
+                "id": 2,
+                "last_name": "Doe",
+                "location": null,
+                "modified_date": "2020-01-02T02:26:45.454Z",
+                "new_password_key": null,
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "jane_doe",
+                "profile_photo": null,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTU3NzkzMjAwNSwiZXhwIjoxNTc4NTM2ODA1LCJpc3MiOiJBUEkifQ.G0c_x6pt1djFAFyr9SY-3Q295NsMVgQu95hDSkc4h7s",
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": ["Error Confirming Account"],
-          "meta": {},
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Confirmation Key not found"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Confirm Password Change [/user/confirm/password/?key={key}]
@@ -386,43 +539,85 @@ it was them that requested the password change.
 
 
 + Parameters
-    + key (required, string) - The `new_email_key` stored for the user
+    + key (required, string) - The `new_password_key` stored for the user
 
 ### Confirm Password Change [GET]
 
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {},
-          "data": {
-            "id": "5",
-            "username": "test",
-            "email": "test@email.com",
-            "first_name": "Test",
-            "last_name": "User",
-            "activated": true,
-            "banned": false,
-            "banned_reason": null,
-            "new_password_key": null,
-            "new_password_requested": null,
-            "new_email": null,
-            "new_email_key": null,
-            "profile_photo": null,
-            "created": "2016-01-02T06:00:54.303Z",
-            "modified": "2016-01-02T06:01:35.207Z",
-            "banned": false
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": null,
+                "company_name": null,
+                "created_date": "2020-01-02T02:10:23.000Z",
+                "deletedAt": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "hash_id": "LYvlRm",
+                "id": 2,
+                "last_name": "Doe",
+                "location": null,
+                "modified_date": "2020-01-02T02:32:13.794Z",
+                "new_password_key": null,
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "jane_doe",
+                "profile_photo": null,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTU3NzkzMjMzMywiZXhwIjoxNTc4NTM3MTMzLCJpc3MiOiJBUEkifQ.s_ykYP-rQuJJH41y7lZODWAc2RIamZGYw_GGPhwElD4",
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": ["Error Confirming Account"],
-          "meta": {},
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Confirmation Key not found"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Login [/user/login/?username={username}&password={password}]
@@ -442,71 +637,139 @@ To access authentication-protected endpoints, you will need to include an
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {},
-          "data": {
-            "id": "5",
-            "username": "test",
-            "email": "test@email.com",
-            "first_name": "Test",
-            "last_name": "User",
-            "activated": true,
-            "banned": false,
-            "banned_reason": null,
-            "new_password_key": null,
-            "new_password_requested": null,
-            "new_email": null,
-            "new_email_key": "TriqG3m344N8",
-            "profile_photo": null,
-            "created": "2016-01-03T03:59:45.465Z",
-            "modified": "2016-01-03T03:59:45.465Z",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI1IiwiaWF0IjoxNDUxNzk0OTI2LCJleHAiOjE0NTIzOTk3MjYsImlzcyI6IkRvaW5nIEFQSSJ9.Y-ALQxsdTCf8zJvD-IUeobGTbgKbtNTvt3_JrUMOyXA"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": null,
+                "company_name": null,
+                "created_date": "2020-01-02T02:10:23.000Z",
+                "deletedAt": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "hash_id": "LYvlRm",
+                "id": 2,
+                "last_name": "Doe",
+                "location": null,
+                "modified_date": "2020-01-02T02:32:13.000Z",
+                "new_password_key": null,
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "jane_doe",
+                "profile_photo": null,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTU3NzkzNDA3MiwiZXhwIjoxNTc4NTM4ODcyLCJpc3MiOiJBUEkifQ.sHfJ-iFk1TZYPbO4MBneuFvyKu6PwkALSU-QcyvZLGc",
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
-+ Response 200 (application/json)
++ Response 401 (application/json)
 
         {
-          "error": true,
-          "errors": ["User not active"],
-          "meta": {},
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Incorrect Password"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
-+ Response 200 (application/json)
-
-        {
-          "error": true,
-          "errors": ["No user found with that username"],
-          "meta": {},
-          "data": []
-        }
 
 ## Logout [/user/logout]
 
-Tell API that the user has logged out
+Tell API that the user has logged out. This will only register if a Bearer Authentication Token is set in the Header.
 
 ### User Logout [POST]
 
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {},
-          "data": {
-            "success": true
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "success": true
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 403 (application/json)
 
         {
-          "error": true,
-          "errors": ["Invalid API Authorization Token"],
-          "meta": {},
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Invalid API Authorization Token"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Forgot Password [/user/forgot-password/?email={email}]
@@ -522,33 +785,77 @@ reset link.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "message": "Check your email to obtain instructions on password reset."
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": null,
+                "company_name": null,
+                "created_date": "2020-01-02T02:10:23.000Z",
+                "deletedAt": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "hash_id": "LYvlRm",
+                "id": 2,
+                "last_name": "Doe",
+                "location": null,
+                "modified_date": "2020-01-02T03:15:33.321Z",
+                "new_password_key": "RBiNnDqOJUaX",
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "jane_doe",
+                "profile_photo": null,
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
-+ Response 403 (application/json)
++ Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "We could not find that email address in our system."
-          ],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "No Matching Email Found"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Reset Password [/user/reset-password/?token={token}&password={password}&retype_password={retype_password}]
@@ -556,7 +863,7 @@ reset link.
 Reset password will check the token against the `new_password_key` column for that user.  We will also likely want to make sure that `new_password_requested` is less than a certain age to prevent open password change requests.
 
 + Parameters
-    + token (required, string) - This is the token that is sent from the link in the email address.
+    + token (required, string) - This is the `new_password_key` token that is sent from the link in the email address.
     + password (required, string) - This is the new password that the user wants to reset
     + retype_password (required, string) - This should be the same as 'password' and is the confirmation of the password
 
@@ -565,33 +872,77 @@ Reset password will check the token against the `new_password_key` column for th
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "message": "You may now login with your new password."
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": null,
+                "company_name": null,
+                "created_date": "2020-01-02T02:10:23.000Z",
+                "deletedAt": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "hash_id": "LYvlRm",
+                "id": 2,
+                "last_name": "Doe",
+                "location": null,
+                "modified_date": "2020-01-02T03:52:48.714Z",
+                "new_password_key": null,
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "jane_doe",
+                "profile_photo": null,
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
-+ Response 403 (application/json)
++ Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Invalid Reset Password token."
-          ],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Request Invalid or Expired"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Resend Email Confirmation [/user/resend-confirmation/{hash_id}]
@@ -606,33 +957,53 @@ If the user needs to resend their email confirmation, this is the endpoint to us
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "message": "You may now login with your new password."
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": "Confirmation Email Resent",
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
-+ Response 403 (application/json)
++ Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Invalid Reset Password token."
-          ],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Invalid Request"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Update Account [/user/update/?current_password={current_password}&username={username}&email={email}&password_new={password_new}&password_new_retype={password_new_retype}]
@@ -648,9 +1019,10 @@ IMPORTANT NOTES ABOUT THIS ENDPOINT:
 3. We do not immediatley change the password when requested.  We first send a confirmation email to the users current email to confirm that they made the requested change.
 
 + Parameters
-    + current_password (required, string) - Current Account Passsword ( required to make any changes on this endpoint )
-    + username (optional, string) - New Username user wishes to change their username to
-    + email (optional, string) - New Email Address user wishes to associate with their account
+    + username (required, string) - Current Account Username ( required to make any changes on this endpoint )
+    + password (required, string) - Current Account Passsword ( required to make any changes on this endpoint )
+    + new_username (optional, string) - New Username user wishes to change their username to
+    + new_email (optional, string) - New Email Address user wishes to associate with their account
     + password_new (optional, string) - New Password user wishes to use for their account
     + password_new_retype (optional, string) - Repeat the new password to make sure they match so they don't get locked out
 
@@ -659,49 +1031,88 @@ IMPORTANT NOTES ABOUT THIS ENDPOINT:
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "bio": "Front End Designer",
-            "company_name": "Awesome Company",
-            "email": "me@email.com",
-            "first_name": "Jane",
-            "hash_id": "yRdRYJ",
-            "join_date": "2016-02-15T02:51:52.000Z",
-            "last_name": "Doe",
-            "location": "St. Petersburg, FL",
-            "profile_link_1": "http://mywebsite.com",
-            "profile_link_2": null,
-            "profile_link_3": null,
-            "profile_link_twitter": null,
-            "profile_link_website": null,
-            "profile_name": "Jane Doe",
-            "profile_photo": null,
-            "username": "janedoe"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "messages": [
+                    "Your username has been updated to \"jane_ray\". A confirmation of this change has been sent to your email address."
+                ],
+                "title": "Account Updated",
+                "user": {
+                    "id": 2,
+                    "activated": true,
+                    "username": "jane_ray",
+                    "password": "$2b$08$iIW30arfYVRi28u6sUIkU.ZOHddmtzLRRVBgjaEyZR3Cr34wTfCBK",
+                    "email": "jane.doe@fake.com",
+                    "first_name": "Jane",
+                    "last_name": "Doe",
+                    "company_name": null,
+                    "profile_name": "jane_doe",
+                    "profile_photo": null,
+                    "location": null,
+                    "profile_link_website": null,
+                    "profile_link_twitter": null,
+                    "profile_link_1": null,
+                    "profile_link_2": null,
+                    "profile_link_3": null,
+                    "bio": null,
+                    "banned": false,
+                    "banned_reason": null,
+                    "new_password": null,
+                    "new_password_key": null,
+                    "new_password_requested": null,
+                    "new_email": null,
+                    "new_email_key": null,
+                    "new_email_requested": null,
+                    "created_date": "2020-01-02T02:10:23.000Z",
+                    "modified_date": "2020-01-02T05:34:14.102Z",
+                    "deletedAt": null
+                }
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
-+ Response 403 (application/json)
++ Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Username is not available"
-          ],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Incorrect Username"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Delete Account [/user/delete/?username={username}&password={password}]
@@ -726,49 +1137,77 @@ IMPORTANT NOTES ABOUT THIS ENDPOINT:
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "bio": "Front End Designer",
-            "company_name": "Awesome Company",
-            "email": "me@email.com",
-            "first_name": "Jane",
-            "hash_id": "yRdRYJ",
-            "join_date": "2016-02-15T02:51:52.000Z",
-            "last_name": "Doe",
-            "location": "St. Petersburg, FL",
-            "profile_link_1": "http://mywebsite.com",
-            "profile_link_2": null,
-            "profile_link_3": null,
-            "profile_link_twitter": null,
-            "profile_link_website": null,
-            "profile_name": "Jane Doe",
-            "profile_photo": null,
-            "username": "janedoe"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": null,
+                "company_name": null,
+                "created_date": "2020-01-02T02:10:23.000Z",
+                "deletedAt": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "hash_id": "LYvlRm",
+                "id": 2,
+                "last_name": "Doe",
+                "location": null,
+                "modified_date": "2020-01-02T05:34:14.000Z",
+                "new_password_key": null,
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "jane_doe",
+                "profile_photo": null,
+                "username": "jane_ray"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
-+ Response 403 (application/json)
++ Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Incorrect Password"
-          ],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Incorrect Username"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 
@@ -789,50 +1228,68 @@ Get a public profile for given `username`.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "bio": "Front End Designer",
-            "company_name": "Awesome Company",
-            "email": "me@email.com",
-            "first_name": "Jane",
-            "hash_id": "yRdRYJ",
-            "join_date": "2016-02-15T02:51:52.000Z",
-            "last_name": "Doe",
-            "location": "St. Petersburg, FL",
-            "profile_link_1": "http://mywebsite.com",
-            "profile_link_2": null,
-            "profile_link_3": null,
-            "profile_link_twitter": null,
-            "profile_link_website": null,
-            "profile_name": "Jane Doe",
-            "profile_photo": null,
-            "username": "janedoe"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "bio": null,
+                "company_name": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "last_name": "Doe",
+                "location": null,
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "jane_doe",
+                "profile_photo": null,
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "No Matching User Found"
-          ],
-          "field_errors": {},
-          "meta": {
-            "total": 0,
-            "showing": 0,
-            "pages": 1,
-            "page": 1
-          },
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "No Matching Username"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": [],
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Follow User [/user/{username}/follow]
@@ -847,50 +1304,59 @@ Add's `username` to the current logged in users follow list.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "bio": "Front End Designer",
-            "company_name": "Awesome Company",
-            "email": "me@email.com",
-            "first_name": "Jane",
-            "hash_id": "yRdRYJ",
-            "join_date": "2016-02-15T02:51:52.000Z",
-            "last_name": "Doe",
-            "location": "St. Petersburg, FL",
-            "profile_link_1": "http://mywebsite.com",
-            "profile_link_2": null,
-            "profile_link_3": null,
-            "profile_link_twitter": null,
-            "profile_link_website": null,
-            "profile_name": "Jane Doe",
-            "profile_photo": null,
-            "username": "janedoe"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "created_date": "2020-01-02T07:30:58.951Z",
+                "follow_user_id": 14,
+                "id": 1,
+                "modified_date": "2020-01-02T07:30:58.951Z",
+                "user_id": 13
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "No Matching User Found"
-          ],
-          "field_errors": {},
-          "meta": {
-            "total": 0,
-            "showing": 0,
-            "pages": 1,
-            "page": 1
-          },
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "No user found for user johnd_doe"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Unfollow User [/user/{username}/unfollow]
@@ -905,50 +1371,60 @@ Removes `username` from the current logged in users follow list.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "bio": "Front End Designer",
-            "company_name": "Awesome Company",
-            "email": "me@email.com",
-            "first_name": "Jane",
-            "hash_id": "yRdRYJ",
-            "join_date": "2016-02-15T02:51:52.000Z",
-            "last_name": "Doe",
-            "location": "St. Petersburg, FL",
-            "profile_link_1": "http://mywebsite.com",
-            "profile_link_2": null,
-            "profile_link_3": null,
-            "profile_link_twitter": null,
-            "profile_link_website": null,
-            "profile_name": "Jane Doe",
-            "profile_photo": null,
-            "username": "janedoe"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "created_date": "2020-01-02T07:30:58.000Z",
+                "deletedAt": "2020-01-02T07:34:27.538Z",
+                "follow_user_id": 14,
+                "id": 1,
+                "modified_date": "2020-01-02T07:34:27.539Z",
+                "user_id": 13
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "No Matching User Found"
-          ],
-          "field_errors": {},
-          "meta": {
-            "total": 0,
-            "showing": 0,
-            "pages": 1,
-            "page": 1
-          },
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "You are not following john_doe"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Get Followers [/user/{username}/followers]
@@ -963,9 +1439,10 @@ Fetches list of users that is following `username`
 + Response 200 (application/json)
 
         {
-            "error": false,
+            "notices": [],
+            "warnings": [],
             "errors": [],
-            "field_errors": { },
+            "field_errors": {},
             "meta": {
                 "total": 1,
                 "showing": 1,
@@ -974,13 +1451,22 @@ Fetches list of users that is following `username`
             },
             "data": [
                 {
-                    "id": 2,
-                    "username": "manifestinteractive",
-                    "profile_name": "Peter Schmalfeldt",
-                    "profile_photo": "https://peterschmalfeldt.com/images/me.jpg",
-                    "followed_on": "2016-03-05T08:30:04.000Z"
+                    "id": 3,
+                    "username": "john_doe",
+                    "profile_name": "john_doe",
+                    "profile_photo": "https://secure.gravatar.com/avatar/c701e8fbe4b56a80543dbd80c157f853?r=g&s=200&d=identicon",
+                    "followed_on": "2020-01-02T07:44:47.000Z"
                 }
-            ]
+            ],
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
@@ -1012,9 +1498,10 @@ Fetches list of users `username` is following
 + Response 200 (application/json)
 
         {
-            "error": false,
+            "notices": [],
+            "warnings": [],
             "errors": [],
-            "field_errors": { },
+            "field_errors": {},
             "meta": {
                 "total": 1,
                 "showing": 1,
@@ -1024,34 +1511,53 @@ Fetches list of users `username` is following
             "data": [
                 {
                     "id": 2,
-                    "username": "manifestinteractive",
-                    "profile_name": "Peter Schmalfeldt",
-                    "profile_photo": "https://peterschmalfeldt.com/images/me.jpg",
-                    "followed_on": "2016-03-05T08:30:04.000Z"
+                    "username": "john_doe",
+                    "profile_name": "john_doe",
+                    "profile_photo": "https://secure.gravatar.com/avatar/c701e8fbe4b56a80543dbd80c157f853?r=g&s=200&d=identicon",
+                    "followed_on": "2020-01-02T07:43:39.000Z"
                 }
-            ]
+            ],
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Missing Username"
-          ],
-          "field_errors": {},
-          "meta": {
-            "total": 0,
-            "showing": 0,
-            "pages": 1,
-            "page": 1
-          },
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Missing Username"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Get Invitations [/user/invite/{key}]
 
-Fetches list of users that have registered using the provided invite `key`
+Fetches list of users that have registered using the provided invite `key` ( users `hash_id` ).
 
 + Parameters
     + key (required, string) - Invitation Key ( users hash_id )
@@ -1061,12 +1567,13 @@ Fetches list of users that have registered using the provided invite `key`
 + Response 200 (application/json)
 
         {
-            "error": false,
+            "notices": [],
+            "warnings": [],
             "errors": [],
-            "field_errors": { },
+            "field_errors": {},
             "meta": {
-                "total": 1,
-                "showing": 1,
+                "total": 0,
+                "showing": 0,
                 "pages": 1,
                 "page": 1
             },
@@ -1078,24 +1585,43 @@ Fetches list of users that have registered using the provided invite `key`
                     "profile_photo": "https://peterschmalfeldt.com/images/me.jpg",
                     "followed_on": "2016-03-05T08:30:04.000Z"
                 }
-            ]
+            ],
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 + Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Missing Username"
-          ],
-          "field_errors": {},
-          "meta": {
-            "total": 0,
-            "showing": 0,
-            "pages": 1,
-            "page": 1
-          },
-          "data": []
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Invalid Invitation Code"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 

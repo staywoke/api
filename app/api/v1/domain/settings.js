@@ -8,6 +8,13 @@ const _ = require('lodash')
 
 const models = require('../../../models')
 
+const UserES = require('../../../elasticsearch/update/user')
+
+// Add ElasticSearch Hooks
+models.users.afterCreate(() => { UserES.update() })
+models.users.afterUpdate(() => { UserES.update() })
+models.users.afterDestroy(() => { UserES.update() })
+
 /**
  * Domain Settings
  * @type {object}

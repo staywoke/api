@@ -249,11 +249,22 @@ module.exports = {
       })
     }
 
-    return this.getClient().messages.sendTemplateAsync({
-      template_name: templateSlug,
-      template_content: templateVariables,
-      message: message
-    })
+    // Only send email if this is Staging or Production
+    if (process.env.NODE_ENV === 'staging' || process.env.NODE_ENV === 'production') {
+      return this.getClient().messages.sendTemplateAsync({
+        template_name: templateSlug,
+        template_content: templateVariables,
+        message: message
+      })
+    } else {
+      return new Promise(resolve => {
+        resolve({
+          template_name: templateSlug,
+          template_content: templateVariables,
+          message: message
+        })
+      })
+    }
   },
 
   /**
