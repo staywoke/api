@@ -19,7 +19,7 @@ module.exports = {
   normalizeCommaSeparatedIntegers (str) {
     const ints = _.compact(_.map(str.split(','), (raw) => {
       const num = parseInt(_.trim(raw), 10)
-      /* nyc ignore else */
+      /* istanbul ignore else */
       if (_.isNumber(num)) {
         return num
       } else {
@@ -54,6 +54,7 @@ module.exports = {
    * @param str
    * @returns {string}
    */
+  /* istanbul ignore next: not currently used */
   titleCase (str) {
     return str.trim().replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()

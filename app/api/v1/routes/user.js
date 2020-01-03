@@ -29,6 +29,7 @@ const router = express.Router(config.router)
  * @property {string} email - Users Email Addresses
  * @property {string} agree - User Indicated that they Agreed to the Terms of Service
  */
+/* istanbul ignore next */
 router.route('/user/register').post((request, response) => {
   UsersRegistrationDomain.register(request.body).then((user) => {
     const data = user.publicJSON()
@@ -51,6 +52,7 @@ router.route('/user/register').post((request, response) => {
  * @name [POST] /user/confirm/account
  * @property {string} key - Account Confirmation Key, Must Match `new_email_key` in Database
  */
+/* istanbul ignore next */
 router.route('/user/confirm/account').get((request, response) => {
   UsersRegistrationDomain.confirmAccount(request.query.key).then((user) => {
     util.trackLogin(user, request)
@@ -75,6 +77,7 @@ router.route('/user/confirm/account').get((request, response) => {
  * @name [POST] /user/confirm/email
  * @property {string} key - Email Confirmation Key, Must Match `new_email_key` in Database
  */
+/* istanbul ignore next */
 router.route('/user/confirm/email').get((request, response) => {
   UsersRegistrationDomain.confirmEmail(request.query.key).then((user) => {
     // Pull out public user data and generate token
@@ -100,6 +103,7 @@ router.route('/user/confirm/email').get((request, response) => {
  * @name [POST] /user/confirm/password
  * @property {string} key - Password Confirmation Key, Must Match `new_password_key` in Database
  */
+/* istanbul ignore next */
 router.route('/user/confirm/password').get((request, response) => {
   UsersRegistrationDomain.confirmPassword(request.query.key).then((user) => {
     // Pull out public user data and generate token
@@ -126,6 +130,7 @@ router.route('/user/confirm/password').get((request, response) => {
  * @property {string} username - Username of Existing Account
  * @property {string} password - Password of Existing Account
  */
+/* istanbul ignore next */
 router.route('/user/login').post((request, response, next) => {
   try {
     passport.use(UsersLocalAuthStrategyDomain)
@@ -166,6 +171,7 @@ router.route('/user/login').post((request, response, next) => {
  * @memberof module:routes/user
  * @name [POST] /user/logout
  */
+/* istanbul ignore next */
 router.route('/user/logout').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -195,6 +201,7 @@ router.route('/user/logout').post((request, response) => {
  * @property {string} [new_password] -  Allow User to Change Password
  * @property {string} password - Existing Password, Required for all changes to accounts
  */
+/* istanbul ignore next */
 router.route('/user/update').post((request, response, next) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -340,6 +347,7 @@ router.route('/user/update').post((request, response, next) => {
  * @name [DELETE] /user/delete
  * @property {string} password - Existing Password, Required to Delete Account
  */
+/* istanbul ignore next */
 router.route('/user/delete').delete((request, response, next) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -385,6 +393,7 @@ router.route('/user/delete').delete((request, response, next) => {
  * @memberof module:routes/user
  * @name [POST] /user/refresh
  */
+/* istanbul ignore next */
 router.route('/user/refresh').post((request, response) => {
   let errorMessage = 'No Authorization header found'
 
@@ -429,6 +438,7 @@ router.route('/user/refresh').post((request, response) => {
  * @name [POST] /user/forgot-password
  * @property {string} email - Email Address user can't remember Password for
  */
+/* istanbul ignore next */
 router.route('/user/forgot-password').post((request, response) => {
   const ipAddress = request.headers['x-forwarded-for']
   UsersRegistrationDomain.forgotPassword(request.body).then((user) => {
@@ -455,6 +465,7 @@ router.route('/user/forgot-password').post((request, response) => {
  * @property {string} retype_password - Retyped Password ( must match `password` )
  * @property {string} token - Change Password Token stored in `new_password_key`
  */
+/* istanbul ignore next */
 router.route('/user/reset-password').post((request, response) => {
   UsersRegistrationDomain.resetPassword(request.body).then((user) => {
     util.getGeoLocation(request.headers['x-forwarded-for'], (geolocation) => {
@@ -481,6 +492,7 @@ router.route('/user/reset-password').post((request, response) => {
  * @name [GET] /user/resend-confirmation/:id
  * @property {string} id - This is a Hash ID of the Users ID
  */
+/* istanbul ignore next */
 router.route('/user/resend-confirmation/:id').get((request, response) => {
   UsersRegistrationDomain.resendConfirmation(request.params.id).then((message) => {
     response.json(util.createAPIResponse({
@@ -500,6 +512,7 @@ router.route('/user/resend-confirmation/:id').get((request, response) => {
  * @name [GET] /user/:username/profile
  * @property {string} username - Username to Use
  */
+/* istanbul ignore next */
 router.route('/user/:username/profile').get((request, response) => {
   // Defaults
   const env = config.get('env')
@@ -564,6 +577,7 @@ router.route('/user/:username/profile').get((request, response) => {
  * @name [POST] /user/:username/follow
  * @property {string} username - Username to Use
  */
+/* istanbul ignore next */
 router.route('/user/:username/follow').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -599,6 +613,7 @@ router.route('/user/:username/follow').post((request, response) => {
  * @name [POST] /user/:username/unfollow
  * @property {string} username - Username to Use
  */
+/* istanbul ignore next */
 router.route('/user/:username/unfollow').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -632,6 +647,7 @@ router.route('/user/:username/unfollow').post((request, response) => {
  * @name [GET] /user/:username/followers
  * @property {string} username - Username to Use
  */
+/* istanbul ignore next */
 router.route('/user/:username/followers').get((request, response) => {
   if (!request.params.username || request.params.username.trim() === '') {
     response.status(400).json(util.createAPIResponse({
@@ -657,6 +673,7 @@ router.route('/user/:username/followers').get((request, response) => {
  * @name [GET] /user/:username/following
  * @property {string} username - Username to Use
  */
+/* istanbul ignore next */
 router.route('/user/:username/following').get((request, response) => {
   if (!request.params.username || request.params.username.trim() === '') {
     response.status(400).json(util.createAPIResponse({
@@ -682,6 +699,7 @@ router.route('/user/:username/following').get((request, response) => {
  * @name [GET] /user/invite/:key
  * @property {string} key - This is a Hash ID of the Users ID
  */
+/* istanbul ignore next */
 router.route('/user/invite/:key').get((request, response) => {
   UserDomain.checkInviteCode(request.params.key).then((invites) => {
     response.json(util.createAPIResponse({

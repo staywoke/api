@@ -21,7 +21,7 @@ const router = express.Router(config.router)
  * @property {number} [page=1] - Result Page to Load
  * @property {boolean} [pretty=false] - Format JSON response to be human readable
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/profile/activity').get((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -51,7 +51,7 @@ router.route('/profile/activity').get((request, response) => {
  * @property {number} [page=1] - Result Page to Load
  * @property {boolean} [pretty=false] - Format JSON response to be human readable
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/profile/notifications').get((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {

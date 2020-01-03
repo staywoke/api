@@ -11,7 +11,7 @@ const request = require('request')
 const config = require('../../../config')
 const models = require('../../../models')
 
-/* nyc ignore next */
+/* istanbul ignore next */
 module.exports = {
 
   /**

@@ -19,7 +19,7 @@ colors.setTheme({
 
 const debugEnabled = config.get('debug')
 
-/* nyc ignore next */
+/* istanbul ignore next */
 module.exports = {
   success: (message) => {
     if (debugEnabled) {

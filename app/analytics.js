@@ -11,6 +11,7 @@ const config = require('./config')
 
 const Analytics = {
   trackEvent: (apikey, category, action, label, value) => {
+    /* istanbul ignore next */
     if (config.get('devFlags.enableBugTracking') && config.get('analytics')) {
       // Convert Objects to String
       if (typeof category === 'object') {
@@ -45,7 +46,7 @@ const Analytics = {
         form: data
       }]
 
-      /* nyc ignore next */
+      /* istanbul ignore next: Skipping since it will only fire if not test */
       if (config.get('env') !== 'test') {
         async.map(requests, (fetch) => {
           request(fetch)

@@ -20,9 +20,12 @@ const routeUtil = require('../routes/util')
 const UserES = require('../../../elasticsearch/update/user')
 
 // Add ElasticSearch Hooks
-models.users.afterCreate((user) => { UserES.update(user.id) })
-models.users.afterUpdate((user) => { UserES.update(user.id) })
-models.users.afterDestroy((user) => { UserES.update(user.id) })
+/* istanbul ignore next: Difficult to Test this without ElasticSearch Fully Mocked */
+if (UserES) {
+  models.users.afterCreate((user) => { UserES.update(user.id) })
+  models.users.afterUpdate((user) => { UserES.update(user.id) })
+  models.users.afterDestroy((user) => { UserES.update(user.id) })
+}
 
 /**
  * Domain User
@@ -118,6 +121,7 @@ module.exports = {
     try {
       userID = hashID.decode(key)
     } catch (err) {
+      /* istanbul ignore next */
       return Promise.reject('Invalid Invitation Code')
     }
 
@@ -151,7 +155,7 @@ module.exports = {
         if (invites) {
           const cleanInvited = []
 
-          /* nyc ignore next */
+          /* istanbul ignore next */
           for (let i = 0; i < invites.length; i++) {
             const ui = invites[i]
             const u = ui.Invited
@@ -345,7 +349,7 @@ module.exports = {
           }).then((followers) => {
             const cleanFollowers = []
 
-            /* nyc ignore next */
+            /* istanbul ignore next */
             for (let i = 0; i < followers.length; i++) {
               const f = followers[i]
               const u = f.Follower
@@ -416,7 +420,7 @@ module.exports = {
           }).then((following) => {
             const cleanFollowing = []
 
-            /* nyc ignore next */
+            /* istanbul ignore next */
             for (let i = 0; i < following.length; i++) {
               const f = following[i]
               const u = f.Following
@@ -506,7 +510,7 @@ module.exports = {
           let emailChecked = false
           let passwordChecked = false
 
-          /* nyc ignore next */
+          /* istanbul ignore next */
           const sendEmails = () => {
             if (usernameChecked && emailChecked && passwordChecked) {
               if (updateUser.save()) {

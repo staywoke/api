@@ -40,7 +40,7 @@ const apiUser = {}
 
 process.title = 'api'
 
-/* nyc ignore next */
+/* istanbul ignore next */
 const SetupAPI = (request, response, next) => {
   if ('pretty' in request.query && request.query.pretty !== 'false') {
     app.set('json spaces', 2)
@@ -178,7 +178,7 @@ app.enable('trust proxy')
 /**
  * Allow for Timeout JSON Response
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 app.use((req, res, next) => {
   res.setTimeout(5000, () => {
     if (req.header('API-Key')) {
@@ -193,7 +193,7 @@ app.use((req, res, next) => {
   next()
 })
 
-/* nyc ignore next */
+/* istanbul ignore next */
 app.use(session({
   genid: () => {
     return uuid.v4()
@@ -224,7 +224,7 @@ app.use(limiter)
 app.use(router)
 
 // Fallback for Possible Routes used that do not exist
-/* nyc ignore next */
+/* istanbul ignore next */
 app.get('*', (req, res) => {
   if (req.header('API-Key')) {
     req.query.apikey = req.header('API-Key')
@@ -243,7 +243,7 @@ app.get('*', (req, res) => {
 /**
  * Event listener for HTTP server "error" event.
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 const onError = (error) => {
   if (error.syscall !== 'listen') {
     throw error
@@ -268,7 +268,7 @@ const onError = (error) => {
 /**
  * Event listener for HTTP server "listening" event.
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 const onListening = () => {
   const addr = app.address()
   const bind = (typeof addr === 'string') ? 'pipe ' + addr : 'port ' + addr.port

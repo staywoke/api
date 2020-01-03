@@ -21,6 +21,7 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
  * Update Category Index
  */
 module.exports = {
+  /* istanbul ignore next */
   update () {
     elasticsearchClient.search({
       index: indexName,

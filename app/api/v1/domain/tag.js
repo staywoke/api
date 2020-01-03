@@ -10,9 +10,12 @@ const TagES = require('../../../elasticsearch/update/tag')
 const models = require('../../../models')
 
 // Add ElasticSearch Hooks
-models.tags.afterCreate(() => { TagES.update() })
-models.tags.afterUpdate(() => { TagES.update() })
-models.tags.afterDestroy(() => { TagES.update() })
+/* istanbul ignore next: Difficult to Test this without ElasticSearch Fully Mocked */
+if (TagES) {
+  models.tags.afterCreate(() => { TagES.update() })
+  models.tags.afterUpdate(() => { TagES.update() })
+  models.tags.afterDestroy(() => { TagES.update() })
+}
 
 /**
  * Domain Tag

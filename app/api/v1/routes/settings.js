@@ -22,7 +22,7 @@ const router = express.Router(config.router)
  * @property {number} [page=1] - Result Page to Load
  * @property {boolean} [pretty=false] - Format JSON response to be human readable
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/settings').get((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -52,7 +52,7 @@ router.route('/settings').get((request, response) => {
  * @property {number} [page=1] - Result Page to Load
  * @property {boolean} [pretty=false] - Format JSON response to be human readable
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/settings/profile').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -85,7 +85,7 @@ router.route('/settings/profile').post((request, response) => {
  * @property {string} [profile_link_2] - Misc Profile Link #2
  * @property {string} [profile_link_3] - Misc Profile Link #3
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/settings/social-links').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -117,7 +117,7 @@ router.route('/settings/social-links').post((request, response) => {
  * @property {boolean} [email_someone_follows=true] - Notification Setting for Email Someone Follows
  * @property {boolean} [email_mentioned_in_comment=true] - Notification Setting for Email Mentioned in Comment
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/settings/email-notifications').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {
@@ -149,7 +149,7 @@ router.route('/settings/email-notifications').post((request, response) => {
  * @property {boolean} [web_someone_follows=true] - Notification Setting for Web Someone Follows
  * @property {boolean} [web_mentioned_in_comment=true] - Notification Setting for Web Mentioned in Comment
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/settings/web-notifications').post((request, response) => {
   util.isValidUser(request, (validUserId) => {
     if (validUserId) {

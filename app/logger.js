@@ -8,8 +8,9 @@ const config = require('./config')
 const logger = require('logzio-nodejs')
 
 let log
-
+/* istanbul ignore next */
 if (config.get('env') !== 'test') {
+  /* istanbul ignore next */
   log = logger.createLogger({
     token: config.get('logzio.token'),
     type: config.get('logzio.type'),

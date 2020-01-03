@@ -29,7 +29,7 @@ const router = express.Router(config.router)
  * @property {number} [page=1] - Result Page to Load
  * @property {boolean} [pretty=false] - Format JSON response to be human readable
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/categories/:slug?').get((request, response) => {
   // Defaults
   let pageSize = 30

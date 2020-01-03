@@ -11,9 +11,12 @@ const models = require('../../../models')
 const UserES = require('../../../elasticsearch/update/user')
 
 // Add ElasticSearch Hooks
-models.users.afterCreate((user) => { UserES.update(user.id) })
-models.users.afterUpdate((user) => { UserES.update(user.id) })
-models.users.afterDestroy((user) => { UserES.update(user.id) })
+/* istanbul ignore next: Difficult to Test this without ElasticSearch Fully Mocked */
+if (UserES) {
+  models.users.afterCreate((user) => { UserES.update(user.id) })
+  models.users.afterUpdate((user) => { UserES.update(user.id) })
+  models.users.afterDestroy((user) => { UserES.update(user.id) })
+}
 
 /**
  * Domain Settings

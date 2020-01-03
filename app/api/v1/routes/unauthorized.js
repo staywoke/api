@@ -17,7 +17,7 @@ const router = express.Router(config.router)
  * @memberof module:routes/unauthorized
  * @name [GET] /unauthorized
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/unauthorized/').get((request, response) => {
   response.json(util.createAPIResponse({
     error_messages: [

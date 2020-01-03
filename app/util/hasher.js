@@ -11,6 +11,7 @@ const Promise = require('bluebird')
  * Promise-based encryption generation and verification
  * @type {object}
  */
+/* istanbul ignore next */
 module.exports = {
   /**
    * Generate an encrypted string from the passed in string

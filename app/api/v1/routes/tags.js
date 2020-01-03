@@ -28,7 +28,7 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
  * @property {number} [page=1] - Result Page to Load
  * @property {boolean} [pretty=false] - Format JSON response to be human readable
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/tags').get((request, response) => {
   // Defaults
   let pageSize = 30

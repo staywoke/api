@@ -21,6 +21,7 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
  * Update User Index
  */
 module.exports = {
+  /* istanbul ignore next */
   update (userId) {
     elasticsearchClient.search({
       index: indexName,

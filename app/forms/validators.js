@@ -1,5 +1,6 @@
 const validate = require('validate.js')
 
+/* istanbul ignore next */
 validate.validators.modelFieldValueUnique = (value, params, data) => {
   return new validate.Promise((resolve, reject) => {
     const conditions = { where: {} }

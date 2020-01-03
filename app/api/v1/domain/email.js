@@ -21,11 +21,12 @@ module.exports = {
    * `sendTemplateAsync` and can utilize chained `.then()` and `.catch()` calls
    * @return {object}
    */
+  /* istanbul ignore next */
   getClient () {
     return _.memoize(() => {
       const client = new mandrill.Mandrill(config.get('mandrill.key'))
 
-      /* nyc ignore next */
+      /* istanbul ignore next: This is not tested during test suite since it is a third party call */
       Promise.promisifyAll(client.messages, {
         // We need a custom promisifier since Mandrill methods seem to take two callback arguments (success, then error)
         promisifier: (originalMethod) => {
@@ -51,6 +52,7 @@ module.exports = {
    * Get Base URL for Web Application
    * @returns {string} Base URL for Web App
    */
+  /* istanbul ignore next */
   getBaseURL () {
     switch (config.get('env')) {
       case 'staging':
@@ -74,6 +76,7 @@ module.exports = {
    * @param  {string} optionalData  Optional  data to pass into template
    * @return {object}              Returns a promise object
    */
+  /* istanbul ignore next */
   sendUserEmail (templateSlug, user, geolocation, optionalData) {
     const templateVariables = _.map(user.publicJSON(), (value, key) => {
       return {
@@ -82,7 +85,7 @@ module.exports = {
       }
     })
 
-    /* nyc ignore next */
+    /* istanbul ignore next: Skipping test since Third Party service involved */
     switch (templateSlug) {
       case 'change-email-confirmation':
         templateVariables.push({
@@ -223,7 +226,7 @@ module.exports = {
         break
     }
 
-    /* nyc ignore next */
+    /* istanbul ignore next: Skipping test since Third Party service involved */
     const message = {
       to: [{
         email: user.get('email'),
@@ -236,7 +239,7 @@ module.exports = {
     }
 
     // If changing email addresses, send to both new and old email
-    /* nyc ignore next */
+    /* istanbul ignore next: Skipping test since Third Party service involved */
     if (templateSlug === 'change-email-confirmation' && optionalData.new_email) {
       message.to.push({
         email: optionalData.new_email,

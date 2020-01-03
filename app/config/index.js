@@ -257,6 +257,7 @@ try {
     strict: true
   })
 } catch (e) {
+  /* istanbul ignore next */
   if (e.message.indexOf('configuration param') === -1) {
     console.error('INVALID CONFIG: ' + e.name + ' - ' + e.message)
   }

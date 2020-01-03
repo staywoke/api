@@ -10,14 +10,18 @@ const CategoryES = require('../../../elasticsearch/update/category')
 const models = require('../../../models')
 
 // Add ElasticSearch Hooks
-models.categories.afterCreate(() => { CategoryES.update() })
-models.categories.afterUpdate(() => { CategoryES.update() })
-models.categories.afterDestroy(() => { CategoryES.update() })
+/* istanbul ignore next: Difficult to Test this without ElasticSearch Fully Mocked */
+if (CategoryES) {
+  models.categories.afterCreate(() => { CategoryES.update() })
+  models.categories.afterUpdate(() => { CategoryES.update() })
+  models.categories.afterDestroy(() => { CategoryES.update() })
+}
 
 /**
  * Category
  * @type {object}
  */
+/* istanbul ignore next: Difficult to Test this without ElasticSearch Fully Mocked */
 module.exports = {
   /**
    * Prepare For API Output

@@ -19,7 +19,7 @@ const router = express.Router(config.router)
  * @memberof module:routes/token
  * @name [GET] /token
  */
-/* nyc ignore next */
+/* istanbul ignore next */
 router.route('/token').get((request, response) => {
   const ipAddress = request.headers['x-forwarded-for']
   const token = UsersAuthDomain.createWebsiteToken(ipAddress)

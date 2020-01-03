@@ -19,6 +19,7 @@ module.exports = {
    * @returns {*}
    */
   getActivity (userId) {
+    /* istanbul ignore else */
     if (userId) {
       return models.user_activity.findAll({
         include: [
@@ -43,7 +44,7 @@ module.exports = {
         if (activity) {
           const cleanData = []
 
-          /* nyc ignore next */
+          /* istanbul ignore next */
           for (let i = 0; i < activity.length; i++) {
             const current = activity[i]
             const activityCleaned = {

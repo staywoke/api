@@ -13,6 +13,7 @@ const config = require('../../../../config')
  * User auth utilities for creating, verifying, and refreshing auth tokens
  * @type {object}
  */
+/* istanbul ignore next */
 module.exports = {
   /**
    * @constant {number}

@@ -13,6 +13,7 @@ const models = require('../../../../models')
  * Local Auth Strategy
  * @type {object}
  */
+/* istanbul ignore next */
 module.exports = new Strategy(
   /**
    * @name Local Authentication Strategy
