@@ -11,3 +11,4 @@ dredd.yml
 node_modules
 .nyc_output
 .vscode
+*.code-workspace
