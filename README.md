@@ -13,7 +13,7 @@ __StayWoke__ is a community of learners, builders, and activists to create solut
 Using our API
 ---
 
-Our API is __[Fully Documented](https://api.staywoke.org/guide/)__ using Apiary. Currently, our API is only open for select non-commercial use.  If you are interested in obtaining an API Key ( required for access ), please contact [Peter Schmalfeldt](mailto:me@peterschmalfeldt.com) or [Join us on Slack](https://staywoke.slack.com).
+Our API is __[Fully Documented](https://staywoke.docs.apiary.io/)__ using Apiary. Currently, our API is only open for select non-commercial use.  If you are interested in obtaining an API Key ( required for access ), please contact [Peter Schmalfeldt](mailto:me@peterschmalfeldt.com) or [Join us on Slack](https://staywoke.slack.com).
 
 <img src="https://staywoke-github.s3.us-east-1.amazonaws.com/api/apiary.jpg" style="max-width: 100%;">
 
