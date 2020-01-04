@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8f585f78-d63d-42f9-b09d-a30eab8721b7",
+		"_postman_id": "1708f231-78a6-477b-803a-125550b2234e",
 		"name": "StayWoke API",
 		"description": "Local Developer API Support for StayWoke Platform.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -150,139 +150,6 @@
 					},
 					"response": [
 						{
-							"name": "Response 200",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/x-www-form-urlencoded",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "username",
-											"value": "jane_doe",
-											"description": "(string, required) - The username or email address of the account",
-											"type": "text"
-										},
-										{
-											"key": "email",
-											"value": "jane.doe@fake.com",
-											"description": "(string, required) - Email Address of the account",
-											"type": "text"
-										},
-										{
-											"key": "password",
-											"value": "abc123",
-											"description": "(string, required) - The password to the account",
-											"type": "text"
-										},
-										{
-											"key": "retype_password",
-											"value": "abc123",
-											"description": "(string, required) - The password to the account",
-											"type": "text"
-										},
-										{
-											"key": "agree",
-											"value": "yes",
-											"description": "(string, required) - Agree to TOS - User Agreed to Terms of Service",
-											"type": "text"
-										},
-										{
-											"key": "first_name",
-											"value": "Jane",
-											"description": "(string, optional) - First Name - NOTE: Apple does not like requiring personal info for registration",
-											"type": "text"
-										},
-										{
-											"key": "last_name",
-											"value": "Doe",
-											"description": "(string, optional) - Last Name - NOTE: Apple does not like requiring personal info for registration",
-											"type": "text"
-										},
-										{
-											"key": "inviteCode",
-											"value": "a1b2c3",
-											"description": "(string, required) - During Alpha / Beta testing, an Invitation Code is Required for registration",
-											"type": "text",
-											"disabled": true
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:5000/v1/user/register/",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										"register",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "86033592"
-								},
-								{
-									"key": "Content-Length",
-									"value": "764"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"2fc-UMDjxm6431t2ob6fa3fzyWDkwPI\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 06:36:27 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": false,\n        \"banned\": false,\n        \"created_date\": \"2020-01-02T06:36:27.604Z\",\n        \"email\": \"jane.doe@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"LJxKVm\",\n        \"id\": 13,\n        \"last_name\": \"Doe\",\n        \"modified_date\": \"2020-01-02T06:36:27.604Z\",\n        \"profile_name\": \"jane_doe\",\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
-						{
 							"name": "Response 400",
 							"originalRequest": {
 								"method": "POST",
@@ -414,6 +281,139 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {\n        \"username\": [\n            \"Username is already in use\"\n        ],\n        \"email\": [\n            \"Email is already in use\"\n        ]\n    },\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "jane_doe",
+											"description": "(string, required) - The username or email address of the account",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "jane.doe@fake.com",
+											"description": "(string, required) - Email Address of the account",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "abc123",
+											"description": "(string, required) - The password to the account",
+											"type": "text"
+										},
+										{
+											"key": "retype_password",
+											"value": "abc123",
+											"description": "(string, required) - The password to the account",
+											"type": "text"
+										},
+										{
+											"key": "agree",
+											"value": "yes",
+											"description": "(string, required) - Agree to TOS - User Agreed to Terms of Service",
+											"type": "text"
+										},
+										{
+											"key": "first_name",
+											"value": "Jane",
+											"description": "(string, optional) - First Name - NOTE: Apple does not like requiring personal info for registration",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Doe",
+											"description": "(string, optional) - Last Name - NOTE: Apple does not like requiring personal info for registration",
+											"type": "text"
+										},
+										{
+											"key": "inviteCode",
+											"value": "a1b2c3",
+											"description": "(string, required) - During Alpha / Beta testing, an Invitation Code is Required for registration",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/user/register/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"register",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86033592"
+								},
+								{
+									"key": "Content-Length",
+									"value": "764"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2fc-UMDjxm6431t2ob6fa3fzyWDkwPI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 06:36:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": false,\n        \"banned\": false,\n        \"created_date\": \"2020-01-02T06:36:27.604Z\",\n        \"email\": \"jane.doe@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"LJxKVm\",\n        \"id\": 13,\n        \"last_name\": \"Doe\",\n        \"modified_date\": \"2020-01-02T06:36:27.604Z\",\n        \"profile_name\": \"jane_doe\",\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -636,85 +636,6 @@
 					},
 					"response": [
 						{
-							"name": "Response 200",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:5000/v1/user/confirm/email?key=W8cj0gpa0Gcs",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										"confirm",
-										"email"
-									],
-									"query": [
-										{
-											"key": "key",
-											"value": "W8cj0gpa0Gcs",
-											"description": "(required, string) - The `new_email_key` stored for the user"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "85798070"
-								},
-								{
-									"key": "Content-Length",
-									"value": "1187"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"4a3-q3Xkxrmn9mSblrrCUSexgXKdbgs\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 06:40:23 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": true,\n        \"banned\": false,\n        \"banned_reason\": null,\n        \"bio\": null,\n        \"company_name\": null,\n        \"created_date\": \"2020-01-02T06:36:27.000Z\",\n        \"deletedAt\": null,\n        \"email\": \"jane.doe2@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"LJxKVm\",\n        \"id\": 13,\n        \"last_name\": \"Doe\",\n        \"location\": null,\n        \"modified_date\": \"2020-01-02T06:40:23.067Z\",\n        \"new_password_key\": null,\n        \"profile_link_1\": null,\n        \"profile_link_2\": null,\n        \"profile_link_3\": null,\n        \"profile_link_twitter\": null,\n        \"profile_link_website\": null,\n        \"profile_name\": \"jane_doe\",\n        \"profile_photo\": null,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDcyMjMsImV4cCI6MTU3ODU1MjAyMywiaXNzIjoiQVBJIn0.e8wb_qPiJNbqnXs6ryiNXKNlNf63JeV00ecnFpm08VI\",\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
-						{
 							"name": "Response 400",
 							"originalRequest": {
 								"method": "GET",
@@ -796,6 +717,85 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Confirmation Key not found\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/user/confirm/email?key=W8cj0gpa0Gcs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"confirm",
+										"email"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "W8cj0gpa0Gcs",
+											"description": "(required, string) - The `new_email_key` stored for the user"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85798070"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a3-q3Xkxrmn9mSblrrCUSexgXKdbgs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 06:40:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": true,\n        \"banned\": false,\n        \"banned_reason\": null,\n        \"bio\": null,\n        \"company_name\": null,\n        \"created_date\": \"2020-01-02T06:36:27.000Z\",\n        \"deletedAt\": null,\n        \"email\": \"jane.doe2@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"LJxKVm\",\n        \"id\": 13,\n        \"last_name\": \"Doe\",\n        \"location\": null,\n        \"modified_date\": \"2020-01-02T06:40:23.067Z\",\n        \"new_password_key\": null,\n        \"profile_link_1\": null,\n        \"profile_link_2\": null,\n        \"profile_link_3\": null,\n        \"profile_link_twitter\": null,\n        \"profile_link_website\": null,\n        \"profile_name\": \"jane_doe\",\n        \"profile_photo\": null,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDcyMjMsImV4cCI6MTU3ODU1MjAyMywiaXNzIjoiQVBJIn0.e8wb_qPiJNbqnXs6ryiNXKNlNf63JeV00ecnFpm08VI\",\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -828,85 +828,6 @@
 						"description": "When a user changes their password, they will be sent a confirmation email assuring it was them that requested the password change."
 					},
 					"response": [
-						{
-							"name": "Response 400",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:5000/v1/user/confirm/password?key=W8cj0gpa0Gcs",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										"confirm",
-										"password"
-									],
-									"query": [
-										{
-											"key": "key",
-											"value": "W8cj0gpa0Gcs",
-											"description": "(required, string) - The `new_password_key` stored for the user"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "85653611"
-								},
-								{
-									"key": "Content-Length",
-									"value": "536"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"218-Rfumg1A3h+amTSHlXO8R1Q3aG4k\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 06:42:47 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Confirmation Key not found\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
 						{
 							"name": "Response 200",
 							"originalRequest": {
@@ -989,6 +910,85 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": true,\n        \"banned\": false,\n        \"banned_reason\": null,\n        \"bio\": null,\n        \"company_name\": null,\n        \"created_date\": \"2020-01-02T06:36:27.000Z\",\n        \"deletedAt\": null,\n        \"email\": \"jane.doe2@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"LJxKVm\",\n        \"id\": 13,\n        \"last_name\": \"Doe\",\n        \"location\": null,\n        \"modified_date\": \"2020-01-02T06:42:27.106Z\",\n        \"new_password_key\": null,\n        \"profile_link_1\": null,\n        \"profile_link_2\": null,\n        \"profile_link_3\": null,\n        \"profile_link_twitter\": null,\n        \"profile_link_website\": null,\n        \"profile_name\": \"jane_doe\",\n        \"profile_photo\": null,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDczNDcsImV4cCI6MTU3ODU1MjE0NywiaXNzIjoiQVBJIn0.iV7P6f76dP6LSrQ4HCLEjj8KFwp7qG7qhbY42b8qmKM\",\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/user/confirm/password?key=W8cj0gpa0Gcs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"confirm",
+										"password"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "W8cj0gpa0Gcs",
+											"description": "(required, string) - The `new_password_key` stored for the user"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85653611"
+								},
+								{
+									"key": "Content-Length",
+									"value": "536"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"218-Rfumg1A3h+amTSHlXO8R1Q3aG4k\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 06:42:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Confirmation Key not found\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -1037,105 +1037,6 @@
 						"description": "Some of the API endpoints will require authentication. Those endpoints will require the `token` returned from a successful login.\n\nTo access authentication-protected endpoints, you will need to include an `Authorization` HTTP header in the format: `Bearer (token)`."
 					},
 					"response": [
-						{
-							"name": "Response 401",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/x-www-form-urlencoded",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "username",
-											"value": "jane_doe",
-											"description": "(string, required) - The username of the account",
-											"type": "text"
-										},
-										{
-											"key": "password",
-											"value": "abcd123s",
-											"description": "(string, required) - The password to the account",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:5000/v1/user/login",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										"login"
-									]
-								}
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "86398507"
-								},
-								{
-									"key": "Content-Length",
-									"value": "528"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"210-5MJ/uCivIoXT6qE68ZWjEyJkGH0\""
-								},
-								{
-									"key": "Set-Cookie",
-									"value": "connect.sid=s%3Ad9e442e9-c27e-4bee-bb2e-005669481d83.LAkM2L1OXXfFy8KS0Anb6oUKlfrV5wlISDHD3SGkH%2BU; Path=/; HttpOnly"
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 06:51:28 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Incorrect Password\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
 						{
 							"name": "Response 200",
 							"originalRequest": {
@@ -1234,6 +1135,105 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": true,\n        \"banned\": false,\n        \"banned_reason\": null,\n        \"bio\": null,\n        \"company_name\": null,\n        \"created_date\": \"2020-01-02T06:36:27.000Z\",\n        \"deletedAt\": null,\n        \"email\": \"jane.doe2@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"LJxKVm\",\n        \"id\": 13,\n        \"last_name\": \"Doe\",\n        \"location\": null,\n        \"modified_date\": \"2020-01-02T06:42:27.000Z\",\n        \"new_password_key\": null,\n        \"profile_link_1\": null,\n        \"profile_link_2\": null,\n        \"profile_link_3\": null,\n        \"profile_link_twitter\": null,\n        \"profile_link_website\": null,\n        \"profile_name\": \"jane_doe\",\n        \"profile_photo\": null,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc2ODYsImV4cCI6MTU3ODU1MjQ4NiwiaXNzIjoiQVBJIn0.u1AHLFy66E1pJzisJaRhJn2lrQeqAc5zwIwAE1exM20\",\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "jane_doe",
+											"description": "(string, required) - The username of the account",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "abcd123s",
+											"description": "(string, required) - The password to the account",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/user/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86398507"
+								},
+								{
+									"key": "Content-Length",
+									"value": "528"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"210-5MJ/uCivIoXT6qE68ZWjEyJkGH0\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Ad9e442e9-c27e-4bee-bb2e-005669481d83.LAkM2L1OXXfFy8KS0Anb6oUKlfrV5wlISDHD3SGkH%2BU; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 06:51:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Incorrect Password\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -1265,88 +1265,6 @@
 						"description": "Tell API that the user has logged out.  This will only register if a Bearer Authentication Token is set in the Header."
 					},
 					"response": [
-						{
-							"name": "Response 403",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc5NTQsImV4cCI6MTU3ODU1Mjc1NCwiaXNzIjoiQVBJIn0.PEnibJhG4-IenZ9uWYfGk_W-ZLezoQVP9CEm4i4oVDw",
-										"description": "This will likely return `Invalid API Authorization Token` unless you put in a fresh token that is connected to an actual user account ( not an anonymous account )",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://localhost:5000/v1/user/logout",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										"logout"
-									]
-								}
-							},
-							"status": "Forbidden",
-							"code": 403,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "86394695"
-								},
-								{
-									"key": "Content-Length",
-									"value": "541"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"21d-R9pQfhP/lpizYgkJkKzgY4K7PTE\""
-								},
-								{
-									"key": "Set-Cookie",
-									"value": "connect.sid=s%3A67f79bb9-2b2a-4966-893a-94f3a6be57ea.Qp7K7yXB9N2fRmdyG2%2FiqGjBb%2BWTSmbNZq5tptwyiGo; Path=/; HttpOnly"
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 07:04:43 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Invalid API Authorization Token\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
 						{
 							"name": "Response 200",
 							"originalRequest": {
@@ -1428,6 +1346,88 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"success\": true\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 403",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc5NTQsImV4cCI6MTU3ODU1Mjc1NCwiaXNzIjoiQVBJIn0.PEnibJhG4-IenZ9uWYfGk_W-ZLezoQVP9CEm4i4oVDw",
+										"description": "This will likely return `Invalid API Authorization Token` unless you put in a fresh token that is connected to an actual user account ( not an anonymous account )",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/v1/user/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"logout"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86394695"
+								},
+								{
+									"key": "Content-Length",
+									"value": "541"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21d-R9pQfhP/lpizYgkJkKzgY4K7PTE\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A67f79bb9-2b2a-4966-893a-94f3a6be57ea.Qp7K7yXB9N2fRmdyG2%2FiqGjBb%2BWTSmbNZq5tptwyiGo; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 07:04:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Invalid API Authorization Token\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -1470,99 +1470,6 @@
 						"description": "Forgot password will require an email address that is requesting for the password reset link."
 					},
 					"response": [
-						{
-							"name": "Response 400",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/x-www-form-urlencoded",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "nope@fake.com",
-											"description": "(required, string) - The email address of the account",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:5000/v1/user/forgot-password",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										"forgot-password"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "86288213"
-								},
-								{
-									"key": "Content-Length",
-									"value": "533"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"215-bN5/SI33HwHMvDGuygb3roALAVE\""
-								},
-								{
-									"key": "Set-Cookie",
-									"value": "connect.sid=s%3Aa9758e91-0d11-4b23-84c3-5f87bd901c58.2RKGOPICLbqMoO0MhHpZ0ZNHyvLSZIhMUBFRrvX3xv8; Path=/; HttpOnly"
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 07:08:24 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"No Matching Email Found\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
 						{
 							"name": "Response 200",
 							"originalRequest": {
@@ -1655,6 +1562,99 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": true,\n        \"banned\": false,\n        \"banned_reason\": null,\n        \"bio\": null,\n        \"company_name\": null,\n        \"created_date\": \"2020-01-02T06:36:27.000Z\",\n        \"deletedAt\": null,\n        \"email\": \"jane.doe@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"LJxKVm\",\n        \"id\": 13,\n        \"last_name\": \"Doe\",\n        \"location\": null,\n        \"modified_date\": \"2020-01-02T07:07:55.977Z\",\n        \"new_password_key\": \"ue15lbXu9EIH\",\n        \"profile_link_1\": null,\n        \"profile_link_2\": null,\n        \"profile_link_3\": null,\n        \"profile_link_twitter\": null,\n        \"profile_link_website\": null,\n        \"profile_name\": \"jane_doe\",\n        \"profile_photo\": null,\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "nope@fake.com",
+											"description": "(required, string) - The email address of the account",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/user/forgot-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"forgot-password"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86288213"
+								},
+								{
+									"key": "Content-Length",
+									"value": "533"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"215-bN5/SI33HwHMvDGuygb3roALAVE\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Aa9758e91-0d11-4b23-84c3-5f87bd901c58.2RKGOPICLbqMoO0MhHpZ0ZNHyvLSZIhMUBFRrvX3xv8; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 07:08:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"No Matching Email Found\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -1709,107 +1709,6 @@
 						"description": "Reset password will check the token against the `new_password_key` column for that user.  We will also likely want to make sure that `new_password_requested` is less than a certain age to prevent open password change requests."
 					},
 					"response": [
-						{
-							"name": "Response 400",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/x-www-form-urlencoded",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "token",
-											"value": "ue15lbXu9EI",
-											"description": "(required, string) - This is the `new_password_key` token that is sent from the link in the email address.",
-											"type": "text"
-										},
-										{
-											"key": "password",
-											"value": "abc123",
-											"description": "(required, string) - This is the new password that the user wants to reset",
-											"type": "text"
-										},
-										{
-											"key": "retype_password",
-											"value": "abc123",
-											"description": "(required, string) - This should be the same as 'password' and is the confirmation of the password",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:5000/v1/user/reset-password",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										"reset-password"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "86169502"
-								},
-								{
-									"key": "Content-Length",
-									"value": "525"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"20d-1+qFEHFxq9GLA0aVsTju7uG3Nak\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 07:10:23 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Request Invalid\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
 						{
 							"name": "Response 200",
 							"originalRequest": {
@@ -1910,6 +1809,107 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": true,\n        \"banned\": false,\n        \"banned_reason\": null,\n        \"bio\": null,\n        \"company_name\": null,\n        \"created_date\": \"2020-01-02T06:36:27.000Z\",\n        \"deletedAt\": null,\n        \"email\": \"jane.doe@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"LJxKVm\",\n        \"id\": 13,\n        \"last_name\": \"Doe\",\n        \"location\": null,\n        \"modified_date\": \"2020-01-02T07:10:00.428Z\",\n        \"new_password_key\": null,\n        \"profile_link_1\": null,\n        \"profile_link_2\": null,\n        \"profile_link_3\": null,\n        \"profile_link_twitter\": null,\n        \"profile_link_website\": null,\n        \"profile_name\": \"jane_doe\",\n        \"profile_photo\": null,\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "token",
+											"value": "ue15lbXu9EI",
+											"description": "(required, string) - This is the `new_password_key` token that is sent from the link in the email address.",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "abc123",
+											"description": "(required, string) - This is the new password that the user wants to reset",
+											"type": "text"
+										},
+										{
+											"key": "retype_password",
+											"value": "abc123",
+											"description": "(required, string) - This should be the same as 'password' and is the confirmation of the password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/user/reset-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"reset-password"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86169502"
+								},
+								{
+									"key": "Content-Length",
+									"value": "525"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20d-1+qFEHFxq9GLA0aVsTju7uG3Nak\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 07:10:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Request Invalid\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -2184,133 +2184,6 @@
 					},
 					"response": [
 						{
-							"name": "Response 400",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/x-www-form-urlencoded",
-										"type": "text"
-									},
-									{
-										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc2ODYsImV4cCI6MTU3ODU1MjQ4NiwiaXNzIjoiQVBJIn0.u1AHLFy66E1pJzisJaRhJn2lrQeqAc5zwIwAE1exM20",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "username",
-											"value": "jane_doe",
-											"description": "(required, string) - Current Account Username ( required to make any changes on this endpoint )",
-											"type": "text"
-										},
-										{
-											"key": "password",
-											"value": "abc123",
-											"description": "(required, string) - Current Account Passsword ( required to make any changes on this endpoint )",
-											"type": "text"
-										},
-										{
-											"key": "new_username",
-											"value": "jane_ray",
-											"description": "(optional, string) - New Username user wishes to change their username to",
-											"type": "text"
-										},
-										{
-											"key": "new_email",
-											"value": "",
-											"description": "(optional, string) - New Email Address user wishes to associate with their account",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "password_new",
-											"value": "",
-											"description": "(optional, string) - New Password user wishes to use for their account",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "password_new_retype",
-											"value": "",
-											"description": "(optional, string) - Repeat the new password to make sure they match so they don't get locked out",
-											"type": "text",
-											"disabled": true
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:5000/v1/user/update",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										"update"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "85579340"
-								},
-								{
-									"key": "Content-Length",
-									"value": "528"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"210-jEmWkVcOve0fhK8b0Fuo5Uh48EM\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 07:20:13 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Incorrect Username\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
-						{
 							"name": "Response 200",
 							"originalRequest": {
 								"method": "POST",
@@ -2440,6 +2313,133 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"messages\": [\n            \"Your username has been updated to \\\"jane_ray\\\". A confirmation of this change has been sent to your email address.\"\n        ],\n        \"title\": \"Account Updated\",\n        \"user\": {\n            \"id\": 13,\n            \"activated\": true,\n            \"username\": \"jane_ray\",\n            \"password\": \"$2b$08$AwDNpWGpjMhgY2x9osA4Ru9RPx43/zem8dXdiCeEJjcN2U9eymTmO\",\n            \"email\": \"jane.doe@fake.com\",\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Doe\",\n            \"company_name\": null,\n            \"profile_name\": \"jane_doe\",\n            \"profile_photo\": null,\n            \"location\": null,\n            \"profile_link_website\": null,\n            \"profile_link_twitter\": null,\n            \"profile_link_1\": null,\n            \"profile_link_2\": null,\n            \"profile_link_3\": null,\n            \"bio\": null,\n            \"banned\": false,\n            \"banned_reason\": null,\n            \"new_password\": null,\n            \"new_password_key\": null,\n            \"new_password_requested\": null,\n            \"new_email\": null,\n            \"new_email_key\": \"w2Gn2o4bQdtv\",\n            \"new_email_requested\": \"2020-01-02T07:14:22.000Z\",\n            \"created_date\": \"2020-01-02T06:36:27.000Z\",\n            \"modified_date\": \"2020-01-02T07:19:38.959Z\",\n            \"deletedAt\": null\n        }\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc2ODYsImV4cCI6MTU3ODU1MjQ4NiwiaXNzIjoiQVBJIn0.u1AHLFy66E1pJzisJaRhJn2lrQeqAc5zwIwAE1exM20",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "jane_doe",
+											"description": "(required, string) - Current Account Username ( required to make any changes on this endpoint )",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "abc123",
+											"description": "(required, string) - Current Account Passsword ( required to make any changes on this endpoint )",
+											"type": "text"
+										},
+										{
+											"key": "new_username",
+											"value": "jane_ray",
+											"description": "(optional, string) - New Username user wishes to change their username to",
+											"type": "text"
+										},
+										{
+											"key": "new_email",
+											"value": "",
+											"description": "(optional, string) - New Email Address user wishes to associate with their account",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password_new",
+											"value": "",
+											"description": "(optional, string) - New Password user wishes to use for their account",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password_new_retype",
+											"value": "",
+											"description": "(optional, string) - Repeat the new password to make sure they match so they don't get locked out",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/user/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"update"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85579340"
+								},
+								{
+									"key": "Content-Length",
+									"value": "528"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"210-jEmWkVcOve0fhK8b0Fuo5Uh48EM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 07:20:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Incorrect Username\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -2931,91 +2931,6 @@
 					},
 					"response": [
 						{
-							"name": "Response 200",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc2ODYsImV4cCI6MTU3ODU1MjQ4NiwiaXNzIjoiQVBJIn0.u1AHLFy66E1pJzisJaRhJn2lrQeqAc5zwIwAE1exM20",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://localhost:5000/v1/user/:username/follow",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										":username",
-										"follow"
-									],
-									"variable": [
-										{
-											"key": "username",
-											"value": "john_doe",
-											"description": "(required, string) - Username of user you wish to follow"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "86006755"
-								},
-								{
-									"key": "Content-Length",
-									"value": "630"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"276-gWMtohdlklCl01ex/RdiRkjAsAQ\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 07:30:58 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"created_date\": \"2020-01-02T07:30:58.951Z\",\n        \"follow_user_id\": 14,\n        \"id\": 1,\n        \"modified_date\": \"2020-01-02T07:30:58.951Z\",\n        \"user_id\": 13\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
-						{
 							"name": "Response 400",
 							"originalRequest": {
 								"method": "POST",
@@ -3099,6 +3014,91 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"No user found for user johnd_doe\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc2ODYsImV4cCI6MTU3ODU1MjQ4NiwiaXNzIjoiQVBJIn0.u1AHLFy66E1pJzisJaRhJn2lrQeqAc5zwIwAE1exM20",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/v1/user/:username/follow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										":username",
+										"follow"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "john_doe",
+											"description": "(required, string) - Username of user you wish to follow"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86006755"
+								},
+								{
+									"key": "Content-Length",
+									"value": "630"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"276-gWMtohdlklCl01ex/RdiRkjAsAQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 07:30:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"created_date\": \"2020-01-02T07:30:58.951Z\",\n        \"follow_user_id\": 14,\n        \"id\": 1,\n        \"modified_date\": \"2020-01-02T07:30:58.951Z\",\n        \"user_id\": 13\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				},
@@ -3128,9 +3128,9 @@
 							],
 							"variable": [
 								{
-									"description": "(required, string) - Username of user you wish to follow",
 									"key": "username",
-									"value": "john_doe"
+									"value": "john_doe",
+									"description": "(required, string) - Username of user you wish to follow"
 								}
 							]
 						},
@@ -3163,9 +3163,9 @@
 									],
 									"variable": [
 										{
-											"description": "(required, string) - Username of user you wish to follow",
 											"key": "username",
-											"value": "john_doe"
+											"value": "john_doe",
+											"description": "(required, string) - Username of user you wish to follow"
 										}
 									]
 								}
@@ -3248,9 +3248,9 @@
 									],
 									"variable": [
 										{
-											"description": "(required, string) - Username of user you wish to follow",
 											"key": "username",
-											"value": "john_doe"
+											"value": "john_doe",
+											"description": "(required, string) - Username of user you wish to follow"
 										}
 									]
 								}
@@ -3335,9 +3335,9 @@
 							],
 							"variable": [
 								{
-									"description": "(required, string) - Username of user you wish to follow",
 									"key": "username",
-									"value": "john_doe"
+									"value": "john_doe",
+									"description": "(required, string) - Username of user you wish to follow"
 								}
 							]
 						},
@@ -3370,9 +3370,9 @@
 									],
 									"variable": [
 										{
-											"description": "(required, string) - Username of user you wish to follow",
 											"key": "username",
-											"value": " "
+											"value": " ",
+											"description": "(required, string) - Username of user you wish to follow"
 										}
 									]
 								}
@@ -3459,9 +3459,9 @@
 									],
 									"variable": [
 										{
-											"description": "(required, string) - Username of user you wish to follow",
 											"key": "username",
-											"value": "jane_doe"
+											"value": "jane_doe",
+											"description": "(required, string) - Username of user you wish to follow"
 										}
 									]
 								}
@@ -3550,100 +3550,15 @@
 							],
 							"variable": [
 								{
-									"description": "(required, string) - Username of user you wish to follow",
 									"key": "username",
-									"value": "jane_doe"
+									"value": "jane_doe",
+									"description": "(required, string) - Username of user you wish to follow"
 								}
 							]
 						},
 						"description": "Fetches list of users `username` is following"
 					},
 					"response": [
-						{
-							"name": "Response 400",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc2ODYsImV4cCI6MTU3ODU1MjQ4NiwiaXNzIjoiQVBJIn0.u1AHLFy66E1pJzisJaRhJn2lrQeqAc5zwIwAE1exM20"
-									}
-								],
-								"url": {
-									"raw": "http://localhost:5000/v1/user/:username/following",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"v1",
-										"user",
-										":username",
-										"following"
-									],
-									"variable": [
-										{
-											"description": "(required, string) - Username of user you wish to follow",
-											"key": "username",
-											"value": " "
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "API"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
-								},
-								{
-									"key": "Access-Control-Allow-Methods",
-									"value": "OPTIONS, GET, POST, PUT, DELETE"
-								},
-								{
-									"key": "X-Rate-Limit-Limit",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Remaining",
-									"value": "Unlimited"
-								},
-								{
-									"key": "X-Rate-Limit-Reset",
-									"value": "86293416"
-								},
-								{
-									"key": "Content-Length",
-									"value": "526"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"20e-3EAPSUcThQrBMhdP1LcBniHXPCM\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Jan 2020 07:55:07 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Missing Username\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						},
 						{
 							"name": "Response 200",
 							"originalRequest": {
@@ -3670,9 +3585,9 @@
 									],
 									"variable": [
 										{
-											"description": "(required, string) - Username of user you wish to follow",
 											"key": "username",
-											"value": "jane_doe"
+											"value": "jane_doe",
+											"description": "(required, string) - Username of user you wish to follow"
 										}
 									]
 								}
@@ -3732,44 +3647,20 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 2,\n            \"username\": \"john_doe\",\n            \"profile_name\": \"john_doe\",\n            \"profile_photo\": \"https://secure.gravatar.com/avatar/c701e8fbe4b56a80543dbd80c157f853?r=g&s=200&d=identicon\",\n            \"followed_on\": \"2020-01-02T07:43:39.000Z\"\n        }\n    ],\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "Get Invitations",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/v1/user/invite/:key",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"v1",
-								"user",
-								"invite",
-								":key"
-							],
-							"variable": [
-								{
-									"key": "key",
-									"value": "LJxKVm"
-								}
-							]
 						},
-						"description": "Fetches list of users that have registered using the provided invite `key` ( users `hash_id` )."
-					},
-					"response": [
 						{
 							"name": "Response 400",
 							"originalRequest": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE1Nzc5NDc2ODYsImV4cCI6MTU3ODU1MjQ4NiwiaXNzIjoiQVBJIn0.u1AHLFy66E1pJzisJaRhJn2lrQeqAc5zwIwAE1exM20"
+									}
+								],
 								"url": {
-									"raw": "http://localhost:5000/v1/user/invite/:key",
+									"raw": "http://localhost:5000/v1/user/:username/following",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -3778,13 +3669,14 @@
 									"path": [
 										"v1",
 										"user",
-										"invite",
-										":key"
+										":username",
+										"following"
 									],
 									"variable": [
 										{
-											"key": "key",
-											"value": "LJxKVc"
+											"key": "username",
+											"value": " ",
+											"description": "(required, string) - Username of user you wish to follow"
 										}
 									]
 								}
@@ -3819,19 +3711,19 @@
 								},
 								{
 									"key": "X-Rate-Limit-Reset",
-									"value": "85745268"
+									"value": "86293416"
 								},
 								{
 									"key": "Content-Length",
-									"value": "533"
+									"value": "526"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"215-Cgpvy94/aIpNGwPcQf95CYz7Y/U\""
+									"value": "W/\"20e-3EAPSUcThQrBMhdP1LcBniHXPCM\""
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 02 Jan 2020 08:04:15 GMT"
+									"value": "Thu, 02 Jan 2020 07:55:07 GMT"
 								},
 								{
 									"key": "Connection",
@@ -3839,8 +3731,38 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Invalid Invitation Code\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Missing Username\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Invitations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/user/invite/:key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"user",
+								"invite",
+								":key"
+							],
+							"variable": [
+								{
+									"key": "key",
+									"value": "LJxKVm"
+								}
+							]
 						},
+						"description": "Fetches list of users that have registered using the provided invite `key` ( users `hash_id` )."
+					},
+					"response": [
 						{
 							"name": "Response 200",
 							"originalRequest": {
@@ -3922,11 +3844,1555 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": [],\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/user/invite/:key",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"user",
+										"invite",
+										":key"
+									],
+									"variable": [
+										{
+											"key": "key",
+											"value": "LJxKVc"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85745268"
+								},
+								{
+									"key": "Content-Length",
+									"value": "533"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"215-Cgpvy94/aIpNGwPcQf95CYz7Y/U\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jan 2020 08:04:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Invalid Invitation Code\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
 						}
 					]
 				}
 			],
 			"description": "The following endpoints are for accessing specific public data about a given username. No private information is accessible from these endpoints.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User Settings",
+			"item": [
+				{
+					"name": "Get User Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/v1/settings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"settings"
+							]
+						},
+						"description": "Gets account settings for current logged in user"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/v1/settings",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "84913533"
+								},
+								{
+									"key": "Content-Length",
+									"value": "767"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2ff-KOZ2icqlDlDO+sZy+j35ep/KoxU\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A6645c3b8-11e4-4a22-8ffc-d77bc3db3bb2.xrhy9kH%2F5oQA7IeCl26n6AUz2WouoVno5Ad23tAKAlA; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 02:00:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"notifications\": {\n            \"email_comment_left\": true,\n            \"email_comment_liked\": false,\n            \"email_mentioned_in_comment\": true,\n            \"email_someone_follows\": true,\n            \"newsletter\": true,\n            \"web_comment_left\": true,\n            \"web_comment_liked\": false,\n            \"web_mentioned_in_comment\": true,\n            \"web_someone_follows\": true\n        }\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "profile_photo",
+									"value": "https://gravatar.com/avatar/a9601f3839e5d5da764c1861a5e1daf6?s=200",
+									"description": "(optional, string) - absolute path to location of User Avatar ( must be HTTPS to prevent issues )",
+									"type": "text"
+								},
+								{
+									"key": "profile_name",
+									"value": "Jane Doe",
+									"description": "(optional, string) - Public Display Name of User",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "St. Petersburg, FL",
+									"description": "(optional, string) - Public Pysical Location of User",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "StayWoke",
+									"description": "(optional, string) - Public Company the User works for",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "Jane",
+									"description": "(optional, string) - Private First Name ( never shown on site - for internal use only )",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Doe",
+									"description": "(optional, string) - Private Last Name ( never shown on site - for internal use only )",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "I make things on the internet.",
+									"description": "(optional, string) - Public User Bio to display on website",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/settings/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"settings",
+								"profile"
+							]
+						},
+						"description": "This endpoint will allow the logged in user to update their own account profile."
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "profile_photo",
+											"value": "https://gravatar.com/avatar/a9601f3839e5d5da764c1861a5e1daf6?s=200",
+											"description": "(optional, string) - absolute path to location of User Avatar ( must be HTTPS to prevent issues )",
+											"type": "text"
+										},
+										{
+											"key": "profile_name",
+											"value": "Jane Doe",
+											"description": "(optional, string) - Public Display Name of User",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "St. Petersburg, FL",
+											"description": "(optional, string) - Public Pysical Location of User",
+											"type": "text"
+										},
+										{
+											"key": "company_name",
+											"value": "StayWoke",
+											"description": "(optional, string) - Public Company the User works for",
+											"type": "text"
+										},
+										{
+											"key": "first_name",
+											"value": "Jane",
+											"description": "(optional, string) - Private First Name ( never shown on site - for internal use only )",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Doe",
+											"description": "(optional, string) - Private Last Name ( never shown on site - for internal use only )",
+											"type": "text"
+										},
+										{
+											"key": "bio",
+											"value": "I make things on the internet.",
+											"description": "(optional, string) - Public User Bio to display on website",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/settings/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86396509"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"469-FIHqW8sm9s6vPZdj0X1r06e05g4\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A108b111d-3795-40a7-9924-c5a95dfc4342.rfLRXDd0CopwLcjVpRZNTjhVfgul3Cs50mZ2L4%2FOmV0; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 01:26:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": true,\n        \"banned\": false,\n        \"banned_reason\": null,\n        \"bio\": \"I make things on the internet.\",\n        \"company_name\": \"StayWoke\",\n        \"created_date\": \"2020-01-02T07:42:43.000Z\",\n        \"deletedAt\": null,\n        \"email\": \"jane.doe@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"bJvJPv\",\n        \"id\": 15,\n        \"last_name\": \"Doe\",\n        \"location\": \"St. Petersburg, FL\",\n        \"modified_date\": \"2020-01-04T01:22:56.000Z\",\n        \"new_password_key\": null,\n        \"profile_link_1\": null,\n        \"profile_link_2\": null,\n        \"profile_link_3\": null,\n        \"profile_link_twitter\": null,\n        \"profile_link_website\": null,\n        \"profile_name\": \"Jane Doe\",\n        \"profile_photo\": \"https://gravatar.com/avatar/a9601f3839e5d5da764c1861a5e1daf6?s=200\",\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "profile_photo",
+											"value": "https://gravatar.com/avatar/a9601f3839e5d5da764c1861a5e1daf6?s=200",
+											"description": "(optional, string) - absolute path to location of User Avatar ( must be HTTPS to prevent issues )",
+											"type": "text"
+										},
+										{
+											"key": "profile_name",
+											"value": "Jane Doe",
+											"description": "(optional, string) - Public Display Name of User",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "St. Petersburg, FL",
+											"description": "(optional, string) - Public Pysical Location of User",
+											"type": "text"
+										},
+										{
+											"key": "company_name",
+											"value": "StayWoke",
+											"description": "(optional, string) - Public Company the User works for",
+											"type": "text"
+										},
+										{
+											"key": "first_name",
+											"value": "Jane",
+											"description": "(optional, string) - Private First Name ( never shown on site - for internal use only )",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Doe",
+											"description": "(optional, string) - Private Last Name ( never shown on site - for internal use only )",
+											"type": "text"
+										},
+										{
+											"key": "bio",
+											"value": "I make things on the internet.",
+											"description": "(optional, string) - Public User Bio to display on website",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/settings/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings",
+										"profile"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86289678"
+								},
+								{
+									"key": "Content-Length",
+									"value": "559"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22f-BIsMyU6/vGqU/8HoE2cev+Sei3k\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 01:28:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"No user found with ID Error: Missing Header Token\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Social Links",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "profile_link_github",
+									"value": "https://github.com/staywoke",
+									"description": "(optional, string) - Absolute URL to Github Profile Page",
+									"type": "text"
+								},
+								{
+									"key": "profile_link_bitbucket",
+									"value": "",
+									"description": "(optional, string) - Absolute URL to Bitbucket Profile Page",
+									"type": "text"
+								},
+								{
+									"key": "profile_link_twitter",
+									"value": "https://twitter.com/staywoke",
+									"description": "(optional, string) - Absolute URL to Twitter Profile Page",
+									"type": "text"
+								},
+								{
+									"key": "profile_link_1",
+									"value": "https://staywoke.org",
+									"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+									"type": "text"
+								},
+								{
+									"key": "profile_link_2",
+									"value": "",
+									"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+									"type": "text"
+								},
+								{
+									"key": "profile_link_3",
+									"value": "",
+									"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/settings/social-links",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"settings",
+								"social-links"
+							]
+						},
+						"description": "This endpoint will allow the logged in user to update their own accounts Social Links."
+					},
+					"response": [
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "profile_link_github",
+											"value": "https://github.com/staywoke",
+											"description": "(optional, string) - Absolute URL to Github Profile Page",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_bitbucket",
+											"value": "",
+											"description": "(optional, string) - Absolute URL to Bitbucket Profile Page",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_twitter",
+											"value": "https://twitter.com/staywoke",
+											"description": "(optional, string) - Absolute URL to Twitter Profile Page",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_1",
+											"value": "https://staywoke.org",
+											"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_2",
+											"value": "",
+											"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_3",
+											"value": "",
+											"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/settings/social-links",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings",
+										"social-links"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86326954"
+								},
+								{
+									"key": "Content-Length",
+									"value": "559"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22f-BIsMyU6/vGqU/8HoE2cev+Sei3k\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A66e5278d-02f0-4538-829b-be5eca20126d.lG28BDfnsmRZTekU5WKoVZt%2FfL6S3WZmLs806%2BsqSwM; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 01:37:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"No user found with ID Error: Missing Header Token\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "profile_link_github",
+											"value": "https://github.com/staywoke",
+											"description": "(optional, string) - Absolute URL to Github Profile Page",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_bitbucket",
+											"value": "",
+											"description": "(optional, string) - Absolute URL to Bitbucket Profile Page",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_twitter",
+											"value": "https://twitter.com/staywoke",
+											"description": "(optional, string) - Absolute URL to Twitter Profile Page",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_1",
+											"value": "https://staywoke.org",
+											"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_2",
+											"value": "",
+											"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+											"type": "text"
+										},
+										{
+											"key": "profile_link_3",
+											"value": "",
+											"description": "(optional, string) - Absolute URL to a URL of the Users Choosing",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/settings/social-links",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings",
+										"social-links"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86379400"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1141"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"475-IoJNyav2qhr3TjeIOZLzWjfrMbE\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Aca55b1a9-8fb5-445c-bf96-6a00ee34725a.77%2Fcrymru5Vsq80I%2BMU%2F1ji2MQyIxEgE35eWXFP7%2B58; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 01:36:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"activated\": true,\n        \"banned\": false,\n        \"banned_reason\": null,\n        \"bio\": \"I make things on the internet.\",\n        \"company_name\": \"StayWoke\",\n        \"created_date\": \"2020-01-02T07:42:43.000Z\",\n        \"deletedAt\": null,\n        \"email\": \"jane.doe@fake.com\",\n        \"first_name\": \"Jane\",\n        \"hash_id\": \"bJvJPv\",\n        \"id\": 15,\n        \"last_name\": \"Doe\",\n        \"location\": \"St. Petersburg, FL\",\n        \"modified_date\": \"2020-01-04T01:36:25.313Z\",\n        \"new_password_key\": null,\n        \"profile_link_1\": \"https://staywoke.org\",\n        \"profile_link_2\": \"\",\n        \"profile_link_3\": \"\",\n        \"profile_link_twitter\": \"https://twitter.com/staywoke\",\n        \"profile_name\": \"Jane Doe\",\n        \"profile_photo\": \"https://gravatar.com/avatar/a9601f3839e5d5da764c1861a5e1daf6?s=200\",\n        \"username\": \"jane_doe\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Email Notifications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email_comment_left",
+									"value": "true",
+									"description": "(boolean, optional) - Send Email when Comment Left",
+									"type": "text"
+								},
+								{
+									"key": "email_comment_liked",
+									"value": "false",
+									"description": "(boolean, optional) - Send Email when Comment Liked",
+									"type": "text"
+								},
+								{
+									"key": "email_project_liked",
+									"value": "false",
+									"description": "(boolean, optional) - Send Email when Project Liked",
+									"type": "text"
+								},
+								{
+									"key": "email_someone_follows",
+									"value": "true",
+									"description": "(boolean, optional) - Send Email when Someone Follows",
+									"type": "text"
+								},
+								{
+									"key": "email_mentioned_in_comment",
+									"value": "true",
+									"description": "(boolean, optional) - Send Email when Mentioned in Comment",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/settings/email-notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"settings",
+								"email-notifications"
+							]
+						},
+						"description": "This endpoint will allow the logged in user to update their own accounts email notification settings."
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email_comment_left",
+											"value": "true",
+											"description": "(boolean, optional) - Send Email when Comment Left",
+											"type": "text"
+										},
+										{
+											"key": "email_comment_liked",
+											"value": "false",
+											"description": "(boolean, optional) - Send Email when Comment Liked",
+											"type": "text"
+										},
+										{
+											"key": "email_project_liked",
+											"value": "false",
+											"description": "(boolean, optional) - Send Email when Project Liked",
+											"type": "text"
+										},
+										{
+											"key": "email_someone_follows",
+											"value": "true",
+											"description": "(boolean, optional) - Send Email when Someone Follows",
+											"type": "text"
+										},
+										{
+											"key": "email_mentioned_in_comment",
+											"value": "true",
+											"description": "(boolean, optional) - Send Email when Mentioned in Comment",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/settings/email-notifications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings",
+										"email-notifications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85993535"
+								},
+								{
+									"key": "Content-Length",
+									"value": "853"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"355-kyL5bx4OJbrZo82nyik7/kkMwWA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 01:42:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"created_date\": \"2020-01-04T01:42:50.622Z\",\n        \"email_comment_left\": true,\n        \"email_comment_liked\": false,\n        \"email_mentioned_in_comment\": true,\n        \"email_someone_follows\": true,\n        \"id\": 2,\n        \"modified_date\": \"2020-01-04T01:42:50.622Z\",\n        \"newsletter\": true,\n        \"user_id\": 15,\n        \"web_comment_left\": true,\n        \"web_comment_liked\": true,\n        \"web_mentioned_in_comment\": true,\n        \"web_someone_follows\": true\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email_comment_left",
+											"value": "true",
+											"description": "(boolean, optional) - Send Email when Comment Left",
+											"type": "text"
+										},
+										{
+											"key": "email_comment_liked",
+											"value": "false",
+											"description": "(boolean, optional) - Send Email when Comment Liked",
+											"type": "text"
+										},
+										{
+											"key": "email_project_liked",
+											"value": "false",
+											"description": "(boolean, optional) - Send Email when Project Liked",
+											"type": "text"
+										},
+										{
+											"key": "email_someone_follows",
+											"value": "true",
+											"description": "(boolean, optional) - Send Email when Someone Follows",
+											"type": "text"
+										},
+										{
+											"key": "email_mentioned_in_comment",
+											"value": "true",
+											"description": "(boolean, optional) - Send Email when Mentioned in Comment",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/settings/email-notifications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings",
+										"email-notifications"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85955416"
+								},
+								{
+									"key": "Content-Length",
+									"value": "543"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21f-UMLMq/jiZ9Wu/Ash2jz2ADpCPY4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 01:43:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Unable to set email notifications\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Web Notifications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "web_comment_left",
+									"value": "true",
+									"description": "(boolean, optional) - Send Web / Push Notification when Comment Left",
+									"type": "text"
+								},
+								{
+									"key": "web_comment_liked",
+									"value": "false",
+									"description": "(boolean, optional) - Send Web / Push Notification when Comment Liked",
+									"type": "text"
+								},
+								{
+									"key": "web_project_liked",
+									"value": "false",
+									"description": "(boolean, optional) - Send Web / Push Notification when Project Liked",
+									"type": "text"
+								},
+								{
+									"key": "web_someone_follows",
+									"value": "true",
+									"description": "(boolean, optional) - Send Web / Push Notification when Someone Follows",
+									"type": "text"
+								},
+								{
+									"key": "web_mentioned_in_comment",
+									"value": "true",
+									"description": "(boolean, optional) - Send Web / Push Notification when Mentioned in Comment",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/settings/web-notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"settings",
+								"web-notifications"
+							]
+						},
+						"description": "This endpoint will allow the logged in user to update their own accounts web notification settings."
+					},
+					"response": [
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "web_comment_left",
+											"value": "true",
+											"description": "(boolean, optional) - Send Web / Push Notification when Comment Left",
+											"type": "text"
+										},
+										{
+											"key": "web_comment_liked",
+											"value": "false",
+											"description": "(boolean, optional) - Send Web / Push Notification when Comment Liked",
+											"type": "text"
+										},
+										{
+											"key": "web_project_liked",
+											"value": "false",
+											"description": "(boolean, optional) - Send Web / Push Notification when Project Liked",
+											"type": "text"
+										},
+										{
+											"key": "web_someone_follows",
+											"value": "true",
+											"description": "(boolean, optional) - Send Web / Push Notification when Someone Follows",
+											"type": "text"
+										},
+										{
+											"key": "web_mentioned_in_comment",
+											"value": "true",
+											"description": "(boolean, optional) - Send Web / Push Notification when Mentioned in Comment",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/settings/web-notifications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings",
+										"web-notifications"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85563344"
+								},
+								{
+									"key": "Content-Length",
+									"value": "541"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21d-bLDFU2lepmsRQuKatKSps0k5Qrg\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Aa4528acc-2111-434d-aab7-82486fceb0d0.12Rq0CrtkySanbP703qLM9twXbJ1rNvkIDLz5OYkbdM; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 01:50:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Unable to set web notifications\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1NzgxMDAzNTIsImV4cCI6MTU3ODcwNTE1MiwiaXNzIjoiQVBJIn0.NnRhsPaRRY5UXPoJZQwMt5DO_j1Qm45D2PIOY-h_7n4"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "web_comment_left",
+											"value": "true",
+											"description": "(boolean, optional) - Send Web / Push Notification when Comment Left",
+											"type": "text"
+										},
+										{
+											"key": "web_comment_liked",
+											"value": "false",
+											"description": "(boolean, optional) - Send Web / Push Notification when Comment Liked",
+											"type": "text"
+										},
+										{
+											"key": "web_project_liked",
+											"value": "false",
+											"description": "(boolean, optional) - Send Web / Push Notification when Project Liked",
+											"type": "text"
+										},
+										{
+											"key": "web_someone_follows",
+											"value": "true",
+											"description": "(boolean, optional) - Send Web / Push Notification when Someone Follows",
+											"type": "text"
+										},
+										{
+											"key": "web_mentioned_in_comment",
+											"value": "true",
+											"description": "(boolean, optional) - Send Web / Push Notification when Mentioned in Comment",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/v1/settings/web-notifications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"settings",
+										"web-notifications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85658767"
+								},
+								{
+									"key": "Content-Length",
+									"value": "871"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"367-zBETiex0BpVP6+p0F4rx4ksmHcs\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A7160a16e-187e-4306-bf0b-8eedaa321972.pXsK%2Fs%2FTNraPxUgG0dV7O9gHfM6PzFfVqe5hbgjFeFI; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 01:48:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"created_date\": \"2020-01-04T01:42:50.000Z\",\n        \"deletedAt\": null,\n        \"email_comment_left\": true,\n        \"email_comment_liked\": false,\n        \"email_mentioned_in_comment\": true,\n        \"email_someone_follows\": true,\n        \"id\": 2,\n        \"modified_date\": \"2020-01-04T01:48:25.884Z\",\n        \"newsletter\": true,\n        \"user_id\": 15,\n        \"web_comment_left\": true,\n        \"web_comment_liked\": false,\n        \"web_mentioned_in_comment\": true,\n        \"web_someone_follows\": true\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "The following endpoints for accessing & managing settings for the current logged in user.  These endpoints only work for the user associated with the Authorization Bearer Token sent in the header.  This uses the current Authentication Bearer Token to lookup who's account to update. The Bearer Token is created during login and contains the users ID from our database.  You will not be able to use this endpoint to manage anyone elses account except your own.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "META Data",
+			"item": [
+				{
+					"name": "Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"categories"
+							]
+						},
+						"description": "Fetch a list of all categories.  Optionally, you can pass over a `slug` for a category to get a list of subcategories for that category."
+					},
+					"response": []
+				},
+				{
+					"name": "Tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/tags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"tags"
+							]
+						},
+						"description": "Fetch a list of all tags being used."
+					},
+					"response": []
+				}
+			],
+			"description": "The following endpoints for accessing META Data used across the API, such as Categories and Tags. Helpful for generating select lists to connect more meaningful data atributes to other API models.",
 			"protocolProfileBehavior": {}
 		}
 	],

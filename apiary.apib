@@ -1643,33 +1643,43 @@ Gets account settings for current logged in user
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [
-
-          ],
-          "field_errors": {
-
-          },
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "notifications": {
-              "email_comment_left": true,
-              "email_comment_liked": false,
-              "email_mentioned_in_comment": true,
-              "email_someone_follows": true,
-              "newsletter": true,
-              "web_comment_left": true,
-              "web_comment_liked": true,
-              "web_mentioned_in_comment": true,
-              "web_someone_follows": false
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "notifications": {
+                    "email_comment_left": true,
+                    "email_comment_liked": false,
+                    "email_mentioned_in_comment": true,
+                    "email_someone_follows": true,
+                    "newsletter": true,
+                    "web_comment_left": true,
+                    "web_comment_liked": false,
+                    "web_mentioned_in_comment": true,
+                    "web_someone_follows": true
+                }
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
             }
-          }
         }
+
++ Response 400 (application/json)
+
+
 
 ## Update Profile [/settings/profile/?profile_photo={profile_photo}&profile_name={profile_name}&location={location}&company_name={company_name}&first_name={first_name}&last_name={last_name}&bio={bio}]
 
@@ -1703,35 +1713,78 @@ This endpoint will allow the logged in user to update their own account profile.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {
-            "bio": "Front End Designer",
-            "company_name": "Awesome Company",
-            "email": "me@email.com",
-            "first_name": "Jane",
-            "hash_id": "yRdRYJ",
-            "join_date": "2016-02-15T02:51:52.000Z",
-            "last_name": "Doe",
-            "location": "St. Petersburg, FL",
-            "profile_link_1": "http://mywebsite.com",
-            "profile_link_2": null,
-            "profile_link_3": null,
-            "profile_link_twitter": null,
-            "profile_link_website": null,
-            "profile_name": "Jane Doe",
-            "profile_photo": null,
-            "username": "janedoe"
-          }
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": "I make things on the internet.",
+                "company_name": "StayWoke",
+                "created_date": "2020-01-02T07:42:43.000Z",
+                "deletedAt": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "hash_id": "bJvJPv",
+                "id": 15,
+                "last_name": "Doe",
+                "location": "St. Petersburg, FL",
+                "modified_date": "2020-01-04T01:22:56.000Z",
+                "new_password_key": null,
+                "profile_link_1": null,
+                "profile_link_2": null,
+                "profile_link_3": null,
+                "profile_link_twitter": null,
+                "profile_link_website": null,
+                "profile_name": "Jane Doe",
+                "profile_photo": "https://gravatar.com/avatar/a9601f3839e5d5da764c1861a5e1daf6?s=200",
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
++ Response 400 (application/json)
+
+        {
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "No user found with ID Error: Missing Header Token"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
+        }
 
 ## Update Social Links [/settings/social-links/?profile_link_github={profile_link_github}&profile_link_bitbucket={profile_link_bitbucket}&profile_link_twitter={profile_link_twitter}&profile_link_1={profile_link_1}&profile_link_2={profile_link_2}&profile_link_3={profile_link_3}]
 
@@ -1762,32 +1815,76 @@ This endpoint will allow the logged in user to update their own accounts Social 
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 1,
+                "showing": 1,
+                "pages": 1,
+                "page": 1
+            },
+            "data": {
+                "activated": true,
+                "banned": false,
+                "banned_reason": null,
+                "bio": "I make things on the internet.",
+                "company_name": "StayWoke",
+                "created_date": "2020-01-02T07:42:43.000Z",
+                "deletedAt": null,
+                "email": "jane.doe@fake.com",
+                "first_name": "Jane",
+                "hash_id": "bJvJPv",
+                "id": 15,
+                "last_name": "Doe",
+                "location": "St. Petersburg, FL",
+                "modified_date": "2020-01-04T01:36:25.313Z",
+                "new_password_key": null,
+                "profile_link_1": "https://staywoke.org",
+                "profile_link_2": "",
+                "profile_link_3": "",
+                "profile_link_twitter": "https://twitter.com/staywoke",
+                "profile_name": "Jane Doe",
+                "profile_photo": "https://gravatar.com/avatar/a9601f3839e5d5da764c1861a5e1daf6?s=200",
+                "username": "jane_doe"
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
-+ Response 403 (application/json)
++ Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Invalid API Authorization Token"
-          ],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "No user found with ID Error: Missing Header Token"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Update Email Notifications [/settings/email-notifications/?email_comment_left={email_comment_left}&email_comment_liked={email_comment_liked}&email_project_liked={email_project_liked}&email_someone_follows={email_someone_follows}&email_mentioned_in_comment={email_mentioned_in_comment}]
@@ -1795,15 +1892,15 @@ This endpoint will allow the logged in user to update their own accounts Social 
 This endpoint will allow the logged in user to update their own accounts email notification settings.
 
 + Parameters
-    + email_comment_left (boolean, optional) - DATA
+    + email_comment_left (boolean, optional) - Send Email when Comment Left
         + Default: true
-    + email_comment_liked (boolean, optional) - DATA
+    + email_comment_liked (boolean, optional) - Send Email when Comment Liked
         + Default: true
-    + email_project_liked (boolean, optional) - DATA
+    + email_project_liked (boolean, optional) - Send Email when Project Liked
         + Default: true
-    + email_someone_follows (boolean, optional) - DATA
+    + email_someone_follows (boolean, optional) - Send Email when Someone Follows
         + Default: true
-    + email_mentioned_in_comment (boolean, optional) - DATA
+    + email_mentioned_in_comment (boolean, optional) - Send Email when Mentioned in Comment
         + Default: true
 
 ### Update Email Notifications [POST]
@@ -1811,7 +1908,8 @@ This endpoint will allow the logged in user to update their own accounts email n
 + Response 200 (application/json)
 
         {
-            "error": false,
+            "notices": [],
+            "warnings": [],
             "errors": [],
             "field_errors": {},
             "meta": {
@@ -1821,34 +1919,56 @@ This endpoint will allow the logged in user to update their own accounts email n
                 "page": 1
             },
             "data": {
+                "created_date": "2020-01-04T01:42:50.622Z",
                 "email_comment_left": true,
                 "email_comment_liked": false,
                 "email_mentioned_in_comment": true,
-                "email_project_liked": false,
                 "email_someone_follows": true,
+                "id": 2,
+                "modified_date": "2020-01-04T01:42:50.622Z",
                 "newsletter": true,
+                "user_id": 15,
                 "web_comment_left": true,
                 "web_comment_liked": true,
                 "web_mentioned_in_comment": true,
-                "web_project_liked": false,
-                "web_someone_follows": false
+                "web_someone_follows": true
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
             }
         }
 
-+ Response 403 (application/json)
++ Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Invalid API Authorization Token"
-          ],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Unable to set email notifications"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 ## Update Web Notifications [/settings/web-notifications/?web_comment_left={web_comment_left}&web_comment_liked={web_comment_liked}&web_project_liked={web_project_liked}&web_someone_follows={web_someone_follows}&web_mentioned_in_comment={web_mentioned_in_comment}]
@@ -1856,15 +1976,15 @@ This endpoint will allow the logged in user to update their own accounts email n
 This endpoint will allow the logged in user to update their own accounts web notification settings.
 
 + Parameters
-    + web_comment_left (boolean, optional) - DATA
+    + web_comment_left (boolean, optional) - Send Web / Push Notification when Comment Left
         + Default: true
-    + web_comment_liked (boolean, optional) - DATA
+    + web_comment_liked (boolean, optional) - Send Web / Push Notification when Comment Liked
         + Default: true
-    + web_project_liked (boolean, optional) - DATA
+    + web_project_liked (boolean, optional) - Send Web / Push Notification when Project Liked
         + Default: true
-    + web_someone_follows (boolean, optional) - DATA
+    + web_someone_follows (boolean, optional) - Send Web / Push Notification when Someone Follows
         + Default: true
-    + web_mentioned_in_comment (boolean, optional) - DATA
+    + web_mentioned_in_comment (boolean, optional) - Send Web / Push Notification when Mentioned in Comment
         + Default: true
 
 ### Update Web Notifications [POST]
@@ -1872,7 +1992,8 @@ This endpoint will allow the logged in user to update their own accounts web not
 + Response 200 (application/json)
 
         {
-            "error": false,
+            "notices": [],
+            "warnings": [],
             "errors": [],
             "field_errors": {},
             "meta": {
@@ -1882,38 +2003,65 @@ This endpoint will allow the logged in user to update their own accounts web not
                 "page": 1
             },
             "data": {
+                "created_date": "2020-01-04T01:42:50.000Z",
+                "deletedAt": null,
                 "email_comment_left": true,
                 "email_comment_liked": false,
                 "email_mentioned_in_comment": true,
-                "email_project_liked": false,
                 "email_someone_follows": true,
+                "id": 2,
+                "modified_date": "2020-01-04T01:48:25.884Z",
                 "newsletter": true,
+                "user_id": 15,
                 "web_comment_left": true,
-                "web_comment_liked": true,
+                "web_comment_liked": false,
                 "web_mentioned_in_comment": true,
-                "web_project_liked": false,
-                "web_someone_follows": false
+                "web_someone_follows": true
+            },
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
             }
         }
 
-+ Response 403 (application/json)
++ Response 400 (application/json)
 
         {
-          "error": true,
-          "errors": [
-            "Invalid API Authorization Token"
-          ],
-          "meta": {
-            "total": 1,
-            "showing": 1,
-            "pages": 1,
-            "page": 1
-          },
-          "data": {}
+            "notices": [],
+            "warnings": [],
+            "errors": [
+                "Unable to set web notifications"
+            ],
+            "field_errors": {},
+            "meta": {
+                "total": 0,
+                "showing": 0,
+                "pages": 1,
+                "page": 1
+            },
+            "data": null,
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
+            }
         }
 
 
-# Group Application Data Endpoints
+# Group META Data
+
+The following endpoints for accessing META Data used across the API, such as Categories
+and Tags. Helpful for generating select lists to connect more meaningful data atributes
+to other API models.
 
 ## Categories [/categories/{slug}]
 
@@ -1927,69 +2075,79 @@ Fetch a list of all categories.  Optionally, you can pass over a `slug` for a ca
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 2,
-            "showing": 2,
-            "pages": 1,
-            "page": 1
-          },
-          "data": [
-            {
-              "id": 1,
-              "parent_id": null,
-              "name": "Category One",
-              "slug": "category-one",
-              "subcategories": [
-                {
-                  "id": 3,
-                  "parent_id": 1,
-                  "name": "Subcategory One",
-                  "slug": "subcategory-one"
-                },
-                {
-                  "id": 4,
-                  "parent_id": 1,
-                  "name": "Subcategory Two",
-                  "slug": "subcategory-two"
-                },
-                {
-                  "id": 5,
-                  "parent_id": 1,
-                  "name": "Subcategory Three",
-                  "slug": "subcategory-three"
-                }
-              ]
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 2,
+                "showing": 2,
+                "pages": 1,
+                "page": 1
             },
-            {
-              "id": 2,
-              "parent_id": null,
-              "name": "Category Two",
-              "slug": "category-two",
-              "subcategories": [
+            "data": [
                 {
-                  "id": 6,
-                  "parent_id": 2,
-                  "name": "Subcategory One",
-                  "slug": "subcategory-one"
+                    "id": 1,
+                    "parent_id": null,
+                    "name": "Category One",
+                    "slug": "category-one",
+                    "subcategories": [
+                        {
+                            "id": 3,
+                            "parent_id": 1,
+                            "name": "Subcategory One",
+                            "slug": "subcategory-one"
+                        },
+                        {
+                            "id": 4,
+                            "parent_id": 1,
+                            "name": "Subcategory Two",
+                            "slug": "subcategory-two"
+                        },
+                        {
+                            "id": 5,
+                            "parent_id": 1,
+                            "name": "Subcategory Three",
+                            "slug": "subcategory-three"
+                        }
+                    ]
                 },
                 {
-                  "id": 7,
-                  "parent_id": 2,
-                  "name": "Subcategory Two",
-                  "slug": "subcategory-two"
-                },
-                {
-                  "id": 8,
-                  "parent_id": 2,
-                  "name": "Subcategory Three",
-                  "slug": "subcategory-three"
+                    "id": 2,
+                    "parent_id": null,
+                    "name": "Category Two",
+                    "slug": "category-two",
+                    "subcategories": [
+                        {
+                            "id": 6,
+                            "parent_id": 2,
+                            "name": "Subcategory One",
+                            "slug": "subcategory-one"
+                        },
+                        {
+                            "id": 7,
+                            "parent_id": 2,
+                            "name": "Subcategory Two",
+                            "slug": "subcategory-two"
+                        },
+                        {
+                            "id": 8,
+                            "parent_id": 2,
+                            "name": "Subcategory Three",
+                            "slug": "subcategory-three"
+                        }
+                    ]
                 }
-              ]
+            ]
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
             }
-          ]
         }
 
 ## Tags [/tags]
@@ -2001,32 +2159,42 @@ Fetch a list of all tags being used.
 + Response 200 (application/json)
 
         {
-          "error": false,
-          "errors": [],
-          "field_errors": {},
-          "meta": {
-            "total": 3,
-            "showing": 3,
-            "pages": 1,
-            "page": 1
-          },
-          "data": [
-            {
-              "id": 1,
-              "name": "Tag One",
-              "slug": "tag-one"
+            "notices": [],
+            "warnings": [],
+            "errors": [],
+            "field_errors": {},
+            "meta": {
+                "total": 3,
+                "showing": 3,
+                "pages": 1,
+                "page": 1
             },
-            {
-              "id": 2,
-              "name": "Tag Two",
-              "slug": "tag-two"
-            },
-            {
-              "id": 3,
-              "name": "Tag Three",
-              "slug": "tag-three"
+            "data": [
+                {
+                    "id": 1,
+                    "name": "Tag One",
+                    "slug": "tag-one"
+                },
+                {
+                    "id": 2,
+                    "name": "Tag Two",
+                    "slug": "tag-two"
+                },
+                {
+                    "id": 3,
+                    "name": "Tag Three",
+                    "slug": "tag-three"
+                }
+            ],
+            "attribution": {
+                "text": "Data Provided by StayWoke",
+                "website": "https://staywoke.org",
+                "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+                "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+                "report_bug": "https://github.com/staywoke/api/issues/new",
+                "logo": "https://cdn.staywoke.org/common/logo.png",
+                "icon": "https://cdn.staywoke.org/common/icon.png"
             }
-          ]
         }
 
 

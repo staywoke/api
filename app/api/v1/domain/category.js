@@ -6,15 +6,16 @@
 
 const _ = require('lodash')
 
-const CategoryES = require('../../../elasticsearch/update/category')
 const models = require('../../../models')
+
+const { update } = require('../../../elasticsearch/update/category')
 
 // Add ElasticSearch Hooks
 /* istanbul ignore next: Difficult to Test this without ElasticSearch Fully Mocked */
-if (CategoryES) {
-  models.categories.afterCreate(() => { CategoryES.update() })
-  models.categories.afterUpdate(() => { CategoryES.update() })
-  models.categories.afterDestroy(() => { CategoryES.update() })
+if (update) {
+  models.categories.afterCreate(() => { update() })
+  models.categories.afterUpdate(() => { update() })
+  models.categories.afterDestroy(() => { update() })
 }
 
 /**

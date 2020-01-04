@@ -17,14 +17,14 @@ const hasher = require('../../../util/hasher')
 const models = require('../../../models')
 const routeUtil = require('../routes/util')
 
-const UserES = require('../../../elasticsearch/update/user')
+const { update } = require('../../../elasticsearch/update/user')
 
 // Add ElasticSearch Hooks
 /* istanbul ignore next: Difficult to Test this without ElasticSearch Fully Mocked */
-if (UserES) {
-  models.users.afterCreate((user) => { UserES.update(user.id) })
-  models.users.afterUpdate((user) => { UserES.update(user.id) })
-  models.users.afterDestroy((user) => { UserES.update(user.id) })
+if (update) {
+  models.users.afterCreate((user) => { update(user.id) })
+  models.users.afterUpdate((user) => { update(user.id) })
+  models.users.afterDestroy((user) => { update(user.id) })
 }
 
 /**

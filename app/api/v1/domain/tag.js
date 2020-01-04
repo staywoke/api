@@ -6,15 +6,16 @@
 
 const _ = require('lodash')
 
-const TagES = require('../../../elasticsearch/update/tag')
 const models = require('../../../models')
+
+const { update } = require('../../../elasticsearch/update/tag')
 
 // Add ElasticSearch Hooks
 /* istanbul ignore next: Difficult to Test this without ElasticSearch Fully Mocked */
-if (TagES) {
-  models.tags.afterCreate(() => { TagES.update() })
-  models.tags.afterUpdate(() => { TagES.update() })
-  models.tags.afterDestroy(() => { TagES.update() })
+if (update) {
+  models.tags.afterCreate(() => { update() })
+  models.tags.afterUpdate(() => { update() })
+  models.tags.afterDestroy(() => { update() })
 }
 
 /**

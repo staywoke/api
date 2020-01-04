@@ -2,7 +2,6 @@
  * @module routes/categories
  * @version 1.0.0
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
- * @todo Create Unit Tests for Routes
  */
 
 const express = require('express')
@@ -10,6 +9,7 @@ const validator = require('validator')
 
 const analytics = require('../../../analytics')
 const config = require('../../../config')
+const debug = require('../../../debug')
 const elasticsearchClient = require('../../../elasticsearch/client')
 const util = require('./util')
 
@@ -82,11 +82,14 @@ router.route('/categories/:slug?').get((request, response) => {
       data: result.hits.hits.map(CategoryDomain.prepareForAPIOutput)
     }))
   }).catch((error) => {
+    debug.error(`Error fetching ${indexType} data`)
+    debug.error(`${error.status} ${error.message}`)
+
     const apikey = (request.header('API-Key')) || request.query.apikey || null
     analytics.trackEvent(apikey, 'Categories', 'Error', error.toString())
 
     response.json(util.createAPIResponse({
-      errors: [error]
+      data: null
     }, request.query.fields))
   })
 })

@@ -2,7 +2,6 @@
  * @module routes/user
  * @version 1.0.0
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
- * @todo Create Unit Tests for Routes
  */
 
 const express = require('express')

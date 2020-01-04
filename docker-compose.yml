@@ -1,6 +1,7 @@
 version: '3'
 services:
   docker_api:
+    tty: true
     build:
       context: .
     links:

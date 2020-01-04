@@ -15,12 +15,20 @@ Requirements
 Installing
 ---
 
-Using Docker is Super Easy once it's installed, you just need to run the following commands:
+Using Docker is Super Easy once it's installed, you just need to run the following commands to do the initial setup:
 
 ```bash
-cd /path/to/api
 docker pull docker.elastic.co/elasticsearch/elasticsearch:7.5.1
 docker-compose up --build
+```
+
+Relaunch Docker
+---
+
+To restart the API in docker, you just need to run:
+
+```bash
+docker-compose up
 ```
 
 Accessing the API via Browser
@@ -28,7 +36,7 @@ Accessing the API via Browser
 
 Once the API is up and running you can access a local URL via:
 
-```text
+```
 http://localhost:5000/v1/token?apikey=YOUR_API_KEY&pretty
 ```
 
