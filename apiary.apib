@@ -1006,7 +1006,7 @@ If the user needs to resend their email confirmation, this is the endpoint to us
             }
         }
 
-## Update Account [/user/update/?current_password={current_password}&username={username}&email={email}&password_new={password_new}&password_new_retype={password_new_retype}]
+## Update Account [/user/update/?username={username}&password={password}&new_username={new_username}&new_email={new_email}&password_new={password_new}&password_new_retype={password_new_retype}]
 
 This endpoint will allow the logged in user to update their own account.  This uses the current Authentication Bearer Token to lookup who's account to update.
 
@@ -2196,5 +2196,3 @@ Fetch a list of all tags being used.
                 "icon": "https://cdn.staywoke.org/common/icon.png"
             }
         }
-
-
