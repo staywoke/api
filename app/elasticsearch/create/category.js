@@ -16,7 +16,6 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
 
 /**
  * Category Mapping
- * @type {{index: string, type: string, body: {}}}
  */
 const mapping = {
   index: indexName,
@@ -27,7 +26,6 @@ const mapping = {
 
 /**
  * Category Mapping Body
- * @type {{properties: {id: {type: string}, parent_id: {type: string}, name: {type: string}, slug: {type: string}}}}
  */
 mapping.body[indexType] = {
   properties: {
@@ -38,10 +36,10 @@ mapping.body[indexType] = {
       type: 'integer'
     },
     name: {
-      type: 'string'
+      type: 'text'
     },
     slug: {
-      type: 'string'
+      type: 'text'
     }
   }
 }

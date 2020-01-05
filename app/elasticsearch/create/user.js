@@ -16,7 +16,6 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
 
 /**
  * User Mapping
- * @type {{index: string, type: string, body: {}}}
  */
 const mapping = {
   index: indexName,
@@ -27,7 +26,6 @@ const mapping = {
 
 /**
  * User Mapping Body
- * @type {{properties: {activated: {type: string}, username: {type: string}, first_name: {type: string}, last_name: {type: string}, company_name: {type: string}, profile_name: {type: string}, location: {type: string}, profile_link_website: {type: string}, profile_link_twitter: {type: string}, profile_link_1: {type: string}, profile_link_2: {type: string}, profile_link_3: {type: string}, banned: {type: string}}}}
  */
 mapping.body[indexType] = {
   properties: {
@@ -35,37 +33,37 @@ mapping.body[indexType] = {
       type: 'boolean'
     },
     username: {
-      type: 'string'
+      type: 'text'
     },
     first_name: {
-      type: 'string'
+      type: 'text'
     },
     last_name: {
-      type: 'string'
+      type: 'text'
     },
     company_name: {
-      type: 'string'
+      type: 'text'
     },
     profile_name: {
-      type: 'string'
+      type: 'text'
     },
     location: {
-      type: 'string'
+      type: 'text'
     },
     profile_link_website: {
-      type: 'string'
+      type: 'text'
     },
     profile_link_twitter: {
-      type: 'string'
+      type: 'text'
     },
     profile_link_1: {
-      type: 'string'
+      type: 'text'
     },
     profile_link_2: {
-      type: 'string'
+      type: 'text'
     },
     profile_link_3: {
-      type: 'string'
+      type: 'text'
     },
     banned: {
       type: 'boolean'
