@@ -20,6 +20,7 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
  */
 const mapping = {
   index: indexName,
+  include_type_name: true,
   type: indexType,
   body: {}
 }
