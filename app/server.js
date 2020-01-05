@@ -6,6 +6,8 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
+const bugsnag = require('@bugsnag/js')
+const bugsnagExpress = require('@bugsnag/plugin-express')
 const Debug = require('debug')
 const dotenv = require('dotenv')
 const express = require('express')
@@ -202,6 +204,18 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
+
+// Check if we should use Bugsnag
+if (config.get('bugsnag') !== '') {
+  const bugsnagClient = bugsnag(config.get('bugsnag'))
+
+  bugsnagClient.use(bugsnagExpress)
+
+  const bugsnagMiddleware = bugsnagClient.getPlugin('express')
+
+  app.use(bugsnagMiddleware.requestHandler)
+  app.use(bugsnagMiddleware.errorHandler)
+}
 
 app.use('/', express.static(`${__dirname}/static`))
 app.use('/assets', express.static(`${__dirname}/static/assets`))

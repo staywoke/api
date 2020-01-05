@@ -163,6 +163,12 @@ const config = convict({
         format: String,
         default: '',
         env: 'API_API_PASSWORD'
+      },
+      port: {
+        doc: 'API MySQL Port',
+        format: Number,
+        default: 3306,
+        env: 'API_API_PORT'
       }
     }
   },

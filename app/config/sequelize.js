@@ -12,7 +12,7 @@ const dbPass = config.get('database.api.password')
 const dbHost = config.get('database.api.host')
 const dbOptions = {
   host: dbHost,
-  port: 3306,
+  port: config.get('database.api.port'),
   dialect: 'mysql',
   logging: null,
   define: {
