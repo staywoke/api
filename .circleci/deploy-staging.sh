@@ -9,7 +9,7 @@ ssh -T staywoke@apidev.staywoke.org << EOF
 
 echo -e "\n\033[38;5;34m✓ StayWoke › Starting Staging Deployment\033[0m\n"
 
-export API_NODE_ENV=production
+export API_NODE_ENV=staging
 
 echo -e "\n\033[38;5;34m✓ StayWoke › Updating Staging Repository\033[0m\n"
 
