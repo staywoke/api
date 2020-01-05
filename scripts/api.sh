@@ -156,8 +156,10 @@ api_start() {
 
     if [[ $OSTYPE == darwin* ]]; then
         brew services start mysql
+    elif systemctl list-units --full -all | grep 'mysql'; then
+      sudo systemctl start mysql
     else
-        sudo systemctl start mysql
+      __notice "MySQL Instance on Another Server"
     fi
   fi
 
@@ -251,8 +253,10 @@ api_stop() {
       y|Y|YES|yes|Yes)
         if [[ $OSTYPE == darwin* ]]; then
           brew services stop mysql
+        elif systemctl list-units --full -all | grep 'mysql'; then
+          sudo systemctl start mysql
         else
-          sudo systemctl stop mysql
+          __notice "MySQL Instance on Another Server"
         fi
       ;;
       n|N|no|NO|No)
@@ -357,7 +361,7 @@ service_check() {
   else
       NX=$(systemctl status nginx | grep 'Main PID' | awk '{print $3}')
       ES=$(systemctl status elasticsearch | grep 'Main PID' | awk '{print $3}')
-      MS=$(systemctl status mysql | grep 'Main PID' | awk '{print $3}')
+      MS=$(systemctl list-units --full -all | grep 'mysql' && systemctl status mysql | grep 'Main PID' | awk '{print $3}')
       NS=$(lsof -i TCP:5000 | grep LISTEN | awk '{print $2}')
   fi
 }
