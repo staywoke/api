@@ -1,3 +1,10 @@
 node_modules/**
 app/static
 coverage
+
+# Ignoring Large Seeders that already passed Linters ( if modified, manually rerun )
+app/seeders/*-geo-countries-seeder.js
+app/seeders/*-geo-states-seeder.js
+app/seeders/*-geo-cities-seeder.js
+app/seeders/*-geo-counties-seeder.js
+app/seeders/*-geo-towns-seeder.js

@@ -6,7 +6,7 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const Slugify = require('sequelize-slugify')
+const createSlug = require('sluglife')
 
 module.exports = (sequelize, DataTypes) => {
   const GeoCounty = sequelize.define('geo_counties', {
@@ -28,10 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false
     },
-    slug: {
-      type: DataTypes.STRING(50),
-      allowNull: false
-    },
     fips_state_code: {
       type: DataTypes.STRING(2),
       allowNull: false
@@ -41,11 +37,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
+    getterMethods: {
+      slug () {
+        return createSlug(this.name, {
+          replacement: '-',
+          replaceSymbols: true,
+          lower: true
+        })
+      }
+    },
     indexes: [
-      {
-        fields: ['name', 'slug'],
-        unique: true
-      },
       {
         fields: ['country_id']
       },
@@ -56,13 +57,6 @@ module.exports = (sequelize, DataTypes) => {
         fields: ['fips_state_code']
       }
     ]
-  })
-
-  /**
-   * Auto Generate Slug for Name
-   */
-  Slugify.slugifyModel(GeoCounty, {
-    source: ['name']
   })
 
   /**
