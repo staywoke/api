@@ -2,6 +2,9 @@ node_modules/**
 app/static
 coverage
 
+# Ignore Old Seeder Files
+app/seeders/2020010100000*-group-seeder.js
+
 # Ignoring Large Seeders that already passed Linters ( if modified, manually rerun )
 app/seeders/*-geo-countries-seeder.js
 app/seeders/*-geo-states-seeder.js

@@ -20,10 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false
     },
-    slug: {
-      type: DataTypes.STRING(50),
-      unique: true
-    },
     abbr2: {
       type: DataTypes.STRING(2),
       allowNull: false
