@@ -19,51 +19,46 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
  */
 const mapping = {
   index: indexName,
-  include_type_name: true,
   type: indexType,
-  body: {}
-}
-
-/**
- * Category Mapping Body
- */
-mapping.body[indexType] = {
-  properties: {
-    id: {
-      type: 'integer'
-    },
-    country_id: {
-      type: 'integer'
-    },
-    state_id: {
-      type: 'integer'
-    },
-    county_id: {
-      type: 'integer'
-    },
-    name: {
-      type: 'text'
-    },
-    slug: {
-      type: 'text'
-    },
-    fips_state_code: {
-      type: 'text'
-    },
-    fips_county_code: {
-      type: 'text'
-    },
-    fips_county_sub_code: {
-      type: 'text'
-    },
-    latitude: {
-      type: 'float'
-    },
-    longitude: {
-      type: 'float'
-    },
-    coordinate: {
-      type: 'geo_point'
+  include_type_name: true,
+  body: {
+    properties: {
+      id: {
+        type: 'integer'
+      },
+      country_id: {
+        type: 'integer'
+      },
+      state_id: {
+        type: 'integer'
+      },
+      county_id: {
+        type: 'integer'
+      },
+      name: {
+        type: 'text'
+      },
+      slug: {
+        type: 'text'
+      },
+      fips_state_code: {
+        type: 'text'
+      },
+      fips_county_code: {
+        type: 'text'
+      },
+      fips_county_sub_code: {
+        type: 'text'
+      },
+      latitude: {
+        type: 'float'
+      },
+      longitude: {
+        type: 'float'
+      },
+      coordinate: {
+        type: 'geo_point'
+      }
     }
   }
 }
@@ -87,8 +82,8 @@ module.exports = client.indices.exists({
   client.indices.putMapping(mapping).then(() => {
     debug.success(`Index Created: ${indexName}`)
   }).catch((error) => {
-    debug.error(`Error applying ${indexType} mapping`)
-    debug.error(`${error.status} ${error.message}`)
+    debug.error(`Error applying ${indexType} mapping:`)
+    debug.error(`${error.status} ${error.message}\n`)
   })
 }).catch((error) => {
   debug.error(`There was an error creating the ${indexType} index`)
