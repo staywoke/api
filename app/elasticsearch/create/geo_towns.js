@@ -36,7 +36,8 @@ const mapping = {
         type: 'integer'
       },
       name: {
-        type: 'text'
+        type: 'text',
+        fielddata: true
       },
       slug: {
         type: 'text'

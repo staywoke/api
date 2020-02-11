@@ -33,7 +33,8 @@ const mapping = {
         type: 'text'
       },
       name: {
-        type: 'text'
+        type: 'text',
+        fielddata: true
       },
       slug: {
         type: 'text'

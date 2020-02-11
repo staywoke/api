@@ -4,7 +4,7 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-// const { GeoCityDomain, GeoCountyDomain, GeoCountryDomain, GeoStateDomain, GeoTownDomain } = require('./index')
+const GeoStateDomain = require('./geo_states')
 
 /**
  * Domain User
@@ -16,8 +16,17 @@ module.exports = {
    * @param {object} query - GET Parameters
    * @returns {*}
    */
-  getLocation: function (query) {
+  getLocation (query) {
     // @TODO: Flush Out Endpoint
     return Promise.resolve()
+  },
+
+  getStates () {
+    return GeoStateDomain.getStates()
+      .then((results) => {
+        return Promise.resolve(results)
+      }).catch((error) => {
+        return Promise.reject(error)
+      })
   }
 }

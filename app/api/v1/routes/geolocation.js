@@ -46,4 +46,23 @@ router.route('/geolocation').get((request, response) => {
     })
 })
 
+/* istanbul ignore next */
+router.route('/geo/states').get((request, response) => {
+  GeolocationDomain.getStates()
+    .then((results) => {
+      var apikey = (request.header('API-Key')) || request.query.apikey || null
+      analytics.trackEvent(apikey, 'Geolocation', 'Search Results', JSON.stringify(request.query))
+
+      response.json(util.createAPIResponse(results, request.query.fields))
+    })
+    .catch((error) => {
+      var apikey = (request.header('API-Key')) || request.query.apikey || null
+      analytics.trackEvent(apikey, 'Geolocation', 'Error', error.toString())
+
+      response.json(util.createAPIResponse({
+        errors: [error]
+      }, request.query.fields))
+    })
+})
+
 module.exports = router

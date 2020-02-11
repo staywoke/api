@@ -6,6 +6,13 @@
 
 const _ = require('lodash')
 
+const config = require('../../../config')
+const elasticsearchClient = require('../../../elasticsearch/client')
+
+const env = config.get('env')
+const indexType = `${env}_geo_states`
+const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
+
 /**
  * Domain User
  * @type {object}
@@ -18,13 +25,9 @@ module.exports = {
    */
   prepareForAPIOutput (data) {
     const fields = [
-      'country_id',
-      'type',
       'name',
       'slug',
-      'abbr',
-      'code',
-      'fips_code'
+      'abbr'
     ]
 
     return _.pick(data._source, fields)
@@ -46,5 +49,46 @@ module.exports = {
       code: data.code,
       fips_code: data.fips_code
     }
+  },
+
+  getStates () {
+    const self = this
+    const searchParams = {
+      index: indexName,
+      type: indexType,
+      size: 100,
+      body: {
+        query: {
+          bool: {
+            must: [
+              {
+                match: {
+                  type: 'state'
+                }
+              }
+            ]
+          }
+        },
+        sort: {
+          name: {
+            order: 'asc'
+          }
+        }
+      }
+    }
+
+    return elasticsearchClient.search(searchParams)
+      .then((result) => {
+        const data = result.hits.hits.map(self.prepareForAPIOutput)
+        return {
+          data: data
+        }
+      })
+      .catch((error) => {
+        return {
+          errors: [error],
+          data: null
+        }
+      })
   }
 }
