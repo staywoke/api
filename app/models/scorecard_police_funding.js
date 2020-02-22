@@ -18,6 +18,22 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       comment: 'Foreign Key to scorecard_agency'
+    },
+    total_budget: {
+      type: DataTypes.INTEGER(10).UNSIGNED,
+      allowNull: false
+    },
+    police_budget: {
+      type: DataTypes.INTEGER(10).UNSIGNED,
+      allowNull: false
+    },
+    education_budget: {
+      type: DataTypes.INTEGER(10).UNSIGNED,
+      allowNull: false
+    },
+    housing_budget: {
+      type: DataTypes.INTEGER(10).UNSIGNED,
+      allowNull: false
     }
   }, {
     indexes: [
