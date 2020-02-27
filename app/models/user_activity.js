@@ -19,8 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     follow_user_id: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     type: {
       type: DataTypes.ENUM(
@@ -77,20 +76,17 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'follow_user_id',
       targetKey: 'id',
       foreignKeyConstraint: true,
-      as: 'Following',
-      allowNull: true
+      as: 'Following'
     })
 
     /**
      * Setup Relationships of Users and Followers
      */
     models.users.hasMany(models.user_activity, {
-      foreignKey: 'user_id',
-      allowNull: true
+      foreignKey: 'user_id'
     })
     models.users.hasMany(models.user_activity, {
-      foreignKey: 'follow_user_id',
-      allowNull: true
+      foreignKey: 'follow_user_id'
     })
   }
 

@@ -30,16 +30,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     abbr: {
-      type: DataTypes.STRING(2),
-      allowNull: true
+      type: DataTypes.STRING(2)
     },
     code: {
       type: DataTypes.STRING(5),
       allowNull: false
     },
     fips_code: {
-      type: DataTypes.STRING(2),
-      allowNull: true
+      type: DataTypes.STRING(2)
     }
   }, {
     getterMethods: {

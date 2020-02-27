@@ -20,28 +20,22 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Foreign Key to scorecard_agency'
     },
     white_murders_unsolved: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     black_murders_unsolved: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     hispanic_murders_unsolved: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     white_murders_solved: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     black_murders_solved: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     hispanic_murders_solved: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     homicides_2013_2018: {
       type: DataTypes.INTEGER(10).UNSIGNED,

@@ -25,8 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     county_id: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     name: {
       type: DataTypes.STRING(50),
@@ -45,16 +44,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     latitude: {
-      type: DataTypes.DECIMAL(10, 8),
-      allowNull: true
+      type: DataTypes.DECIMAL(10, 8)
     },
     longitude: {
-      type: DataTypes.DECIMAL(11, 8),
-      allowNull: true
+      type: DataTypes.DECIMAL(11, 8)
     },
     coordinate: {
-      type: DataTypes.GEOMETRY('POINT'),
-      allowNull: true
+      type: DataTypes.GEOMETRY('POINT')
     }
   }, {
     getterMethods: {
