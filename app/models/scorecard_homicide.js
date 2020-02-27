@@ -21,27 +21,27 @@ module.exports = (sequelize, DataTypes) => {
     },
     white_murders_unsolved: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     black_murders_unsolved: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     hispanic_murders_unsolved: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     white_murders_solved: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     black_murders_solved: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     hispanic_murders_solved: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     homicides_2013_2018: {
       type: DataTypes.INTEGER(10).UNSIGNED,

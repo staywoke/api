@@ -21,19 +21,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     total_budget: {
       type: DataTypes.DECIMAL(12, 2),
-      allowNull: false
+      allowNull: true
     },
     police_budget: {
       type: DataTypes.DECIMAL(11, 2),
-      allowNull: false
+      allowNull: true
     },
     education_budget: {
       type: DataTypes.DECIMAL(11, 2),
-      allowNull: false
+      allowNull: true
     },
     housing_budget: {
       type: DataTypes.DECIMAL(11, 2),
-      allowNull: false
+      allowNull: true
     }
   }, {
     indexes: [
