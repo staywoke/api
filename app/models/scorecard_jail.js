@@ -21,67 +21,67 @@ module.exports = (sequelize, DataTypes) => {
     },
     black_jail_population: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     hispanic_jail_population: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     white_jail_population: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     other_jail_population: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     avg_daily_jail_population: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     total_jail_population: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     unconvicted_jail_population: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     misdemeanor_jail_population: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     ice_holds: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     other_ice_transfers: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     violent_ice_transfers: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     drug_ice_transfers: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     jail_deaths_homicide: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     jail_deaths_suicide: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     jail_deaths_other: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     },
     jail_deaths_investigating: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      allowNull: true
     }
   }, {
     indexes: [
