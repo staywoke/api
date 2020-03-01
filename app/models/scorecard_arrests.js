@@ -1,13 +1,13 @@
 'use strict'
 
 /**
- * @module models/scorecard_approach_to_policing
+ * @module models/scorecard_arrests
  * @version 1.0.0
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
 module.exports = (sequelize, DataTypes) => {
-  const ScorecardApproachToPolicing = sequelize.define('scorecard_approach_to_policing', {
+  const ScorecardArrests = sequelize.define('scorecard_arrests', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     hispanic_arrests: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
-    asianpacific_arrests: {
+    asian_pacific_arrests: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     other_arrests: {
@@ -86,16 +86,16 @@ module.exports = (sequelize, DataTypes) => {
   /**
    * Setup Model Associations
    */
-  ScorecardApproachToPolicing.associate = (models) => {
+  ScorecardArrests.associate = (models) => {
     /**
      * Connect Approach to Policing to Agency
      */
-    models.scorecard_approach_to_policing.belongsTo(models.scorecard_agency, {
+    models.scorecard_arrests.belongsTo(models.scorecard_agency, {
       foreignKey: 'agency_id',
       targetKey: 'id',
       foreignKeyConstraint: true
     })
   }
 
-  return ScorecardApproachToPolicing
+  return ScorecardArrests
 }

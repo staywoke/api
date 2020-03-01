@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Agency Name will usually be Auto Generated from city / county name. But some data might not be tied to a city / county.'
     },
     type: {
-      type: DataTypes.ENUM('county-police', 'police-department', 'primary-state-le', 'regional-police', 'sheriff', 'special-police', 'ribal'),
+      type: DataTypes.ENUM('county-police', 'police-department', 'primary-state-le', 'regional-police', 'sheriff', 'special-police', 'tribal'),
       allowNull: false,
       defaultValue: 'police-department'
     },

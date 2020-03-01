@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     housing_budget: {
       type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    health_budget: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     }
   }, {
     indexes: [
