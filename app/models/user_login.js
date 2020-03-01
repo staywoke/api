@@ -23,32 +23,25 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     ip_address: {
-      type: DataTypes.STRING(15),
-      allowNull: true
+      type: DataTypes.STRING(15)
     },
     country: {
-      type: 'CHAR(2)',
-      allowNull: true
+      type: 'CHAR(2)'
     },
     city: {
-      type: DataTypes.STRING(50),
-      allowNull: true
+      type: DataTypes.STRING(50)
     },
     state: {
-      type: DataTypes.STRING(50),
-      allowNull: true
+      type: DataTypes.STRING(50)
     },
     postal_code: {
-      type: DataTypes.STRING(15),
-      allowNull: true
+      type: DataTypes.STRING(15)
     },
     latitude: {
-      type: DataTypes.DECIMAL(10, 6),
-      allowNull: true
+      type: DataTypes.DECIMAL(10, 6)
     },
     longitude: {
-      type: DataTypes.DECIMAL(10, 6),
-      allowNull: true
+      type: DataTypes.DECIMAL(10, 6)
     }
   }, {
     indexes: [
@@ -78,8 +71,7 @@ module.exports = (sequelize, DataTypes) => {
      * Setup Relationships of Users and Followers
      */
     models.users.hasMany(models.user_login, {
-      foreignKey: 'user_id',
-      allowNull: true
+      foreignKey: 'user_id'
     })
   }
 

@@ -15,8 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     user_id: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     approved_whitelist: {
       type: DataTypes.STRING,
@@ -53,7 +52,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     allow_content_management: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: false
     },
     allow_user_registration: {
@@ -71,12 +69,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'developer'
     },
     app_purpose: {
-      type: DataTypes.TEXT,
-      allowNull: true
+      type: DataTypes.TEXT
     },
     app_description: {
-      type: DataTypes.TEXT,
-      allowNull: true
+      type: DataTypes.TEXT
     },
     daily_limit: {
       type: DataTypes.INTEGER(10).UNSIGNED,
@@ -89,8 +85,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'pending_approval'
     },
     expire_date: {
-      type: DataTypes.DATE,
-      allowNull: true
+      type: DataTypes.DATE
     }
   }, {
     indexes: [

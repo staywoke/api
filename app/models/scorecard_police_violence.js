@@ -20,28 +20,22 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Foreign Key to scorecard_agency'
     },
     less_lethal_force_2016: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     less_lethal_force_2017: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     less_lethal_force_2018: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     police_shootings_2016: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     police_shootings_2017: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     police_shootings_2018: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     white_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED,
@@ -63,65 +57,51 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false
     },
-    people_unarmed: {
+    unarmed_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false
     },
-    people_in_vehicle: {
+    vehicle_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false
     },
-    people_armed_with_other: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
-    },
-    people_armed_with_gun: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
-    },
-    people_perceived_with_gun: {
+    armed_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false
     },
     fatality_rate: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     shot_first: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
-    killed_or_injured_armed_with_gun: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+    people_killed_or_injured_armed_with_gun: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
-    killed_or_injured_unarmed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+    people_killed_or_injured_gun_perceived: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
-    killed_or_injured_vehicle_incident: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+    people_killed_or_injured_unarmed: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
-    killed_or_injured_black: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+    people_killed_or_injured_vehicle_incident: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
-    killed_or_injured_white: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+    people_killed_or_injured_black: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
-    killed_or_injured_asianpacific: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+    people_killed_or_injured_white: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
-    killed_or_injured_other: {
+    people_killed_or_injured_asianpacific: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    people_killed_or_injured_other: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false
     },
     all_deadly_force_incidents: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     }
   }, {
     indexes: [
