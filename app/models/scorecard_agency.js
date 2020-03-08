@@ -28,12 +28,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     city_id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
       comment: 'Foreign Key to geo_cities'
     },
     county_id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
       comment: 'Foreign Key to geo_counties'
     },
     name: {
@@ -55,60 +53,77 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     white_population: {
-      type: DataTypes.DECIMAL(10, 8),
-      allowNull: false
+      type: DataTypes.DECIMAL(5, 2)
     },
     black_population: {
-      type: DataTypes.DECIMAL(10, 8),
-      allowNull: false
+      type: DataTypes.DECIMAL(5, 2)
     },
     hispanic_population: {
-      type: DataTypes.DECIMAL(10, 8),
-      allowNull: false
+      type: DataTypes.DECIMAL(5, 2)
     },
     asian_pacific_population: {
-      type: DataTypes.DECIMAL(10, 8),
-      allowNull: false
+      type: DataTypes.DECIMAL(5, 2)
     },
     other_population: {
-      type: DataTypes.DECIMAL(10, 8),
-      allowNull: false
+      type: DataTypes.DECIMAL(5, 2)
     },
     mayor_name: {
-      type: DataTypes.STRING(50),
-      allowNull: false
+      type: DataTypes.STRING(100)
     },
     mayor_email: {
       type: DataTypes.STRING(100),
-      allowNull: false,
+      allowNull: true,
       validate: {
-        isEmail: true
+        customValidator (value) {
+          // eslint-disable-next-line no-useless-escape
+          if (value && !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
+            throw new Error(`Invalid Email Address: "${value}"`)
+          }
+        }
       }
     },
     mayor_phone: {
       type: DataTypes.STRING(12),
-      allowNull: false,
+      allowNull: true,
       validate: {
-        is: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/i
+        customValidator (value) {
+          if (value && !/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(value)) {
+            throw new Error(`Invalid Phone Number: "${value}"`)
+          }
+        }
       }
     },
+    mayor_contact_url: {
+      type: DataTypes.STRING(255)
+    },
     police_chief_name: {
-      type: DataTypes.STRING(50),
-      allowNull: false
+      type: DataTypes.STRING(50)
     },
     police_chief_email: {
       type: DataTypes.STRING(100),
-      allowNull: false,
+      allowNull: true,
       validate: {
-        isEmail: true
+        customValidator (value) {
+          // eslint-disable-next-line no-useless-escape
+          if (value && !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
+            throw new Error(`Invalid Email Address: "${value}"`)
+          }
+        }
       }
     },
     police_chief_phone: {
       type: DataTypes.STRING(12),
-      allowNull: false,
+      allowNull: true,
       validate: {
-        is: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/i
+        customValidator (value) {
+          if (value && !/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/i.test(value)) {
+            throw new Error(`Invalid Phone Number: "${value}"`)
+          }
+        }
       }
+    },
+    police_chief_contact_url: {
+      type: DataTypes.STRING(255)
     }
   }, {
     getterMethods: {

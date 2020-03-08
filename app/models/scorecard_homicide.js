@@ -38,12 +38,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     homicides_2013_2018: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     homicides_2013_2018_solved: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     }
   }, {
     indexes: [

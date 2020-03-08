@@ -10144,7 +10144,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 20,
-        name: 'Lexington-Fayette urban county',
+        name: 'Lexington',
         fips_state_code: '21',
         fips_place_code: '46027',
         latitude: 38.06064780,
@@ -10240,7 +10240,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 20,
-        name: 'Louisville/Jefferson County',
+        name: 'Louisville',
         fips_state_code: '21',
         fips_place_code: '48006',
         latitude: 38.25266470,

@@ -104,10 +104,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN
     },
     policy_manual_link: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     police_union_contract_link: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     }
   }, {
     indexes: [

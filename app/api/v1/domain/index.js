@@ -24,5 +24,6 @@ module.exports = {
   UsersLocalAuthStrategyDomain: require('./users/local_auth_strategy'),
   UsersRegistrationDomain: require('./users/registration'),
   UsersRegistrationFormDomain: require('./users/registration_form'),
+  UpdateDomain: require('./update'),
   UtilDomain: require('./util')
 }

@@ -38,36 +38,28 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     white_killed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     black_killed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     hispanic_killed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     asian_pacific_killed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     other_killed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     unarmed_people_killed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     vehicle_people_killed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     armed_people_killed: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     fatality_rate: {
       type: DataTypes.INTEGER(10).UNSIGNED

@@ -112,7 +112,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 15,
-        name: 'Boise City',
+        name: 'Boise',
         fips_state_code: '16',
         fips_place_code: '08830',
         latitude: 43.61501860,

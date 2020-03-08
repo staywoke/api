@@ -1021,7 +1021,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Acadia Parish',
+        name: 'Acadia',
         fips_state_code: '22',
         fips_county_code: '001',
         created_date: new Date(),
@@ -1030,7 +1030,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Allen Parish',
+        name: 'Allen',
         fips_state_code: '22',
         fips_county_code: '003',
         created_date: new Date(),
@@ -1039,7 +1039,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Ascension Parish',
+        name: 'Ascension',
         fips_state_code: '22',
         fips_county_code: '005',
         created_date: new Date(),
@@ -1048,7 +1048,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Assumption Parish',
+        name: 'Assumption',
         fips_state_code: '22',
         fips_county_code: '007',
         created_date: new Date(),
@@ -1057,7 +1057,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Avoyelles Parish',
+        name: 'Avoyelles',
         fips_state_code: '22',
         fips_county_code: '009',
         created_date: new Date(),
@@ -1066,7 +1066,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Beauregard Parish',
+        name: 'Beauregard',
         fips_state_code: '22',
         fips_county_code: '011',
         created_date: new Date(),
@@ -1075,7 +1075,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Bienville Parish',
+        name: 'Bienville',
         fips_state_code: '22',
         fips_county_code: '013',
         created_date: new Date(),
@@ -1084,7 +1084,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Bossier Parish',
+        name: 'Bossier',
         fips_state_code: '22',
         fips_county_code: '015',
         created_date: new Date(),
@@ -1093,7 +1093,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Caddo Parish',
+        name: 'Caddo',
         fips_state_code: '22',
         fips_county_code: '017',
         created_date: new Date(),
@@ -1102,7 +1102,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Calcasieu Parish',
+        name: 'Calcasieu',
         fips_state_code: '22',
         fips_county_code: '019',
         created_date: new Date(),
@@ -1111,7 +1111,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Caldwell Parish',
+        name: 'Caldwell',
         fips_state_code: '22',
         fips_county_code: '021',
         created_date: new Date(),
@@ -1120,7 +1120,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Cameron Parish',
+        name: 'Cameron',
         fips_state_code: '22',
         fips_county_code: '023',
         created_date: new Date(),
@@ -1129,7 +1129,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Catahoula Parish',
+        name: 'Catahoula',
         fips_state_code: '22',
         fips_county_code: '025',
         created_date: new Date(),
@@ -1138,7 +1138,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Claiborne Parish',
+        name: 'Claiborne',
         fips_state_code: '22',
         fips_county_code: '027',
         created_date: new Date(),
@@ -1147,7 +1147,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Concordia Parish',
+        name: 'Concordia',
         fips_state_code: '22',
         fips_county_code: '029',
         created_date: new Date(),
@@ -1156,7 +1156,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'DeSoto Parish',
+        name: 'DeSoto',
         fips_state_code: '22',
         fips_county_code: '031',
         created_date: new Date(),
@@ -1165,7 +1165,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'East Baton Rouge Parish',
+        name: 'East Baton Rouge',
         fips_state_code: '22',
         fips_county_code: '033',
         created_date: new Date(),
@@ -1174,7 +1174,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'East Carroll Parish',
+        name: 'East Carroll',
         fips_state_code: '22',
         fips_county_code: '035',
         created_date: new Date(),
@@ -1183,7 +1183,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'East Feliciana Parish',
+        name: 'East Feliciana',
         fips_state_code: '22',
         fips_county_code: '037',
         created_date: new Date(),
@@ -1192,7 +1192,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Evangeline Parish',
+        name: 'Evangeline',
         fips_state_code: '22',
         fips_county_code: '039',
         created_date: new Date(),
@@ -1201,7 +1201,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Franklin Parish',
+        name: 'Franklin',
         fips_state_code: '22',
         fips_county_code: '041',
         created_date: new Date(),
@@ -1210,7 +1210,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Grant Parish',
+        name: 'Grant',
         fips_state_code: '22',
         fips_county_code: '043',
         created_date: new Date(),
@@ -1219,7 +1219,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Iberia Parish',
+        name: 'Iberia',
         fips_state_code: '22',
         fips_county_code: '045',
         created_date: new Date(),
@@ -1228,7 +1228,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Iberville Parish',
+        name: 'Iberville',
         fips_state_code: '22',
         fips_county_code: '047',
         created_date: new Date(),
@@ -1237,7 +1237,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Jackson Parish',
+        name: 'Jackson',
         fips_state_code: '22',
         fips_county_code: '049',
         created_date: new Date(),
@@ -1246,7 +1246,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Jefferson Parish',
+        name: 'Jefferson',
         fips_state_code: '22',
         fips_county_code: '051',
         created_date: new Date(),
@@ -1255,7 +1255,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Jefferson Davis Parish',
+        name: 'Jefferson Davis',
         fips_state_code: '22',
         fips_county_code: '053',
         created_date: new Date(),
@@ -1264,7 +1264,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Lafayette Parish',
+        name: 'Lafayette',
         fips_state_code: '22',
         fips_county_code: '055',
         created_date: new Date(),
@@ -1273,7 +1273,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Lafourche Parish',
+        name: 'Lafourche',
         fips_state_code: '22',
         fips_county_code: '057',
         created_date: new Date(),
@@ -1282,7 +1282,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'LaSalle Parish',
+        name: 'LaSalle',
         fips_state_code: '22',
         fips_county_code: '059',
         created_date: new Date(),
@@ -1291,7 +1291,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Lincoln Parish',
+        name: 'Lincoln',
         fips_state_code: '22',
         fips_county_code: '061',
         created_date: new Date(),
@@ -1300,7 +1300,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Livingston Parish',
+        name: 'Livingston',
         fips_state_code: '22',
         fips_county_code: '063',
         created_date: new Date(),
@@ -1309,7 +1309,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Madison Parish',
+        name: 'Madison',
         fips_state_code: '22',
         fips_county_code: '065',
         created_date: new Date(),
@@ -1318,7 +1318,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Morehouse Parish',
+        name: 'Morehouse',
         fips_state_code: '22',
         fips_county_code: '067',
         created_date: new Date(),
@@ -1327,7 +1327,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Natchitoches Parish',
+        name: 'Natchitoches',
         fips_state_code: '22',
         fips_county_code: '069',
         created_date: new Date(),
@@ -1336,7 +1336,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Orleans Parish',
+        name: 'Orleans',
         fips_state_code: '22',
         fips_county_code: '071',
         created_date: new Date(),
@@ -1345,7 +1345,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Ouachita Parish',
+        name: 'Ouachita',
         fips_state_code: '22',
         fips_county_code: '073',
         created_date: new Date(),
@@ -1354,7 +1354,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Plaquemines Parish',
+        name: 'Plaquemines',
         fips_state_code: '22',
         fips_county_code: '075',
         created_date: new Date(),
@@ -1363,7 +1363,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Pointe Coupee Parish',
+        name: 'Pointe Coupee',
         fips_state_code: '22',
         fips_county_code: '077',
         created_date: new Date(),
@@ -1372,7 +1372,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Rapides Parish',
+        name: 'Rapides',
         fips_state_code: '22',
         fips_county_code: '079',
         created_date: new Date(),
@@ -1381,7 +1381,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Red River Parish',
+        name: 'Red River',
         fips_state_code: '22',
         fips_county_code: '081',
         created_date: new Date(),
@@ -1390,7 +1390,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Richland Parish',
+        name: 'Richland',
         fips_state_code: '22',
         fips_county_code: '083',
         created_date: new Date(),
@@ -1399,7 +1399,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Sabine Parish',
+        name: 'Sabine',
         fips_state_code: '22',
         fips_county_code: '085',
         created_date: new Date(),
@@ -1408,7 +1408,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. Bernard Parish',
+        name: 'St. Bernard',
         fips_state_code: '22',
         fips_county_code: '087',
         created_date: new Date(),
@@ -1417,7 +1417,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. Charles Parish',
+        name: 'St. Charles',
         fips_state_code: '22',
         fips_county_code: '089',
         created_date: new Date(),
@@ -1426,7 +1426,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. Helena Parish',
+        name: 'St. Helena',
         fips_state_code: '22',
         fips_county_code: '091',
         created_date: new Date(),
@@ -1435,7 +1435,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. James Parish',
+        name: 'St. James',
         fips_state_code: '22',
         fips_county_code: '093',
         created_date: new Date(),
@@ -1444,7 +1444,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. John the Baptist Parish',
+        name: 'St. John the Baptist',
         fips_state_code: '22',
         fips_county_code: '095',
         created_date: new Date(),
@@ -1453,7 +1453,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. Landry Parish',
+        name: 'St. Landry',
         fips_state_code: '22',
         fips_county_code: '097',
         created_date: new Date(),
@@ -1462,7 +1462,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. Martin Parish',
+        name: 'St. Martin',
         fips_state_code: '22',
         fips_county_code: '099',
         created_date: new Date(),
@@ -1471,7 +1471,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. Mary Parish',
+        name: 'St. Mary',
         fips_state_code: '22',
         fips_county_code: '101',
         created_date: new Date(),
@@ -1480,7 +1480,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'St. Tammany Parish',
+        name: 'St. Tammany',
         fips_state_code: '22',
         fips_county_code: '103',
         created_date: new Date(),
@@ -1489,7 +1489,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Tangipahoa Parish',
+        name: 'Tangipahoa',
         fips_state_code: '22',
         fips_county_code: '105',
         created_date: new Date(),
@@ -1498,7 +1498,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Tensas Parish',
+        name: 'Tensas',
         fips_state_code: '22',
         fips_county_code: '107',
         created_date: new Date(),
@@ -1507,7 +1507,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Terrebonne Parish',
+        name: 'Terrebonne',
         fips_state_code: '22',
         fips_county_code: '109',
         created_date: new Date(),
@@ -1516,7 +1516,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Union Parish',
+        name: 'Union',
         fips_state_code: '22',
         fips_county_code: '111',
         created_date: new Date(),
@@ -1525,7 +1525,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Vermilion Parish',
+        name: 'Vermilion',
         fips_state_code: '22',
         fips_county_code: '113',
         created_date: new Date(),
@@ -1534,7 +1534,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Vernon Parish',
+        name: 'Vernon',
         fips_state_code: '22',
         fips_county_code: '115',
         created_date: new Date(),
@@ -1543,7 +1543,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Washington Parish',
+        name: 'Washington',
         fips_state_code: '22',
         fips_county_code: '117',
         created_date: new Date(),
@@ -1552,7 +1552,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Webster Parish',
+        name: 'Webster',
         fips_state_code: '22',
         fips_county_code: '119',
         created_date: new Date(),
@@ -1561,7 +1561,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'West Baton Rouge Parish',
+        name: 'West Baton Rouge',
         fips_state_code: '22',
         fips_county_code: '121',
         created_date: new Date(),
@@ -1570,7 +1570,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'West Carroll Parish',
+        name: 'West Carroll',
         fips_state_code: '22',
         fips_county_code: '123',
         created_date: new Date(),
@@ -1579,7 +1579,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'West Feliciana Parish',
+        name: 'West Feliciana',
         fips_state_code: '22',
         fips_county_code: '125',
         created_date: new Date(),
@@ -1588,7 +1588,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 21,
-        name: 'Winn Parish',
+        name: 'Winn',
         fips_state_code: '22',
         fips_county_code: '127',
         created_date: new Date(),

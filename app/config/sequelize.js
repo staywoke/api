@@ -14,6 +14,9 @@ const dbOptions = {
   host: dbHost,
   port: config.get('database.api.port'),
   dialect: 'mysql',
+  dialectOptions: {
+    supportBigNumbers: true
+  },
   logging: null,
   define: {
     freezeTableName: true,

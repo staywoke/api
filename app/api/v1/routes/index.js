@@ -15,6 +15,7 @@ const settings = require('./settings')
 const tags = require('./tags')
 const token = require('./token')
 const unauthorized = require('./unauthorized')
+const update = require('./update')
 
 const router = express.Router(config.router)
 const version = config.get('version')
@@ -27,5 +28,6 @@ router.use(`/${version}/`, settings)
 router.use(`/${version}/`, tags)
 router.use(`/${version}/`, token)
 router.use(`/${version}/`, unauthorized)
+router.use(`/${version}/`, update)
 
 module.exports = router

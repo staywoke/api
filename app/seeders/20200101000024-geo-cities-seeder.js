@@ -5152,7 +5152,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 47,
-        name: 'Nashville-Davidson',
+        name: 'Nashville',
         fips_state_code: '47',
         fips_place_code: '52006',
         latitude: 36.16266380,

@@ -148,7 +148,7 @@ module.exports = {
       {
         country_id: 1,
         state_id: 50,
-        name: 'West Valley City',
+        name: 'West Valley',
         fips_state_code: '49',
         fips_place_code: '83470',
         latitude: 40.69161320,
@@ -1186,6 +1186,18 @@ module.exports = {
         latitude: 36.76820880,
         longitude: -76.28749270,
         coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(36.76820880 -76.28749270)'),
+        created_date: new Date(),
+        modified_date: new Date()
+      },
+      {
+        country_id: 1,
+        state_id: 53,
+        name: 'Chesterfield',
+        fips_state_code: '51',
+        fips_place_code: '51041',
+        latitude: 37.3820398,
+        longitude: -77.5471664,
+        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(37.3820398 -77.5471664)'),
         created_date: new Date(),
         modified_date: new Date()
       },

@@ -253,6 +253,14 @@ const config = convict({
       env: 'API_LOGZIO_DEBUG',
       default: false
     }
+  },
+  documents: {
+    scorecard: {
+      doc: 'Scorecard Source Data URL for Google Spreadsheet',
+      format: String,
+      default: 'https://docs.google.com/spreadsheets/u/1/d/14ZrbaHnzb2eTtrwLS2o8CwNC7EJ90ZVHAVksf81Bfo8/export?format=csv&id=14ZrbaHnzb2eTtrwLS2o8CwNC7EJ90ZVHAVksf81Bfo8&gid=1623145710',
+      env: 'API_DOC_SCORECARD'
+    }
   }
 })
 

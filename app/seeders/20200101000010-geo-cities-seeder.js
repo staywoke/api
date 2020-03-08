@@ -5812,18 +5812,6 @@ module.exports = {
       {
         country_id: 1,
         state_id: 12,
-        name: 'Augusta-Richmond County',
-        fips_state_code: '13',
-        fips_place_code: '04204',
-        latitude: 33.47349780,
-        longitude: -82.01051480,
-        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(33.47349780 -82.01051480)'),
-        created_date: new Date(),
-        modified_date: new Date()
-      },
-      {
-        country_id: 1,
-        state_id: 12,
         name: 'Austell',
         fips_state_code: '13',
         fips_place_code: '04252',
