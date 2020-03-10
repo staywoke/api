@@ -25,16 +25,15 @@ router.route('/update/scorecard').get((request, response) => {
     UpdateDomain.validateScorecard().then(() => {
       // Import Scorecard
       UpdateDomain.importScorecard().then(() => {
-
+        // Send Success Response when Import Completed
+        response.json(util.createAPIResponse({
+          data: 'Success'
+        }, request.query.fields))
       }).catch(err => {
         response.json(util.createAPIResponse({
           errors: [err]
         }, request.query.fields))
       })
-
-      response.json(util.createAPIResponse({
-        data: 'Success'
-      }, request.query.fields))
     }).catch(err => {
       response.json(util.createAPIResponse({
         errors: [err]

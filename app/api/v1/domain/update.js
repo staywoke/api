@@ -9,9 +9,7 @@ const fs = require('fs')
 const https = require('https')
 const csv = require('csv-parse')
 
-const {
-  Op
-} = require('sequelize')
+const { Op } = require('sequelize')
 
 const config = require('../../../config')
 const logger = require('../../../logger')

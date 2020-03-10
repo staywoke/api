@@ -53,19 +53,19 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     white_population: {
-      type: DataTypes.DECIMAL(5, 2)
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     black_population: {
-      type: DataTypes.DECIMAL(5, 2)
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     hispanic_population: {
-      type: DataTypes.DECIMAL(5, 2)
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     asian_pacific_population: {
-      type: DataTypes.DECIMAL(5, 2)
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     other_population: {
-      type: DataTypes.DECIMAL(5, 2)
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     mayor_name: {
       type: DataTypes.STRING(100)
@@ -186,6 +186,49 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'county_id',
       targetKey: 'id',
       foreignKeyConstraint: true
+    })
+
+    // Link Connected Data
+    models.scorecard_agency.hasOne(models.scorecard_arrests, {
+      foreignKey: 'agency_id',
+      sourceKey: 'id',
+      as: 'arrests'
+    })
+
+    models.scorecard_agency.hasOne(models.scorecard_homicide, {
+      foreignKey: 'agency_id',
+      sourceKey: 'id',
+      as: 'homicide'
+    })
+
+    models.scorecard_agency.hasOne(models.scorecard_jail, {
+      foreignKey: 'agency_id',
+      sourceKey: 'id',
+      as: 'jail'
+    })
+
+    models.scorecard_agency.hasOne(models.scorecard_police_accountability, {
+      foreignKey: 'agency_id',
+      sourceKey: 'id',
+      as: 'police_accountability'
+    })
+
+    models.scorecard_agency.hasOne(models.scorecard_police_funding, {
+      foreignKey: 'agency_id',
+      sourceKey: 'id',
+      as: 'police_funding'
+    })
+
+    models.scorecard_agency.hasOne(models.scorecard_police_violence, {
+      foreignKey: 'agency_id',
+      sourceKey: 'id',
+      as: 'police_violence'
+    })
+
+    models.scorecard_agency.hasOne(models.scorecard_policy, {
+      foreignKey: 'agency_id',
+      sourceKey: 'id',
+      as: 'policy'
     })
   }
 

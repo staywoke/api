@@ -12,6 +12,245 @@ const _ = require('lodash')
  */
 module.exports = {
   /**
+   * States are not going to change, so doing a database lookup is not necessary 100% of the time
+   * @param {string} abbr
+   */
+  getStateByID (abbr) {
+    const mapping = {
+      AL: {
+        id: 1,
+        name: 'Alabama'
+      },
+      AK: {
+        id: 2,
+        name: 'Alaska'
+      },
+      AS: {
+        id: 3,
+        name: 'American Samoa'
+      },
+      AZ: {
+        id: 4,
+        name: 'Arizona'
+      },
+      AR: {
+        id: 5,
+        name: 'Arkansas'
+      },
+      CA: {
+        id: 6,
+        name: 'California'
+      },
+      CO: {
+        id: 7,
+        name: 'Colorado'
+      },
+      CT: {
+        id: 8,
+        name: 'Connecticut'
+      },
+      DE: {
+        id: 9,
+        name: 'Delaware'
+      },
+      DC: {
+        id: 10,
+        name: 'District of Columbia'
+      },
+      FL: {
+        id: 11,
+        name: 'Florida'
+      },
+      GA: {
+        id: 12,
+        name: 'Georgia'
+      },
+      GU: {
+        id: 13,
+        name: 'Guam'
+      },
+      HI: {
+        id: 14,
+        name: 'Hawaii'
+      },
+      ID: {
+        id: 15,
+        name: 'Idaho'
+      },
+      IL: {
+        id: 16,
+        name: 'Illinois'
+      },
+      IN: {
+        id: 17,
+        name: 'Indiana'
+      },
+      IA: {
+        id: 18,
+        name: 'Iowa'
+      },
+      KS: {
+        id: 19,
+        name: 'Kansas'
+      },
+      KY: {
+        id: 20,
+        name: 'Kentucky'
+      },
+      LA: {
+        id: 21,
+        name: 'Louisiana'
+      },
+      ME: {
+        id: 22,
+        name: 'Maine'
+      },
+      MD: {
+        id: 23,
+        name: 'Maryland'
+      },
+      MA: {
+        id: 24,
+        name: 'Massachusetts'
+      },
+      MI: {
+        id: 25,
+        name: 'Michigan'
+      },
+      MN: {
+        id: 26,
+        name: 'Minnesota'
+      },
+      MS: {
+        id: 27,
+        name: 'Mississippi'
+      },
+      MO: {
+        id: 28,
+        name: 'Missouri'
+      },
+      MT: {
+        id: 29,
+        name: 'Montana'
+      },
+      NE: {
+        id: 30,
+        name: 'Nebraska'
+      },
+      NV: {
+        id: 31,
+        name: 'Nevada'
+      },
+      NH: {
+        id: 32,
+        name: 'New Hampshire'
+      },
+      NJ: {
+        id: 33,
+        name: 'New Jersey'
+      },
+      NM: {
+        id: 34,
+        name: 'New Mexico'
+      },
+      NY: {
+        id: 35,
+        name: 'New York'
+      },
+      NC: {
+        id: 36,
+        name: 'North Carolina'
+      },
+      ND: {
+        id: 37,
+        name: 'North Dakota'
+      },
+      MP: {
+        id: 38,
+        name: 'Northern Mariana Islands'
+      },
+      OH: {
+        id: 39,
+        name: 'Ohio'
+      },
+      OK: {
+        id: 40,
+        name: 'Oklahoma'
+      },
+      OR: {
+        id: 41,
+        name: 'Oregon'
+      },
+      PA: {
+        id: 42,
+        name: 'Pennsylvania'
+      },
+      PR: {
+        id: 43,
+        name: 'Puerto Rico'
+      },
+      RI: {
+        id: 44,
+        name: 'Rhode Island'
+      },
+      SC: {
+        id: 45,
+        name: 'South Carolina'
+      },
+      SD: {
+        id: 46,
+        name: 'South Dakota'
+      },
+      TN: {
+        id: 47,
+        name: 'Tennessee'
+      },
+      TX: {
+        id: 48,
+        name: 'Texas'
+      },
+      UM: {
+        id: 49,
+        name: 'United States Minor Outlying Islands'
+      },
+      UT: {
+        id: 50,
+        name: 'Utah'
+      },
+      VT: {
+        id: 51,
+        name: 'Vermont'
+      },
+      VI: {
+        id: 52,
+        name: 'Virgin Islands, U.S.'
+      },
+      VA: {
+        id: 53,
+        name: 'Virginia'
+      },
+      WA: {
+        id: 54,
+        name: 'Washington'
+      },
+      WV: {
+        id: 55,
+        name: 'West Virginia'
+      },
+      WI: {
+        id: 56,
+        name: 'Wisconsin'
+      },
+      WY: {
+        id: 57,
+        name: 'Wyoming'
+      }
+    }
+
+    return mapping[abbr]
+  },
+
+  /**
    * Takes a string of comma-separated numbers, e.g. "1,5,7", splits by comma and returns an array of integers, pruning out anything that's not an integer
    * @param  {string} str Comma-separated numbers
    * @return {array}

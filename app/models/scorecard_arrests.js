@@ -90,10 +90,11 @@ module.exports = (sequelize, DataTypes) => {
     /**
      * Connect Approach to Policing to Agency
      */
-    models.scorecard_arrests.belongsTo(models.scorecard_agency, {
+    ScorecardArrests.belongsTo(models.scorecard_agency, {
       foreignKey: 'agency_id',
       targetKey: 'id',
-      foreignKeyConstraint: true
+      foreignKeyConstraint: true,
+      as: 'arrests'
     })
   }
 
