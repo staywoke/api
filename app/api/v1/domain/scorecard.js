@@ -59,7 +59,7 @@ module.exports = {
     }).then((result) => {
       if (result && result.dataValues) {
         const omitColumns = ['id', 'country_id', 'state_id', 'city_id', 'county_id', 'agency_id', 'created_date', 'modified_date', 'deletedAt']
-        const agency = _.omit(result.dataValues, ['arrests', 'homicide', 'jail', 'police_accountability', 'police_funding', 'police_violence', 'policy', 'created_date', 'modified_date', 'deletedAt'])
+        const agency = _.omit(result.dataValues, ['id', 'country_id', 'state_id', 'city_id', 'county_id', 'arrests', 'homicide', 'jail', 'police_accountability', 'police_funding', 'police_violence', 'policy', 'created_date', 'modified_date', 'deletedAt'])
 
         return {
           agency: util.sortByKeys(agency),
