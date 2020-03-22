@@ -158,7 +158,8 @@ module.exports = (sequelize, DataTypes) => {
     models.scorecard_agency.belongsTo(models.geo_countries, {
       foreignKey: 'country_id',
       targetKey: 'id',
-      foreignKeyConstraint: true
+      foreignKeyConstraint: true,
+      as: 'country'
     })
 
     /**
@@ -167,7 +168,8 @@ module.exports = (sequelize, DataTypes) => {
     models.scorecard_agency.belongsTo(models.geo_states, {
       foreignKey: 'state_id',
       targetKey: 'id',
-      foreignKeyConstraint: true
+      foreignKeyConstraint: true,
+      as: 'state'
     })
 
     /**
@@ -176,7 +178,8 @@ module.exports = (sequelize, DataTypes) => {
     models.scorecard_agency.belongsTo(models.geo_cities, {
       foreignKey: 'city_id',
       targetKey: 'id',
-      foreignKeyConstraint: true
+      foreignKeyConstraint: true,
+      as: 'city'
     })
 
     /**
@@ -185,7 +188,8 @@ module.exports = (sequelize, DataTypes) => {
     models.scorecard_agency.belongsTo(models.geo_counties, {
       foreignKey: 'county_id',
       targetKey: 'id',
-      foreignKeyConstraint: true
+      foreignKeyConstraint: true,
+      as: 'county'
     })
 
     // Link Connected Data
@@ -229,6 +233,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'agency_id',
       sourceKey: 'id',
       as: 'policy'
+    })
+
+    models.scorecard_agency.hasOne(models.scorecard_report, {
+      foreignKey: 'agency_id',
+      sourceKey: 'id',
+      as: 'report'
     })
   }
 

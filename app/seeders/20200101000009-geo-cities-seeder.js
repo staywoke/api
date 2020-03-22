@@ -7804,6 +7804,18 @@ module.exports = {
       {
         country_id: 1,
         state_id: 6,
+        name: 'Ventura',
+        fips_state_code: '06',
+        fips_place_code: '06111',
+        latitude: 34.3023856,
+        longitude: -119.3888723,
+        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(34.3023856 -119.3888723)'),
+        created_date: new Date(),
+        modified_date: new Date()
+      },
+      {
+        country_id: 1,
+        state_id: 6,
         name: 'Victorville',
         fips_state_code: '06',
         fips_place_code: '82590',

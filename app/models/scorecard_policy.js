@@ -91,10 +91,10 @@ module.exports = (sequelize, DataTypes) => {
     policy_language_requires_comprehensive_reporting: {
       type: DataTypes.BOOLEAN
     },
-    requires_exhaust_all_other_means_before_shooting: {
+    requires_exhaust_other_means_before_shooting: {
       type: DataTypes.BOOLEAN
     },
-    policy_language_requires_exhaust_all_other_means_before_shooting: {
+    policy_language_requires_exhaust_other_means_before_shooting: {
       type: DataTypes.BOOLEAN
     },
     has_use_of_force_continuum: {

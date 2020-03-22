@@ -12,7 +12,6 @@ const csv = require('csv-parse')
 const { Op } = require('sequelize')
 
 const config = require('../../../config')
-const logger = require('../../../logger')
 const models = require('../../../models')
 const util = require('./util')
 
@@ -90,6 +89,7 @@ const SCORECARD_COLUMNS = [
   'hispanic_drug_arrests',
   'white_drug_arrests',
   'other_drug_arrests',
+  'nonblack_drug_arrests',
   'white_murders_unsolved',
   'black_murders_unsolved',
   'hispanic_murders_unsolved',
@@ -169,11 +169,22 @@ const SCORECARD_COLUMNS = [
   'calc_percentile_jail_incarceration_per_1k_population',
   'calc_jail_deaths_per_1k_jail_population',
   'calc_percentile_jail_deaths_per_1k_jail_population',
-  'calc_black_white_drug_arrest_disparity',
+  'calc_black_drug_arrest_disparity',
+  'calc_black_deadly_force_disparity_per_arrest',
+  'calc_overall_disparity_index',
+  'calc_percentile_overall_disparity_index',
   'calc_overall_score',
   'calc_police_violence_score',
   'calc_police_accountability_score',
   'calc_approach_to_policing_score',
+  'calc_police_spending_per_resident',
+  'calc_percentile_police_spending',
+  'change_overall_score',
+  'change_police_violence_score',
+  'change_police_accountability_score',
+  'change_approach_to_policing_score',
+  'currently_updating_use_of_force',
+  'currently_updating_union_contract',
   'include_in_scorecard'
 ]
 
@@ -292,8 +303,22 @@ const __upsertScorecardAgency = (scorecard, condition) => {
 
       return agency
     })
+    .then(agency => {
+      if (typeof agency.id !== 'undefined') {
+        const data = Object.assign({}, scorecard.report)
+        const where = {
+          agency_id: agency.id
+        }
+
+        data.agency_id = agency.id
+
+        __upsertScorecardReport(data, where)
+      }
+
+      return agency
+    })
     .catch(err => {
-      logger.error(`ERROR __upsertScorecardAgency: ${err.message}`)
+      throw new Error(err)
     })
 }
 
@@ -316,8 +341,7 @@ const __upsertScorecardArrests = (scorecard, condition) => {
       return models.scorecard_arrests.create(scorecard)
     })
     .catch(err => {
-      logger.error(`ERROR __upsertScorecardArrests: ${err.message}`)
-      logger.error(scorecard)
+      throw new Error(`ERROR __upsertScorecardArrests: ${err.message}`)
     })
 }
 
@@ -340,8 +364,7 @@ const __upsertScorecardHomicide = (scorecard, condition) => {
       return models.scorecard_homicide.create(scorecard)
     })
     .catch(err => {
-      logger.error(`ERROR __upsertScorecardHomicide: ${err.message}`)
-      logger.error(scorecard)
+      throw new Error(`ERROR __upsertScorecardHomicide: ${err.message}`)
     })
 }
 
@@ -364,8 +387,7 @@ const __upsertScorecardJail = (scorecard, condition) => {
       return models.scorecard_jail.create(scorecard)
     })
     .catch(err => {
-      logger.error(`ERROR __upsertScorecardJail: ${err.message}`)
-      logger.error(scorecard)
+      throw new Error(`ERROR __upsertScorecardJail: ${err.message}`)
     })
 }
 
@@ -388,8 +410,7 @@ const __upsertScorecardPoliceAccountability = (scorecard, condition) => {
       return models.scorecard_police_accountability.create(scorecard)
     })
     .catch(err => {
-      logger.error(`ERROR __upsertScorecardPoliceAccountability: ${err.message}`)
-      logger.error(scorecard)
+      throw new Error(`ERROR __upsertScorecardPoliceAccountability: ${err.message}`)
     })
 }
 
@@ -412,8 +433,7 @@ const __upsertScorecardPoliceFunding = (scorecard, condition) => {
       return models.scorecard_police_funding.create(scorecard)
     })
     .catch(err => {
-      logger.error(`ERROR __upsertScorecardPoliceFunding: ${err.message}`)
-      logger.error(scorecard)
+      throw new Error(`ERROR __upsertScorecardPoliceFunding: ${err.message}`)
     })
 }
 
@@ -436,8 +456,7 @@ const __upsertScorecardPoliceViolence = (scorecard, condition) => {
       return models.scorecard_police_violence.create(scorecard)
     })
     .catch(err => {
-      logger.error(`ERROR __upsertScorecardPoliceViolence: ${err.message}`)
-      logger.error(scorecard)
+      throw new Error(`ERROR __upsertScorecardPoliceViolence: ${err.message}`)
     })
 }
 
@@ -460,8 +479,30 @@ const __upsertScorecardPolicy = (scorecard, condition) => {
       return models.scorecard_policy.create(scorecard)
     })
     .catch(err => {
-      logger.error(`ERROR __upsertScorecardPolicy: ${err.message}`)
-      logger.error(scorecard)
+      throw new Error(`ERROR __upsertScorecardPolicy: ${err.message}`)
+    })
+}
+
+/**
+ * Update or Insert Scorecard Report
+ * @param {Object} scorecard
+ * @param {Object} condition
+ */
+const __upsertScorecardReport = (scorecard, condition) => {
+  return models.scorecard_report.findOne({
+    where: condition
+  })
+    .then(report => {
+      // update
+      if (report) {
+        return report.update(scorecard)
+      }
+
+      // insert
+      return models.scorecard_report.create(scorecard)
+    })
+    .catch(err => {
+      throw new Error(`ERROR __upsertScorecardReport: ${err.message}`)
     })
 }
 
@@ -534,22 +575,44 @@ module.exports = {
           currentRow += 1
         })
         .on('end', () => {
-          return resolve()
+          return resolve(currentRow)
+        })
+        .on('error', (err) => {
+          return reject(err)
         })
     })
   },
 
-  importScorecard () {
+  importScorecard (rowCount) {
     return new Promise((resolve, reject) => {
       // Setup Stream to Read CSV File
       const scorecard = fs.createReadStream(SCORECARD_PATH)
+      const importErrors = []
+      const importWarnings = []
+      const processed = []
+
+      const checkComplete = () => {
+        if (processed.length === (rowCount - 1)) {
+          resolve({
+            data: processed,
+            errors: importErrors,
+            warnings: importWarnings
+          })
+        }
+      }
+
+      // Set the encoding to be utf8
+      scorecard.setEncoding('UTF8')
 
       // Loop through each row of CSV
-      scorecard.pipe(
+      scorecard.on('error', (err) => {
+        importWarnings.push(err)
+      }).pipe(
         csv({
           columns: true,
           trim: true,
-          skip_empty_lines: true
+          skip_empty_lines: true,
+          skip_lines_with_error: true
         })
       )
         .on('data', row => {
@@ -591,7 +654,8 @@ module.exports = {
               black_drug_arrests: util.parseInt(row.black_drug_arrests),
               hispanic_drug_arrests: util.parseInt(row.hispanic_drug_arrests),
               white_drug_arrests: util.parseInt(row.white_drug_arrests),
-              other_drug_arrests: util.parseInt(row.other_drug_arrests)
+              other_drug_arrests: util.parseInt(row.other_drug_arrests),
+              nonblack_drug_arrests: util.parseInt(row.nonblack_drug_arrests)
             },
             homicide: {
               white_murders_unsolved: util.parseInt(row.white_murders_unsolved),
@@ -647,11 +711,11 @@ module.exports = {
               police_shootings_2016: util.parseInt(row.police_shootings_2016),
               police_shootings_2017: util.parseInt(row.police_shootings_2017),
               police_shootings_2018: util.parseInt(row.police_shootings_2018),
-              white_killed: util.parseInt(row.white_killed),
-              black_killed: util.parseInt(row.black_killed),
-              hispanic_killed: util.parseInt(row.hispanic_killed),
-              asian_pacific_killed: util.parseInt(row.asian_pacific_killed),
-              other_killed: util.parseInt(row.other_killed),
+              white_people_killed: util.parseInt(row.white_people_killed),
+              black_people_killed: util.parseInt(row.black_people_killed),
+              hispanic_people_killed: util.parseInt(row.hispanic_people_killed),
+              asian_pacific_people_killed: util.parseInt(row.asian_pacific_people_killed),
+              other_people_killed: util.parseInt(row.other_people_killed),
               unarmed_people_killed: util.parseInt(row.unarmed_people_killed),
               vehicle_people_killed: util.parseInt(row.vehicle_people_killed),
               armed_people_killed: util.parseInt(row.armed_people_killed),
@@ -693,12 +757,50 @@ module.exports = {
               policy_language_restricts_shooting_at_moving_vehicles: util.parseBoolean(row.policy_language_restricts_shooting_at_moving_vehicles),
               requires_comprehensive_reporting: util.parseBoolean(row.requires_comprehensive_reporting),
               policy_language_requires_comprehensive_reporting: util.parseBoolean(row.policy_language_requires_comprehensive_reporting),
-              requires_exhaust_all_other_means_before_shooting: util.parseBoolean(row.requires_exhaust_all_other_means_before_shooting),
-              policy_language_requires_exhaust_all_other_means_before_shooting: util.parseBoolean(row.policy_language_requires_exhaust_all_other_means_before_shooting),
+              requires_exhaust_other_means_before_shooting: util.parseBoolean(row.requires_exhaust_other_means_before_shooting),
+              policy_language_requires_exhaust_other_means_before_shooting: util.parseBoolean(row.policy_language_requires_exhaust_other_means_before_shooting),
               has_use_of_force_continuum: util.parseBoolean(row.has_use_of_force_continuum),
               policy_language_has_use_of_force_continuum: util.parseBoolean(row.policy_language_has_use_of_force_continuum),
               policy_manual_link: util.parseURL(row.policy_manual_link),
               police_union_contract_link: util.parseURL(row.police_union_contract_link)
+            },
+            report: {
+              approach_to_policing_score: util.parseInt(row.calc_approach_to_policing_score),
+              black_deadly_force_disparity_per_arrest: util.parseFloat(row.calc_black_deadly_force_disparity_per_arrest),
+              black_drug_arrest_disparity: util.parseFloat(row.calc_black_drug_arrest_disparity),
+              change_approach_to_policing_score: util.parseInt(row.change_approach_to_policing_score),
+              change_overall_score: util.parseInt(row.change_overall_score),
+              change_police_accountability_score: util.parseInt(row.change_police_accountability_score),
+              change_police_violence_score: util.parseInt(row.change_police_violence_score),
+              complaints_sustained: util.parseInt(row.calc_complaints_sustained),
+              currently_updating_union_contract: util.parseBoolean(row.currently_updating_union_contract),
+              currently_updating_use_of_force: util.parseBoolean(row.currently_updating_use_of_force),
+              jail_deaths_per_1k_jail_population: util.parseFloat(row.calc_jail_deaths_per_1k_jail_population),
+              jail_incarceration_per_1k_population: util.parseFloat(row.calc_jail_incarceration_per_1k_population),
+              killed_by_police_per_10k_arrests: util.parseFloat(row.calc_killed_by_police_per_10k_arrests),
+              less_lethal_per_10k_arrests: util.parseFloat(row.calc_less_lethal_per_10k_arrests),
+              low_level_arrests_per_1k_population: util.parseFloat(row.calc_low_level_arrests_per_1k_population),
+              overall_disparity_index: util.parseFloat(row.calc_overall_disparity_index),
+              overall_score: util.parseInt(row.calc_overall_score),
+              percent_complaints_in_detention_sustained: util.parseInt(row.calc_percent_complaints_in_detention_sustained),
+              percent_criminal_complaints_sustained: util.parseInt(row.calc_percent_criminal_complaints_sustained),
+              percent_discrimination_complaints_sustained: util.parseInt(row.calc_percent_discrimination_complaints_sustained),
+              percent_murders_solved: util.parseInt(row.calc_percent_murders_solved),
+              percent_use_of_force_complaints_sustained: util.parseInt(row.calc_percent_use_of_force_complaints_sustained),
+              percentile_complaints_sustained: util.parseInt(row.calc_percentile_complaints_sustained),
+              percentile_jail_deaths_per_1k_jail_population: util.parseInt(row.calc_percentile_jail_deaths_per_1k_jail_population),
+              percentile_jail_incarceration_per_1k_population: util.parseInt(row.calc_percentile_jail_incarceration_per_1k_population),
+              percentile_killed_by_police: util.parseInt(row.calc_percentile_killed_by_police),
+              percentile_less_lethal_force: util.parseInt(row.calc_percentile_less_lethal_force),
+              percentile_low_level_arrests_per_1k_population: util.parseInt(row.calc_percentile_low_level_arrests_per_1k_population),
+              percentile_overall_disparity_index: util.parseFloat(row.calc_percentile_overall_disparity_index),
+              percentile_police_spending: util.parseInt(row.calc_percentile_police_spending),
+              percentile_unarmed_killed_by_police: util.parseInt(row.calc_percentile_unarmed_killed_by_police),
+              police_accountability_score: util.parseInt(row.calc_police_accountability_score),
+              police_spending_per_resident: util.parseFloat(row.calc_police_spending_per_resident),
+              police_violence_score: util.parseInt(row.calc_police_violence_score),
+              total_less_lethal_force_estimated: util.parseFloat(row.calc_total_less_lethal_force_estimated),
+              unarmed_killed_by_police_per_10k_arrests: util.parseFloat(row.calc_unarmed_killed_by_police_per_10k_arrests)
             }
           }
 
@@ -724,15 +826,51 @@ module.exports = {
                 cleanData.agency.county_id = result.id
 
                 // Update or Insert Agency
-                return __upsertScorecardAgency(cleanData, {
+                __upsertScorecardAgency(cleanData, {
                   country_id: cleanData.agency.country_id,
                   state_id: cleanData.agency.state_id,
                   county_id: cleanData.agency.county_id,
                   type: cleanData.agency.type
+                }).then(() => {
+                  processed.push({
+                    success: true,
+                    message: 'Imported Successfully',
+                    location: `${util.titleCase(row.location_name)}, ${row.state}`
+                  })
+
+                  checkComplete()
+                }).catch((err) => {
+                  importErrors.push(`${util.titleCase(row.location_name)}, ${row.state}: ${err.message}`)
+
+                  processed.push({
+                    success: false,
+                    message: err.message,
+                    location: `${util.titleCase(row.location_name)}, ${row.state}`
+                  })
+
+                  checkComplete()
                 })
               } else {
-                return reject(`ERROR: Could Not Locate County - ${util.titleCase(row.location_name)}, ${row.state}`)
+                importWarnings.push(`${util.titleCase(row.location_name)}, ${row.state}: Could Not Locate County`)
+
+                processed.push({
+                  success: false,
+                  message: 'Could Not Locate County',
+                  location: `${util.titleCase(row.location_name)}, ${row.state}`
+                })
+
+                checkComplete()
               }
+            }).catch((err) => {
+              importErrors.push(err)
+
+              processed.push({
+                success: false,
+                message: err.message,
+                location: `${util.titleCase(row.location_name)}, ${row.state}`
+              })
+
+              checkComplete()
             })
           } else if (row.agency_type === 'police-department') {
             // Search Counties for Sheriff Department
@@ -756,20 +894,61 @@ module.exports = {
                 cleanData.agency.city_id = result.id
 
                 // Update or Insert Agency
-                return __upsertScorecardAgency(cleanData, {
+                __upsertScorecardAgency(cleanData, {
                   country_id: cleanData.agency.country_id,
                   state_id: cleanData.agency.state_id,
                   city_id: cleanData.agency.city_id,
                   type: cleanData.agency.type
+                }).then(() => {
+                  processed.push({
+                    success: true,
+                    message: 'Imported Successfully',
+                    location: `${util.titleCase(row.location_name)}, ${row.state}`
+                  })
+
+                  checkComplete()
+                }).catch((err) => {
+                  importErrors.push(`${util.titleCase(row.location_name)}, ${row.state}: ${err.message}`)
+
+                  processed.push({
+                    success: false,
+                    message: err.message,
+                    location: `${util.titleCase(row.location_name)}, ${row.state}`
+                  })
+
+                  checkComplete()
                 })
               } else {
-                return reject(`ERROR: Could Not Locate City - ${util.titleCase(row.location_name)}, ${row.state}`)
+                importWarnings.push(`${util.titleCase(row.location_name)}, ${row.state}: Could Not Locate City`)
+
+                processed.push({
+                  success: false,
+                  message: 'Could Not Locate City',
+                  location: `${util.titleCase(row.location_name)}, ${row.state}`
+                })
+
+                checkComplete()
               }
+            }).catch((err) => {
+              importErrors.push(err)
+
+              processed.push({
+                success: false,
+                message: err.message,
+                location: `${util.titleCase(row.location_name)}, ${row.state}`
+              })
+
+              checkComplete()
             })
+          } else {
+            processed.push({
+              success: false,
+              message: `Skipped ${row.agency_type}`,
+              location: `${util.titleCase(row.location_name)}, ${row.state}`
+            })
+
+            checkComplete()
           }
-        })
-        .on('end', () => {
-          return resolve()
         })
     })
   }

@@ -74,6 +74,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     other_drug_arrests: {
       type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    nonblack_drug_arrests: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     }
   }, {
     indexes: [

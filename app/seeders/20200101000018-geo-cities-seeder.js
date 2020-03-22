@@ -11668,6 +11668,18 @@ module.exports = {
       {
         country_id: 1,
         state_id: 33,
+        name: 'Edison',
+        fips_state_code: '34',
+        fips_place_code: '34023',
+        latitude: 40.5381442,
+        longitude: -74.4131301,
+        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(40.5381442 -74.4131301)'),
+        created_date: new Date(),
+        modified_date: new Date()
+      },
+      {
+        country_id: 1,
+        state_id: 33,
         name: 'Egg Harbor City',
         fips_state_code: '34',
         fips_place_code: '20350',

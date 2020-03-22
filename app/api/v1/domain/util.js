@@ -11,6 +11,75 @@ const _ = require('lodash')
  * @type {Object}
  */
 module.exports = {
+  getGrade (score) {
+    if (score <= 59) {
+      return {
+        letter: 'F',
+        marker: 'f'
+      }
+    } else if (score <= 62 && score >= 60) {
+      return {
+        letter: 'D-',
+        marker: 'd-minus'
+      }
+    } else if (score <= 66 && score >= 63) {
+      return {
+        letter: 'D',
+        marker: 'd'
+      }
+    } else if (score <= 69 && score >= 67) {
+      return {
+        letter: 'D+',
+        marker: 'd-plus'
+      }
+    } else if (score <= 72 && score >= 70) {
+      return {
+        letter: 'C-',
+        marker: 'c-minus'
+      }
+    } else if (score <= 76 && score >= 73) {
+      return {
+        letter: 'C',
+        marker: 'c'
+      }
+    } else if (score <= 79 && score >= 77) {
+      return {
+        letter: 'C+',
+        marker: 'c-plus'
+      }
+    } else if (score <= 82 && score >= 80) {
+      return {
+        letter: 'B-',
+        marker: 'b-minus'
+      }
+    } else if (score <= 86 && score >= 83) {
+      return {
+        letter: 'B',
+        marker: 'b'
+      }
+    } else if (score <= 89 && score >= 87) {
+      return {
+        letter: 'B+',
+        marker: 'b-plus'
+      }
+    } else if (score <= 92 && score >= 90) {
+      return {
+        letter: 'A-',
+        marker: 'a-minus'
+      }
+    } else if (score <= 97 && score >= 93) {
+      return {
+        letter: 'A',
+        marker: 'a'
+      }
+    } else if (score >= 98) {
+      return {
+        letter: 'A+',
+        marker: 'a-plus'
+      }
+    }
+  },
+
   /**
    * States are not going to change, so doing a database lookup is not necessary 100% of the time
    * @param {string} abbr
@@ -247,7 +316,7 @@ module.exports = {
       }
     }
 
-    return mapping[abbr]
+    return mapping[abbr.toUpperCase()]
   },
 
   /**
@@ -280,7 +349,7 @@ module.exports = {
       } else if (val === 1) {
         return true
       }
-    } else if (typeof val === 'string') {
+    } else if (typeof val === 'string' && val !== '') {
       if (val.trim() === '0' || val.trim().toUpperCase() === 'N' || val.trim().toUpperCase() === 'NO') {
         return false
       } else if (val.trim() === '1' || val.trim().toUpperCase() === 'Y' || val.trim().toUpperCase() === 'YES') {
@@ -296,7 +365,7 @@ module.exports = {
    * @param {*} val
    */
   parseEmail (val) {
-    if (typeof val === 'string') {
+    if (typeof val === 'string' && val !== '') {
       // eslint-disable-next-line no-useless-escape
       const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return pattern.test(val) ? val.toLowerCase() : null
@@ -312,8 +381,8 @@ module.exports = {
   parseFloat (val) {
     if (typeof val === 'number') {
       return parseFloat(val)
-    } else if (typeof val === 'string') {
-      return parseFloat(val.trim().replace('$', '').replace(/,/g, ''))
+    } else if (typeof val === 'string' && val !== '') {
+      return parseFloat(val.replace(/[^0-9.]/g, ''))
     }
 
     return null
@@ -326,8 +395,8 @@ module.exports = {
   parseInt (val) {
     if (typeof val === 'number') {
       return parseInt(val)
-    } else if (typeof val === 'string') {
-      return parseInt(val.trim().replace('$', '').replace(/,/g, ''))
+    } else if (typeof val === 'string' && val !== '') {
+      return parseInt(val.replace(/[^0-9.]/g, ''))
     }
 
     return null
@@ -338,7 +407,7 @@ module.exports = {
    * @param {*} val
    */
   parsePhone (val) {
-    if (typeof val === 'string') {
+    if (typeof val === 'string' && val !== '') {
       const pattern = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/
       return pattern.test(val) ? val : null
     }
@@ -353,7 +422,7 @@ module.exports = {
   parseString (val) {
     if (typeof val === 'number') {
       return val.toString()
-    } else if (typeof val === 'string') {
+    } else if (typeof val === 'string' && val !== '') {
       return (val.trim() !== '') ? val.trim() : null
     }
 
@@ -365,7 +434,7 @@ module.exports = {
    * @param {*} val
    */
   parseURL (val) {
-    if (typeof val === 'string') {
+    if (typeof val === 'string' && val !== '') {
       try {
         // eslint-disable-next-line no-new
         new URL(val)

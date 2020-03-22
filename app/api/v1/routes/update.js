@@ -21,13 +21,15 @@ const router = express.Router(config.router)
 router.route('/update/scorecard').get((request, response) => {
   // Download Scorecard
   UpdateDomain.downloadScorecard().then(() => {
-    // Verify CSV is valid before using
-    UpdateDomain.validateScorecard().then(() => {
+    // Verify CSV is valid before using and get Row Count
+    UpdateDomain.validateScorecard().then((rowCount) => {
       // Import Scorecard
-      UpdateDomain.importScorecard().then(() => {
+      UpdateDomain.importScorecard(rowCount).then((imported) => {
         // Send Success Response when Import Completed
         response.json(util.createAPIResponse({
-          data: 'Success'
+          data: imported.data,
+          errors: imported.errors,
+          warnings: imported.warnings
         }, request.query.fields))
       }).catch(err => {
         response.json(util.createAPIResponse({

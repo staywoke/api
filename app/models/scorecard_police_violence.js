@@ -37,19 +37,19 @@ module.exports = (sequelize, DataTypes) => {
     police_shootings_2018: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
-    white_killed: {
+    white_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
-    black_killed: {
+    black_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
-    hispanic_killed: {
+    hispanic_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
-    asian_pacific_killed: {
+    asian_pacific_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
-    other_killed: {
+    other_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     unarmed_people_killed: {

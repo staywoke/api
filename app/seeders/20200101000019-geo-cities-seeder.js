@@ -508,6 +508,18 @@ module.exports = {
       {
         country_id: 1,
         state_id: 33,
+        name: 'Lakewood',
+        fips_state_code: '34',
+        fips_place_code: '38550',
+        latitude: 40.0721087,
+        longitude: -74.24011,
+        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(40.0721087 -74.24011)'),
+        created_date: new Date(),
+        modified_date: new Date()
+      },
+      {
+        country_id: 1,
+        state_id: 33,
         name: 'Lambertville',
         fips_state_code: '34',
         fips_place_code: '38610',
@@ -2296,6 +2308,18 @@ module.exports = {
       {
         country_id: 1,
         state_id: 33,
+        name: 'Toms River',
+        fips_state_code: '34',
+        fips_place_code: '73110',
+        latitude: 39.9958377,
+        longitude: -74.234826,
+        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(39.9958377 -74.234826)'),
+        created_date: new Date(),
+        modified_date: new Date()
+      },
+      {
+        country_id: 1,
+        state_id: 33,
         name: 'Totowa',
         fips_state_code: '34',
         fips_place_code: '73140',
@@ -2602,6 +2626,18 @@ module.exports = {
         latitude: 39.24178130,
         longitude: -74.81516670,
         coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(39.24178130 -74.81516670)'),
+        created_date: new Date(),
+        modified_date: new Date()
+      },
+      {
+        country_id: 1,
+        state_id: 33,
+        name: 'Woodbridge',
+        fips_state_code: '34',
+        fips_place_code: '34023',
+        latitude: 40.5498486,
+        longitude: -74.318496,
+        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(40.5498486 -74.318496)'),
         created_date: new Date(),
         modified_date: new Date()
       },
@@ -4138,6 +4174,18 @@ module.exports = {
         latitude: 42.83757370,
         longitude: -74.60153010,
         coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(42.83757370 -74.60153010)'),
+        created_date: new Date(),
+        modified_date: new Date()
+      },
+      {
+        country_id: 1,
+        state_id: 35,
+        name: 'Amherst',
+        fips_state_code: '36',
+        fips_place_code: '51009',
+        latitude: 42.97900670,
+        longitude: -78.79227200,
+        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(42.97900670 -78.79227200)'),
         created_date: new Date(),
         modified_date: new Date()
       },
@@ -9370,6 +9418,18 @@ module.exports = {
         latitude: 40.82315530,
         longitude: -72.60953840,
         coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(40.82315530 -72.60953840)'),
+        created_date: new Date(),
+        modified_date: new Date()
+      },
+      {
+        country_id: 1,
+        state_id: 35,
+        name: 'Ramapo',
+        fips_state_code: '36',
+        fips_place_code: '60510',
+        latitude: 41.1412055,
+        longitude: -74.1772549,
+        coordinate: queryInterface.sequelize.fn('ST_GeomFromText', 'POINT(41.1412055 -74.1772549)'),
         created_date: new Date(),
         modified_date: new Date()
       },
