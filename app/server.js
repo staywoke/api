@@ -182,7 +182,7 @@ app.enable('trust proxy')
  */
 /* istanbul ignore next */
 app.use((req, res, next) => {
-  res.setTimeout(5000, () => {
+  res.setTimeout(30000, () => {
     if (req.header('API-Key')) {
       req.query.apikey = req.header('API-Key')
     }

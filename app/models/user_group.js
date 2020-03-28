@@ -63,12 +63,10 @@ module.exports = (sequelize, DataTypes) => {
      * Setup Relationships of Users and Groups
      */
     models.users.hasMany(models.user_group, {
-      foreignKey: 'user_id',
-      allowNull: true
+      foreignKey: 'user_id'
     })
     models.groups.hasMany(models.user_group, {
-      foreignKey: 'group_id',
-      allowNull: true
+      foreignKey: 'group_id'
     })
   }
 

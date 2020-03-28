@@ -17,8 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     parent_id: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: true
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     name: {
       type: DataTypes.STRING(50),

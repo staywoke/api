@@ -238,11 +238,16 @@ module.exports = {
 
   /**
    * Convert String to Title Case
+   * @param stripDashes
    * @param str
    * @returns {string}
    */
-  titleCase (str) {
-    return str.trim().replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
+  titleCase (str, stripDashes) {
+    if (stripDashes) {
+      str = str.replace(/-/g, ' ')
+    }
+
+    return str.trim().replace(/\w\S*/g, (txt) => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     })
   }
