@@ -11,71 +11,99 @@ const _ = require('lodash')
  * @type {Object}
  */
 module.exports = {
+  createSlug (string) {
+    const chars = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
+    const replace = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
+    const pattern = new RegExp(chars.split('').join('|'), 'g')
+
+    return string.toString().toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(pattern, match => replace.charAt(chars.indexOf(match)))
+      .replace(/&/g, '-and-')
+      .replace(/[^\w\-]+/g, '') // eslint-disable-line no-useless-escape
+      .replace(/\-\-+/g, '-') // eslint-disable-line no-useless-escape
+      .replace(/^-+/, '')
+      .replace(/-+$/, '')
+  },
+
   getGrade (score) {
     if (score <= 59) {
       return {
         letter: 'F',
-        marker: 'f'
+        marker: 'f',
+        class: 'f'
       }
     } else if (score <= 62 && score >= 60) {
       return {
         letter: 'D-',
-        marker: 'd-minus'
+        marker: 'd-minus',
+        class: 'd'
       }
     } else if (score <= 66 && score >= 63) {
       return {
         letter: 'D',
-        marker: 'd'
+        marker: 'd',
+        class: 'd'
       }
     } else if (score <= 69 && score >= 67) {
       return {
         letter: 'D+',
-        marker: 'd-plus'
+        marker: 'd-plus',
+        class: 'd'
       }
     } else if (score <= 72 && score >= 70) {
       return {
         letter: 'C-',
-        marker: 'c-minus'
+        marker: 'c-minus',
+        class: 'c'
       }
     } else if (score <= 76 && score >= 73) {
       return {
         letter: 'C',
-        marker: 'c'
+        marker: 'c',
+        class: 'c'
       }
     } else if (score <= 79 && score >= 77) {
       return {
         letter: 'C+',
-        marker: 'c-plus'
+        marker: 'c-plus',
+        class: 'c'
       }
     } else if (score <= 82 && score >= 80) {
       return {
         letter: 'B-',
-        marker: 'b-minus'
+        marker: 'b-minus',
+        class: 'b'
       }
     } else if (score <= 86 && score >= 83) {
       return {
         letter: 'B',
-        marker: 'b'
+        marker: 'b',
+        class: 'b'
       }
     } else if (score <= 89 && score >= 87) {
       return {
         letter: 'B+',
-        marker: 'b-plus'
+        marker: 'b-plus',
+        class: 'b'
       }
     } else if (score <= 92 && score >= 90) {
       return {
         letter: 'A-',
-        marker: 'a-minus'
+        marker: 'a-minus',
+        class: 'a'
       }
     } else if (score <= 97 && score >= 93) {
       return {
         letter: 'A',
-        marker: 'a'
+        marker: 'a',
+        class: 'a'
       }
     } else if (score >= 98) {
       return {
         letter: 'A+',
-        marker: 'a-plus'
+        marker: 'a-plus',
+        class: 'a'
       }
     }
   },
@@ -320,6 +348,245 @@ module.exports = {
   },
 
   /**
+   * States are not going to change, so doing a database lookup is not necessary 100% of the time
+   * @param {number} id
+   */
+  getStateAbbrByID (id) {
+    const mapping = [
+      {
+        abbr: 'AL', // ID: 1
+        name: 'Alabama'
+      },
+      {
+        abbr: 'AK', // ID: 2
+        name: 'Alaska'
+      },
+      {
+        abbr: 'AS', // ID: 3
+        name: 'American Samoa'
+      },
+      {
+        abbr: 'AZ', // ID: 4
+        name: 'Arizona'
+      },
+      {
+        abbr: 'AR', // ID: 5
+        name: 'Arkansas'
+      },
+      {
+        abbr: 'CA', // ID: 6
+        name: 'California'
+      },
+      {
+        abbr: 'CO', // ID: 7
+        name: 'Colorado'
+      },
+      {
+        abbr: 'CT', // ID: 8
+        name: 'Connecticut'
+      },
+      {
+        abbr: 'DE', // ID: 9
+        name: 'Delaware'
+      },
+      {
+        abbr: 'DC', // ID: 10
+        name: 'District of Columbia'
+      },
+      {
+        abbr: 'FL', // ID: 11
+        name: 'Florida'
+      },
+      {
+        abbr: 'GA', // ID: 12
+        name: 'Georgia'
+      },
+      {
+        abbr: 'GU', // ID: 13
+        name: 'Guam'
+      },
+      {
+        abbr: 'HI', // ID: 14
+        name: 'Hawaii'
+      },
+      {
+        abbr: 'ID', // ID: 15
+        name: 'Idaho'
+      },
+      {
+        abbr: 'IL', // ID: 16
+        name: 'Illinois'
+      },
+      {
+        abbr: 'IN', // ID: 17
+        name: 'Indiana'
+      },
+      {
+        abbr: 'IA', // ID: 18
+        name: 'Iowa'
+      },
+      {
+        abbr: 'KS', // ID: 19
+        name: 'Kansas'
+      },
+      {
+        abbr: 'KY', // ID: 20
+        name: 'Kentucky'
+      },
+      {
+        abbr: 'LA', // ID: 21
+        name: 'Louisiana'
+      },
+      {
+        abbr: 'ME', // ID: 22
+        name: 'Maine'
+      },
+      {
+        abbr: 'MD', // ID: 23
+        name: 'Maryland'
+      },
+      {
+        abbr: 'MA', // ID: 24
+        name: 'Massachusetts'
+      },
+      {
+        abbr: 'MI', // ID: 25
+        name: 'Michigan'
+      },
+      {
+        abbr: 'MN', // ID: 26
+        name: 'Minnesota'
+      },
+      {
+        abbr: 'MS', // ID: 27
+        name: 'Mississippi'
+      },
+      {
+        abbr: 'MO', // ID: 28
+        name: 'Missouri'
+      },
+      {
+        abbr: 'MT', // ID: 29
+        name: 'Montana'
+      },
+      {
+        abbr: 'NE', // ID: 30
+        name: 'Nebraska'
+      },
+      {
+        abbr: 'NV', // ID: 31
+        name: 'Nevada'
+      },
+      {
+        abbr: 'NH', // ID: 32
+        name: 'New Hampshire'
+      },
+      {
+        abbr: 'NJ', // ID: 33
+        name: 'New Jersey'
+      },
+      {
+        abbr: 'NM', // ID: 34
+        name: 'New Mexico'
+      },
+      {
+        abbr: 'NY', // ID: 35
+        name: 'New York'
+      },
+      {
+        abbr: 'NC', // ID: 36
+        name: 'North Carolina'
+      },
+      {
+        abbr: 'ND', // ID: 37
+        name: 'North Dakota'
+      },
+      {
+        abbr: 'MP', // ID: 38
+        name: 'Northern Mariana Islands'
+      },
+      {
+        abbr: 'OH', // ID: 39
+        name: 'Ohio'
+      },
+      {
+        abbr: 'OK', // ID: 40
+        name: 'Oklahoma'
+      },
+      {
+        abbr: 'OR', // ID: 41
+        name: 'Oregon'
+      },
+      {
+        abbr: 'PA', // ID: 42
+        name: 'Pennsylvania'
+      },
+      {
+        abbr: 'PR', // ID: 43
+        name: 'Puerto Rico'
+      },
+      {
+        abbr: 'RI', // ID: 44
+        name: 'Rhode Island'
+      },
+      {
+        abbr: 'SC', // ID: 45
+        name: 'South Carolina'
+      },
+      {
+        abbr: 'SD', // ID: 46
+        name: 'South Dakota'
+      },
+      {
+        abbr: 'TN', // ID: 47
+        name: 'Tennessee'
+      },
+      {
+        abbr: 'TX', // ID: 48
+        name: 'Texas'
+      },
+      {
+        abbr: 'UM', // ID: 49
+        name: 'United States Minor Outlying Islands'
+      },
+      {
+        abbr: 'UT', // ID: 50
+        name: 'Utah'
+      },
+      {
+        abbr: 'VT', // ID: 51
+        name: 'Vermont'
+      },
+      {
+        abbr: 'VI', // ID: 52
+        name: 'Virgin Islands, U.S.'
+      },
+      {
+        abbr: 'VA', // ID: 53
+        name: 'Virginia'
+      },
+      {
+        abbr: 'WA', // ID: 54
+        name: 'Washington'
+      },
+      {
+        abbr: 'WV', // ID: 55
+        name: 'West Virginia'
+      },
+      {
+        abbr: 'WI', // ID: 56
+        name: 'Wisconsin'
+      },
+      {
+        abbr: 'WY', // ID: 57
+        name: 'Wyoming'
+      }
+    ]
+
+    return mapping[id - 1]
+  },
+
+  /**
    * Takes a string of comma-separated numbers, e.g. "1,5,7", splits by comma and returns an array of integers, pruning out anything that's not an integer
    * @param  {string} str Comma-separated numbers
    * @return {array}
@@ -382,7 +649,7 @@ module.exports = {
     if (typeof val === 'number') {
       return parseFloat(val)
     } else if (typeof val === 'string' && val !== '') {
-      return parseFloat(val.replace(/[^0-9.]/g, ''))
+      return parseFloat(val.replace(/[^0-9.-]/g, ''))
     }
 
     return null
@@ -396,7 +663,7 @@ module.exports = {
     if (typeof val === 'number') {
       return parseInt(val)
     } else if (typeof val === 'string' && val !== '') {
-      return parseInt(val.replace(/[^0-9.]/g, ''))
+      return parseInt(val.replace(/[^0-9.-]/g, ''))
     }
 
     return null
