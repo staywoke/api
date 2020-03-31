@@ -27,6 +27,18 @@ module.exports = {
   },
 
   getGrade (score) {
+    if (typeof score !== 'number') {
+      return null
+    }
+
+    if (score > 100) {
+      score = 100
+    }
+
+    if (score < 0) {
+      score = 0
+    }
+
     if (score <= 59) {
       return {
         letter: 'F',
@@ -648,7 +660,7 @@ module.exports = {
   parseFloat (val) {
     if (typeof val === 'number') {
       return parseFloat(val)
-    } else if (typeof val === 'string' && val !== '') {
+    } else if (typeof val === 'string' && val !== '' && /[0-9.-]/.test(val)) {
       return parseFloat(val.replace(/[^0-9.-]/g, ''))
     }
 
@@ -662,7 +674,7 @@ module.exports = {
   parseInt (val) {
     if (typeof val === 'number') {
       return parseInt(val)
-    } else if (typeof val === 'string' && val !== '') {
+    } else if (typeof val === 'string' && val !== '' && /[0-9.-]/.test(val)) {
       return parseInt(val.replace(/[^0-9.-]/g, ''))
     }
 

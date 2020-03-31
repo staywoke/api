@@ -206,7 +206,7 @@ app.use(session({
 }))
 
 // Check if we should use Bugsnag
-if (config.get('bugsnag') !== '') {
+if (config.get('devFlags.enableBugTracking') && config.get('bugsnag') !== '') {
   const bugsnagClient = bugsnag(config.get('bugsnag'))
 
   bugsnagClient.use(bugsnagExpress)

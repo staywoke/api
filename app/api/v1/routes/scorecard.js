@@ -13,24 +13,6 @@ const { ScorecardDomain } = require('../domain')
 const router = express.Router(config.router)
 
 /**
- * [GET] Scorecard
- * @memberof module:routes/scorecard
- * @name /scorecard
- */
-/* istanbul ignore next */
-router.route('/scorecard').get((request, response) => {
-  ScorecardDomain.getSummary().then((scorecard) => {
-    response.json(util.createAPIResponse({
-      data: scorecard
-    }, request.query.fields))
-  }).catch(err => {
-    response.json(util.createAPIResponse({
-      errors: [err]
-    }, request.query.fields))
-  })
-})
-
-/**
  * [GET] Scorecard Grades
  * @memberof module:routes/scorecard
  * @name /scorecard/grades
@@ -86,7 +68,7 @@ router.route('/scorecard/states').get((request, response) => {
     }, request.query.fields))
   }).catch(err => {
     response.json(util.createAPIResponse({
-      errors: [err]
+      errors: (err && err.message) ? [err.message] : [err]
     }, request.query.fields))
   })
 })
@@ -106,7 +88,7 @@ router.route('/scorecard/state/:state').get((request, response) => {
     }, request.query.fields))
   }).catch(err => {
     response.json(util.createAPIResponse({
-      errors: [err]
+      errors: (err && err.message) ? [err.message] : [err]
     }, request.query.fields))
   })
 })

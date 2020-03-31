@@ -4,6 +4,13 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
+/* istanbul ignore file */
+
+/**
+ * @NOTE: This file is only used by administration and senior software developers
+ * and is therefor not directly accessible via the API without authentication
+ */
+
 const _ = require('lodash')
 const fs = require('fs')
 const https = require('https')

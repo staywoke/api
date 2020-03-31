@@ -15,7 +15,6 @@ module.exports = {
   GeoCountryDomain: require('./geo_countries'),
   GeoStateDomain: require('./geo_states'),
   GeoTownDomain: require('./geo_towns'),
-  GeolocationDomain: require('./geolocation'),
   ProfileDomain: require('./profile'),
   ScorecardDomain: require('./scorecard'),
   SettingsDomain: require('./settings'),

@@ -55,6 +55,8 @@ const Analytics = {
 
       return requests
     }
+
+    return true
   }
 }
 

@@ -65,21 +65,15 @@ const __buildAgency = (result) => {
  */
 module.exports = {
   /**
-   * Get Location
-   * @param {String} state
-   * @param {String} type
-   * @param {String} location
-   */
-  getSummary () {
-
-  },
-
-  /**
    * Get US States and Support for Each
    */
   getGrades (state, type) {
     if (!state) {
       return Promise.reject('Missing Required `state` parameter')
+    }
+
+    if (!type) {
+      return Promise.reject('Missing Required `type` parameter')
     }
 
     const stateDetails = util.getStateByID(state)
@@ -100,21 +94,27 @@ module.exports = {
         const grades = []
 
         agencies.forEach((agency) => {
-          const grade = util.getGrade(agency.report.dataValues.overall_score)
+          // Skip Agency if No Report Generated
+          if (!agency.dataValues.report) {
+            return
+          }
+
+          const grade = util.getGrade(agency.dataValues.report.dataValues.overall_score)
           const slug = util.createSlug(agency.dataValues.name)
 
           grades.push({
             agency_name: agency.dataValues.name,
-            overall_score: agency.report.dataValues.overall_score,
-            change_overall_score: agency.report.dataValues.change_overall_score || 0,
+            overall_score: agency.dataValues.report.dataValues.overall_score,
+            change_overall_score: agency.dataValues.report.dataValues.change_overall_score || 0,
             grade_class: grade.class,
             grade_letter: grade.letter,
             slug: slug,
-            district: (agency.county) ? `us-${state.toLowerCase()}-${agency.county.dataValues.fips_county_code}` : null,
-            latitude: (agency.city) ? util.parseFloat(agency.city.dataValues.latitude) : null,
-            longitude: (agency.city) ? util.parseFloat(agency.city.dataValues.longitude) : null,
+            district: (agency.dataValues.county) ? `us-${state.toLowerCase()}-${agency.dataValues.county.dataValues.fips_county_code}` : null,
+            latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
+            longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
             title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
-            url: `/?state=${state.toLowerCase()}&type=${agency.dataValues.type}&location=${slug}`
+            url: `/?state=${state.toLowerCase()}&type=${agency.dataValues.type}&location=${slug}`,
+            url_pretty: `/${state.toLowerCase()}/${agency.dataValues.type}/${slug}`
           })
         })
 
@@ -140,11 +140,17 @@ module.exports = {
         const cleanAgencies = {}
 
         agencies.forEach((agency) => {
-          const grade = util.getGrade(agency.report.dataValues.overall_score)
+          // Skip Agency if No Report Generated
+          if (!agency.dataValues.report) {
+            return
+          }
+
+          const grade = util.getGrade(agency.dataValues.report.dataValues.overall_score)
           const stateDetails = util.getStateAbbrByID(agency.dataValues.state_id)
 
+          /* istanbul ignore else */
           if (stateDetails) {
-            // Create State Object
+            /* istanbul ignore else */
             if (!cleanAgencies.hasOwnProperty(stateDetails.abbr)) { // eslint-disable-line no-prototype-builtins
               cleanAgencies[stateDetails.abbr] = {
                 average_grade_class: '',
@@ -157,7 +163,7 @@ module.exports = {
               }
             }
 
-            // Create Type Object for State
+            /* istanbul ignore else */
             if (!cleanAgencies[stateDetails.abbr].hasOwnProperty(agency.dataValues.type)) { // eslint-disable-line no-prototype-builtins
               cleanAgencies[stateDetails.abbr][agency.dataValues.type] = []
             }
@@ -170,11 +176,12 @@ module.exports = {
               grade_class: grade.class,
               grade_letter: grade.letter,
               grade_marker: grade.marker,
-              overall_score: agency.report.dataValues.overall_score,
+              overall_score: agency.dataValues.report.dataValues.overall_score,
               population: agency.dataValues.total_population,
               slug: slug,
               title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
-              url: `/?state=${stateDetails.abbr.toLowerCase()}&type=${agency.dataValues.type}&location=${slug}`
+              url: `/?state=${stateDetails.abbr.toLowerCase()}&type=${agency.dataValues.type}&location=${slug}`,
+              url_pretty: `/${stateDetails.abbr.toLowerCase()}/${agency.dataValues.type}/${slug}`
             })
           }
         })
@@ -242,12 +249,17 @@ module.exports = {
         const defaultKeys = Object.keys(cleanAgencies)
 
         agencies.forEach((agency) => {
-          // Create Type Object for State
+          // Skip Agency if No Report Generated
+          if (!agency.dataValues.report) {
+            return
+          }
+
+          /* istanbul ignore else */
           if (!cleanAgencies.hasOwnProperty(agency.dataValues.type)) { // eslint-disable-line no-prototype-builtins
             cleanAgencies[agency.dataValues.type] = []
           }
 
-          const grade = util.getGrade(agency.report.dataValues.overall_score)
+          const grade = util.getGrade(agency.dataValues.report.dataValues.overall_score)
           const slug = util.createSlug(agency.dataValues.name)
 
           cleanAgencies[agency.dataValues.type].push({
@@ -255,7 +267,7 @@ module.exports = {
             grade_class: grade.class,
             grade_letter: grade.letter,
             grade_marker: grade.marker,
-            overall_score: agency.report.dataValues.overall_score,
+            overall_score: agency.dataValues.report.dataValues.overall_score,
             population: agency.dataValues.total_population,
             slug: slug,
             title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
