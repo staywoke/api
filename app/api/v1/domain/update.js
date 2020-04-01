@@ -928,6 +928,10 @@ const __calcTotalArrests = (row) => {
   return (totalArrests.length) ? Math.floor(_.sum(totalArrests) / totalArrests.length) * totalArrests.length : 0
 }
 
+/**
+ * Calculate Total Jail Deaths 2016 - 2018
+ * @param {object} row from CSV File
+ */
 const __calcTotalJailDeaths20162018 = (row) => {
   const jailDeathsHomicide = util.parseInt(row.jail_deaths_homicide) || 0
   const jailDeathsInvestigating = util.parseInt(row.jail_deaths_investigating) || 0
@@ -935,6 +939,20 @@ const __calcTotalJailDeaths20162018 = (row) => {
   const jailDeathsSuicide = util.parseInt(row.jail_deaths_suicide) || 0
 
   return (jailDeathsHomicide + jailDeathsInvestigating + jailDeathsOther + jailDeathsSuicide)
+}
+
+/**
+ * Calculate Total People Killed
+ * @param {object} row from CSV File
+ */
+const __calcTotalPeopleKilled = (row) => {
+  const asianPacificPeopleKilled = util.parseInt(row.asian_pacific_people_killed) || 0
+  const blackPeopleKilled = util.parseInt(row.black_people_killed) || 0
+  const hispanicPeopleKilled = util.parseInt(row.hispanic_people_killed) || 0
+  const otherPeopleKilled = util.parseInt(row.other_people_killed) || 0
+  const whitePeopleKilled = util.parseInt(row.white_people_killed) || 0
+
+  return (asianPacificPeopleKilled + blackPeopleKilled + hispanicPeopleKilled + otherPeopleKilled + whitePeopleKilled)
 }
 
 /**
@@ -1605,6 +1623,7 @@ module.exports = {
               total_arrests: __calcTotalArrests(row),
               total_jail_deaths_2016_2018: __calcTotalJailDeaths20162018(row),
               total_less_lethal_force_estimated: util.parseFloat(row.calc_total_less_lethal_force_estimated),
+              total_people_killed: __calcTotalPeopleKilled(row),
               unarmed_killed_by_police_per_10k_arrests: util.parseFloat(row.calc_unarmed_killed_by_police_per_10k_arrests),
               white_murder_unsolved_rate: __calcWhiteMurderUnsolvedRate(row)
             }

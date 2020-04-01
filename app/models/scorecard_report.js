@@ -235,6 +235,9 @@ module.exports = (sequelize, DataTypes) => {
     total_less_lethal_force_estimated: {
       type: DataTypes.FLOAT(8, 2).UNSIGNED
     },
+    total_people_killed: {
+      type: DataTypes.INTEGER(5)
+    },
     unarmed_killed_by_police_per_10k_arrests: {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
