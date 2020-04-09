@@ -5,6 +5,8 @@
  */
 
 const express = require('express')
+const md5 = require('md5')
+
 const config = require('../../../config')
 const util = require('./util')
 
@@ -18,19 +20,27 @@ const router = express.Router(config.router)
  * @name /update/scorecard
  */
 /* istanbul ignore next */
-router.route('/update/scorecard').get((request, response) => {
-  // Download Scorecard
-  UpdateDomain.downloadScorecard().then(() => {
-    // Verify CSV is valid before using and get Row Count
-    UpdateDomain.validateScorecard().then((rowCount) => {
-      // Import Scorecard
-      UpdateDomain.importScorecard(rowCount).then((imported) => {
-        // Send Success Response when Import Completed
-        response.json(util.createAPIResponse({
-          data: imported.data,
-          errors: imported.errors,
-          warnings: imported.warnings
-        }, request.query.fields))
+router.route('/update/scorecard').post((request, response) => {
+  const token = md5(request.body.token)
+
+  if (token === '5d0f91a00d76444b843046b7c15eb5c2') {
+    // Download Scorecard
+    UpdateDomain.downloadScorecard().then(() => {
+      // Verify CSV is valid before using and get Row Count
+      UpdateDomain.validateScorecard().then((rowCount) => {
+        // Import Scorecard
+        UpdateDomain.importScorecard(rowCount).then((imported) => {
+          // Send Success Response when Import Completed
+          response.json(util.createAPIResponse({
+            data: imported.data,
+            errors: imported.errors,
+            warnings: imported.warnings
+          }, request.query.fields))
+        }).catch(err => {
+          response.json(util.createAPIResponse({
+            errors: [err]
+          }, request.query.fields))
+        })
       }).catch(err => {
         response.json(util.createAPIResponse({
           errors: [err]
@@ -41,11 +51,11 @@ router.route('/update/scorecard').get((request, response) => {
         errors: [err]
       }, request.query.fields))
     })
-  }).catch(err => {
+  } else {
     response.json(util.createAPIResponse({
-      errors: [err]
+      errors: 'Invalid Token'
     }, request.query.fields))
-  })
+  }
 })
 
 module.exports = router

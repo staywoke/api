@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
     police_budget: {
-      type: DataTypes.INTEGER(10).UNSIGNED
+      type: DataTypes.BIGINT(15).UNSIGNED
     },
     education_budget: {
       type: DataTypes.INTEGER(10).UNSIGNED

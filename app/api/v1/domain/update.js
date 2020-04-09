@@ -331,6 +331,8 @@ const __calcPercentAsianPacificArrests = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (asianPacificArrests) {
+    return 100
   }
 
   return 0
@@ -359,6 +361,8 @@ const __calcPercentAsianPacificIslanderDeadlyForce = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (asianPacificPeopleKilled) {
+    return 100
   }
 
   return 0
@@ -390,6 +394,8 @@ const __calcPercentBlackArrests = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (blackArrests) {
+    return 100
   }
 
   return 0
@@ -418,6 +424,8 @@ const __calcPercentBlackDeadlyForce = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (blackPeopleKilled) {
+    return 100
   }
 
   return 0
@@ -453,6 +461,8 @@ const __calcPercentDrugPossessionArrests = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (blackDrugArrests || nonBlackDrugArrests) {
+    return 100
   }
 
   return 0
@@ -514,6 +524,8 @@ const __calcPercentHispanicArrests = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (hispanicArrests) {
+    return 100
   }
 
   return 0
@@ -542,6 +554,8 @@ const __calcPercentHispanicDeadlyForce = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (hispanicPeopleKilled) {
+    return 100
   }
 
   return 0
@@ -588,6 +602,8 @@ const __calcPercentMisdemeanorArrests = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (lowLevelArrests) {
+    return 100
   }
 
   return 0
@@ -619,6 +635,8 @@ const __calcPercentOtherArrests = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (otherArrests) {
+    return 100
   }
 
   return 0
@@ -647,6 +665,8 @@ const __calcPercentOtherDeadlyForce = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (otherPeopleKilled) {
+    return 100
   }
 
   return 0
@@ -703,6 +723,8 @@ const __calcPercentShotFirst = (row) => {
         )
       ) * 100
     )
+  } else if (shotFirst) {
+    return 100
   }
 
   return 0
@@ -736,6 +758,8 @@ const __calcPercentUsedAgainstPeopleWhoWereNotArmedWithGun = (row) => {
         )
       ).toFixed(2)
     )
+  } else if (armedPeopleKilled) {
+    return 100
   }
 
   return 0
@@ -765,6 +789,8 @@ const __calcPercentUsedAgainstPeopleWhoWereUnarmed = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (unarmedPeopleKilled) {
+    return 100
   }
 
   return 0
@@ -796,6 +822,8 @@ const __calcPercentViolentCrimeArrests = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (violentCrimeArrests) {
+    return 100
   }
 
   return 0
@@ -827,6 +855,8 @@ const __calcPercentWhiteArrests = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (whiteArrests) {
+    return 100
   }
 
   return 0
@@ -855,6 +885,8 @@ const __calcPercentWhiteDeadlyForce = (row) => {
         ) * 100
       ).toFixed(2)
     )
+  } else if (whitePeopleKilled) {
+    return 100
   }
 
   return 0
@@ -998,7 +1030,11 @@ const __upsertScorecardAgency = (scorecard, condition) => {
         data.agency_id = agency.id
         data.state_id = condition.state_id
 
-        __upsertScorecardArrests(data, where)
+        return __upsertScorecardArrests(data, where).then(() => {
+          return agency
+        }).catch((err) => {
+          throw new Error(err)
+        })
       }
 
       return agency
@@ -1012,7 +1048,11 @@ const __upsertScorecardAgency = (scorecard, condition) => {
 
         data.agency_id = agency.id
 
-        __upsertScorecardHomicide(data, where)
+        return __upsertScorecardHomicide(data, where).then(() => {
+          return agency
+        }).catch((err) => {
+          throw new Error(err)
+        })
       }
 
       return agency
@@ -1026,7 +1066,11 @@ const __upsertScorecardAgency = (scorecard, condition) => {
 
         data.agency_id = agency.id
 
-        __upsertScorecardJail(data, where)
+        return __upsertScorecardJail(data, where).then(() => {
+          return agency
+        }).catch((err) => {
+          throw new Error(err)
+        })
       }
 
       return agency
@@ -1040,7 +1084,11 @@ const __upsertScorecardAgency = (scorecard, condition) => {
 
         data.agency_id = agency.id
 
-        __upsertScorecardPoliceAccountability(data, where)
+        return __upsertScorecardPoliceAccountability(data, where).then(() => {
+          return agency
+        }).catch((err) => {
+          throw new Error(err)
+        })
       }
 
       return agency
@@ -1054,7 +1102,11 @@ const __upsertScorecardAgency = (scorecard, condition) => {
 
         data.agency_id = agency.id
 
-        __upsertScorecardPoliceFunding(data, where)
+        return __upsertScorecardPoliceFunding(data, where).then(() => {
+          return agency
+        }).catch((err) => {
+          throw new Error(err)
+        })
       }
 
       return agency
@@ -1068,7 +1120,11 @@ const __upsertScorecardAgency = (scorecard, condition) => {
 
         data.agency_id = agency.id
 
-        __upsertScorecardPoliceViolence(data, where)
+        return __upsertScorecardPoliceViolence(data, where).then(() => {
+          return agency
+        }).catch((err) => {
+          throw new Error(err)
+        })
       }
 
       return agency
@@ -1082,7 +1138,11 @@ const __upsertScorecardAgency = (scorecard, condition) => {
 
         data.agency_id = agency.id
 
-        __upsertScorecardPolicy(data, where)
+        return __upsertScorecardPolicy(data, where).then(() => {
+          return agency
+        }).catch((err) => {
+          throw new Error(err)
+        })
       }
 
       return agency
@@ -1096,7 +1156,11 @@ const __upsertScorecardAgency = (scorecard, condition) => {
 
         data.agency_id = agency.id
 
-        __upsertScorecardReport(data, where)
+        return __upsertScorecardReport(data, where).then(() => {
+          return agency
+        }).catch((err) => {
+          throw new Error(err)
+        })
       }
 
       return agency
@@ -1125,7 +1189,7 @@ const __upsertScorecardArrests = (scorecard, condition) => {
       return models.scorecard_arrests.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`ERROR __upsertScorecardArrests: ${err.message}`)
+      throw new Error(`__upsertScorecardArrests: ${err.message}`)
     })
 }
 
@@ -1148,7 +1212,7 @@ const __upsertScorecardHomicide = (scorecard, condition) => {
       return models.scorecard_homicide.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`ERROR __upsertScorecardHomicide: ${err.message}`)
+      throw new Error(`__upsertScorecardHomicide: ${err.message}`)
     })
 }
 
@@ -1171,7 +1235,7 @@ const __upsertScorecardJail = (scorecard, condition) => {
       return models.scorecard_jail.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`ERROR __upsertScorecardJail: ${err.message}`)
+      throw new Error(`__upsertScorecardJail: ${err.message}`)
     })
 }
 
@@ -1194,7 +1258,7 @@ const __upsertScorecardPoliceAccountability = (scorecard, condition) => {
       return models.scorecard_police_accountability.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`ERROR __upsertScorecardPoliceAccountability: ${err.message}`)
+      throw new Error(`__upsertScorecardPoliceAccountability: ${err.message}`)
     })
 }
 
@@ -1217,7 +1281,7 @@ const __upsertScorecardPoliceFunding = (scorecard, condition) => {
       return models.scorecard_police_funding.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`ERROR __upsertScorecardPoliceFunding: ${err.message}`)
+      throw new Error(`__upsertScorecardPoliceFunding: ${err.message}`)
     })
 }
 
@@ -1240,7 +1304,7 @@ const __upsertScorecardPoliceViolence = (scorecard, condition) => {
       return models.scorecard_police_violence.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`ERROR __upsertScorecardPoliceViolence: ${err.message}`)
+      throw new Error(`__upsertScorecardPoliceViolence: ${err.message}`)
     })
 }
 
@@ -1263,7 +1327,7 @@ const __upsertScorecardPolicy = (scorecard, condition) => {
       return models.scorecard_policy.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`ERROR __upsertScorecardPolicy: ${err.message}`)
+      throw new Error(`__upsertScorecardPolicy: ${err.message}`)
     })
 }
 
@@ -1286,7 +1350,7 @@ const __upsertScorecardReport = (scorecard, condition) => {
       return models.scorecard_report.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`ERROR __upsertScorecardReport: ${err.message}`)
+      throw new Error(`__upsertScorecardReport: ${err.message}`)
     })
 }
 
