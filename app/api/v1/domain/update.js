@@ -1484,6 +1484,7 @@ module.exports = {
               police_chief_email: util.parseEmail(row.police_chief_email),
               police_chief_name: util.parseString(row.police_chief_name),
               police_chief_phone: util.parsePhone(row.police_chief_phone),
+              slug: util.createSlug(row.agency_name),
               total_population: util.parseInt(row.total_population),
               type: util.parseString(row.agency_type),
               white_population: util.parseFloat(row.white_population)

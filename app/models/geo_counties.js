@@ -6,8 +6,6 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const createSlug = require('sluglife')
-
 module.exports = (sequelize, DataTypes) => {
   const GeoCounty = sequelize.define('geo_counties', {
     id: {
@@ -37,15 +35,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    getterMethods: {
-      slug () {
-        return createSlug(this.name, {
-          replacement: '-',
-          replaceSymbols: true,
-          lower: true
-        })
-      }
-    },
     indexes: [
       {
         fields: ['country_id']

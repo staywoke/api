@@ -5,7 +5,6 @@
  */
 
 const _ = require('lodash')
-const { Op } = require('sequelize')
 
 const models = require('../../../models')
 const util = require('./util')
@@ -100,21 +99,20 @@ module.exports = {
           }
 
           const grade = util.getGrade(agency.dataValues.report.dataValues.overall_score)
-          const slug = util.createSlug(agency.dataValues.name)
 
           grades.push({
             agency_name: agency.dataValues.name,
-            overall_score: agency.dataValues.report.dataValues.overall_score,
             change_overall_score: agency.dataValues.report.dataValues.change_overall_score || 0,
+            district: (agency.dataValues.county) ? `us-${state.toLowerCase()}-${agency.dataValues.county.dataValues.fips_county_code}` : null,
             grade_class: grade.class,
             grade_letter: grade.letter,
-            slug: slug,
-            district: (agency.dataValues.county) ? `us-${state.toLowerCase()}-${agency.dataValues.county.dataValues.fips_county_code}` : null,
             latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
             longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
+            overall_score: agency.dataValues.report.dataValues.overall_score,
+            slug: agency.dataValues.slug,
             title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
-            url: `/?state=${state.toLowerCase()}&type=${agency.dataValues.type}&location=${slug}`,
-            url_pretty: `/${state.toLowerCase()}/${agency.dataValues.type}/${slug}`
+            url_pretty: `/${state.toLowerCase()}/${agency.dataValues.type}/${agency.dataValues.slug}`,
+            url: `/?state=${state.toLowerCase()}&type=${agency.dataValues.type}&location=${agency.dataValues.slug}`
           })
         })
 
@@ -133,7 +131,9 @@ module.exports = {
     // Search Counties for Sheriff Department
     return models.scorecard_agency.findAll({
       include: [
-        'report'
+        'report',
+        'city',
+        'county'
       ]
     }).then((agencies) => {
       if (agencies) {
@@ -168,20 +168,21 @@ module.exports = {
               cleanAgencies[stateDetails.abbr][agency.dataValues.type] = []
             }
 
-            const slug = util.createSlug(agency.dataValues.name)
-
             // Add Agencies to State
             cleanAgencies[stateDetails.abbr][agency.dataValues.type].push({
               agency_name: agency.dataValues.name,
+              district: (agency.dataValues.county) ? `us-${stateDetails.abbr.toLowerCase()}-${agency.dataValues.county.dataValues.fips_county_code}` : null,
               grade_class: grade.class,
               grade_letter: grade.letter,
               grade_marker: grade.marker,
+              latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
+              longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
               overall_score: agency.dataValues.report.dataValues.overall_score,
               population: agency.dataValues.total_population,
-              slug: slug,
+              slug: agency.dataValues.slug,
               title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
-              url: `/?state=${stateDetails.abbr.toLowerCase()}&type=${agency.dataValues.type}&location=${slug}`,
-              url_pretty: `/${stateDetails.abbr.toLowerCase()}/${agency.dataValues.type}/${slug}`
+              url_pretty: `/${stateDetails.abbr.toLowerCase()}/${agency.dataValues.type}/${agency.dataValues.slug}`,
+              url: `/?state=${stateDetails.abbr.toLowerCase()}&type=${agency.dataValues.type}&location=${agency.dataValues.slug}`
             })
           }
         })
@@ -232,7 +233,9 @@ module.exports = {
         state_id: stateDetails.id
       },
       include: [
-        'report'
+        'report',
+        'city',
+        'county'
       ]
     }).then((agencies) => {
       if (agencies) {
@@ -260,18 +263,21 @@ module.exports = {
           }
 
           const grade = util.getGrade(agency.dataValues.report.dataValues.overall_score)
-          const slug = util.createSlug(agency.dataValues.name)
 
           cleanAgencies[agency.dataValues.type].push({
             agency_name: agency.dataValues.name,
+            district: (agency.dataValues.county) ? `us-${state.toLowerCase()}-${agency.dataValues.county.dataValues.fips_county_code}` : null,
             grade_class: grade.class,
             grade_letter: grade.letter,
             grade_marker: grade.marker,
+            latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
+            longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
             overall_score: agency.dataValues.report.dataValues.overall_score,
             population: agency.dataValues.total_population,
-            slug: slug,
+            slug: agency.dataValues.slug,
             title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
-            url: `/?state=${state.toLowerCase()}&type=${agency.dataValues.type}&location=${slug}`
+            url: `/?state=${state.toLowerCase()}&type=${agency.dataValues.type}&location=${agency.dataValues.slug}`,
+            url_pretty: `/${state.toLowerCase()}/${agency.dataValues.type}/${agency.dataValues.slug}`
           })
         })
 
@@ -328,22 +334,12 @@ module.exports = {
 
     const stateDetails = util.getStateByID(state)
 
-    // Clean Slug URL Param
-    let cleanLocation = location.replace(/-/g, ' ')
-
-    // Add in Missing Period for `St. ` locations
-    if (cleanLocation.substring(0, 3) === 'st ') {
-      cleanLocation = cleanLocation.replace(/^st /, 'st. ')
-    }
-
     // Search Counties for Sheriff Department
     return models.scorecard_agency.findOne({
       where: {
         type: type,
         state_id: stateDetails.id,
-        name: {
-          [Op.like]: `%${cleanLocation}%`
-        }
+        slug: location
       },
       include: [
         'arrests',

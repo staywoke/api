@@ -6,8 +6,6 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const createSlug = require('sluglife')
-
 module.exports = (sequelize, DataTypes) => {
   const GeoCountry = sequelize.define('geo_countries', {
     id: {
@@ -30,16 +28,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     fips_code: {
       type: DataTypes.STRING(2)
-    }
-  }, {
-    getterMethods: {
-      slug () {
-        return createSlug(this.name, {
-          replacement: '-',
-          replaceSymbols: true,
-          lower: true
-        })
-      }
     }
   })
 

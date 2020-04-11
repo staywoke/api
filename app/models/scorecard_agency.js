@@ -6,8 +6,6 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const createSlug = require('sluglife')
-
 module.exports = (sequelize, DataTypes) => {
   const ScorecardAgency = sequelize.define('scorecard_agency', {
     id: {
@@ -38,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false,
       comment: 'Agency Name will usually be Auto Generated from city / county name. But some data might not be tied to a city / county.'
+    },
+    slug: {
+      type: DataTypes.STRING(50),
+      allowNull: false
     },
     type: {
       type: DataTypes.ENUM('county-police', 'police-department', 'primary-state-le', 'regional-police', 'sheriff', 'special-police', 'tribal'),
@@ -126,16 +128,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255)
     }
   }, {
-    getterMethods: {
-      slug () {
-        return createSlug(this.name, {
-          replacement: '-',
-          replaceSymbols: true,
-          lower: true
-        })
-      }
-    },
     indexes: [
+      {
+        fields: ['ori', 'slug'],
+        unique: true
+      },
       {
         fields: ['country_id']
       },
