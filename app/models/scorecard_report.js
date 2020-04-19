@@ -23,16 +23,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(3).UNSIGNED
     },
     black_deadly_force_disparity_per_arrest: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     black_deadly_force_disparity_per_population: {
-      type: DataTypes.FLOAT(8, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     black_drug_arrest_disparity: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     black_murder_unsolved_rate: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     change_approach_to_policing_score: {
       type: DataTypes.INTEGER(3)
@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN
     },
     deadly_force_incidents_per_arrest_per_10k: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     deadly_force_incidents_per_arrest: {
       type: DataTypes.FLOAT(10, 6).UNSIGNED
@@ -71,34 +71,34 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(7)
     },
     hispanic_deadly_force_disparity_per_population: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     hispanic_murder_unsolved_rate: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     jail_deaths_per_1k_jail_population: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     jail_incarceration_per_1k_population: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     killed_by_police_per_10k_arrests: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     less_lethal_force_change: {
       type: DataTypes.INTEGER(3)
     },
     less_lethal_per_10k_arrests: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     low_level_arrests_per_1k_population: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     overall_disparity_index: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     overall_score: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     percent_asian_pacific_arrests: {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
@@ -212,19 +212,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     police_accountability_score: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     police_shootings_incidents: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     police_spending_per_resident: {
-      type: DataTypes.FLOAT(7, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     police_violence_score: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     times_more_misdemeanor_arrests_than_violent_crime: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     total_arrests: {
       type: DataTypes.INTEGER(10).UNSIGNED
@@ -239,10 +239,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(5)
     },
     unarmed_killed_by_police_per_10k_arrests: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     white_murder_unsolved_rate: {
-      type: DataTypes.FLOAT(5, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
     }
   }, {
     indexes: [
