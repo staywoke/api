@@ -133,7 +133,10 @@ module.exports = {
       include: [
         'report',
         'city',
-        'county'
+        'county',
+        'arrests',
+        'police_accountability',
+        'police_violence'
       ]
     }).then((agencies) => {
       if (agencies) {
@@ -159,7 +162,19 @@ module.exports = {
                 average_score: 0,
                 total_agencies: 0,
                 total_overall_score: 0,
-                total_population: 0
+                total_population: 0,
+                total_people_killed: 0,
+                total_arrests: 0,
+                total_complaints_reported: 0,
+                total_complaints_sustained: 0,
+                total_black_people_killed: 0,
+                total_black_population: 0,
+                total_hispanic_people_killed: 0,
+                total_hispanic_population: 0,
+                total_white_people_killed: 0,
+                total_white_population: 0,
+                total_low_level_arrests: 0,
+                total_violent_crime_arrests: 0
               }
             }
 
@@ -179,6 +194,22 @@ module.exports = {
               longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
               overall_score: agency.dataValues.report.dataValues.overall_score,
               population: agency.dataValues.total_population,
+              people_killed: agency.dataValues.report.dataValues.total_people_killed,
+              arrests: agency.dataValues.report.dataValues.total_arrests,
+              complaints_reported: agency.dataValues.police_accountability.dataValues.civilian_complaints_reported,
+              complaints_sustained: agency.dataValues.police_accountability.dataValues.civilian_complaints_sustained,
+
+              black_population: agency.dataValues.black_population,
+              hispanic_population: agency.dataValues.hispanic_population,
+              white_population: agency.dataValues.white_population,
+
+              black_people_killed: agency.dataValues.police_violence.dataValues.black_people_killed,
+              hispanic_people_killed: agency.dataValues.police_violence.dataValues.hispanic_people_killed,
+              white_people_killed: agency.dataValues.police_violence.dataValues.white_people_killed,
+
+              low_level_arrests: agency.dataValues.arrests.dataValues.low_level_arrests,
+              violent_crime_arrests: agency.dataValues.arrests.dataValues.violent_crime_arrests,
+
               slug: agency.dataValues.slug,
               title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
               url_pretty: `/${stateDetails.abbr.toLowerCase()}/${agency.dataValues.type}/${agency.dataValues.slug}`,
@@ -192,12 +223,42 @@ module.exports = {
           Object.keys(cleanAgencies[key]).forEach(type => {
             const currentCount = parseInt(cleanAgencies[key].total_agencies) || 0
             const currentPopulation = parseInt(cleanAgencies[key].total_population) || 0
+            const currentPeopleKilled = parseInt(cleanAgencies[key].total_people_killed) || 0
+            const currentArrests = parseInt(cleanAgencies[key].total_arrests) || 0
             const currentOverallScore = parseInt(cleanAgencies[key].total_overall_score) || 0
+            const currentComplaintsReported = parseInt(cleanAgencies[key].complaints_reported) || 0
+            const currentComplaintsSustained = parseInt(cleanAgencies[key].complaints_sustained) || 0
+
+            const currentBlackPeopleKilled = parseInt(cleanAgencies[key].black_people_killed) || 0
+            const currentHispanicPeopleKilled = parseInt(cleanAgencies[key].hispanic_people_killed) || 0
+            const currentWhitePeopleKilled = parseInt(cleanAgencies[key].white_people_killed) || 0
+
+            const currentBlackPopulation = parseInt(cleanAgencies[key].black_population) || 0
+            const currentHispanicPopulation = parseInt(cleanAgencies[key].hispanic_population) || 0
+            const currentWhitePopulation = parseInt(cleanAgencies[key].white_population) || 0
+
+            const currentLowLevelArrests = parseInt(cleanAgencies[key].low_level_arrests) || 0
+            const currentViolentCrimeArrests = parseInt(cleanAgencies[key].violent_crime_arrests) || 0
 
             cleanAgencies[key][type] = _.reverse(_.sortBy(cleanAgencies[key][type], ['population']))
             cleanAgencies[key].total_agencies = currentCount + cleanAgencies[key][type].length
             cleanAgencies[key].total_population = currentPopulation + _.sumBy(cleanAgencies[key][type], 'population')
+            cleanAgencies[key].total_people_killed = currentPeopleKilled + _.sumBy(cleanAgencies[key][type], 'people_killed')
+            cleanAgencies[key].total_arrests = currentArrests + _.sumBy(cleanAgencies[key][type], 'arrests')
             cleanAgencies[key].total_overall_score = currentOverallScore + _.sumBy(cleanAgencies[key][type], 'overall_score')
+            cleanAgencies[key].total_complaints_reported = currentComplaintsReported + _.sumBy(cleanAgencies[key][type], 'complaints_reported')
+            cleanAgencies[key].total_complaints_sustained = currentComplaintsSustained + _.sumBy(cleanAgencies[key][type], 'complaints_sustained')
+
+            cleanAgencies[key].total_black_people_killed = currentBlackPeopleKilled + _.sumBy(cleanAgencies[key][type], 'black_people_killed')
+            cleanAgencies[key].total_hispanic_people_killed = currentHispanicPeopleKilled + _.sumBy(cleanAgencies[key][type], 'hispanic_people_killed')
+            cleanAgencies[key].total_white_people_killed = currentWhitePeopleKilled + _.sumBy(cleanAgencies[key][type], 'white_people_killed')
+
+            cleanAgencies[key].total_black_population = currentBlackPopulation + _.sumBy(cleanAgencies[key][type], 'black_population')
+            cleanAgencies[key].total_hispanic_population = currentHispanicPopulation + _.sumBy(cleanAgencies[key][type], 'hispanic_population')
+            cleanAgencies[key].total_white_population = currentWhitePopulation + _.sumBy(cleanAgencies[key][type], 'white_population')
+
+            cleanAgencies[key].total_low_level_arrests = currentLowLevelArrests + _.sumBy(cleanAgencies[key][type], 'low_level_arrests')
+            cleanAgencies[key].total_violent_crime_arrests = currentViolentCrimeArrests + _.sumBy(cleanAgencies[key][type], 'violent_crime_arrests')
           })
 
           const averageScore = Math.floor(cleanAgencies[key].total_overall_score / cleanAgencies[key].total_agencies)
