@@ -16,8 +16,6 @@ const fs = require('fs')
 const https = require('https')
 const csv = require('csv-parse')
 
-const { Op } = require('sequelize')
-
 const config = require('../../../config')
 const models = require('../../../models')
 const util = require('./util')
@@ -1578,7 +1576,7 @@ module.exports = {
               people_killed_or_injured_black: util.parseInt(row.people_killed_or_injured_black),
               people_killed_or_injured_gun_perceived: util.parseInt(row.people_killed_or_injured_gun_perceived),
               people_killed_or_injured_hispanic: util.parseInt(row.people_killed_or_injured_hispanic),
-              people_killed_or_injured_other: util.parseInt(row.people_killed_or_injured_other),
+              people_killed_or_injured_other: util.parseInt(row.people_killed_or_injured_other, true),
               people_killed_or_injured_unarmed: util.parseInt(row.people_killed_or_injured_unarmed),
               people_killed_or_injured_vehicle_incident: util.parseInt(row.people_killed_or_injured_vehicle_incident),
               people_killed_or_injured_white: util.parseInt(row.people_killed_or_injured_white),
@@ -1704,9 +1702,8 @@ module.exports = {
             // Search Counties for Sheriff Department
             models.geo_counties.findOne({
               where: {
-                name: {
-                  [Op.eq]: util.titleCase(row.location_name)
-                }
+                fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
+                fips_county_code: util.leftPad(row.fips_county_code, 3, '0')
               },
               include: [{
                 model: models.geo_states,
@@ -1772,9 +1769,8 @@ module.exports = {
             // Search Counties for Sheriff Department
             models.geo_cities.findOne({
               where: {
-                name: {
-                  [Op.eq]: util.titleCase(row.location_name)
-                }
+                fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
+                fips_place_code: util.leftPad(row.fips_place_code, 5, '0')
               },
               include: [{
                 model: models.geo_states,

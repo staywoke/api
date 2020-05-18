@@ -656,29 +656,31 @@ module.exports = {
   /**
    * Custom Function to Parse Float from CSV File
    * @param {*} val
+   * @param {*} useZero
    */
-  parseFloat (val) {
+  parseFloat (val, useZero) {
     if (typeof val === 'number') {
       return parseFloat(val)
     } else if (typeof val === 'string' && val !== '' && /[0-9.-]/.test(val)) {
       return parseFloat(val.replace(/[^0-9.-]/g, ''))
     }
 
-    return null
+    return useZero ? 0 : null
   },
 
   /**
    * Custom Function to Parse Int from CSV File
    * @param {*} val
+   * @param {*} useZero
    */
-  parseInt (val) {
+  parseInt (val, useZero) {
     if (typeof val === 'number') {
       return parseInt(val)
     } else if (typeof val === 'string' && val !== '' && /[0-9.-]/.test(val)) {
       return parseInt(val.replace(/[^0-9.-]/g, ''))
     }
 
-    return null
+    return useZero ? 0 : null
   },
 
   /**
@@ -764,5 +766,15 @@ module.exports = {
     }
 
     return null
+  },
+
+  /**
+   * Left Pad String
+   * @param {string} str
+   * @param {number} len
+   * @param {string} pad
+   */
+  leftPad (str, len, pad) {
+    return (str.length < len) ? Array(len - String(str).length + 1).join(pad || '0') + str : str
   }
 }
