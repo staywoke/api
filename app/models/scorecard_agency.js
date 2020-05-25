@@ -130,7 +130,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     indexes: [
       {
-        fields: ['ori', 'slug'],
+        fields: ['ori'],
         unique: true
       },
       {

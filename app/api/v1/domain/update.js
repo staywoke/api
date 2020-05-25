@@ -15,6 +15,7 @@ const _ = require('lodash')
 const fs = require('fs')
 const https = require('https')
 const csv = require('csv-parse')
+const sequelize = require('sequelize')
 
 const config = require('../../../config')
 const models = require('../../../models')
@@ -1170,7 +1171,7 @@ const __upsertScorecardAgency = (scorecard, condition) => {
       return agency
     })
     .catch(err => {
-      throw new Error(err)
+      throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
     })
 }
 
@@ -1193,7 +1194,7 @@ const __upsertScorecardArrests = (scorecard, condition) => {
       return models.scorecard_arrests.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardArrests: ${err.message}`)
+      throw new Error(`__upsertScorecardArrests: ${err.message} ${JSON.stringify(scorecard)}`)
     })
 }
 
@@ -1216,7 +1217,7 @@ const __upsertScorecardHomicide = (scorecard, condition) => {
       return models.scorecard_homicide.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardHomicide: ${err.message}`)
+      throw new Error(`__upsertScorecardHomicide: ${err.message} ${JSON.stringify(scorecard)}`)
     })
 }
 
@@ -1239,7 +1240,7 @@ const __upsertScorecardJail = (scorecard, condition) => {
       return models.scorecard_jail.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardJail: ${err.message}`)
+      throw new Error(`__upsertScorecardJail: ${err.message} ${JSON.stringify(scorecard)}`)
     })
 }
 
@@ -1262,7 +1263,7 @@ const __upsertScorecardPoliceAccountability = (scorecard, condition) => {
       return models.scorecard_police_accountability.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardPoliceAccountability: ${err.message}`)
+      throw new Error(`__upsertScorecardPoliceAccountability: ${err.message} ${JSON.stringify(scorecard)}`)
     })
 }
 
@@ -1285,7 +1286,7 @@ const __upsertScorecardPoliceFunding = (scorecard, condition) => {
       return models.scorecard_police_funding.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardPoliceFunding: ${err.message}`)
+      throw new Error(`__upsertScorecardPoliceFunding: ${err.message} ${JSON.stringify(scorecard)}`)
     })
 }
 
@@ -1308,7 +1309,7 @@ const __upsertScorecardPoliceViolence = (scorecard, condition) => {
       return models.scorecard_police_violence.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardPoliceViolence: ${err.message}`)
+      throw new Error(`__upsertScorecardPoliceViolence: ${err.message} ${JSON.stringify(scorecard)}`)
     })
 }
 
@@ -1331,7 +1332,7 @@ const __upsertScorecardPolicy = (scorecard, condition) => {
       return models.scorecard_policy.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardPolicy: ${err.message}`)
+      throw new Error(`__upsertScorecardPolicy: ${err.message} ${JSON.stringify(scorecard)}`)
     })
 }
 
@@ -1354,7 +1355,80 @@ const __upsertScorecardReport = (scorecard, condition) => {
       return models.scorecard_report.create(scorecard)
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardReport: ${err.message}`)
+      throw new Error(`__upsertScorecardReport: ${err.message} ${JSON.stringify(scorecard)}`)
+    })
+}
+
+/**
+ * Update or Insert County
+ * @param {Object} row
+ * @param {Object} condition
+ */
+const __upsertCounty = (row) => {
+  const state = util.getStateByID(row.state)
+  const data = {
+    country_id: 1,
+    state_id: state.id,
+    name: util.titleCase(row.location_name),
+    fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
+    fips_county_code: util.leftPad(row.fips_county_code, 3, '0')
+  }
+
+  return models.geo_counties.findOne({
+    where: {
+      fips_state_code: data.fips_state_code,
+      fips_county_code: data.fips_county_code
+    }
+  })
+    .then(county => {
+      // update
+      if (county) {
+        return county.update(data)
+      }
+
+      // insert
+      return models.geo_counties.create(data)
+    })
+    .catch(err => {
+      throw new Error(`__upsertCounty: ${err.message} ${JSON.stringify(data)}`)
+    })
+}
+
+/**
+ * Update or Insert City
+ * @param {Object} row
+ * @param {Object} condition
+ */
+const __upsertCity = (row) => {
+  const state = util.getStateByID(row.state)
+  const data = {
+    country_id: 1,
+    state_id: state.id,
+    name: util.titleCase(row.location_name),
+    fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
+    fips_place_code: util.leftPad(row.fips_place_code, 5, '0'),
+    latitude: row.latitude,
+    longitude: row.longitude,
+    coordinate: sequelize.fn('ST_GeomFromText', `POINT(${row.latitude} ${row.longitude})`)
+  }
+
+  return models.geo_cities.findOne({
+    where: {
+      fips_state_code: data.fips_state_code,
+      fips_place_code: data.fips_place_code
+    }
+  })
+    .then(city => {
+      // update
+      if (city) {
+        return city.update(data)
+      }
+
+      // insert
+      return models.geo_cities.create(data)
+    })
+    .catch(err => {
+      throw new Error(`__upsertCity: ${err.message} ${JSON.stringify(data)}`)
     })
 }
 
@@ -1698,141 +1772,96 @@ module.exports = {
             }
           }
 
-          if (row.agency_type === 'sheriff') {
-            // Search Counties for Sheriff Department
-            models.geo_counties.findOne({
-              where: {
-                fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
-                fips_county_code: util.leftPad(row.fips_county_code, 3, '0')
-              },
-              include: [{
-                model: models.geo_states,
-                where: {
-                  abbr: row.state
-                }
-              }]
-            }).then((result) => {
-              if (result) {
-                // Add
-                cleanData.agency.country_id = result.country_id
-                cleanData.agency.state_id = result.state_id
-                cleanData.agency.county_id = result.id
+          const importSheriffData = (row, result, cleanData) => {
+            // Add
+            cleanData.agency.country_id = result.country_id
+            cleanData.agency.state_id = result.state_id
+            cleanData.agency.county_id = result.id
 
-                // Update or Insert Agency
-                __upsertScorecardAgency(cleanData, {
-                  country_id: cleanData.agency.country_id,
-                  state_id: cleanData.agency.state_id,
-                  county_id: cleanData.agency.county_id,
-                  type: cleanData.agency.type
-                }).then(() => {
-                  processed.push({
-                    success: true,
-                    message: 'Imported Successfully',
-                    location: `${util.titleCase(row.location_name)}, ${row.state}`
-                  })
+            // Update or Insert Agency
+            __upsertScorecardAgency(cleanData, {
+              ori: row.ori,
+              state_id: result.state_id
+            }).then(() => {
+              processed.push({
+                success: true,
+                message: 'Imported Successfully',
+                location: `${util.titleCase(row.location_name)}, ${row.state}`
+              })
 
-                  checkComplete()
-                }).catch((err) => {
-                  importErrors.push(`${util.titleCase(row.location_name)}, ${row.state}: ${err.message}`)
-
-                  processed.push({
-                    success: false,
-                    message: err.message,
-                    location: `${util.titleCase(row.location_name)}, ${row.state}`
-                  })
-
-                  checkComplete()
-                })
-              } else {
-                importWarnings.push(`${util.titleCase(row.location_name)}, ${row.state}: Could Not Locate County`)
-
-                processed.push({
-                  success: false,
-                  message: 'Could Not Locate County',
-                  location: `${util.titleCase(row.location_name)}, ${row.state}`
-                })
-
-                checkComplete()
-              }
+              checkComplete()
             }).catch((err) => {
-              importErrors.push(err)
+              importErrors.push(`${util.titleCase(row.location_name)}, ${row.state}: ${err.message}`)
 
               processed.push({
                 success: false,
                 message: err.message,
+                stack: err.stack,
                 location: `${util.titleCase(row.location_name)}, ${row.state}`
               })
 
               checkComplete()
             })
-          } else if (row.agency_type === 'police-department') {
-            // Search Counties for Sheriff Department
-            models.geo_cities.findOne({
-              where: {
-                fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
-                fips_place_code: util.leftPad(row.fips_place_code, 5, '0')
-              },
-              include: [{
-                model: models.geo_states,
-                where: {
-                  abbr: row.state
-                }
-              }]
-            }).then((result) => {
-              if (result) {
-                // Add
-                cleanData.agency.country_id = result.country_id
-                cleanData.agency.state_id = result.state_id
-                cleanData.agency.city_id = result.id
+          }
 
-                // Update or Insert Agency
-                __upsertScorecardAgency(cleanData, {
-                  country_id: cleanData.agency.country_id,
-                  state_id: cleanData.agency.state_id,
-                  city_id: cleanData.agency.city_id,
-                  type: cleanData.agency.type
-                }).then(() => {
-                  processed.push({
-                    success: true,
-                    message: 'Imported Successfully',
-                    location: `${util.titleCase(row.location_name)}, ${row.state}`
-                  })
+          const importPoliceData = (row, result, cleanData) => {
+            // Add
+            cleanData.agency.country_id = result.country_id
+            cleanData.agency.state_id = result.state_id
+            cleanData.agency.city_id = result.id
 
-                  checkComplete()
-                }).catch((err) => {
-                  importErrors.push(`${util.titleCase(row.location_name)}, ${row.state}: ${err.message}`)
+            // Update or Insert Agency
+            __upsertScorecardAgency(cleanData, {
+              ori: row.ori,
+              state_id: result.state_id
+            }).then(() => {
+              processed.push({
+                success: true,
+                message: 'Imported Successfully',
+                location: `${util.titleCase(row.location_name)}, ${row.state}`
+              })
 
-                  processed.push({
-                    success: false,
-                    message: err.message,
-                    location: `${util.titleCase(row.location_name)}, ${row.state}`
-                  })
-
-                  checkComplete()
-                })
-              } else {
-                importWarnings.push(`${util.titleCase(row.location_name)}, ${row.state}: Could Not Locate City`)
-
-                processed.push({
-                  success: false,
-                  message: 'Could Not Locate City',
-                  location: `${util.titleCase(row.location_name)}, ${row.state}`
-                })
-
-                checkComplete()
-              }
+              checkComplete()
             }).catch((err) => {
-              importErrors.push(err)
+              importErrors.push(`${util.titleCase(row.location_name)}, ${row.state}: ${err.message}`)
 
               processed.push({
                 success: false,
                 message: err.message,
+                stack: err.stack,
                 location: `${util.titleCase(row.location_name)}, ${row.state}`
               })
 
               checkComplete()
             })
-          } else {
+          }
+
+          const importWarning = (row, type) => {
+            importWarnings.push(`${util.titleCase(row.location_name)}, ${row.state}: Could Not Locate ${type}`)
+
+            processed.push({
+              success: false,
+              message: `Could Not Locate ${type}`,
+              location: `${util.titleCase(row.location_name)}, ${row.state}`
+            })
+
+            checkComplete()
+          }
+
+          const importError = (err, row) => {
+            importErrors.push(err)
+
+            processed.push({
+              success: false,
+              message: err.message,
+              stack: err.stack,
+              location: `${util.titleCase(row.location_name)}, ${row.state}`
+            })
+
+            checkComplete()
+          }
+
+          const importSkipped = (row) => {
             processed.push({
               success: false,
               message: `Skipped ${row.agency_type}`,
@@ -1840,6 +1869,50 @@ module.exports = {
             })
 
             checkComplete()
+          }
+
+          if (row.agency_type === 'sheriff') {
+            // Search Counties for Sheriff Department
+            models.geo_counties.findOne({
+              where: {
+                fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
+                fips_county_code: util.leftPad(row.fips_county_code, 3, '0')
+              }
+            }).then((result) => {
+              if (result) {
+                importSheriffData(row, result, cleanData)
+              } else {
+                return __upsertCounty(row).then((county) => {
+                  importSheriffData(row, county, cleanData)
+                }).catch(() => {
+                  importWarning(row, row.agency_type)
+                })
+              }
+            }).catch((err) => {
+              importError(err, row)
+            })
+          } else if (row.agency_type === 'police-department') {
+            // Search Counties for Police Department
+            models.geo_cities.findOne({
+              where: {
+                fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
+                fips_place_code: util.leftPad(row.fips_place_code, 5, '0')
+              }
+            }).then((result) => {
+              if (result) {
+                importPoliceData(row, result, cleanData)
+              } else {
+                return __upsertCity(row).then((city) => {
+                  importPoliceData(row, city, cleanData)
+                }).catch(() => {
+                  importWarning(row, row.agency_type)
+                })
+              }
+            }).catch((err) => {
+              importError(err, row)
+            })
+          } else {
+            importSkipped(row)
           }
         })
     })
