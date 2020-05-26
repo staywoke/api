@@ -14,6 +14,7 @@ const express = require('express')
 const rateLimit = require('express-rate-limit')
 const session = require('express-session')
 const uuid = require('uuid')
+const cors = require('cors')
 
 const analytics = require('./analytics')
 const config = require('./config')
@@ -176,6 +177,7 @@ const SetupAPI = (request, response, next) => {
 }
 
 app.enable('trust proxy')
+app.use(cors())
 
 /**
  * Allow for Timeout JSON Response

@@ -58,6 +58,7 @@
     "class-extend": "^0.1.2",
     "colors": "^1.4.0",
     "convict": "^5.2.0",
+    "cors": "^2.8.5",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "elasticsearch": "^16.5.0",
