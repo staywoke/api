@@ -94,6 +94,8 @@ const SetupAPI = (request, response, next) => {
 
         response.setHeader('X-Powered-By', 'API')
         response.setHeader('Content-Type', 'application/json; charset=utf-8')
+        response.setHeader('Access-Control-Max-Age', '7200')
+        response.setHeader('Access-Control-Allow-Credentials', 'true')
         response.setHeader('Access-Control-Allow-Headers', 'Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By')
         response.setHeader('Access-Control-Allow-Methods', acceptedMethods.join(', '))
 
