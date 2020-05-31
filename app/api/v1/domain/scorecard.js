@@ -174,7 +174,13 @@ module.exports = {
                 total_white_people_killed: 0,
                 total_white_population: 0,
                 total_low_level_arrests: 0,
-                total_violent_crime_arrests: 0
+                total_violent_crime_arrests: 0,
+                total_arrests_2013: 0,
+                total_arrests_2014: 0,
+                total_arrests_2015: 0,
+                total_arrests_2016: 0,
+                total_arrests_2017: 0,
+                total_arrests_2018: 0
               }
             }
 
@@ -210,6 +216,13 @@ module.exports = {
               low_level_arrests: agency.dataValues.arrests.dataValues.low_level_arrests,
               violent_crime_arrests: agency.dataValues.arrests.dataValues.violent_crime_arrests,
 
+              arrests_2013: agency.dataValues.arrests.dataValues.arrests_2013,
+              arrests_2014: agency.dataValues.arrests.dataValues.arrests_2014,
+              arrests_2015: agency.dataValues.arrests.dataValues.arrests_2015,
+              arrests_2016: agency.dataValues.arrests.dataValues.arrests_2016,
+              arrests_2017: agency.dataValues.arrests.dataValues.arrests_2017,
+              arrests_2018: agency.dataValues.arrests.dataValues.arrests_2018,
+
               slug: agency.dataValues.slug,
               title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
               url_pretty: `/${stateDetails.abbr.toLowerCase()}/${agency.dataValues.type}/${agency.dataValues.slug}`,
@@ -240,6 +253,13 @@ module.exports = {
             const currentLowLevelArrests = parseInt(cleanAgencies[key].low_level_arrests) || 0
             const currentViolentCrimeArrests = parseInt(cleanAgencies[key].violent_crime_arrests) || 0
 
+            const currentArrests2013 = parseInt(cleanAgencies[key].arrests_2013) || 0
+            const currentArrests2014 = parseInt(cleanAgencies[key].arrests_2014) || 0
+            const currentArrests2015 = parseInt(cleanAgencies[key].arrests_2015) || 0
+            const currentArrests2016 = parseInt(cleanAgencies[key].arrests_2016) || 0
+            const currentArrests2017 = parseInt(cleanAgencies[key].arrests_2017) || 0
+            const currentArrests2018 = parseInt(cleanAgencies[key].arrests_2018) || 0
+
             cleanAgencies[key][type] = _.reverse(_.sortBy(cleanAgencies[key][type], ['population']))
             cleanAgencies[key].total_agencies = currentCount + cleanAgencies[key][type].length
             cleanAgencies[key].total_population = currentPopulation + _.sumBy(cleanAgencies[key][type], 'population')
@@ -259,6 +279,13 @@ module.exports = {
 
             cleanAgencies[key].total_low_level_arrests = currentLowLevelArrests + _.sumBy(cleanAgencies[key][type], 'low_level_arrests')
             cleanAgencies[key].total_violent_crime_arrests = currentViolentCrimeArrests + _.sumBy(cleanAgencies[key][type], 'violent_crime_arrests')
+
+            cleanAgencies[key].total_arrests_2013 = currentArrests2013 + _.sumBy(cleanAgencies[key][type], 'arrests_2013')
+            cleanAgencies[key].total_arrests_2014 = currentArrests2014 + _.sumBy(cleanAgencies[key][type], 'arrests_2014')
+            cleanAgencies[key].total_arrests_2015 = currentArrests2015 + _.sumBy(cleanAgencies[key][type], 'arrests_2015')
+            cleanAgencies[key].total_arrests_2016 = currentArrests2016 + _.sumBy(cleanAgencies[key][type], 'arrests_2016')
+            cleanAgencies[key].total_arrests_2017 = currentArrests2017 + _.sumBy(cleanAgencies[key][type], 'arrests_2017')
+            cleanAgencies[key].total_arrests_2018 = currentArrests2018 + _.sumBy(cleanAgencies[key][type], 'arrests_2018')
           })
 
           const averageScore = Math.floor(cleanAgencies[key].total_overall_score / cleanAgencies[key].total_agencies)
