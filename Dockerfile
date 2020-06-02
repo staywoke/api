@@ -1,12 +1,15 @@
-FROM node:12.12.0
+FROM node:12.12.0-alpine
 LABEL maintainer "Peter Schmalfeldt me@peterschmalfeldt.com"
 LABEL version="1.0"
 LABEL description="Local Development of API"
 LABEL vendor="PeterSchmalfeldt"
 
+# Add OS dependencies
+RUN apk add git python make g++ bash
 # Create non-root user to run app with
 
-RUN useradd --user-group --create-home --shell /bin/bash developer
+# RUN adduser -H /bin/bash developer
+RUN addgroup -S developer && adduser -S developer -G developer -H /bin/bash/
 
 # Set working directory
 
@@ -17,6 +20,7 @@ COPY package.json ./
 RUN mkdir /home/developer/.forever
 RUN chown -R developer:developer /home/developer/.forever
 RUN chown -R developer:developer /home/developer/api
+RUN chown -R 100:101 /home/developer/
 
 # Change user so that everything that's npm-installed belongs to it
 
