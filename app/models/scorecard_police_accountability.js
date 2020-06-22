@@ -48,6 +48,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     complaints_in_detention_sustained: {
       type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    years_of_complaints_data: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     }
   }, {
     indexes: [

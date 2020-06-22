@@ -19,6 +19,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       comment: 'Foreign Key to scorecard_agency'
     },
+    less_lethal_force_2013: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    less_lethal_force_2014: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    less_lethal_force_2015: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
     less_lethal_force_2016: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
@@ -28,6 +37,18 @@ module.exports = (sequelize, DataTypes) => {
     less_lethal_force_2018: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
+    less_lethal_force_2019: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    police_shootings_2013: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    police_shootings_2014: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    police_shootings_2015: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
     police_shootings_2016: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
@@ -35,6 +56,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     police_shootings_2018: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    police_shootings_2019: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     white_people_killed: {

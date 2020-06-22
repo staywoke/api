@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     approach_to_policing_score: {
       type: DataTypes.INTEGER(3).UNSIGNED
     },
+    police_funding_score: {
+      type: DataTypes.INTEGER(3).UNSIGNED
+    },
     black_deadly_force_disparity_per_arrest: {
       type: DataTypes.FLOAT(10, 2).UNSIGNED
     },

@@ -77,6 +77,10 @@ module.exports = {
 
     const stateDetails = util.getStateByID(state)
 
+    if (!stateDetails) {
+      return Promise.reject('Invalid `state` parameter')
+    }
+
     // Search Counties for Sheriff Department
     return models.scorecard_agency.findAll({
       where: {
@@ -150,6 +154,10 @@ module.exports = {
 
           const grade = util.getGrade(agency.dataValues.report.dataValues.overall_score)
           const stateDetails = util.getStateAbbrByID(agency.dataValues.state_id)
+
+          if (!stateDetails) {
+            return Promise.reject('Invalid `state` parameter')
+          }
 
           /* istanbul ignore else */
           if (stateDetails) {
@@ -315,6 +323,10 @@ module.exports = {
 
     const stateDetails = util.getStateByID(state)
 
+    if (!stateDetails) {
+      return Promise.reject('Invalid `state` parameter')
+    }
+
     // Search Counties for Sheriff Department
     return models.scorecard_agency.findAll({
       where: {
@@ -421,6 +433,10 @@ module.exports = {
     }
 
     const stateDetails = util.getStateByID(state)
+
+    if (!stateDetails) {
+      return Promise.reject('Invalid `state` parameter')
+    }
 
     // Search Counties for Sheriff Department
     return models.scorecard_agency.findOne({
