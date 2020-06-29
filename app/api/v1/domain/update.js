@@ -25,6 +25,8 @@ const SCORECARD_PATH = './app/data/scorecard.csv'
 const SCORECARD_COLUMNS = [
   'agency_name',
   'location_name',
+  'status',
+  'complete',
   'agency_type',
   'state',
   'fips_state_code',
@@ -276,7 +278,12 @@ const SCORECARD_COLUMNS = [
   'calc_police_spending_ratio',
   'calc_percentile_police_spending_ratio',
   'calc_misconduct_settlements_per_10k_population',
-  'calc_percentile_misconduct_settlements_per_population'
+  'calc_percentile_misconduct_settlements_per_population',
+  'calc_police_shootings_per_arrest',
+  'calc_percentile_police_shootings_per_arrest',
+  'advocacy_tip',
+  'civilian_complaints_source',
+  'civilian_complaints_source_link'
 ]
 
 /**
@@ -1584,7 +1591,7 @@ module.exports = {
     })
   },
 
-  importScorecard (rowCount) {
+  importScorecard (rowCount, cleanImport) {
     return new Promise((resolve) => {
       const scorecard = fs.createReadStream(SCORECARD_PATH)
       const importErrors = []
@@ -1622,6 +1629,17 @@ module.exports = {
           row.police_budget = row.police_budget_2017
           row.total_budget = row.total_budget_2017
 
+          // Check if we are not doing a Clean Import, and skip rows that are `current`
+          if (!cleanImport && row.status.toLowerCase() === 'current') {
+            processed.push({
+              success: true,
+              message: 'Already Up To Date',
+              location: `${row.status}: ${util.titleCase(row.location_name)}, ${row.state}`
+            })
+
+            return checkComplete()
+          }
+
           const importSheriffData = (row, result, cleanData) => {
             // Add
             cleanData.agency.country_id = result.country_id
@@ -1636,7 +1654,7 @@ module.exports = {
               processed.push({
                 success: true,
                 message: 'Imported Successfully',
-                location: `${util.titleCase(row.location_name)}, ${row.state}`
+                location: `${row.status}: ${util.titleCase(row.location_name)}, ${row.state}`
               })
 
               checkComplete()
@@ -1668,7 +1686,7 @@ module.exports = {
               processed.push({
                 success: true,
                 message: 'Imported Successfully',
-                location: `${util.titleCase(row.location_name)}, ${row.state}`
+                location: `${row.status}: ${util.titleCase(row.location_name)}, ${row.state}`
               })
 
               checkComplete()
@@ -1741,8 +1759,10 @@ module.exports = {
           // Cleanup CVS Data before handing off to Model
           const cleanData = {
             agency: {
+              advocacy_tip: util.parseString(row.advocacy_tip),
               asian_pacific_population: util.parseFloat(row.asian_pacific_population),
               black_population: util.parseFloat(row.black_population),
+              complete: util.parseBoolean(row.complete),
               hispanic_population: util.parseFloat(row.hispanic_population),
               mayor_contact_url: util.parseURL(row.mayor_contact_url),
               mayor_email: util.parseEmail(row.mayor_email),
@@ -1810,16 +1830,18 @@ module.exports = {
             },
             police_accountability: {
               civilian_complaints_reported: util.parseInt(row.civilian_complaints_reported),
+              civilian_complaints_source_link: util.parseURL(row.civilian_complaints_source_link),
+              civilian_complaints_source: util.parseString(row.civilian_complaints_source),
               civilian_complaints_sustained: util.parseInt(row.civilian_complaints_sustained),
               complaints_in_detention_reported: util.parseInt(row.complaints_in_detention_reported),
               complaints_in_detention_sustained: util.parseInt(row.complaints_in_detention_sustained),
-              years_of_complaints_data: util.parseInt(row.years_of_complaints_data),
               criminal_complaints_reported: util.parseInt(row.criminal_complaints_reported),
               criminal_complaints_sustained: util.parseInt(row.criminal_complaints_sustained),
               discrimination_complaints_reported: util.parseInt(row.discrimination_complaints_reported),
               discrimination_complaints_sustained: util.parseInt(row.discrimination_complaints_sustained),
               use_of_force_complaints_reported: util.parseInt(row.use_of_force_complaints_reported),
-              use_of_force_complaints_sustained: util.parseInt(row.use_of_force_complaints_sustained)
+              use_of_force_complaints_sustained: util.parseInt(row.use_of_force_complaints_sustained),
+              years_of_complaints_data: util.parseInt(row.years_of_complaints_data)
             },
             police_funding: {
               education_budget: util.parseInt(row.education_budget),
@@ -1925,6 +1947,7 @@ module.exports = {
               people_killed_or_injured_unarmed: util.parseInt(row.people_killed_or_injured_unarmed),
               people_killed_or_injured_vehicle_incident: util.parseInt(row.people_killed_or_injured_vehicle_incident),
               people_killed_or_injured_white: util.parseInt(row.people_killed_or_injured_white),
+              percentile_police_shootings_per_arrest: util.parseInt(row.calc_percentile_police_shootings_per_arrest),
               police_shootings_2013: util.parseInt(row.police_shootings_2013),
               police_shootings_2014: util.parseInt(row.police_shootings_2014),
               police_shootings_2015: util.parseInt(row.police_shootings_2015),
@@ -1932,6 +1955,7 @@ module.exports = {
               police_shootings_2017: util.parseInt(row.police_shootings_2017),
               police_shootings_2018: util.parseInt(row.police_shootings_2018),
               police_shootings_2019: util.parseInt(row.police_shootings_2019),
+              police_shootings_per_arrest: util.parseFloat(row.calc_police_shootings_per_arrest),
               shot_first: util.parseInt(row.shot_first),
               unarmed_people_killed: util.parseInt(row.unarmed_people_killed),
               vehicle_people_killed: util.parseInt(row.vehicle_people_killed),

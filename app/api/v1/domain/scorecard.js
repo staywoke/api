@@ -107,9 +107,10 @@ module.exports = {
           grades.push({
             agency_name: agency.dataValues.name,
             change_overall_score: agency.dataValues.report.dataValues.change_overall_score || 0,
+            complete: agency.dataValues.complete,
             district: (agency.dataValues.county) ? `us-${state.toLowerCase()}-${agency.dataValues.county.dataValues.fips_county_code}` : null,
-            grade_class: grade.class,
-            grade_letter: grade.letter,
+            grade_class: grade ? grade.class : null,
+            grade_letter: grade ? grade.letter : null,
             latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
             longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
             overall_score: agency.dataValues.report.dataValues.overall_score,
@@ -200,10 +201,11 @@ module.exports = {
             // Add Agencies to State
             cleanAgencies[stateDetails.abbr][agency.dataValues.type].push({
               agency_name: agency.dataValues.name,
+              complete: agency.dataValues.complete,
               district: (agency.dataValues.county) ? `us-${stateDetails.abbr.toLowerCase()}-${agency.dataValues.county.dataValues.fips_county_code}` : null,
-              grade_class: grade.class,
-              grade_letter: grade.letter,
-              grade_marker: grade.marker,
+              grade_class: grade ? grade.class : null,
+              grade_letter: grade ? grade.letter : null,
+              grade_marker: grade ? grade.marker : null,
               latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
               longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
               overall_score: agency.dataValues.report.dataValues.overall_score,
@@ -366,10 +368,11 @@ module.exports = {
 
           cleanAgencies[agency.dataValues.type].push({
             agency_name: agency.dataValues.name,
+            complete: agency.dataValues.complete,
             district: (agency.dataValues.county) ? `us-${state.toLowerCase()}-${agency.dataValues.county.dataValues.fips_county_code}` : null,
-            grade_class: grade.class,
-            grade_letter: grade.letter,
-            grade_marker: grade.marker,
+            grade_class: grade ? grade.class : null,
+            grade_letter: grade ? grade.letter : null,
+            grade_marker: grade ? grade.marker : null,
             latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
             longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
             overall_score: agency.dataValues.report.dataValues.overall_score,

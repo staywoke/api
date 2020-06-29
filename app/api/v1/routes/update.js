@@ -22,6 +22,7 @@ const router = express.Router(config.router)
 /* istanbul ignore next */
 router.route('/update/scorecard').post((request, response) => {
   const token = md5(request.body.token)
+  const cleanImport = (request.body.cleanImport && request.body.cleanImport !== 'false')
 
   if (token === '5d0f91a00d76444b843046b7c15eb5c2') {
     // Download Scorecard
@@ -29,7 +30,7 @@ router.route('/update/scorecard').post((request, response) => {
       // Verify CSV is valid before using and get Row Count
       UpdateDomain.validateScorecard().then((rowCount) => {
         // Import Scorecard
-        UpdateDomain.importScorecard(rowCount).then((imported) => {
+        UpdateDomain.importScorecard(rowCount, cleanImport).then((imported) => {
           // Send Success Response when Import Completed
           response.json(util.createAPIResponse({
             data: imported.data,

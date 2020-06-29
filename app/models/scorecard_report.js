@@ -65,7 +65,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(10, 6).UNSIGNED
     },
     grade_class: {
-      type: DataTypes.STRING(1)
+      type: DataTypes.STRING(7)
     },
     grade_letter: {
       type: DataTypes.STRING(2)

@@ -51,6 +51,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     years_of_complaints_data: {
       type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    civilian_complaints_source: {
+      type: DataTypes.STRING(100)
+    },
+    civilian_complaints_source_link: {
+      type: DataTypes.STRING(255)
     }
   }, {
     indexes: [

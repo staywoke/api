@@ -39,7 +39,13 @@ module.exports = {
       score = 0
     }
 
-    if (score <= 59) {
+    if (score <= 29) {
+      return {
+        letter: 'F-',
+        marker: 'f-minus',
+        class: 'f-minus'
+      }
+    } else if (score <= 59 && score >= 30) {
       return {
         letter: 'F',
         marker: 'f',

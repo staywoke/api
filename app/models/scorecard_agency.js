@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'police-department'
     },
+    complete: {
+      type: DataTypes.BOOLEAN
+    },
     ori: {
       type: DataTypes.STRING(9),
       allowNull: false
@@ -126,6 +129,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     police_chief_contact_url: {
       type: DataTypes.STRING(255)
+    },
+    advocacy_tip: {
+      type: DataTypes.TEXT
     }
   }, {
     indexes: [
