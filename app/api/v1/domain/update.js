@@ -13,7 +13,7 @@
 const _ = require('lodash')
 const del = require('del')
 const fs = require('fs')
-const https = require('https')
+const https = require('follow-redirects').https
 const csv = require('csv-parse')
 const sequelize = require('sequelize')
 
@@ -1551,6 +1551,9 @@ module.exports = {
               return resolve()
             })
           })
+        } else {
+          req.abort()
+          return reject(`CSV Download Failed with HTTP Status ${resp.statusCode}: ${resp.statusMessage}`)
         }
       })
 

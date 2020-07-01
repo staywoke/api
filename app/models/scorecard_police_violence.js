@@ -121,6 +121,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     all_deadly_force_incidents: {
       type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    percentile_police_shootings_per_arrest: {
+      type: DataTypes.INTEGER(10).UNSIGNED
     }
   }, {
     indexes: [
