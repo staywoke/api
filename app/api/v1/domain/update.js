@@ -1844,7 +1844,7 @@ module.exports = {
               discrimination_complaints_sustained: util.parseInt(row.discrimination_complaints_sustained),
               use_of_force_complaints_reported: util.parseInt(row.use_of_force_complaints_reported),
               use_of_force_complaints_sustained: util.parseInt(row.use_of_force_complaints_sustained),
-              years_of_complaints_data: util.parseInt(row.years_of_complaints_data)
+              years_of_complaints_data: util.parseString(row.years_of_complaints_data)
             },
             police_funding: {
               education_budget: util.parseInt(row.education_budget),

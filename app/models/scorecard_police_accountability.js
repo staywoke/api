@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     years_of_complaints_data: {
-      type: DataTypes.INTEGER(10).UNSIGNED
+      type: DataTypes.STRING(50)
     },
     civilian_complaints_source: {
       type: DataTypes.STRING(100)
