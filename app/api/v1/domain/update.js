@@ -990,8 +990,9 @@ const __calcPoliceShootingsIncidents = (row) => {
   const policeShootings2016 = util.parseInt(row.police_shootings_2016) || 0
   const policeShootings2017 = util.parseInt(row.police_shootings_2017) || 0
   const policeShootings2018 = util.parseInt(row.police_shootings_2018) || 0
+  const policeShootings2019 = util.parseInt(row.police_shootings_2019) || 0
 
-  return (policeShootings2016 + policeShootings2017 + policeShootings2018)
+  return (policeShootings2016 + policeShootings2017 + policeShootings2018 + policeShootings2019)
 }
 
 /**
