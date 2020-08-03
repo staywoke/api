@@ -217,6 +217,9 @@ module.exports = (sequelize, DataTypes) => {
     police_budget_2020: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
+    budget_source_name: {
+      type: DataTypes.TEXT
+    },
     budget_source_link: {
       type: DataTypes.TEXT
     },

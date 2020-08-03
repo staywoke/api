@@ -283,7 +283,8 @@ const SCORECARD_COLUMNS = [
   'calc_percentile_police_shootings_per_arrest',
   'advocacy_tip',
   'civilian_complaints_source',
-  'civilian_complaints_source_link'
+  'civilian_complaints_source_link',
+  'budget_source_name'
 ]
 
 /**
@@ -1914,6 +1915,7 @@ module.exports = {
               police_budget_2018: util.parseInt(row.police_budget_2018),
               police_budget_2019: util.parseInt(row.police_budget_2019),
               police_budget_2020: util.parseInt(row.police_budget_2020),
+              budget_source_name: util.parseInt(row.budget_source_name),
               budget_source_link: util.parseInt(row.budget_source_link),
               average_annual_misconduct_settlements: util.parseInt(row.average_annual_misconduct_settlements),
               year_misconduct_settlement_data: util.parseString(row.year_misconduct_settlement_data),
