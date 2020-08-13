@@ -226,7 +226,7 @@ describe('Domain Util', () => {
     })
 
     it('should correct scores if out of range', () => {
-      assert.deepEqual(UtilDomain.getGrade(-1), { letter: 'F', marker: 'f', class: 'f' })
+      assert.deepEqual(UtilDomain.getGrade(-1), { letter: 'F-', marker: 'f-minus', class: 'f-minus' })
       assert.deepEqual(UtilDomain.getGrade(101), { letter: 'A+', marker: 'a-plus', class: 'a' })
     })
   })

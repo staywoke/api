@@ -13,3 +13,4 @@ node_modules
 .vscode
 *.code-workspace
 app/data/*.csv
+preview.html

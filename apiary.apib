@@ -3281,6 +3281,677 @@ Get Detailed Report Scorecard for a single department.
           }
         }
 
+# Group Scorecard GeoJSON
+
+A Collection of Endpoints that Generate GeoJSON Map Markup
+
+## GeoJSON Maps [/scorecard/map/{state}/{type}/{location}?format={format}]
+
+Fetch All Departments and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Parameters
+    + state (string, optional) - Two Letter State Abbreviation ( or `us` for ALL states )
+    + type (string, optional) - Type of Department
+        + Values:
+          + `sheriff`
+          + `police-department`
+    + location (string, optional) - This is the `slug` version of the Location
+        + Example: `new-york` if you were searching for `New York`
+        + Example: `st-louis` if you were searching for `St. Louis`
+    + format (string, optional) - Use `geojson` to output JUST GeoJSON
+        + Values:
+          + `geojson`
+
+### All Departments [GET]
+
+Fetch **All** Departments and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Response 200 (application/json)
+
+        {
+          "notices": [],
+          "warnings": [],
+          "errors": [],
+          "field_errors": {},
+          "meta": {
+            "total": 1,
+            "showing": 1,
+            "pages": 1,
+            "page": 1
+          },
+          "data": {
+            "type": "FeatureCollection",
+            "id": "scorecard_us",
+            "features": [{
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Abbeville",
+                  "score": 33,
+                  "state": "AL",
+                  "type": "police-department",
+                  "url": "/al/police-department/abbeville"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -85.2479,
+                    31.56497
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Adamsville",
+                  "score": 35,
+                  "state": "AL",
+                  "type": "police-department",
+                  "url": "/al/police-department/adamsville"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -86.95412,
+                    33.59763
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Alabaster",
+                  "score": 43,
+                  "state": "AL",
+                  "type": "police-department",
+                  "url": "/al/police-department/alabaster"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -86.8159,
+                    33.246
+                  ]
+                }
+              }
+            ]
+          },
+          "attribution": {
+            "text": "Data Provided by StayWoke",
+            "website": "https://staywoke.org",
+            "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+            "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+            "report_bug": "https://github.com/staywoke/api/issues/new",
+            "logo": "https://cdn.staywoke.org/common/logo.png",
+            "icon": "https://cdn.staywoke.org/common/icon.png"
+          }
+        }
+
+### All Police Departments [GET]
+
+Fetch All **Police** Departments and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Parameters
+    + state: `us` (string, required)
+    + type: `police-department` (string, required)
+
++ Response 200 (application/json)
+
+        {
+          "notices": [],
+          "warnings": [],
+          "errors": [],
+          "field_errors": {},
+          "meta": {
+            "total": 1,
+            "showing": 1,
+            "pages": 1,
+            "page": 1
+          },
+          "data": {
+            "type": "FeatureCollection",
+            "id": "scorecard_us_police-department",
+            "features": [{
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Abbeville",
+                  "score": 33,
+                  "state": "AL",
+                  "type": "police-department",
+                  "url": "/al/police-department/abbeville"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -85.2479,
+                    31.56497
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Adamsville",
+                  "score": 35,
+                  "state": "AL",
+                  "type": "police-department",
+                  "url": "/al/police-department/adamsville"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -86.95412,
+                    33.59763
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Alabaster",
+                  "score": 43,
+                  "state": "AL",
+                  "type": "police-department",
+                  "url": "/al/police-department/alabaster"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -86.8159,
+                    33.246
+                  ]
+                }
+              }
+            ]
+          },
+          "attribution": {
+            "text": "Data Provided by StayWoke",
+            "website": "https://staywoke.org",
+            "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+            "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+            "report_bug": "https://github.com/staywoke/api/issues/new",
+            "logo": "https://cdn.staywoke.org/common/logo.png",
+            "icon": "https://cdn.staywoke.org/common/icon.png"
+          }
+        }
+
+### All Sheriff Departments [GET]
+
+Fetch All **Sheriff** Departments and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Parameters
+    + state: `us` (string, required)
+    + type: `sheriff` (string, required)
+
++ Response 200 (application/json)
+
+        {
+          "notices": [],
+          "warnings": [],
+          "errors": [],
+          "field_errors": {},
+          "meta": {
+            "total": 1,
+            "showing": 1,
+            "pages": 1,
+            "page": 1
+          },
+          "data": {
+            "type": "FeatureCollection",
+            "id": "scorecard_us_sheriff",
+            "features": [{
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "fips": "01001",
+                  "grade": "f",
+                  "name": "Autauga",
+                  "score": 46,
+                  "state": "AL",
+                  "type": "sheriff",
+                  "url": "/al/sheriff/autauga"
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "fips": "01003",
+                  "grade": "f",
+                  "name": "Baldwin",
+                  "score": 40,
+                  "state": "AL",
+                  "type": "sheriff",
+                  "url": "/al/sheriff/baldwin"
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "fips": "01005",
+                  "grade": "f",
+                  "name": "Barbour",
+                  "score": 36,
+                  "state": "AL",
+                  "type": "sheriff",
+                  "url": "/al/sheriff/barbour"
+                }
+              }
+            ]
+          },
+          "attribution": {
+            "text": "Data Provided by StayWoke",
+            "website": "https://staywoke.org",
+            "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+            "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+            "report_bug": "https://github.com/staywoke/api/issues/new",
+            "logo": "https://cdn.staywoke.org/common/logo.png",
+            "icon": "https://cdn.staywoke.org/common/icon.png"
+          }
+        }
+
+### California Departments [GET]
+
+Fetch All **California** Departments and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Parameters
+    + state: `ca` (string, required)
+
++ Response 200 (application/json)
+
+        {
+          "notices": [],
+          "warnings": [],
+          "errors": [],
+          "field_errors": {},
+          "meta": {
+            "total": 1,
+            "showing": 1,
+            "pages": 1,
+            "page": 1
+          },
+          "data": {
+            "type": "FeatureCollection",
+            "id": "scorecard_ca",
+            "features": [{
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Adelanto",
+                  "score": 52,
+                  "state": "CA",
+                  "type": "police-department",
+                  "url": "/ca/police-department/adelanto"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -117.4173,
+                    34.5159
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Agoura Hills",
+                  "score": 52,
+                  "state": "CA",
+                  "type": "police-department",
+                  "url": "/ca/police-department/agoura-hills"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -118.1291,
+                    34.0617
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": true,
+                  "grade": "f",
+                  "name": "Alameda",
+                  "score": 50,
+                  "state": "CA",
+                  "type": "police-department",
+                  "url": "/ca/police-department/alameda"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -122.2428,
+                    37.767
+                  ]
+                }
+              }
+            ]
+          },
+          "attribution": {
+            "text": "Data Provided by StayWoke",
+            "website": "https://staywoke.org",
+            "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+            "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+            "report_bug": "https://github.com/staywoke/api/issues/new",
+            "logo": "https://cdn.staywoke.org/common/logo.png",
+            "icon": "https://cdn.staywoke.org/common/icon.png"
+          }
+        }
+
+### California Police Departments [GET]
+
+Fetch All **California Police** Departments and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Parameters
+    + state: `ca` (string, required)
+    + type: `police-department` (string, required)
+
++ Response 200 (application/json)
+
+        {
+          "notices": [],
+          "warnings": [],
+          "errors": [],
+          "field_errors": {},
+          "meta": {
+            "total": 1,
+            "showing": 1,
+            "pages": 1,
+            "page": 1
+          },
+          "data": {
+            "type": "FeatureCollection",
+            "id": "scorecard_ca_police-department",
+            "features": [{
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Adelanto",
+                  "score": 52,
+                  "state": "CA",
+                  "type": "police-department",
+                  "url": "/ca/police-department/adelanto"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -117.4173,
+                    34.5159
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": false,
+                  "grade": "f",
+                  "name": "Agoura Hills",
+                  "score": 52,
+                  "state": "CA",
+                  "type": "police-department",
+                  "url": "/ca/police-department/agoura-hills"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -118.1291,
+                    34.0617
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": true,
+                  "grade": "f",
+                  "name": "Alameda",
+                  "score": 50,
+                  "state": "CA",
+                  "type": "police-department",
+                  "url": "/ca/police-department/alameda"
+                },
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    -122.2428,
+                    37.767
+                  ]
+                }
+              }
+            ]
+          },
+          "attribution": {
+            "text": "Data Provided by StayWoke",
+            "website": "https://staywoke.org",
+            "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+            "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+            "report_bug": "https://github.com/staywoke/api/issues/new",
+            "logo": "https://cdn.staywoke.org/common/logo.png",
+            "icon": "https://cdn.staywoke.org/common/icon.png"
+          }
+        }
+
+### California Sheriff Departments [GET]
+
+Fetch All **California Sheriff** Departments and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Parameters
+    + state: `ca` (string, required)
+    + type: `sheriff` (string, required)
+
++ Response 200 (application/json)
+
+        {
+          "notices": [],
+          "warnings": [],
+          "errors": [],
+          "field_errors": {},
+          "meta": {
+            "total": 1,
+            "showing": 1,
+            "pages": 1,
+            "page": 1
+          },
+          "data": {
+            "type": "FeatureCollection",
+            "id": "scorecard_ca_sheriff",
+            "features": [{
+                "type": "Feature",
+                "properties": {
+                  "complete": true,
+                  "fips": "06001",
+                  "grade": "f",
+                  "name": "Alameda",
+                  "score": 55,
+                  "state": "CA",
+                  "type": "sheriff",
+                  "url": "/ca/sheriff/alameda"
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": true,
+                  "fips": "06003",
+                  "grade": "f",
+                  "name": "Alpine",
+                  "score": 46,
+                  "state": "CA",
+                  "type": "sheriff",
+                  "url": "/ca/sheriff/alpine"
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {
+                  "complete": true,
+                  "fips": "06005",
+                  "grade": "f",
+                  "name": "Amador",
+                  "score": 58,
+                  "state": "CA",
+                  "type": "sheriff",
+                  "url": "/ca/sheriff/amador"
+                }
+              }
+            ]
+          },
+          "attribution": {
+            "text": "Data Provided by StayWoke",
+            "website": "https://staywoke.org",
+            "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+            "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+            "report_bug": "https://github.com/staywoke/api/issues/new",
+            "logo": "https://cdn.staywoke.org/common/logo.png",
+            "icon": "https://cdn.staywoke.org/common/icon.png"
+          }
+        }
+
+### Los Angeles, CA Police Department [GET]
+
+Fetch Just the **Los Angeles, CA Police** Department and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Parameters
+    + state: `ca` (string, required)
+    + type: `police-department` (string, required)
+    + location: `los-angeles` (string, required)
+
++ Response 200 (application/json)
+
+        {
+          "notices": [],
+          "warnings": [],
+          "errors": [],
+          "field_errors": {},
+          "meta": {
+            "total": 1,
+            "showing": 1,
+            "pages": 1,
+            "page": 1
+          },
+          "data": {
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -118.2411,
+                34.0521
+              ]
+            },
+            "id": "scorecard_ca_police-department_los-angeles",
+            "properties": {
+              "complete": true,
+              "grade": "f",
+              "name": "Los Angeles",
+              "score": 40,
+              "state": "CA",
+              "type": "police-department",
+              "url": "/ca/police-department/los-angeles"
+            },
+            "type": "Feature"
+          },
+          "attribution": {
+            "text": "Data Provided by StayWoke",
+            "website": "https://staywoke.org",
+            "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+            "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+            "report_bug": "https://github.com/staywoke/api/issues/new",
+            "logo": "https://cdn.staywoke.org/common/logo.png",
+            "icon": "https://cdn.staywoke.org/common/icon.png"
+          }
+        }
+
+### Los Angeles, CA Sheriff Department [GET]
+
+Fetch Just the **Los Angeles, CA Sheriff** Department and return via Standard API Format ( GeoJSON data will be contain in response.data )
+
++ Parameters
+    + state: `ca` (string, required)
+    + type: `sheriff` (string, required)
+    + location: `los-angeles` (string, required)
+
++ Response 200 (application/json)
+
+        {
+          "notices": [],
+          "warnings": [],
+          "errors": [],
+          "field_errors": {},
+          "meta": {
+            "total": 1,
+            "showing": 1,
+            "pages": 1,
+            "page": 1
+          },
+          "data": {
+            "id": "scorecard_ca_sheriff_los-angeles",
+            "properties": {
+              "complete": true,
+              "fips": "06037",
+              "grade": "f",
+              "name": "Los Angeles",
+              "score": 37,
+              "state": "CA",
+              "type": "sheriff",
+              "url": "/ca/sheriff/los-angeles"
+            },
+            "type": "Feature"
+          },
+          "attribution": {
+            "text": "Data Provided by StayWoke",
+            "website": "https://staywoke.org",
+            "link": "<a href=\"https://staywoke.org\">Data Provided by StayWoke</a>",
+            "license": "https://raw.githubusercontent.com/staywoke/api/master/LICENSE",
+            "report_bug": "https://github.com/staywoke/api/issues/new",
+            "logo": "https://cdn.staywoke.org/common/logo.png",
+            "icon": "https://cdn.staywoke.org/common/icon.png"
+          }
+        }
+
+### GeoJSON Ouput Only [GET]
+
+Sample using GeoJSON Format Option
+
++ Parameters
+    + state: `ca` (string, required)
+    + type: `sheriff` (string, required)
+    + location: `los-angeles` (string, required)
+    + format: `geojson` (string, required)
+
++ Response 200 (application/json)
+
+        {
+          "type": "Feature",
+          "id": "scorecard_ca_sheriff_los-angeles",
+          "properties": {
+            "complete": true,
+            "fips": "06037",
+            "grade": "f",
+            "name": "Los Angeles",
+            "score": 37,
+            "state": "CA",
+            "type": "sheriff",
+            "url": "/ca/sheriff/los-angeles"
+          }
+        }
+
 # Group Geolocation
 
 The following endpoints for accessing Geolocation Data used across the API.

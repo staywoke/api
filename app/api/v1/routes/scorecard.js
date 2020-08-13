@@ -97,4 +97,41 @@ router.route('/scorecard/state/:state').get((request, response) => {
   })
 })
 
+/**
+ * [GET] Scorecard Map
+ * @memberof module:routes/scorecard
+ * @name /scorecard/map
+ */
+/* istanbul ignore next */
+router.route('/scorecard/map/:state?/:type?/:location?').get((request, response) => {
+  const state = (typeof request.params.state !== 'undefined') ? request.params.state : null
+  const type = (typeof request.params.type !== 'undefined') ? request.params.type : null
+  const location = (typeof request.params.location !== 'undefined') ? request.params.location : null
+  const format = (typeof request.query.format !== 'undefined') ? request.query.format : null
+
+  ScorecardDomain.getMap(state, type, location).then((data) => {
+    if (format && format.toLowerCase() === 'geojson') {
+      response.json(data)
+    } else {
+      response.json(util.createAPIResponse({
+        data: data
+      }, request.query.fields))
+    }
+  }).catch(err => {
+    response.status(400)
+    if (format && format.toLowerCase() === 'geojson') {
+      response.json({
+        type: 'Feature',
+        error: (err && err.message) ? err.message : err,
+        properties: {},
+        geometry: {}
+      })
+    } else {
+      response.json(util.createAPIResponse({
+        errors: (err && err.message) ? [err.message] : [err]
+      }, request.query.fields))
+    }
+  })
+})
+
 module.exports = router

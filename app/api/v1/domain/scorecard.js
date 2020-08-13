@@ -58,6 +58,74 @@ const __buildAgency = (result) => {
   return results
 }
 
+const __buildGeoJSON = (result, collection) => {
+  const geoJSON = {
+    type: 'Feature',
+    id: '',
+    properties: {}
+  }
+
+  if (collection) {
+    delete geoJSON.id
+  }
+
+  // Add Department Name
+  if (result && typeof result.name === 'string') {
+    geoJSON.properties.name = result.name
+  }
+
+  // Add Department Score
+  if (result && typeof result.report !== 'undefined' && typeof result.report.overall_score !== 'undefined') {
+    geoJSON.properties.score = result.report.overall_score
+  }
+
+  // Add Department Grade
+  if (result && typeof result.report !== 'undefined' && typeof result.report.grade_class !== 'undefined') {
+    geoJSON.properties.grade = result.report.grade_marker
+  }
+
+  // Add Department URL
+  if (result && typeof result.slug !== 'undefined' && typeof result.state_id !== 'undefined' && typeof result.type !== 'undefined') {
+    const stateInfo = util.getStateAbbrByID(result.state_id)
+    geoJSON.properties.url = `/${stateInfo.abbr.toLowerCase()}/${result.type}/${result.slug}`
+    geoJSON.properties.state = stateInfo.abbr
+
+    if (!collection) {
+      geoJSON.id = `scorecard_${stateInfo.abbr.toLowerCase()}_${result.type}_${result.slug}`
+    }
+  }
+
+  if (result && result.type === 'police-department') {
+    geoJSON.properties.type = result.type
+
+    if (result.city && typeof result.city.latitude !== 'undefined' && typeof result.city.longitude !== 'undefined') {
+      geoJSON.geometry = {
+        type: 'Point',
+        coordinates: [
+          parseFloat(result.city.longitude),
+          parseFloat(result.city.latitude)
+        ]
+      }
+    }
+  }
+
+  if (result && result.type === 'sheriff') {
+    geoJSON.properties.type = result.type
+
+    if (result.county && typeof result.county.fips_state_code !== 'undefined' && typeof result.county.fips_county_code !== 'undefined') {
+      geoJSON.properties.fips = `${result.county.fips_state_code}${result.county.fips_county_code}`
+    }
+  }
+
+  if (result && typeof result.complete === 'boolean') {
+    geoJSON.properties.complete = result.complete
+  }
+
+  geoJSON.properties = util.sortByKeys(geoJSON.properties)
+
+  return geoJSON
+}
+
 /**
  * Domain Scorecard
  * @type {object}
@@ -212,26 +280,26 @@ module.exports = {
               population: agency.dataValues.total_population,
               people_killed: agency.dataValues.report.dataValues.total_people_killed,
               arrests: agency.dataValues.report.dataValues.total_arrests,
-              complaints_reported: agency.dataValues.police_accountability.dataValues.civilian_complaints_reported,
-              complaints_sustained: agency.dataValues.police_accountability.dataValues.civilian_complaints_sustained,
+              complaints_reported: agency.dataValues.police_accountability ? agency.dataValues.police_accountability.dataValues.civilian_complaints_reported : null,
+              complaints_sustained: agency.dataValues.police_accountability ? agency.dataValues.police_accountability.dataValues.civilian_complaints_sustained : null,
 
               black_population: agency.dataValues.black_population,
               hispanic_population: agency.dataValues.hispanic_population,
               white_population: agency.dataValues.white_population,
 
-              black_people_killed: agency.dataValues.police_violence.dataValues.black_people_killed,
-              hispanic_people_killed: agency.dataValues.police_violence.dataValues.hispanic_people_killed,
-              white_people_killed: agency.dataValues.police_violence.dataValues.white_people_killed,
+              black_people_killed: agency.dataValues.police_violence ? agency.dataValues.police_violence.dataValues.black_people_killed : null,
+              hispanic_people_killed: agency.dataValues.police_violence ? agency.dataValues.police_violence.dataValues.hispanic_people_killed : null,
+              white_people_killed: agency.dataValues.police_violence ? agency.dataValues.police_violence.dataValues.white_people_killed : null,
 
-              low_level_arrests: agency.dataValues.arrests.dataValues.low_level_arrests,
-              violent_crime_arrests: agency.dataValues.arrests.dataValues.violent_crime_arrests,
+              low_level_arrests: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.low_level_arrests : null,
+              violent_crime_arrests: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.violent_crime_arrests : null,
 
-              arrests_2013: agency.dataValues.arrests.dataValues.arrests_2013,
-              arrests_2014: agency.dataValues.arrests.dataValues.arrests_2014,
-              arrests_2015: agency.dataValues.arrests.dataValues.arrests_2015,
-              arrests_2016: agency.dataValues.arrests.dataValues.arrests_2016,
-              arrests_2017: agency.dataValues.arrests.dataValues.arrests_2017,
-              arrests_2018: agency.dataValues.arrests.dataValues.arrests_2018,
+              arrests_2013: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2013 : null,
+              arrests_2014: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2014 : null,
+              arrests_2015: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2015 : null,
+              arrests_2016: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2016 : null,
+              arrests_2017: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2017 : null,
+              arrests_2018: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2018 : null,
 
               slug: agency.dataValues.slug,
               title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
@@ -468,6 +536,108 @@ module.exports = {
       } else {
         return Promise.reject(`No location found for ${state} ${type} ${location}`)
       }
+    })
+  },
+
+  /**
+   * Get Report
+   * @param {String} state
+   * @param {String} type
+   * @param {String} location
+   */
+  getMap (state, type, location) {
+    let mapState, mapType, mapLocation
+
+    // Check if we are filtering by state, and state is valid
+    if (state && state.length === 2 && state !== 'us') {
+      mapState = util.getStateByID(state)
+
+      if (!mapState) {
+        return Promise.reject('Invalid `state` parameter')
+      }
+    } else {
+      state = 'us'
+    }
+
+    // Check if we are filtering by type, and type is valid
+    if (type && ['sheriff', 'police-department'].indexOf(type.toLowerCase()) > -1) {
+      mapType = type.toLowerCase()
+    } else if (type && ['sheriff', 'police-department'].indexOf(type.toLowerCase()) === -1) {
+      return Promise.reject('Invalid `type` parameter')
+    }
+
+    // Check if we are filtering by location, and location is valid
+    if (location && /[a-z-]+/.test(location)) {
+      mapLocation = location
+    } else if (type && !/[a-z-]+/.test(location)) {
+      return Promise.reject('Invalid `location` parameter')
+    }
+
+    // Where Clause
+    const where = {}
+
+    // Includes
+    const includes = ['report']
+
+    // Add State Filter if set
+    if (mapState && mapState.id) {
+      where.state_id = mapState.id
+    }
+
+    // Filter Department Type
+    if (mapType) {
+      where.type = mapType
+
+      if (mapType === 'sheriff') {
+        includes.push('county')
+      } else if (mapType === 'police-department') {
+        includes.push('city')
+      }
+    } else {
+      includes.push('county')
+      includes.push('city')
+    }
+
+    // Filter Department by Location
+    if (mapLocation) {
+      where.slug = mapLocation
+    }
+
+    // Search
+    return models.scorecard_agency.findAll({
+      where: where,
+      include: includes,
+      order: [
+        [
+          'state_id', 'ASC'
+        ],
+        [
+          'name', 'ASC'
+        ]
+      ]
+    }).then((agencies) => {
+      let geoJSON
+
+      if (agencies && agencies.length === 1) {
+        geoJSON = __buildGeoJSON(agencies[0])
+      } else if (agencies && agencies.length > 1) {
+        var id = 'scorecard'
+        id += (state) ? `_${util.createSlug(state)}` : ''
+        id += (type) ? `_${util.createSlug(type)}` : ''
+        id += (location) ? `_${util.createSlug(location)}` : ''
+
+        geoJSON = {
+          type: 'FeatureCollection',
+          id: id,
+          features: []
+        }
+
+        agencies.forEach((agency) => {
+          geoJSON.features.push(__buildGeoJSON(agency, true))
+        })
+      }
+
+      return geoJSON
     })
   }
 }

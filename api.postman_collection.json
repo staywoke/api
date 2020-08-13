@@ -5991,6 +5991,1076 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Scorecard GeoJSON",
+			"item": [
+				{
+					"name": "All Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map"
+							]
+						},
+						"description": "Fetch All Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85953664"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2515814"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"266366-m/e3M/PGarXhUbJT6vWdpV/KERo\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A1ca2416f-623e-4c0f-aa6c-0e2159877ed1.zVHqzOND22zrMMM8yOYRegjVTqt2lrSJANNc1OOM9AQ; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:28:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_us\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Abbeville\",\n                    \"score\": 33,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/abbeville\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -85.2479,\n                        31.56497\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Adamsville\",\n                    \"score\": 35,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/adamsville\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -86.95412,\n                        33.59763\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Alabaster\",\n                    \"score\": 43,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/alabaster\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -86.8159,\n                        33.246\n                    ]\n                }\n            }\n        ]\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "All Police Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/us/police-department",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"us",
+								"police-department"
+							]
+						},
+						"description": "Fetch All Police Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/us/police-department",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"us",
+										"police-department"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85447646"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2040742"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f23a6-AAODYp64uxIoM6Apa8N7r/hVEPI\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A3aeb6854-887e-4dd5-8ddb-01b88fdb4fb6.AW5YacaR89D5m39u%2Fep7Z6W%2B%2FcysSiVmF%2BK2nU3aomo; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:37:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_us_police-department\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Abbeville\",\n                    \"score\": 33,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/abbeville\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -85.2479,\n                        31.56497\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Adamsville\",\n                    \"score\": 35,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/adamsville\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -86.95412,\n                        33.59763\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Alabaster\",\n                    \"score\": 43,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/alabaster\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -86.8159,\n                        33.246\n                    ]\n                }\n            }\n        ]        \n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "All Sheriff Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/us/sheriff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"us",
+								"sheriff"
+							]
+						},
+						"description": "Fetch All Sheriff Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/us/sheriff",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"us",
+										"sheriff"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85305670"
+								},
+								{
+									"key": "Content-Length",
+									"value": "475663"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7420f-tFUV5z0UicEb4Kq1nT2k+O0KPeI\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Ad9311eee-4fe8-4a13-ac56-3d5c0e43ec0f.PqGhhcClIcW5krqgl67y7B7x%2Fpg4A8mpvRCn%2BY9%2Fr70; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:39:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_us_sheriff\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"fips\": \"01001\",\n                    \"grade\": \"f\",\n                    \"name\": \"Autauga\",\n                    \"score\": 46,\n                    \"state\": \"AL\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/al/sheriff/autauga\"\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"fips\": \"01003\",\n                    \"grade\": \"f\",\n                    \"name\": \"Baldwin\",\n                    \"score\": 40,\n                    \"state\": \"AL\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/al/sheriff/baldwin\"\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"fips\": \"01005\",\n                    \"grade\": \"f\",\n                    \"name\": \"Barbour\",\n                    \"score\": 36,\n                    \"state\": \"AL\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/al/sheriff/barbour\"\n                }\n            }\n        ]\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "California Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca"
+							]
+						},
+						"description": "Fetch All California Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "84967865"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105944"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19dd8-hE3mMzFLEca69PJytj2Mt2cY4Dg\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Ab6bf7a25-020a-46b4-a225-0225aee129ee.tViwNu4ZgD4MR40T%2F0KNI70rG82sYQo7uRgjGH%2BrzFE; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:45:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_ca\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Adelanto\",\n                    \"score\": 52,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/adelanto\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -117.4173,\n                        34.5159\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Agoura Hills\",\n                    \"score\": 52,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/agoura-hills\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -118.1291,\n                        34.0617\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"grade\": \"f\",\n                    \"name\": \"Alameda\",\n                    \"score\": 50,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/alameda\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -122.2428,\n                        37.767\n                    ]\n                }\n            }\n        ]\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "California Police Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/police-department",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"police-department"
+							]
+						},
+						"description": "Fetch All California Police Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/police-department",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"police-department"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "84627949"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96270"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1780e-zyoVcLHceKZp3tYvA2Rs/8IrID0\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A7a90f6f8-5042-4678-8d66-c021aa51ff71.Sgi%2Flkzxt0Vjq0DpodsxsapX2oncu3K39rghM1udeNs; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:50:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_ca_police-department\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Adelanto\",\n                    \"score\": 52,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/adelanto\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -117.4173,\n                        34.5159\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Agoura Hills\",\n                    \"score\": 52,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/agoura-hills\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -118.1291,\n                        34.0617\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"grade\": \"f\",\n                    \"name\": \"Alameda\",\n                    \"score\": 50,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/alameda\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -122.2428,\n                        37.767\n                    ]\n                }\n            }\n        ]        \n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "California Sheriff Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"sheriff"
+							]
+						},
+						"description": "Fetch All California Sheriff Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"sheriff"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "84162790"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10265"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2819-sJ16fFL7NCpAyzP+Pyl3eT1h9pM\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A344d542d-7f26-4691-9ae5-124413a1c01d.YQN22ZxII2%2BKE0jGGIvOjI5NoBy6A3xgFDqlU8wO6%2BA; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:58:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_ca_sheriff\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"fips\": \"06001\",\n                    \"grade\": \"f\",\n                    \"name\": \"Alameda\",\n                    \"score\": 55,\n                    \"state\": \"CA\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/ca/sheriff/alameda\"\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"fips\": \"06003\",\n                    \"grade\": \"f\",\n                    \"name\": \"Alpine\",\n                    \"score\": 46,\n                    \"state\": \"CA\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/ca/sheriff/alpine\"\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"fips\": \"06005\",\n                    \"grade\": \"f\",\n                    \"name\": \"Amador\",\n                    \"score\": 58,\n                    \"state\": \"CA\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/ca/sheriff/amador\"\n                }\n            }\n        ]        \n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Los Angeles, CA Police Department",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/police-department/los-angeles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"police-department",
+								"los-angeles"
+							]
+						},
+						"description": "Fetch Just the Los Angeles, CA Police Department and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/police-department/los-angeles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"police-department",
+										"los-angeles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "83898057"
+								},
+								{
+									"key": "Content-Length",
+									"value": "791"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"317-JHU6UbDz+StS06NOzcNJhOcswDg\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A64b28bb0-3ea9-4a84-98f1-1a1c8a23ef51.iv4Y8dmlaWgVkaQ7%2BfELZZifFUVS6iSJDKsENw1aH1o; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 01:03:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"geometry\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -118.2411,\n                34.0521\n            ]\n        },\n        \"id\": \"scorecard_ca_police-department_los-angeles\",\n        \"properties\": {\n            \"complete\": true,\n            \"grade\": \"f\",\n            \"name\": \"Los Angeles\",\n            \"score\": 40,\n            \"state\": \"CA\",\n            \"type\": \"police-department\",\n            \"url\": \"/ca/police-department/los-angeles\"\n        },\n        \"type\": \"Feature\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Los Angeles, CA Sheriff Department",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff/los-angeles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"sheriff",
+								"los-angeles"
+							]
+						},
+						"description": "Fetch Just the Los Angeles, CA Sheriff Department and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff/los-angeles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"sheriff",
+										"los-angeles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "83789370"
+								},
+								{
+									"key": "Content-Length",
+									"value": "714"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2ca-Ip9ewUPjtvELsVoWqwW9ECzHznk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 01:04:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"id\": \"scorecard_ca_sheriff_los-angeles\",\n        \"properties\": {\n            \"complete\": true,\n            \"fips\": \"06037\",\n            \"grade\": \"f\",\n            \"name\": \"Los Angeles\",\n            \"score\": 37,\n            \"state\": \"CA\",\n            \"type\": \"sheriff\",\n            \"url\": \"/ca/sheriff/los-angeles\"\n        },\n        \"type\": \"Feature\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "GeoJSON Ouput Only",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff/los-angeles?format=geojson",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"sheriff",
+								"los-angeles"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "geojson",
+									"description": "Passing in `format` Param of `geojson` to convert reponse to pure GeoJSON"
+								}
+							]
+						},
+						"description": "Sample using GeoJSON Format Option"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff/los-angeles?format=geojson",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"sheriff",
+										"los-angeles"
+									],
+									"query": [
+										{
+											"key": "format",
+											"value": "geojson",
+											"description": "Passing in `format` Param of `geojson` to convert reponse to pure GeoJSON"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "82526163"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d2-XEmUqRSh/XN4iGmcJTXStilibkM\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A3b64db8b-e55d-439b-97ad-cc77fc45a36c.Yj99kry8S5u3qh0LTY9F7K8M2i8LseGjltBboFm0X2Q; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 01:25:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"Feature\",\n    \"id\": \"scorecard_ca_sheriff_los-angeles\",\n    \"properties\": {\n        \"complete\": true,\n        \"fips\": \"06037\",\n        \"grade\": \"f\",\n        \"name\": \"Los Angeles\",\n        \"score\": 37,\n        \"state\": \"CA\",\n        \"type\": \"sheriff\",\n        \"url\": \"/ca/sheriff/los-angeles\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "A Collection of Endpoints that Generate GeoJSON Map Markup",
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Geolocation",
 			"item": [
 				{
