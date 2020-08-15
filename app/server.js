@@ -25,6 +25,9 @@ const routerUtil = require('./api/v1/routes/util')
 
 const models = require('./models')
 
+/**
+ * Static Cache Wrapper for JSON API Response
+ */
 class Cache {
   constructor (name, path, cacheTime = 0) {
     this.name = name
@@ -66,28 +69,32 @@ class Cache {
 
 // create flat cache routes
 const flatCacheMiddleware = (req, res, next) => {
-  const url = req.originalUrl || req.url
-  const key = md5('__express__' + url)
+  if (req && typeof req.method !== 'undefined' && req.method === 'GET') {
+    const url = req.originalUrl || req.url
+    const key = md5('__express__' + url)
 
-  let urlParts = url.replace('/v1/', '').split('/')
+    let urlParts = url.replace('/v1/', '').split('/')
 
-  if (urlParts[0].length > 1) {
-    urlParts = urlParts.slice(0, urlParts.length - 1)
-  }
-
-  const cacheFile = `${urlParts.join('-')}.cache`
-  const cache = new Cache(cacheFile, '.cache', 60)
-  const cacheContent = cache.getKey(key)
-
-  if (cacheContent) {
-    res.send(cacheContent)
-  } else {
-    res.sendResponse = res.send
-    res.send = (body) => {
-      cache.setKey(key, body)
-      cache.save()
-      res.sendResponse(body)
+    if (urlParts[0].length > 1) {
+      urlParts = urlParts.slice(0, urlParts.length - 1)
     }
+
+    const cacheFile = `${urlParts.join('-')}.cache`
+    const cache = new Cache(cacheFile, '.cache')
+    const cacheContent = cache.getKey(key)
+
+    if (cacheContent) {
+      res.send(cacheContent)
+    } else {
+      res.sendResponse = res.send
+      res.send = (body) => {
+        cache.setKey(key, body)
+        cache.save()
+        res.sendResponse(body)
+      }
+      next()
+    }
+  } else {
     next()
   }
 }
