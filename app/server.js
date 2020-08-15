@@ -47,6 +47,8 @@ process.title = 'api'
 const SetupAPI = (request, response, next) => {
   if ('pretty' in request.query && request.query.pretty !== 'false') {
     app.set('json spaces', 2)
+  } else {
+    app.set('json spaces', 0)
   }
 
   let host = request.headers.origin

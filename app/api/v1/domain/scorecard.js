@@ -143,23 +143,42 @@ module.exports = {
       return Promise.reject('Missing Required `type` parameter')
     }
 
-    const stateDetails = util.getStateByID(state)
+    let stateDetails
 
-    if (!stateDetails) {
-      return Promise.reject('Invalid `state` parameter')
+    if (state !== 'us') {
+      stateDetails = util.getStateByID(state)
+
+      if (!stateDetails) {
+        return Promise.reject('Invalid `state` parameter')
+      }
+    }
+
+    const where = {
+      type: type
+    }
+
+    const includes = [
+      'report',
+      'state'
+    ]
+
+    if (stateDetails && state !== 'us') {
+      where.state_id = stateDetails.id
+    }
+
+    if (type === 'sheriff') {
+      includes.push('county')
+    } else if (type === 'police-department') {
+      includes.push('city')
+    } else {
+      includes.push('city')
+      includes.push('county')
     }
 
     // Search Counties for Sheriff Department
     return models.scorecard_agency.findAll({
-      where: {
-        type: type,
-        state_id: stateDetails.id
-      },
-      include: [
-        'report',
-        'city',
-        'county'
-      ]
+      where: where,
+      include: includes
     }).then((agencies) => {
       if (agencies) {
         const grades = []
@@ -183,7 +202,7 @@ module.exports = {
             longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
             overall_score: agency.dataValues.report.dataValues.overall_score,
             slug: agency.dataValues.slug,
-            title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
+            title: `${agency.dataValues.name}, ${agency.dataValues.state.dataValues.abbr} ${util.titleCase(agency.dataValues.type, true)}`,
             url_pretty: `/${state.toLowerCase()}/${agency.dataValues.type}/${agency.dataValues.slug}`,
             url: `/?state=${state.toLowerCase()}&type=${agency.dataValues.type}&location=${agency.dataValues.slug}`
           })
@@ -499,44 +518,76 @@ module.exports = {
       return Promise.reject('Missing Required `type` parameter')
     }
 
-    if (!location) {
-      return Promise.reject('Missing Required `location` parameter')
-    }
-
     const stateDetails = util.getStateByID(state)
 
     if (!stateDetails) {
       return Promise.reject('Invalid `state` parameter')
     }
 
-    // Search Counties for Sheriff Department
-    return models.scorecard_agency.findOne({
-      where: {
-        type: type,
-        state_id: stateDetails.id,
-        slug: location
-      },
-      include: [
-        'arrests',
-        'homicide',
-        'jail',
-        'police_accountability',
-        'police_funding',
-        'police_violence',
-        'policy',
-        'report',
-        'country',
-        'state',
-        'city',
-        'county'
-      ]
-    }).then((result) => {
-      if (result && result.dataValues) {
-        return __buildAgency(result)
-      } else {
-        return Promise.reject(`No location found for ${state} ${type} ${location}`)
-      }
-    })
+    if (location) {
+      // Search for Agency that Matches Location
+      return models.scorecard_agency.findOne({
+        where: {
+          type: type,
+          state_id: stateDetails.id,
+          slug: location
+        },
+        include: [
+          'arrests',
+          'homicide',
+          'jail',
+          'police_accountability',
+          'police_funding',
+          'police_violence',
+          'policy',
+          'report',
+          'country',
+          'state',
+          'city',
+          'county'
+        ]
+      }).then((result) => {
+        if (result && result.dataValues) {
+          return __buildAgency(result)
+        } else {
+          return Promise.reject(`No location found for ${state} ${type} ${location}`)
+        }
+      })
+    } else {
+      // Search Matching Agencies and pick the Most Populated Location
+      return models.scorecard_agency.findAll({
+        where: {
+          type: type,
+          state_id: stateDetails.id
+        },
+        include: [
+          'arrests',
+          'homicide',
+          'jail',
+          'police_accountability',
+          'police_funding',
+          'police_violence',
+          'policy',
+          'report',
+          'country',
+          'state',
+          'city',
+          'county'
+        ],
+        limit: 1,
+        order: [
+          [
+            'total_population', 'DESC'
+          ]
+        ]
+      }).then((results) => {
+        if (results && results.length === 1) {
+          return __buildAgency(results[0])
+        } else {
+          return Promise.reject(`No location found for ${state} ${type} ${location}`)
+        }
+      })
+    }
   },
 
   /**

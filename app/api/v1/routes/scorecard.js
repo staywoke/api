@@ -40,14 +40,16 @@ router.route('/scorecard/grades/:state/:type').get((request, response) => {
  * @name /scorecard/report
  */
 /* istanbul ignore next */
-router.route('/scorecard/report/:state/:type/:location').get((request, response) => {
+router.route('/scorecard/report/:state/:type/:location?').get((request, response) => {
   const state = (typeof request.params.state !== 'undefined') ? request.params.state : null
   const type = (typeof request.params.type !== 'undefined') ? request.params.type : null
   const location = (typeof request.params.location !== 'undefined') ? request.params.location : null
 
   ScorecardDomain.getReport(state, type, location).then((scorecard) => {
+    const notices = (!location) ? ['No Location Provided. Location with Largest Population Returned.'] : ''
     response.json(util.createAPIResponse({
-      data: scorecard
+      data: scorecard,
+      notices: notices
     }, request.query.fields))
   }).catch(err => {
     response.status(400)
