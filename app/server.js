@@ -11,10 +11,12 @@ const bugsnagExpress = require('@bugsnag/plugin-express')
 const Debug = require('debug')
 const dotenv = require('dotenv')
 const express = require('express')
+const flatCache = require('flat-cache')
 const rateLimit = require('express-rate-limit')
 const session = require('express-session')
 const uuid = require('uuid')
 const cors = require('cors')
+const md5 = require('md5')
 
 const analytics = require('./analytics')
 const config = require('./config')
@@ -22,6 +24,73 @@ const router = require('./router')
 const routerUtil = require('./api/v1/routes/util')
 
 const models = require('./models')
+
+class Cache {
+  constructor (name, path, cacheTime = 0) {
+    this.name = name
+    this.path = path
+    this.cache = flatCache.load(name, path)
+    this.expire = cacheTime === 0 ? false : cacheTime * 1000 * 60
+  }
+
+  getKey (key) {
+    var now = new Date().getTime()
+    var value = this.cache.getKey(key)
+    if (value === undefined || (value.expire !== false && value.expire < now)) {
+      return undefined
+    } else {
+      return value.data
+    }
+  }
+
+  setKey (key, value) {
+    var now = new Date().getTime()
+    this.cache.setKey(key, {
+      expire: this.expire === false ? false : now + this.expire,
+      data: value
+    })
+  }
+
+  removeKey (key) {
+    this.cache.removeKey(key)
+  }
+
+  save () {
+    this.cache.save(true)
+  }
+
+  remove () {
+    flatCache.clearCacheById(this.name, this.path)
+  }
+}
+
+// create flat cache routes
+const flatCacheMiddleware = (req, res, next) => {
+  const url = req.originalUrl || req.url
+  const key = md5('__express__' + url)
+
+  let urlParts = url.replace('/v1/', '').split('/')
+
+  if (urlParts[0].length > 1) {
+    urlParts = urlParts.slice(0, urlParts.length - 1)
+  }
+
+  const cacheFile = `${urlParts.join('-')}.cache`
+  const cache = new Cache(cacheFile, '.cache', 60)
+  const cacheContent = cache.getKey(key)
+
+  if (cacheContent) {
+    res.send(cacheContent)
+  } else {
+    res.sendResponse = res.send
+    res.send = (body) => {
+      cache.setKey(key, body)
+      cache.save()
+      res.sendResponse(body)
+    }
+    next()
+  }
+}
 
 // Import Environment before Remaining Imports
 dotenv.config({
@@ -180,6 +249,9 @@ const SetupAPI = (request, response, next) => {
   }
 }
 
+// Use string ETag
+app.set('etag', 'strong')
+
 app.enable('trust proxy')
 app.use(cors())
 
@@ -240,6 +312,7 @@ app.use(express.json())
 app.use(express.urlencoded({
   extended: false
 }))
+app.use(flatCacheMiddleware)
 app.use(limiter)
 app.use(router)
 

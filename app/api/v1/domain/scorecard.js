@@ -663,7 +663,7 @@ module.exports = {
           'state_id', 'ASC'
         ],
         [
-          'name', 'ASC'
+          'slug', 'ASC'
         ]
       ]
     }).then((agencies) => {
@@ -688,7 +688,10 @@ module.exports = {
         })
       }
 
-      return geoJSON
+      return {
+        geoJSON: geoJSON,
+        lastModified: agencies[0].modified_date
+      }
     })
   }
 }

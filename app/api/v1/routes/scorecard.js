@@ -111,12 +111,16 @@ router.route('/scorecard/map/:state?/:type?/:location?').get((request, response)
   const location = (typeof request.params.location !== 'undefined') ? request.params.location : null
   const format = (typeof request.query.format !== 'undefined') ? request.query.format : null
 
+  response.set('Cache-Control', 'public, max-age=31557600')
+
   ScorecardDomain.getMap(state, type, location).then((data) => {
+    response.set('Last-Modified', (new Date(data.lastModified)).toUTCString())
+
     if (format && format.toLowerCase() === 'geojson') {
-      response.json(data)
+      response.json(data.geoJSON)
     } else {
       response.json(util.createAPIResponse({
-        data: data
+        data: data.geoJSON
       }, request.query.fields))
     }
   }).catch(err => {
