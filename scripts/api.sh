@@ -126,7 +126,7 @@ api_start() {
   rm -f ~/.forever/web-server.log
 
   # Cleanup old Cache Files
-  rm -f .cache/*.cache
+  rm -fr .cache/*.cache
 
   if [[ -n $NX ]]; then
     __notice "Nginx Already Running"
