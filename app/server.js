@@ -73,13 +73,7 @@ const flatCacheMiddleware = (req, res, next) => {
     const url = req.originalUrl || req.url
     const key = md5('__express__' + url)
 
-    let urlParts = url.replace('/v1/', '').split('/')
-
-    if (urlParts[0].length > 1) {
-      urlParts = urlParts.slice(0, urlParts.length - 1)
-    }
-
-    const cacheFile = `${urlParts.join('-')}.cache`
+    const cacheFile = `${md5(url)}.cache`
     const cache = new Cache(cacheFile, '.cache')
     const cacheContent = cache.getKey(key)
 
