@@ -787,7 +787,7 @@ const __calcPercentPoliceMisperceiveThePersonToHaveGun = (row) => {
   const peopleKilledOrInjuredGunPerceived = util.parseInt(row.people_killed_or_injured_gun_perceived) || 0
 
   if (peopleKilledOrInjuredArmedWithGun > 0 && peopleKilledOrInjuredGunPerceived > 0) {
-    const measure = (100 - Math.floor((peopleKilledOrInjuredArmedWithGun / peopleKilledOrInjuredGunPerceived) * 100))
+    const measure = (100 - Math.ceil((peopleKilledOrInjuredArmedWithGun / peopleKilledOrInjuredGunPerceived) * 100))
     return (measure > 0) ? measure : 0
   }
 

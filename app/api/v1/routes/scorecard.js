@@ -21,8 +21,9 @@ const router = express.Router(config.router)
 router.route('/scorecard/grades/:state/:type').get((request, response) => {
   const state = (typeof request.params.state !== 'undefined') ? request.params.state : null
   const type = (typeof request.params.type !== 'undefined') ? request.params.type : null
+  const limit = (typeof request.query.limit !== 'undefined') ? request.query.limit : null
 
-  ScorecardDomain.getGrades(state, type).then((grades) => {
+  ScorecardDomain.getGrades(state, type, limit).then((grades) => {
     response.json(util.createAPIResponse({
       data: grades
     }, request.query.fields))

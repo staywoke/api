@@ -146,23 +146,6 @@ describe('Domain Util', () => {
     })
   })
 
-  describe('parsePhone', () => {
-    it('should exist', () => {
-      assert.isFunction(UtilDomain.parsePhone)
-    })
-
-    it('should parse phone numbers', () => {
-      assert.deepEqual(UtilDomain.parsePhone('123-456-7890'), '123-456-7890')
-    })
-
-    it('should return null for invalid input', () => {
-      assert.deepEqual(UtilDomain.parsePhone(''), null)
-      assert.deepEqual(UtilDomain.parsePhone('junk'), null)
-      assert.deepEqual(UtilDomain.parsePhone('123.456.7890'), null)
-      assert.deepEqual(UtilDomain.parsePhone('(123) 456-7890'), null)
-    })
-  })
-
   describe('parseString', () => {
     it('should exist', () => {
       assert.isFunction(UtilDomain.parseString)

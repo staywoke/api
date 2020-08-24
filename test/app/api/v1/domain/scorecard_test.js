@@ -1054,15 +1054,6 @@ describe('Domain Scorecard', () => {
         })
     })
 
-    it('should fail with missing location', (done) => {
-      ScorecardDomain.getReport('ca', 'police-department', null)
-        .catch((error) => {
-          assert.isDefined(error)
-          assert.isTrue(error === 'Missing Required `location` parameter')
-          done()
-        })
-    })
-
     it('should return report', (done) => {
       this.scorecardAgencyStub.returns(Promise.resolve(mockReport))
 

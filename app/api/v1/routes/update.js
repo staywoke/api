@@ -4,6 +4,7 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
+const del = require('del')
 const express = require('express')
 const md5 = require('md5')
 
@@ -31,6 +32,9 @@ router.route('/update/scorecard').post((request, response) => {
       UpdateDomain.validateScorecard().then((rowCount) => {
         // Import Scorecard
         UpdateDomain.importScorecard(rowCount, cleanImport).then((imported) => {
+          // Clear Cache since we just changed the data
+          del.sync(['.cache/*.cache'])
+
           // Send Success Response when Import Completed
           response.json(util.createAPIResponse({
             data: imported.data,

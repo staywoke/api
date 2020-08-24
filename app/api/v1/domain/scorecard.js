@@ -134,13 +134,17 @@ module.exports = {
   /**
    * Get US States and Support for Each
    */
-  getGrades (state, type) {
+  getGrades (state, type, limit) {
     if (!state) {
       return Promise.reject('Missing Required `state` parameter')
     }
 
     if (!type) {
       return Promise.reject('Missing Required `type` parameter')
+    }
+
+    if (!limit) {
+      limit = 0
     }
 
     let stateDetails
@@ -178,7 +182,13 @@ module.exports = {
     // Search Counties for Sheriff Department
     return models.scorecard_agency.findAll({
       where: where,
-      include: includes
+      include: includes,
+      limit: parseInt(limit),
+      order: [
+        [
+          'report', 'overall_score', 'ASC'
+        ]
+      ]
     }).then((agencies) => {
       if (agencies) {
         const grades = []

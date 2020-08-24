@@ -45,22 +45,6 @@ describe('Models Users', () => {
     done()
   })
 
-  it('publicJSON should be work', (done) => {
-    restore()
-
-    const user = models.users.build(fakeUser)
-    const json = user.publicJSON()
-
-    assert.isDefined(json)
-    assert.isUndefined(json.new_email)
-    assert.isUndefined(json.new_email_key)
-    assert.isUndefined(json.new_email_requested)
-    assert.isUndefined(json.new_password)
-    assert.isUndefined(json.new_password_requested)
-    assert.isUndefined(json.password)
-    done()
-  })
-
   it('isActive should be defined', (done) => {
     restore()
 

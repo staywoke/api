@@ -82,9 +82,18 @@ const flatCacheMiddleware = (req, res, next) => {
     } else {
       res.sendResponse = res.send
       res.send = (body) => {
-        cache.setKey(key, body)
-        cache.save()
-        res.sendResponse(body)
+        // check if we got a response
+        if (body && typeof body === 'string') {
+          // Check if the response had errors
+          if (body.indexOf('\"errors\": []') === -1) { // eslint-disable-line no-useless-escape
+            res.sendResponse(body)
+          } else {
+            // No errors detected, safe to cache response
+            cache.setKey(key, body)
+            cache.save()
+            res.sendResponse(body)
+          }
+        }
       }
       next()
     }
