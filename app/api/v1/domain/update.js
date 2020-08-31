@@ -284,7 +284,9 @@ const SCORECARD_COLUMNS = [
   'advocacy_tip',
   'civilian_complaints_source',
   'civilian_complaints_source_link',
-  'budget_source_name'
+  'budget_source_name',
+  'comparison_group',
+  'completeness'
 ]
 
 /**
@@ -1559,9 +1561,9 @@ module.exports = {
         }
       })
 
-      req.setTimeout(12000, () => {
+      req.setTimeout(30000, () => {
         req.abort()
-        return reject()
+        return reject('CSV Download Failed: Timeout')
       })
     })
   },
@@ -1768,6 +1770,7 @@ module.exports = {
               asian_pacific_population: util.parseFloat(row.asian_pacific_population),
               black_population: util.parseFloat(row.black_population),
               complete: util.parseBoolean(row.complete),
+              completeness: util.parseInt(row.complete),
               hispanic_population: util.parseFloat(row.hispanic_population),
               mayor_contact_url: util.parseURL(row.mayor_contact_url),
               mayor_email: util.parseEmail(row.mayor_email),
@@ -1915,8 +1918,9 @@ module.exports = {
               police_budget_2018: util.parseInt(row.police_budget_2018),
               police_budget_2019: util.parseInt(row.police_budget_2019),
               police_budget_2020: util.parseInt(row.police_budget_2020),
-              budget_source_name: util.parseInt(row.budget_source_name),
-              budget_source_link: util.parseInt(row.budget_source_link),
+              budget_source_name: util.parseString(row.budget_source_name),
+              budget_source_link: util.parseURL(row.budget_source_link),
+              comparison_group: util.parseString(row.comparison_group),
               average_annual_misconduct_settlements: util.parseInt(row.average_annual_misconduct_settlements),
               year_misconduct_settlement_data: util.parseString(row.year_misconduct_settlement_data),
               misconduct_settlement_source: util.parseURL(row.misconduct_settlement_source),

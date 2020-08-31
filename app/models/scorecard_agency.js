@@ -49,6 +49,9 @@ module.exports = (sequelize, DataTypes) => {
     complete: {
       type: DataTypes.BOOLEAN
     },
+    completeness: {
+      type: DataTypes.INTEGER(3)
+    },
     ori: {
       type: DataTypes.STRING(9),
       allowNull: false

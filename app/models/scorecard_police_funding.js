@@ -223,6 +223,9 @@ module.exports = (sequelize, DataTypes) => {
     budget_source_link: {
       type: DataTypes.TEXT
     },
+    comparison_group: {
+      type: DataTypes.TEXT
+    },
     average_annual_misconduct_settlements: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },

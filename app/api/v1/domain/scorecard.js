@@ -81,7 +81,8 @@ const __buildGeoJSON = (result, collection) => {
 
   // Add Department Grade
   if (result && typeof result.report !== 'undefined' && typeof result.report.grade_class !== 'undefined') {
-    geoJSON.properties.grade = result.report.grade_marker
+    geoJSON.properties.grade = (result.complete) ? result.report.grade_marker : 'incomplete'
+    geoJSON.properties.enableHover = true
   }
 
   // Add Department URL
