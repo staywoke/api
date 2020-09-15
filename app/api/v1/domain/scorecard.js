@@ -10,6 +10,9 @@ const models = require('../../../models')
 const util = require('./util')
 const omitColumns = ['id', 'country_id', 'state_id', 'city_id', 'county_id', 'agency_id', 'coordinate', 'created_date', 'modified_date', 'deletedAt']
 
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
+
 const __buildAgency = (result) => {
   const agency = _.omit(result.dataValues, ['id', 'country_id', 'state_id', 'city_id', 'county_id', 'arrests', 'homicide', 'jail', 'police_accountability', 'police_funding', 'police_violence', 'policy', 'report', 'country', 'state', 'city', 'county', 'created_date', 'modified_date', 'deletedAt'])
 
@@ -702,6 +705,89 @@ module.exports = {
       return {
         geoJSON: geoJSON,
         lastModified: agencies[0].modified_date
+      }
+    })
+  },
+
+  /**
+   * Search
+   * @param {String} keyword
+   */
+  search (keyword) {
+    if (!keyword) {
+      return Promise.reject('Missing Required `keyword` parameter')
+    }
+
+    var keywords = keyword.toLowerCase().split(' ')
+    var clause = []
+
+    keywords.forEach((word) => {
+      if (word !== 'sheriff' && word !== 'police') {
+        clause.push({
+          name: {
+            [Op.like]: '%' + word + '%'
+          }
+        })
+      }
+    })
+
+    if (keywords.indexOf('sheriff') > -1) {
+      clause.push({
+        type: 'sheriff'
+      })
+    } else if (keywords.indexOf('police') > -1) {
+      clause.push({
+        type: 'police-department'
+      })
+    }
+
+    // Search for Agency that Matches Location
+    return models.scorecard_agency.findAll({
+      where: {
+        [Op.and]: clause
+      },
+      limit: 5,
+      include: [
+        'state',
+        'report'
+      ]
+    }).then((result) => {
+      if (result) {
+        const results = []
+
+        result.forEach((data) => {
+          var name = `${data.name}, ${data.state.abbr}`
+          var label = name
+
+          keywords.forEach((word) => {
+            if (word !== 'sheriff' && word !== 'police') {
+              var regEx = new RegExp(word, 'ig')
+              var replaceMask = `<span>${word}</span>`
+
+              label = label.replace(regEx, replaceMask)
+            }
+          })
+
+          if (!data.complete) {
+            name = name.concat(' *')
+            label = label.concat(' *')
+          }
+
+          results.push({
+            class: data.report.grade_class,
+            complete: data.complete,
+            label: label,
+            matches: keywords,
+            name: name,
+            score: data.report.overall_score,
+            type: `${data.type === 'sheriff' ? 'Sheriff Department' : 'Police Department'}`,
+            url: `/${data.state.abbr.toLowerCase()}/${data.type}/${data.slug}`
+          })
+        })
+
+        return results
+      } else {
+        return Promise.reject(`No results found for ${keyword}`)
       }
     })
   }

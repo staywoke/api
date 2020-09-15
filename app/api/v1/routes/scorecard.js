@@ -141,4 +141,25 @@ router.route('/scorecard/map/:state?/:type?/:location?').get((request, response)
   })
 })
 
+/**
+ * [GET] Scorecard State
+ * @memberof module:routes/scorecard
+ * @name /scorecard/search
+ */
+/* istanbul ignore next */
+router.route('/scorecard/search/:keyword').get((request, response) => {
+  const keyword = (typeof request.params.keyword !== 'undefined') ? request.params.keyword : null
+
+  ScorecardDomain.search(keyword).then((data) => {
+    response.json(util.createAPIResponse({
+      data: data
+    }, request.query.fields))
+  }).catch(err => {
+    response.status(400)
+    response.json(util.createAPIResponse({
+      errors: (err && err.message) ? [err.message] : [err]
+    }, request.query.fields))
+  })
+})
+
 module.exports = router
