@@ -362,7 +362,7 @@ module.exports = {
       }
     }
 
-    return mapping[abbr.toUpperCase()]
+    return mapping[abbr.toUpperCase()] || null
   },
 
   /**

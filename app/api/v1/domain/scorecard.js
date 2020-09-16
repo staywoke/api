@@ -716,11 +716,15 @@ module.exports = {
   search (keyword) {
     if (!keyword) {
       return Promise.reject('Missing Required `keyword` parameter')
+    } else if (typeof keyword !== 'string') {
+      return Promise.reject(`Invalid 'keyword' parameter.  String Required, '${typeof keyword}' provided`)
     }
 
-    var keywords = keyword.toLowerCase().split(' ')
+    // Do some cleaning up of the users query to make matching a little easier
+    var keywords = keyword.toLowerCase().replace(/[,\.]/gi, ' ').replace(/\s+/g,' ').trim().split(' ') // eslint-disable-line
     var clause = []
 
+    // Loop over Keywords and update Where Clause
     keywords.forEach((word) => {
       if (word !== 'sheriff' && word !== 'police') {
         clause.push({
@@ -731,6 +735,7 @@ module.exports = {
       }
     })
 
+    // Check if the user specified sheriff or police in their query
     if (keywords.indexOf('sheriff') > -1) {
       clause.push({
         type: 'sheriff'
@@ -739,6 +744,23 @@ module.exports = {
       clause.push({
         type: 'police-department'
       })
+    }
+
+    // Check if the last keyword is two letters, and possibly a state, e.g. `St. Louis, MO` as a search
+    if (keywords[keywords.length - 1].length === 2) {
+      // Check if this happens to be a state abbreviate, and add new filter
+      var stateInfo = util.getStateByID(keywords[keywords.length - 1])
+
+      // Check if we got a response back for our state lookup
+      if (stateInfo && typeof stateInfo.id === 'number') {
+        // Remove last filter from where clause since it's a state abbreviation and not a department name
+        clause.pop()
+
+        // Add State Filter to Lookup
+        clause.push({
+          state_id: stateInfo.id
+        })
+      }
     }
 
     // Search for Agency that Matches Location
@@ -776,7 +798,7 @@ module.exports = {
           results.push({
             class: data.report.grade_class,
             complete: data.complete,
-            label: label,
+            label: label.toLowerCase(),
             matches: keywords,
             name: name,
             score: data.report.overall_score,
