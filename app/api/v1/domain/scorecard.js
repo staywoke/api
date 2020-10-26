@@ -290,7 +290,8 @@ module.exports = {
                 total_arrests_2015: 0,
                 total_arrests_2016: 0,
                 total_arrests_2017: 0,
-                total_arrests_2018: 0
+                total_arrests_2018: 0,
+                total_arrests_2019: 0
               }
             }
 
@@ -333,6 +334,7 @@ module.exports = {
               arrests_2016: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2016 : null,
               arrests_2017: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2017 : null,
               arrests_2018: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2018 : null,
+              arrests_2019: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2019 : null,
 
               slug: agency.dataValues.slug,
               title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
@@ -370,6 +372,7 @@ module.exports = {
             const currentArrests2016 = parseInt(cleanAgencies[key].arrests_2016) || 0
             const currentArrests2017 = parseInt(cleanAgencies[key].arrests_2017) || 0
             const currentArrests2018 = parseInt(cleanAgencies[key].arrests_2018) || 0
+            const currentArrests2019 = parseInt(cleanAgencies[key].arrests_2019) || 0
 
             cleanAgencies[key][type] = _.reverse(_.sortBy(cleanAgencies[key][type], ['population']))
             cleanAgencies[key].total_agencies = currentCount + cleanAgencies[key][type].length
@@ -397,6 +400,7 @@ module.exports = {
             cleanAgencies[key].total_arrests_2016 = currentArrests2016 + _.sumBy(cleanAgencies[key][type], 'arrests_2016')
             cleanAgencies[key].total_arrests_2017 = currentArrests2017 + _.sumBy(cleanAgencies[key][type], 'arrests_2017')
             cleanAgencies[key].total_arrests_2018 = currentArrests2018 + _.sumBy(cleanAgencies[key][type], 'arrests_2018')
+            cleanAgencies[key].total_arrests_2019 = currentArrests2019 + _.sumBy(cleanAgencies[key][type], 'arrests_2019')
           })
 
           const averageScore = Math.floor(cleanAgencies[key].total_overall_score / cleanAgencies[key].total_agencies)

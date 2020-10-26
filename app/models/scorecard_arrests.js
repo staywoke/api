@@ -42,6 +42,9 @@ module.exports = (sequelize, DataTypes) => {
     arrests_2018: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
+    arrests_2019: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
     low_level_arrests: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },

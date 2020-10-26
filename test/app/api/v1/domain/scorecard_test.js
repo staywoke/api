@@ -518,6 +518,7 @@ const mockReport = {
       arrests_2016: 68768,
       arrests_2017: 64440,
       arrests_2018: 58688,
+      arrests_2019: 65432,
       low_level_arrests: 156724,
       violent_crime_arrests: 66334,
       black_arrests: 134445,
@@ -597,8 +598,8 @@ const mockReport = {
       white_murders_solved: 98,
       black_murders_solved: 255,
       hispanic_murders_solved: 368,
-      homicides_2013_2018: 1625,
-      homicides_2013_2018_solved: 1280,
+      homicides_2013_2019: 1625,
+      homicides_2013_2019_solved: 1280,
       created_date: '2020-03-30T04:35:09.000Z',
       modified_date: '2020-03-30T04:35:09.000Z',
       deletedAt: null

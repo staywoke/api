@@ -101,6 +101,7 @@ const SCORECARD_COLUMNS = [
   'arrests_2016',
   'arrests_2017',
   'arrests_2018',
+  'arrests_2019',
   'low_level_arrests',
   'violent_crime_arrests',
   'black_arrests',
@@ -119,8 +120,8 @@ const SCORECARD_COLUMNS = [
   'white_murders_solved',
   'black_murders_solved',
   'hispanic_murders_solved',
-  'homicides_2013_2018',
-  'homicides_2013_2018_solved',
+  'homicides_2013_2019',
+  'homicides_2013_2019_solved',
   'black_jail_population',
   'hispanic_jail_population',
   'white_jail_population',
@@ -409,9 +410,10 @@ const __calcPercentAsianPacificArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const asianPacificArrests = util.parseInt(row.asian_pacific_arrests) || 0
 
-  if (asianPacificArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018)) {
+  if (asianPacificArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
     return util.parseFloat(
       (
         asianPacificArrests / (
@@ -420,7 +422,8 @@ const __calcPercentAsianPacificArrests = (row) => {
           arrests2015 +
           arrests2016 +
           arrests2017 +
-          arrests2018
+          arrests2018 +
+          arrests2019
         ) * 100
       ).toFixed(2)
     )
@@ -472,9 +475,10 @@ const __calcPercentBlackArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const blackArrests = util.parseInt(row.black_arrests) || 0
 
-  if (blackArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018)) {
+  if (blackArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
     return util.parseFloat(
       (
         blackArrests / (
@@ -483,7 +487,8 @@ const __calcPercentBlackArrests = (row) => {
           arrests2015 +
           arrests2016 +
           arrests2017 +
-          arrests2018
+          arrests2018 +
+          arrests2019
         ) * 100
       ).toFixed(2)
     )
@@ -535,10 +540,11 @@ const __calcPercentDrugPossessionArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const blackDrugArrests = util.parseInt(row.black_drug_arrests) || 0
   const nonBlackDrugArrests = util.parseInt(row.nonblack_drug_arrests) || 0
 
-  if ((blackDrugArrests || nonBlackDrugArrests) && (arrests2013 || arrests2013 || arrests2015 || arrests2016 || arrests2017 || arrests2018)) {
+  if ((blackDrugArrests || nonBlackDrugArrests) && (arrests2013 || arrests2013 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
     return util.parseFloat(
       (
         (
@@ -550,7 +556,8 @@ const __calcPercentDrugPossessionArrests = (row) => {
           arrests2015 +
           arrests2016 +
           arrests2017 +
-          arrests2018
+          arrests2018 +
+          arrests2019
         ) * 100
       ).toFixed(2)
     )
@@ -602,9 +609,10 @@ const __calcPercentHispanicArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const hispanicArrests = util.parseInt(row.hispanic_arrests) || 0
 
-  if (hispanicArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018)) {
+  if (hispanicArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
     return util.parseFloat(
       (
         hispanicArrests / (
@@ -613,7 +621,8 @@ const __calcPercentHispanicArrests = (row) => {
           arrests2015 +
           arrests2016 +
           arrests2017 +
-          arrests2018
+          arrests2018 +
+          arrests2019
         ) * 100
       ).toFixed(2)
     )
@@ -680,9 +689,10 @@ const __calcPercentMisdemeanorArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const lowLevelArrests = util.parseInt(row.low_level_arrests) || 0
 
-  if (lowLevelArrests && (arrests2013 || arrests2013 || arrests2015 || arrests2016 || arrests2017 || arrests2018)) {
+  if (lowLevelArrests && (arrests2013 || arrests2013 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
     return util.parseFloat(
       (
         lowLevelArrests / (
@@ -691,7 +701,8 @@ const __calcPercentMisdemeanorArrests = (row) => {
           arrests2015 +
           arrests2016 +
           arrests2017 +
-          arrests2018
+          arrests2018 +
+          arrests2019
         ) * 100
       ).toFixed(2)
     )
@@ -713,9 +724,10 @@ const __calcPercentOtherArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const otherArrests = util.parseInt(row.other_arrests) || 0
 
-  if (otherArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018)) {
+  if (otherArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
     return util.parseFloat(
       (
         otherArrests / (
@@ -724,7 +736,8 @@ const __calcPercentOtherArrests = (row) => {
           arrests2015 +
           arrests2016 +
           arrests2017 +
-          arrests2018
+          arrests2018 +
+          arrests2019
         ) * 100
       ).toFixed(2)
     )
@@ -900,9 +913,10 @@ const __calcPercentViolentCrimeArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const violentCrimeArrests = util.parseInt(row.violent_crime_arrests) || 0
 
-  if (violentCrimeArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018)) {
+  if (violentCrimeArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
     return util.parseFloat(
       (
         violentCrimeArrests / (
@@ -911,7 +925,8 @@ const __calcPercentViolentCrimeArrests = (row) => {
           arrests2015 +
           arrests2016 +
           arrests2017 +
-          arrests2018
+          arrests2018 +
+          arrests2019
         ) * 100
       ).toFixed(2)
     )
@@ -933,9 +948,10 @@ const __calcPercentWhiteArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const whiteArrests = util.parseInt(row.white_arrests) || 0
 
-  if (whiteArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018)) {
+  if (whiteArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
     return util.parseFloat(
       (
         whiteArrests / (
@@ -944,7 +960,8 @@ const __calcPercentWhiteArrests = (row) => {
           arrests2015 +
           arrests2016 +
           arrests2017 +
-          arrests2018
+          arrests2018 +
+          arrests2019
         ) * 100
       ).toFixed(2)
     )
@@ -1024,6 +1041,7 @@ const __calcTotalArrests = (row) => {
   const arrests2016 = util.parseInt(row.arrests_2016) || 0
   const arrests2017 = util.parseInt(row.arrests_2017) || 0
   const arrests2018 = util.parseInt(row.arrests_2018) || 0
+  const arrests2019 = util.parseInt(row.arrests_2019) || 0
 
   const totalArrests = []
 
@@ -1049,6 +1067,10 @@ const __calcTotalArrests = (row) => {
 
   if (arrests2018) {
     totalArrests.push(arrests2018)
+  }
+
+  if (arrests2019) {
+    totalArrests.push(arrests2019)
   }
 
   return (totalArrests.length) ? Math.floor(_.sum(totalArrests) / totalArrests.length) * totalArrests.length : 0
@@ -1795,6 +1817,7 @@ module.exports = {
               arrests_2016: util.parseInt(row.arrests_2016),
               arrests_2017: util.parseInt(row.arrests_2017),
               arrests_2018: util.parseInt(row.arrests_2018),
+              arrests_2019: util.parseInt(row.arrests_2019),
               asian_pacific_arrests: util.parseInt(row.asian_pacific_arrests),
               black_arrests: util.parseInt(row.black_arrests),
               black_drug_arrests: util.parseInt(row.black_drug_arrests),
@@ -1813,8 +1836,8 @@ module.exports = {
               black_murders_unsolved: util.parseInt(row.black_murders_unsolved),
               hispanic_murders_solved: util.parseInt(row.hispanic_murders_solved),
               hispanic_murders_unsolved: util.parseInt(row.hispanic_murders_unsolved),
-              homicides_2013_2018_solved: util.parseInt(row.homicides_2013_2018_solved),
-              homicides_2013_2018: util.parseInt(row.homicides_2013_2018),
+              homicides_2013_2019_solved: util.parseInt(row.homicides_2013_2019_solved),
+              homicides_2013_2019: util.parseInt(row.homicides_2013_2019),
               white_murders_solved: util.parseInt(row.white_murders_solved),
               white_murders_unsolved: util.parseInt(row.white_murders_unsolved)
             },
