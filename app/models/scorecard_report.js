@@ -98,7 +98,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     overall_disparity_index: {
-      type: DataTypes.FLOAT(10, 2).UNSIGNED
+      type: DataTypes.FLOAT(10, 2)
     },
     overall_score: {
       type: DataTypes.FLOAT(10, 2).UNSIGNED

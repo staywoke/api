@@ -1583,7 +1583,7 @@ module.exports = {
         }
       })
 
-      req.setTimeout(30000, () => {
+      req.setTimeout(60000, () => {
         req.abort()
         return reject('CSV Download Failed: Timeout')
       })
