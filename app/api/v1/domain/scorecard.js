@@ -77,6 +77,11 @@ const __buildGeoJSON = (result, collection) => {
     geoJSON.properties.name = result.name
   }
 
+  // Add Department Name
+  if (result && typeof result.total_population === 'number') {
+    geoJSON.properties.total_population = result.total_population
+  }
+
   // Add Department Score
   if (result && typeof result.report !== 'undefined' && typeof result.report.overall_score !== 'undefined') {
     geoJSON.properties.score = result.report.overall_score
@@ -643,7 +648,11 @@ module.exports = {
     }
 
     // Where Clause
-    const where = {}
+    const where = {
+      total_population: {
+        [Op.gte]: 10000
+      }
+    }
 
     // Includes
     const includes = ['report']
