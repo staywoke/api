@@ -648,14 +648,17 @@ module.exports = {
     }
 
     // Where Clause
-    const where = {
-      total_population: {
-        [Op.gte]: 10000
-      }
-    }
+    const where = {}
 
     // Includes
     const includes = ['report']
+
+    // Add Limit for US Police to Prevent MapBox Performance Issues on Map Markers
+    if (state === 'us' && mapType === 'police-department') {
+      where.total_population = {
+        [Op.gte]: 10000
+      }
+    }
 
     // Add State Filter if set
     if (mapState && mapState.id) {
