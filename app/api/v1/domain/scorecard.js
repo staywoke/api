@@ -351,34 +351,34 @@ module.exports = {
 
         // Generate Report per State and Prepare for Output
         Object.keys(cleanAgencies).forEach(key => {
-          const currentCount = parseInt(cleanAgencies[key].total_agencies) || 0
-          const currentPopulation = parseInt(cleanAgencies[key].total_population) || 0
-          const currentPeopleKilled = parseInt(cleanAgencies[key].total_people_killed) || 0
-          const currentArrests = parseInt(cleanAgencies[key].total_arrests) || 0
-          const currentOverallScore = parseInt(cleanAgencies[key].total_overall_score) || 0
-          const currentComplaintsReported = parseInt(cleanAgencies[key].complaints_reported) || 0
-          const currentComplaintsSustained = parseInt(cleanAgencies[key].complaints_sustained) || 0
-
-          const currentBlackPeopleKilled = parseInt(cleanAgencies[key].black_people_killed) || 0
-          const currentHispanicPeopleKilled = parseInt(cleanAgencies[key].hispanic_people_killed) || 0
-          const currentWhitePeopleKilled = parseInt(cleanAgencies[key].white_people_killed) || 0
-
-          const currentBlackPopulation = parseInt(cleanAgencies[key].black_population) || 0
-          const currentHispanicPopulation = parseInt(cleanAgencies[key].hispanic_population) || 0
-          const currentWhitePopulation = parseInt(cleanAgencies[key].white_population) || 0
-
-          const currentLowLevelArrests = parseInt(cleanAgencies[key].low_level_arrests) || 0
-          const currentViolentCrimeArrests = parseInt(cleanAgencies[key].violent_crime_arrests) || 0
-
-          const currentArrests2013 = parseInt(cleanAgencies[key].arrests_2013) || 0
-          const currentArrests2014 = parseInt(cleanAgencies[key].arrests_2014) || 0
-          const currentArrests2015 = parseInt(cleanAgencies[key].arrests_2015) || 0
-          const currentArrests2016 = parseInt(cleanAgencies[key].arrests_2016) || 0
-          const currentArrests2017 = parseInt(cleanAgencies[key].arrests_2017) || 0
-          const currentArrests2018 = parseInt(cleanAgencies[key].arrests_2018) || 0
-          const currentArrests2019 = parseInt(cleanAgencies[key].arrests_2019) || 0
-
           Object.keys(cleanAgencies[key]).forEach(type => {
+            const currentCount = parseInt(cleanAgencies[key].total_agencies) || 0
+            const currentPopulation = parseInt(cleanAgencies[key].total_population) || 0
+            const currentPeopleKilled = parseInt(cleanAgencies[key].total_people_killed) || 0
+            const currentArrests = parseInt(cleanAgencies[key].total_arrests) || 0
+            const currentOverallScore = parseInt(cleanAgencies[key].total_overall_score) || 0
+            const currentComplaintsReported = parseInt(cleanAgencies[key].total_complaints_reported) || 0
+            const currentComplaintsSustained = parseInt(cleanAgencies[key].total_complaints_sustained) || 0
+
+            const currentBlackPeopleKilled = parseInt(cleanAgencies[key].black_people_killed) || 0
+            const currentHispanicPeopleKilled = parseInt(cleanAgencies[key].hispanic_people_killed) || 0
+            const currentWhitePeopleKilled = parseInt(cleanAgencies[key].white_people_killed) || 0
+
+            const currentBlackPopulation = parseInt(cleanAgencies[key].black_population) || 0
+            const currentHispanicPopulation = parseInt(cleanAgencies[key].hispanic_population) || 0
+            const currentWhitePopulation = parseInt(cleanAgencies[key].white_population) || 0
+
+            const currentLowLevelArrests = parseInt(cleanAgencies[key].low_level_arrests) || 0
+            const currentViolentCrimeArrests = parseInt(cleanAgencies[key].violent_crime_arrests) || 0
+
+            const currentArrests2013 = parseInt(cleanAgencies[key].arrests_2013) || 0
+            const currentArrests2014 = parseInt(cleanAgencies[key].arrests_2014) || 0
+            const currentArrests2015 = parseInt(cleanAgencies[key].arrests_2015) || 0
+            const currentArrests2016 = parseInt(cleanAgencies[key].arrests_2016) || 0
+            const currentArrests2017 = parseInt(cleanAgencies[key].arrests_2017) || 0
+            const currentArrests2018 = parseInt(cleanAgencies[key].arrests_2018) || 0
+            const currentArrests2019 = parseInt(cleanAgencies[key].arrests_2019) || 0
+
             cleanAgencies[key][type] = _.reverse(_.sortBy(cleanAgencies[key][type], ['population']))
             cleanAgencies[key].total_agencies = currentCount + cleanAgencies[key][type].length
             cleanAgencies[key].total_population = currentPopulation + _.sumBy(cleanAgencies[key][type], 'population')
