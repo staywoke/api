@@ -13,15 +13,15 @@
 const _ = require('lodash')
 const del = require('del')
 const fs = require('fs')
-const https = require('follow-redirects').https
 const csv = require('csv-parse')
 const sequelize = require('sequelize')
+const path = require('path')
 
 const config = require('../../../config')
 const models = require('../../../models')
 const util = require('./util')
 
-const SCORECARD_PATH = './app/data/scorecard.csv'
+const SCORECARD_PATH = path.resolve('./app/data/scorecard.csv')
 const SCORECARD_COLUMNS = [
   'agency_name',
   'location_name',
@@ -1564,29 +1564,31 @@ module.exports = {
    */
   downloadScorecard () {
     return new Promise((resolve, reject) => {
-      const req = https.get(config.get('documents.scorecard'), (resp) => {
-        if (resp.statusCode === 200) {
-          // trash all the old files since we successfully download a new one
-          del.sync(['./app/data/*.csv'])
+      const sourceFile = config.get('documents.scorecard')
 
-          const scorecard = fs.createWriteStream(SCORECARD_PATH)
-          resp.pipe(scorecard)
-
-          scorecard.on('finish', () => {
-            scorecard.close(() => {
-              return resolve()
-            })
-          })
-        } else {
-          req.abort()
-          return reject(`CSV Download Failed with HTTP Status ${resp.statusCode}: ${resp.statusMessage}`)
+      // Check that Source File Exists
+      if (fs.existsSync(sourceFile)) {
+        try {
+          // Check that file has Read Access
+          fs.accessSync(sourceFile, fs.constants.R_OK)
+        } catch (err) {
+          return reject(`File does not have Read Access: ${sourceFile}`)
         }
-      })
 
-      req.setTimeout(60000, () => {
-        req.abort()
-        return reject('CSV Download Failed: Timeout')
-      })
+        // Delete Current File
+        del.sync(['./app/data/*.csv'])
+
+        try {
+          // Copy Over Source File
+          fs.copyFileSync(sourceFile, SCORECARD_PATH)
+        } catch (err) {
+          return reject(`Unable to copy Source File: ${sourceFile} => ${SCORECARD_PATH}`)
+        }
+
+        return resolve()
+      } else {
+        return reject(`File does not exist: ${sourceFile}`)
+      }
     })
   },
 

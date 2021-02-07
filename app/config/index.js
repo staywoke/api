@@ -256,9 +256,9 @@ const config = convict({
   },
   documents: {
     scorecard: {
-      doc: 'Scorecard Source Data URL for Google Spreadsheet',
+      doc: 'Absolute Path to Scorecard Document scorecard.csv',
       format: String,
-      default: 'https://docs.google.com/spreadsheets/u/1/d/14ZrbaHnzb2eTtrwLS2o8CwNC7EJ90ZVHAVksf81Bfo8/export?format=csv&id=14ZrbaHnzb2eTtrwLS2o8CwNC7EJ90ZVHAVksf81Bfo8&gid=1623145710',
+      default: '/path/to/scorecard.csv',
       env: 'API_DOC_SCORECARD'
     }
   }
