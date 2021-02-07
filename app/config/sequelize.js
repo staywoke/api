@@ -17,7 +17,7 @@ const dbOptions = {
   dialectOptions: {
     supportBigNumbers: true
   },
-  logging: null,
+  logging: console.log,
   define: {
     freezeTableName: true,
     underscored: true,

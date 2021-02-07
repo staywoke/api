@@ -259,6 +259,24 @@ const SetupAPI = (request, response, next) => {
   }
 }
 
+function logErrors (err, req, res, next) {
+  console.error(err.stack)
+  next(err)
+}
+
+function clientErrorHandler (err, req, res, next) {
+  if (req.xhr) {
+    res.status(500).send({ error: 'Something failed!' })
+  } else {
+    next(err)
+  }
+}
+
+function errorHandler (err, req, res, next) {
+  res.status(500)
+  res.render('error', { error: err })
+}
+
 // Use string ETag
 app.set('etag', 'strong')
 
@@ -326,6 +344,10 @@ app.use(flatCacheMiddleware)
 app.use(limiter)
 app.use(router)
 
+app.use(logErrors)
+app.use(clientErrorHandler)
+app.use(errorHandler)
+
 // Fallback for Possible Routes used that do not exist
 /* istanbul ignore next */
 app.get('*', (req, res) => {
@@ -364,6 +386,7 @@ const onError = (error) => {
       console.error(`${bind} is already in use`)
       process.exit(1)
     default:
+      console.error(error)
       throw error
   }
 }

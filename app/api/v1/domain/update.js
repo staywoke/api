@@ -1286,7 +1286,7 @@ const __upsertScorecardAgency = (scorecard, condition) => {
       return agency
     })
     .catch(err => {
-      throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+      throw new Error(err)
     })
 }
 
@@ -1303,17 +1303,17 @@ const __upsertScorecardArrests = (scorecard, condition) => {
       // update
       if (arrests) {
         return arrests.update(scorecard).catch(err => {
-          throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.scorecard_arrests.create(scorecard).catch(err => {
-        throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardArrests: ${err.message} ${JSON.stringify(scorecard)}`)
+      throw new Error(err)
     })
 }
 
@@ -1330,17 +1330,17 @@ const __upsertScorecardHomicide = (scorecard, condition) => {
       // update
       if (homicide) {
         return homicide.update(scorecard).catch(err => {
-          throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.scorecard_homicide.create(scorecard).catch(err => {
-        throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardHomicide: ${err.message} ${JSON.stringify(scorecard)}`)
+      throw new Error(err)
     })
 }
 
@@ -1357,17 +1357,17 @@ const __upsertScorecardJail = (scorecard, condition) => {
       // update
       if (jail) {
         return jail.update(scorecard).catch(err => {
-          throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.scorecard_jail.create(scorecard).catch(err => {
-        throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardJail: ${err.message} ${JSON.stringify(scorecard)}`)
+      throw new Error(err)
     })
 }
 
@@ -1384,17 +1384,17 @@ const __upsertScorecardPoliceAccountability = (scorecard, condition) => {
       // update
       if (policeAccountability) {
         return policeAccountability.update(scorecard).catch(err => {
-          throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.scorecard_police_accountability.create(scorecard).catch(err => {
-        throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardPoliceAccountability: ${err.message} ${JSON.stringify(scorecard)}`)
+      throw new Error(err)
     })
 }
 
@@ -1411,17 +1411,17 @@ const __upsertScorecardPoliceFunding = (scorecard, condition) => {
       // update
       if (policeFunding) {
         return policeFunding.update(scorecard).catch(err => {
-          throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.scorecard_police_funding.create(scorecard).catch(err => {
-        throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardPoliceFunding: ${err.message} ${JSON.stringify(scorecard)}`)
+      throw new Error(err)
     })
 }
 
@@ -1438,17 +1438,17 @@ const __upsertScorecardPoliceViolence = (scorecard, condition) => {
       // update
       if (policeViolence) {
         return policeViolence.update(scorecard).catch(err => {
-          throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.scorecard_police_violence.create(scorecard).catch(err => {
-        throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardPoliceViolence: ${err.message} ${JSON.stringify(scorecard)}`)
+      throw new Error(err)
     })
 }
 
@@ -1465,17 +1465,17 @@ const __upsertScorecardPolicy = (scorecard, condition) => {
       // update
       if (policy) {
         return policy.update(scorecard).catch(err => {
-          throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.scorecard_policy.create(scorecard).catch(err => {
-        throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardPolicy: ${err.message} ${JSON.stringify(scorecard)}`)
+      throw new Error(err)
     })
 }
 
@@ -1492,17 +1492,17 @@ const __upsertScorecardReport = (scorecard, condition) => {
       // update
       if (report) {
         return report.update(scorecard).catch(err => {
-          throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.scorecard_report.create(scorecard).catch(err => {
-        throw new Error(`${err} - ${JSON.stringify(scorecard.agency)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertScorecardReport: ${err.message} ${JSON.stringify(scorecard)}`)
+      throw new Error(err)
     })
 }
 
@@ -1531,17 +1531,17 @@ const __upsertCounty = (row) => {
       // update
       if (county) {
         return county.update(data).catch(err => {
-          throw new Error(`__upsertCounty: ${err.message} ${JSON.stringify(data)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.geo_counties.create(data).catch(err => {
-        throw new Error(`__upsertCounty: ${err.message} ${JSON.stringify(data)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertCounty: ${err.message} ${JSON.stringify(data)}`)
+      throw new Error(err)
     })
 }
 
@@ -1573,17 +1573,17 @@ const __upsertCity = (row) => {
       // update
       if (city) {
         return city.update(data).catch(err => {
-          throw new Error(`__upsertCity: ${err.message} ${JSON.stringify(data)}`)
+          throw new Error(err)
         })
       }
 
       // insert
       return models.geo_cities.create(data).catch(err => {
-        throw new Error(`__upsertCity: ${err.message} ${JSON.stringify(data)}`)
+        throw new Error(err)
       })
     })
     .catch(err => {
-      throw new Error(`__upsertCity: ${err.message} ${JSON.stringify(data)}`)
+      throw new Error(err)
     })
 }
 
