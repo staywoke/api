@@ -288,7 +288,7 @@ app.use(cors())
  */
 /* istanbul ignore next */
 app.use((req, res, next) => {
-  res.setTimeout(300000, () => {
+  res.setTimeout(1000000, () => {
     if (req.header('API-Key')) {
       req.query.apikey = req.header('API-Key')
     }
@@ -404,5 +404,9 @@ const onListening = () => {
 app.on('error', onError)
 app.on('listening', onListening)
 
-module.exports = app.listen(config.get('port'))
+const server = app.listen(config.get('port'))
+server.keepAliveTimeout = 1000000
+server.headersTimeout = 1005000
+
+module.exports = server
 module.exports.setupAPI = SetupAPI

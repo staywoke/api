@@ -1671,10 +1671,10 @@ module.exports = {
       const scorecard = fs.createReadStream(SCORECARD_PATH)
       const importErrors = []
       const importWarnings = []
-      const processed = []
+      let processed = 0
 
       const checkComplete = () => {
-        if (processed.length === (rowCount - 1)) {
+        if (processed === (rowCount - 1)) {
           resolve({
             data: processed,
             errors: importErrors,
@@ -1706,11 +1706,7 @@ module.exports = {
 
           // Check if we are not doing a Clean Import, and skip rows that are `current`
           if (!cleanImport && row.status.toLowerCase() === 'current') {
-            processed.push({
-              success: true,
-              message: 'Already Up To Date',
-              location: `${row.status}: ${util.titleCase(row.location_name)}, ${row.state}`
-            })
+            processed += 1
 
             return checkComplete()
           }
@@ -1726,22 +1722,12 @@ module.exports = {
               ori: row.ori,
               state_id: result.state_id
             }).then(() => {
-              processed.push({
-                success: true,
-                message: 'Imported Successfully',
-                location: `${row.status}: ${util.titleCase(row.location_name)}, ${row.state}`
-              })
+              processed += 1
 
               checkComplete()
             }).catch((err) => {
               importErrors.push(`${util.titleCase(row.location_name)}, ${row.state}: ${err.message}`)
-
-              processed.push({
-                success: false,
-                message: err.message,
-                stack: err.stack,
-                location: `${util.titleCase(row.location_name)}, ${row.state}`
-              })
+              processed += 1
 
               checkComplete()
             })
@@ -1758,22 +1744,12 @@ module.exports = {
               ori: row.ori,
               state_id: result.state_id
             }).then(() => {
-              processed.push({
-                success: true,
-                message: 'Imported Successfully',
-                location: `${row.status}: ${util.titleCase(row.location_name)}, ${row.state}`
-              })
+              processed += 1
 
               checkComplete()
             }).catch((err) => {
               importErrors.push(`${util.titleCase(row.location_name)}, ${row.state}: ${err.message}`)
-
-              processed.push({
-                success: false,
-                message: err.message,
-                stack: err.stack,
-                location: `${util.titleCase(row.location_name)}, ${row.state}`
-              })
+              processed += 1
 
               checkComplete()
             })
@@ -1781,45 +1757,27 @@ module.exports = {
 
           const importWarning = (row, type) => {
             importWarnings.push(`${util.titleCase(row.location_name)}, ${row.state}: Could Not Locate ${type}`)
-
-            processed.push({
-              success: false,
-              message: `Could Not Locate ${type}`,
-              location: `${util.titleCase(row.location_name)}, ${row.state}`
-            })
+            processed += 1
 
             checkComplete()
           }
 
           const importError = (err, row) => {
             importErrors.push(err)
-
-            processed.push({
-              success: false,
-              message: err.message,
-              stack: err.stack,
-              location: `${util.titleCase(row.location_name)}, ${row.state}`
-            })
+            processed += 1
 
             checkComplete()
           }
 
           const importSkipped = (row) => {
-            processed.push({
-              success: false,
-              message: `Skipped ${row.agency_type}`,
-              location: `${util.titleCase(row.location_name)}, ${row.state}`
-            })
+            processed += 1
 
             checkComplete()
           }
 
           const importMissingScore = (row) => {
-            processed.push({
-              success: false,
-              message: `Invalid ${row.agency_type} 'calc_overall_score' is empty`,
-              location: `${util.titleCase(row.location_name)}, ${row.state}`
-            })
+            processed += 1
+            importErrors.push(`Invalid ${row.agency_type} 'calc_overall_score' is empty`)
 
             checkComplete()
           }
