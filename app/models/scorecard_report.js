@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     police_funding_score: {
       type: DataTypes.INTEGER(3).UNSIGNED
     },
-    black_deadly_force_disparity_per_arrest: {
+    black_deadly_force_disparity: {
       type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     black_deadly_force_disparity_per_population: {
@@ -35,6 +35,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     black_murder_unsolved_rate: {
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
+    },
+    hispanic_drug_arrest_disparity: {
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
+    },
+    hispanic_deadly_force_disparity: {
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
+    },
+    most_severe_drug_arrest_disparity: {
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
+    },
+    percentile_drug_arrest_disparity: {
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
+    },
+    most_severe_deadly_force_disparity: {
       type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     change_approach_to_policing_score: {
@@ -47,6 +62,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(3)
     },
     change_police_violence_score: {
+      type: DataTypes.INTEGER(3)
+    },
+    change_police_funding_score: {
       type: DataTypes.INTEGER(3)
     },
     complaints_sustained: {

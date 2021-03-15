@@ -190,7 +190,7 @@ const SCORECARD_COLUMNS = [
   'calc_jail_deaths_per_1k_jail_population',
   'calc_percentile_jail_deaths_per_1k_jail_population',
   'calc_black_drug_arrest_disparity',
-  'calc_black_deadly_force_disparity_per_arrest',
+  'calc_black_deadly_force_disparity',
   'calc_overall_disparity_index',
   'calc_percentile_overall_disparity_index',
   'calc_overall_score',
@@ -287,7 +287,14 @@ const SCORECARD_COLUMNS = [
   'civilian_complaints_source_link',
   'budget_source_name',
   'comparison_group',
-  'completeness'
+  'completeness',
+  'calc_hispanic_drug_arrest_disparity',
+  'calc_hispanic_deadly_force_disparity',
+  'calc_most_severe_drug_arrest_disparity',
+  'calc_percentile_drug_arrest_disparity',
+  'calc_most_severe_deadly_force_disparity',
+  'misconduct_settlement_source_name',
+  'change_police_funding_score'
 ]
 
 /**
@@ -1951,6 +1958,7 @@ module.exports = {
               average_annual_misconduct_settlements: util.parseInt(row.average_annual_misconduct_settlements),
               year_misconduct_settlement_data: util.parseString(row.year_misconduct_settlement_data),
               misconduct_settlement_source: util.parseURL(row.misconduct_settlement_source),
+              misconduct_settlement_source_name: util.parseString(row.misconduct_settlement_source_name),
               officers_per_10k_population: util.parseFloat(row.calc_officers_per_10k_population),
               percentile_officers_per_population: util.parseInt(row.calc_percentile_officers_per_population),
               fines_forfeitures_per_resident: util.parseFloat(row.calc_fines_forfeitures_per_resident),
@@ -2033,7 +2041,7 @@ module.exports = {
             report: {
               approach_to_policing_score: util.parseInt(row.calc_approach_to_policing_score),
               police_funding_score: util.parseInt(row.calc_police_funding_score),
-              black_deadly_force_disparity_per_arrest: util.parseFloat(row.calc_black_deadly_force_disparity_per_arrest),
+              black_deadly_force_disparity: util.parseFloat(row.calc_black_deadly_force_disparity),
               black_deadly_force_disparity_per_population: __calcBlackDeadlyForceDisparityPerPopulation(row),
               black_drug_arrest_disparity: util.parseFloat(row.calc_black_drug_arrest_disparity),
               black_murder_unsolved_rate: __calcBlackMurderUnsolvedRate(row),
@@ -2041,6 +2049,7 @@ module.exports = {
               change_overall_score: util.parseInt(row.change_overall_score),
               change_police_accountability_score: util.parseInt(row.change_police_accountability_score),
               change_police_violence_score: util.parseInt(row.change_police_violence_score),
+              change_police_funding_score: util.parseInt(row.change_police_funding_score),
               complaints_sustained: util.parseInt(row.calc_complaints_sustained),
               currently_updating_union_contract: util.parseBoolean(row.currently_updating_union_contract),
               currently_updating_use_of_force: util.parseBoolean(row.currently_updating_use_of_force),
@@ -2105,7 +2114,12 @@ module.exports = {
               total_less_lethal_force_estimated: util.parseFloat(row.calc_total_less_lethal_force_estimated),
               total_people_killed: __calcTotalPeopleKilled(row),
               unarmed_killed_by_police_per_10k_arrests: util.parseFloat(row.calc_unarmed_killed_by_police_per_10k_arrests),
-              white_murder_unsolved_rate: __calcWhiteMurderUnsolvedRate(row)
+              white_murder_unsolved_rate: __calcWhiteMurderUnsolvedRate(row),
+              hispanic_drug_arrest_disparity: util.parseFloat(row.calc_hispanic_drug_arrest_disparity),
+              hispanic_deadly_force_disparity: util.parseFloat(row.calc_hispanic_deadly_force_disparity),
+              most_severe_drug_arrest_disparity: util.parseFloat(row.calc_most_severe_drug_arrest_disparity),
+              percentile_drug_arrest_disparity: util.parseFloat(row.calc_percentile_drug_arrest_disparity),
+              most_severe_deadly_force_disparity: util.parseFloat(row.calc_most_severe_deadly_force_disparity)
             }
           }
 

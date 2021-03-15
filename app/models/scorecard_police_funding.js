@@ -235,6 +235,9 @@ module.exports = (sequelize, DataTypes) => {
     misconduct_settlement_source: {
       type: DataTypes.TEXT
     },
+    misconduct_settlement_source_name: {
+      type: DataTypes.TEXT
+    },
     officers_per_10k_population: {
       type: DataTypes.FLOAT(15, 2).UNSIGNED
     },
