@@ -20,47 +20,38 @@ module.exports = (sequelize, DataTypes) => {
     },
     email_comment_left: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     },
     email_comment_liked: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     },
     email_someone_follows: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     },
     email_mentioned_in_comment: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     },
     web_comment_left: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     },
     web_comment_liked: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     },
     web_someone_follows: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     },
     web_mentioned_in_comment: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     },
     newsletter: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     }
   }, {

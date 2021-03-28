@@ -41,12 +41,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'active'
     },
     suspended_date: {
-      type: DataTypes.DATE,
-      allowNull: true
+      type: DataTypes.DATE
     },
     suspended_reason: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: DataTypes.STRING
     },
     valid_until: {
       type: DataTypes.DATE,
@@ -58,7 +56,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     auto_renew: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
       defaultValue: true
     }
   }, {

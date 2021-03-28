@@ -72,12 +72,23 @@ module.exports = {
    * on Mandrill, and the user object
    * @param  {string} templateSlug Template slug matching a template on the configured Mandrill account
    * @param  {object} user         User Sequelize model instance
-   * @param  {string} geolocation  Additional Grolocation Data
+   * @param  {string} geolocation  Additional Geolocation Data
    * @param  {string} optionalData  Optional  data to pass into template
    * @return {object}              Returns a promise object
    */
   /* istanbul ignore next */
   sendUserEmail (templateSlug, user, geolocation, optionalData) {
+    // Exit if this is being run in a test
+    if (process.env.API_NODE_ENV === 'test') {
+      return new Promise(resolve => {
+        resolve({
+          template_name: '',
+          template_content: '',
+          message: ''
+        })
+      })
+    }
+
     const templateVariables = _.map(user.publicJSON(), (value, key) => {
       return {
         name: key,

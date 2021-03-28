@@ -65,12 +65,10 @@ module.exports = (sequelize, DataTypes) => {
      * Setup Relationships of Users and Followers
      */
     models.users.hasMany(models.user_invite, {
-      foreignKey: 'user_id',
-      allowNull: true
+      foreignKey: 'user_id'
     })
     models.users.hasMany(models.user_invite, {
-      foreignKey: 'new_user_id',
-      allowNull: true
+      foreignKey: 'new_user_id'
     })
   }
 

@@ -43,52 +43,40 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     first_name: {
-      type: DataTypes.STRING(50),
-      allowNull: true
+      type: DataTypes.STRING(50)
     },
     last_name: {
-      type: DataTypes.STRING(50),
-      allowNull: true
+      type: DataTypes.STRING(50)
     },
     company_name: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     profile_name: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     profile_photo: {
-      type: DataTypes.STRING(255),
-      allowNull: true
+      type: DataTypes.STRING(255)
     },
     location: {
-      type: DataTypes.STRING(50),
-      allowNull: true
+      type: DataTypes.STRING(50)
     },
     profile_link_website: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     profile_link_twitter: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     profile_link_1: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     profile_link_2: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     profile_link_3: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     bio: {
-      type: DataTypes.STRING(255),
-      allowNull: true
+      type: DataTypes.STRING(255)
     },
     banned: {
       type: DataTypes.BOOLEAN,
@@ -96,33 +84,26 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false
     },
     banned_reason: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: DataTypes.STRING
     },
     new_password: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     new_password_key: {
-      type: DataTypes.STRING(25),
-      allowNull: true
+      type: DataTypes.STRING(25)
     },
     new_password_requested: {
       type: DataTypes.DATE,
-      allowNull: true,
       defaultValue: DataTypes.NOW
     },
     new_email: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(100)
     },
     new_email_key: {
-      type: DataTypes.STRING(25),
-      allowNull: true
+      type: DataTypes.STRING(25)
     },
     new_email_requested: {
       type: DataTypes.DATE,
-      allowNull: true,
       defaultValue: DataTypes.NOW
     }
   }, {

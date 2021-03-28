@@ -10,7 +10,13 @@
 module.exports = {
   CategoryDomain: require('./category'),
   EmailDomain: require('./email'),
+  GeoCityDomain: require('./geo_cities'),
+  GeoCountyDomain: require('./geo_counties'),
+  GeoCountryDomain: require('./geo_countries'),
+  GeoStateDomain: require('./geo_states'),
+  GeoTownDomain: require('./geo_towns'),
   ProfileDomain: require('./profile'),
+  ScorecardDomain: require('./scorecard'),
   SettingsDomain: require('./settings'),
   TagDomain: require('./tag'),
   UserDomain: require('./user'),
@@ -18,5 +24,6 @@ module.exports = {
   UsersLocalAuthStrategyDomain: require('./users/local_auth_strategy'),
   UsersRegistrationDomain: require('./users/registration'),
   UsersRegistrationFormDomain: require('./users/registration_form'),
+  UpdateDomain: require('./update'),
   UtilDomain: require('./util')
 }

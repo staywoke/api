@@ -1,6 +1,7 @@
 {
+  "port": 5555,
   "devFlags": {
-    "enableBugTracking": true,
+    "enableBugTracking": false,
     "enableGoogleAnalytics": false
   },
   "debug": false,

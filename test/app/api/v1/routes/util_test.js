@@ -23,14 +23,6 @@ describe('Routes Util Tests', () => {
       assert.isTrue(response.notices.length === 0)
     })
 
-    it('should have one notice in response', () => {
-      const response = util.createAPIResponse({
-        notices: ['Just a heads up']
-      })
-      assert.isTrue(response.notices.length === 1)
-      assert.isTrue(response.notices[0] === 'Just a heads up')
-    })
-
     it('should not have warnings by default', () => {
       const response = util.createAPIResponse()
       assert.isTrue(response.warnings.length === 0)

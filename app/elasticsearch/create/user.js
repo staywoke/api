@@ -19,54 +19,49 @@ const indexName = `${config.get('elasticsearch.indexName')}_${indexType}`
  */
 const mapping = {
   index: indexName,
-  include_type_name: true,
   type: indexType,
-  body: {}
-}
-
-/**
- * User Mapping Body
- */
-mapping.body[indexType] = {
-  properties: {
-    activated: {
-      type: 'boolean'
-    },
-    username: {
-      type: 'text'
-    },
-    first_name: {
-      type: 'text'
-    },
-    last_name: {
-      type: 'text'
-    },
-    company_name: {
-      type: 'text'
-    },
-    profile_name: {
-      type: 'text'
-    },
-    location: {
-      type: 'text'
-    },
-    profile_link_website: {
-      type: 'text'
-    },
-    profile_link_twitter: {
-      type: 'text'
-    },
-    profile_link_1: {
-      type: 'text'
-    },
-    profile_link_2: {
-      type: 'text'
-    },
-    profile_link_3: {
-      type: 'text'
-    },
-    banned: {
-      type: 'boolean'
+  include_type_name: true,
+  body: {
+    properties: {
+      activated: {
+        type: 'boolean'
+      },
+      username: {
+        type: 'text'
+      },
+      first_name: {
+        type: 'text'
+      },
+      last_name: {
+        type: 'text'
+      },
+      company_name: {
+        type: 'text'
+      },
+      profile_name: {
+        type: 'text'
+      },
+      location: {
+        type: 'text'
+      },
+      profile_link_website: {
+        type: 'text'
+      },
+      profile_link_twitter: {
+        type: 'text'
+      },
+      profile_link_1: {
+        type: 'text'
+      },
+      profile_link_2: {
+        type: 'text'
+      },
+      profile_link_3: {
+        type: 'text'
+      },
+      banned: {
+        type: 'boolean'
+      }
     }
   }
 }
@@ -90,8 +85,8 @@ module.exports = client.indices.exists({
   client.indices.putMapping(mapping).then(() => {
     debug.success(`Index Created: ${indexName}`)
   }).catch((error) => {
-    debug.error(`Error applying ${indexType} mapping`)
-    debug.error(`${error.status} ${error.message}`)
+    debug.error(`Error applying ${indexType} mapping:`)
+    debug.error(`${error.status} ${error.message}\n`)
   })
 }).catch((error) => {
   debug.error(`There was an error creating the ${indexType} index`)

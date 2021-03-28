@@ -1,4 +1,5 @@
 !.gitignore
+!.cache
 .DS_Store
 Thumbs.db
 .idea
@@ -12,3 +13,5 @@ node_modules
 .nyc_output
 .vscode
 *.code-workspace
+app/data/*.csv
+preview.html

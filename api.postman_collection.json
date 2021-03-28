@@ -5394,6 +5394,1788 @@
 			],
 			"description": "The following endpoints for accessing META Data used across the API, such as Categories and Tags. Helpful for generating select lists to connect more meaningful data atributes to other API models.",
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Scorecard",
+			"item": [
+				{
+					"name": "Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/report/:state/:type/:location",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"report",
+								":state",
+								":type",
+								":location"
+							],
+							"variable": [
+								{
+									"key": "state",
+									"value": "ny",
+									"description": "Two Letter State Abbreviation"
+								},
+								{
+									"key": "type",
+									"value": "police-department",
+									"description": "Type of Department: `sheriff`, `police-department`"
+								},
+								{
+									"key": "location",
+									"value": "new-york",
+									"description": "This is the `slug` version of the Location"
+								}
+							]
+						},
+						"description": "Get Detailed Report Scorecard for a single department."
+					},
+					"response": [
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/report/:state/:type/:location",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"report",
+										":state",
+										":type",
+										":location"
+									],
+									"variable": [
+										{
+											"key": "state",
+											"value": "zz",
+											"description": "Two Letter State Abbreviation"
+										},
+										{
+											"key": "type",
+											"value": "police-department",
+											"description": "Type of Department: `sheriff`, `police-department`"
+										},
+										{
+											"key": "location",
+											"value": "fake",
+											"description": "This is the `slug` version of the Location"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85231709"
+								},
+								{
+									"key": "Content-Length",
+									"value": "535"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"217-W92nvC84MwWUd+mcqUZOTavh9YA\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A5c43a748-2478-4333-9350-d71fe04eba37.Cegc20f7Z7H41YmuuzhydNMboyaLjF3SQMgd2JmRe9c; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 31 May 2020 08:28:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Invalid `state` parameter\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						},
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/report/:state/:type/:location",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"report",
+										":state",
+										":type",
+										":location"
+									],
+									"variable": [
+										{
+											"key": "state",
+											"value": "ny",
+											"description": "Two Letter State Abbreviation"
+										},
+										{
+											"key": "type",
+											"value": "police-department",
+											"description": "Type of Department: `sheriff`, `police-department`"
+										},
+										{
+											"key": "location",
+											"value": "new-york",
+											"description": "This is the `slug` version of the Location"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85386037"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10343"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2867-/Lt8NsVW2cYcs5tKM3uPlKfhFm4\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Abaec7265-c8dc-4dc3-bf10-d9afad0e6202.Ysp%2Bh4NRBKg4UDlkqmovg%2BlK5cnidpqn92rBAKyAIuQ; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 31 May 2020 08:25:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"agency\": {\n            \"asian_pacific_population\": 14,\n            \"black_population\": 22,\n            \"hispanic_population\": 29,\n            \"mayor_contact_url\": null,\n            \"mayor_email\": null,\n            \"mayor_name\": \"Bill De Blasio\",\n            \"mayor_phone\": \"212-788-7585\",\n            \"name\": \"New York\",\n            \"ori\": \"NY0303000\",\n            \"other_population\": 3,\n            \"police_chief_contact_url\": null,\n            \"police_chief_email\": null,\n            \"police_chief_name\": null,\n            \"police_chief_phone\": null,\n            \"slug\": \"new-york\",\n            \"total_population\": 8523171,\n            \"type\": \"police-department\",\n            \"white_population\": 32\n        },\n        \"arrests\": {\n            \"arrests_2013\": 393809,\n            \"arrests_2014\": 387727,\n            \"arrests_2015\": 339470,\n            \"arrests_2016\": 314864,\n            \"arrests_2017\": 286225,\n            \"arrests_2018\": 246773,\n            \"asian_pacific_arrests\": 91674,\n            \"black_arrests\": 941676,\n            \"black_drug_arrests\": 152570,\n            \"hispanic_arrests\": 669995,\n            \"hispanic_drug_arrests\": 124012,\n            \"low_level_arrests\": 1049435,\n            \"non_black_drug_arrests\": 184305,\n            \"other_arrests\": 26017,\n            \"other_drug_arrests\": 13509,\n            \"violent_crime_arrests\": 160119,\n            \"white_arrests\": 239506,\n            \"white_drug_arrests\": 46784\n        },\n        \"geo\": {\n            \"country\": {\n                \"abbr2\": \"US\",\n                \"abbr3\": \"USA\",\n                \"fips_code\": \"US\",\n                \"name\": \"United States\"\n            },\n            \"state\": {\n                \"abbr\": \"NY\",\n                \"code\": \"US-NY\",\n                \"fips_code\": \"36\",\n                \"name\": \"New York\",\n                \"type\": \"state\"\n            },\n            \"city\": {\n                \"fips_place_code\": \"51000\",\n                \"fips_state_code\": \"36\",\n                \"latitude\": \"40.71230000\",\n                \"longitude\": \"-74.00170000\",\n                \"name\": \"New York\"\n            },\n            \"county\": null\n        },\n        \"homicide\": {\n            \"black_murders_solved\": 576,\n            \"black_murders_unsolved\": 450,\n            \"hispanic_murders_solved\": 321,\n            \"hispanic_murders_unsolved\": 131,\n            \"homicides_2013_2019\": 1942,\n            \"homicides_2013_2019_solved\": 1476,\n            \"white_murders_solved\": 111,\n            \"white_murders_unsolved\": 29\n        },\n        \"jail\": {\n            \"avg_daily_jail_population\": 8223,\n            \"black_jail_population\": 4327,\n            \"drug_ice_transfers\": null,\n            \"hispanic_jail_population\": 2691,\n            \"ice_holds\": 99,\n            \"jail_deaths_homicide\": null,\n            \"jail_deaths_investigating\": null,\n            \"jail_deaths_other\": null,\n            \"jail_deaths_suicide\": null,\n            \"misdemeanor_jail_population\": 1081,\n            \"other_ice_transfers\": null,\n            \"other_jail_population\": 459,\n            \"total_jail_population\": 8129,\n            \"unconvicted_jail_population\": 5998,\n            \"violent_ice_transfers\": null,\n            \"white_jail_population\": 652\n        },\n        \"police_accountability\": {\n            \"civilian_complaints_reported\": 13516,\n            \"civilian_complaints_sustained\": 826,\n            \"complaints_in_detention_reported\": null,\n            \"complaints_in_detention_sustained\": null,\n            \"criminal_complaints_reported\": 0,\n            \"criminal_complaints_sustained\": 0,\n            \"discrimination_complaints_reported\": 1497,\n            \"discrimination_complaints_sustained\": 0,\n            \"use_of_force_complaints_reported\": 10732,\n            \"use_of_force_complaints_sustained\": 235\n        },\n        \"police_funding\": {\n            \"education_budget\": 28739554000,\n            \"health_budget\": 1408944000,\n            \"housing_budget\": 4269824000,\n            \"police_budget\": 5423434000,\n            \"total_budget\": 84986893000\n        },\n        \"police_violence\": {\n            \"all_deadly_force_incidents\": null,\n            \"armed_people_killed\": 32,\n            \"asian_pacific_people_killed\": 0,\n            \"black_people_killed\": 48,\n            \"fatality_rate\": null,\n            \"hispanic_people_killed\": 10,\n            \"less_lethal_force_2016\": null,\n            \"less_lethal_force_2017\": 1157,\n            \"less_lethal_force_2018\": 1285,\n            \"other_people_killed\": 8,\n            \"people_killed_or_injured_armed_with_gun\": null,\n            \"people_killed_or_injured_asian_pacific\": null,\n            \"people_killed_or_injured_black\": null,\n            \"people_killed_or_injured_gun_perceived\": null,\n            \"people_killed_or_injured_hispanic\": null,\n            \"people_killed_or_injured_other\": 0,\n            \"people_killed_or_injured_unarmed\": null,\n            \"people_killed_or_injured_vehicle_incident\": null,\n            \"people_killed_or_injured_white\": null,\n            \"police_shootings_2016\": 37,\n            \"police_shootings_2017\": 23,\n            \"police_shootings_2018\": 17,\n            \"shot_first\": null,\n            \"unarmed_people_killed\": 14,\n            \"vehicle_people_killed\": 1,\n            \"white_people_killed\": 9\n        },\n        \"policy\": {\n            \"bans_chokeholds_and_strangleholds\": false,\n            \"disqualifies_complaints\": null,\n            \"duty_to_intervene\": true,\n            \"erases_misconduct_records\": null,\n            \"gives_officers_unfair_access_to_information\": null,\n            \"has_use_of_force_continuum\": true,\n            \"limits_oversight_discipline\": null,\n            \"police_union_contract_link\": \"https://www1.nyc.gov/assets/olr/downloads/pdf/collectivebargaining/pba-nyc-moa-2012-2017.pdf\",\n            \"policy_language_bans_chokeholds_and_strangleholds\": \"No.\\n  Restricts chokeholds to exigent circumstances\\\" and does not explicitly ban strangleholds (i.e. Carotid Restraints) which do not technically put pressure on the throat or windpipe when used correctly.\\n  Use of Force Policy: Members of the New York City Police Department will NOT use chokeholds. A\\n  chokehold shall include, but is not limited to, any pressure to the throat or windpipe, which may prevent or hinder breathing or reduce intake of air.\",\n            \"policy_language_disqualifies_complaints\": null,\n            \"policy_language_duty_to_intervene\": \"Yes.\\\"Failure to intervene in the use of excessive force, or report excessive force, or failure to request or to ensure timely medical treatment for an individual is serious misconduct that may result in criminal and civil liability and will result in Department discipline, up to and including dismissal. If a member of the service becomes aware of the use of excessive force or failure to request or to ensure timely medical treatment for an individual, the member must report such misconduct to the Internal Affairs Bureau Command Center. This report can be made anonymously.\\\"\",\n            \"policy_language_erases_misconduct_records\": null,\n            \"policy_language_gives_officers_unfair_access_to_information\": null,\n            \"policy_language_has_use_of_force_continuum\": \"Yes. - PG 203-12\",\n            \"policy_language_limits_oversight_discipline\": null,\n            \"policy_language_requires_city_pay_for_misconduct\": null,\n            \"policy_language_requires_comprehensive_reporting\": \"No.\\n  While new changes to NYPD use of force policy will require reporting of most interactions, they will not require reporting of all incidents where officers point their firearms at civilians or put somebody up against a wall as per http://www.nytimes.com/2015/10/01/nyregion/new-york-police-will-document-virtually-all-instances-of-force.html\",\n            \"policy_language_requires_deescalation\": \"Yes. \\\"When appropriate and consistent with personal safety, members of the service will use de-escalation techniques to safely gain voluntary compliance from a subject to reduce or eliminate the necessity to use force.\\\"\",\n            \"policy_language_requires_exhaust_other_means_before_shooting\": \"No. Officers not required to exhaust other reasonable means before resorting to deadly force. \\\"In situations in which this is not safe and/or appropriate, MOS will use only the reasonable force necessary to gain control or custody of a subject.\\\"\",\n            \"policy_language_requires_warning_before_shooting\": \"No.\",\n            \"policy_language_restricts_delays_interrogations\": null,\n            \"policy_language_restricts_shooting_at_moving_vehicles\": \"Yes. Officers are banned from shooting at vehicles based solely on the threat of the vehicle. Discharge their firearms at or from a moving vehicle unless deadly physical force is being used against the member of the service or another person present, by means other than a moving vehicle\\\"\",\n            \"policy_manual_link\": \"https://www1.nyc.gov/site/nypd/about/about-nypd/patrol-guide.page\",\n            \"requires_city_pay_for_misconduct\": null,\n            \"requires_comprehensive_reporting\": false,\n            \"requires_deescalation\": true,\n            \"requires_exhaust_other_means_before_shooting\": false,\n            \"requires_warning_before_shooting\": false,\n            \"restricts_delays_interrogations\": null,\n            \"restricts_shooting_at_moving_vehicles\": true\n        },\n        \"report\": {\n            \"approach_to_policing_score\": 66,\n            \"black_deadly_force_disparity_per_arrest\": 1.4,\n            \"black_deadly_force_disparity_per_population\": 7.76,\n            \"black_drug_arrest_disparity\": 4.8,\n            \"black_murder_unsolved_rate\": 43.86,\n            \"change_approach_to_policing_score\": null,\n            \"change_overall_score\": null,\n            \"change_police_accountability_score\": null,\n            \"change_police_violence_score\": null,\n            \"complaints_sustained\": 6,\n            \"currently_updating_union_contract\": null,\n            \"currently_updating_use_of_force\": null,\n            \"deadly_force_incidents_per_arrest\": 0,\n            \"deadly_force_incidents_per_arrest_per_10k\": 0,\n            \"grade_class\": \"d\",\n            \"grade_letter\": \"D-\",\n            \"grade_marker\": \"d-minus\",\n            \"hispanic_deadly_force_disparity_per_population\": 1.23,\n            \"hispanic_murder_unsolved_rate\": 28.98,\n            \"jail_deaths_per_1k_jail_population\": 0,\n            \"jail_incarceration_per_1k_population\": 1,\n            \"killed_by_police_per_10k_arrests\": 0.5,\n            \"less_lethal_force_change\": 0,\n            \"less_lethal_per_10k_arrests\": 43.2,\n            \"low_level_arrests_per_1k_population\": 123.1,\n            \"overall_disparity_index\": 3.1,\n            \"overall_score\": 62,\n            \"percent_asian_pacific_arrests\": 4.66,\n            \"percent_asian_pacific_islander_deadly_force\": 0,\n            \"percent_black_arrests\": 47.83,\n            \"percent_black_deadly_force\": 64,\n            \"percent_complaints_in_detention_sustained\": null,\n            \"percent_criminal_complaints_sustained\": null,\n            \"percent_discrimination_complaints_sustained\": 0,\n            \"percent_drug_possession_arrests\": 17.11,\n            \"percent_education_budget\": 33.82,\n            \"percent_health_budget\": 1.66,\n            \"percent_hispanic_arrests\": 34.03,\n            \"percent_hispanic_deadly_force\": 13.33,\n            \"percent_housing_budget\": 5.02,\n            \"percent_misdemeanor_arrests\": 53.3,\n            \"percent_murders_solved\": 76,\n            \"percent_other_arrests\": 1.32,\n            \"percent_other_deadly_force\": 10.67,\n            \"percent_police_budget\": 6.38,\n            \"percent_police_misperceive_the_person_to_have_gun\": 0,\n            \"percent_shot_first\": 0,\n            \"percent_use_of_force_complaints_sustained\": 2,\n            \"percent_used_against_people_who_were_not_armed_with_gun\": 57.33,\n            \"percent_used_against_people_who_were_unarmed\": 18.67,\n            \"percent_violent_crime_arrests\": 8.13,\n            \"percent_white_arrests\": 12.16,\n            \"percent_white_deadly_force\": 12,\n            \"percentile_complaints_sustained\": 32,\n            \"percentile_jail_deaths_per_1k_jail_population\": null,\n            \"percentile_jail_incarceration_per_1k_population\": 79,\n            \"percentile_killed_by_police\": 95,\n            \"percentile_less_lethal_force\": 82,\n            \"percentile_low_level_arrests_per_1k_population\": 42,\n            \"percentile_murders_solved\": 29,\n            \"percentile_of_murders_solved\": null,\n            \"percentile_overall_disparity_index\": 18,\n            \"percentile_police_spending\": 5,\n            \"percentile_unarmed_killed_by_police\": 76,\n            \"police_accountability_score\": 22,\n            \"police_shootings_incidents\": 77,\n            \"police_spending_per_resident\": 636.32,\n            \"police_violence_score\": 68,\n            \"times_more_misdemeanor_arrests_than_violent_crime\": 6,\n            \"total_arrests\": 1968864,\n            \"total_jail_deaths_2016_2018\": 0,\n            \"total_less_lethal_force_estimated\": 3663,\n            \"total_people_killed\": 75,\n            \"unarmed_killed_by_police_per_10k_arrests\": 0.1,\n            \"white_murder_unsolved_rate\": 20.71\n        }\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "State",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/state/:state",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"state",
+								":state"
+							],
+							"variable": [
+								{
+									"key": "state",
+									"value": "ny",
+									"description": "(required, string) - Two Letter State Abbreviation"
+								}
+							]
+						},
+						"description": "Get Scorecard Data for a Given State. Fetch a list of Police and Sheriff Departments for the provided `state`."
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/state/:state",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"state",
+										":state"
+									],
+									"variable": [
+										{
+											"key": "state",
+											"value": "ny",
+											"description": "(required, string) - Two Letter State Abbreviation"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "66815563"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101844"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18dd4-7eFROPFHqAOd+sH6My1UK3jKUJo\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A2a241b39-91b9-4640-a345-8fcda5f0098a.8tcaUuA5q9jseAlS3SC6kiJUQT5XPHkHqm2ZuwRwkwo; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 31 May 2020 07:27:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"notices\": [],\n  \"warnings\": [],\n  \"errors\": [],\n  \"field_errors\": {},\n  \"meta\": {\n    \"total\": 1,\n    \"showing\": 1,\n    \"pages\": 1,\n    \"page\": 1\n  },\n  \"data\": {\n    \"average_grade_class\": \"f\",\n    \"average_grade_letter\": \"F\",\n    \"average_grade_marker\": \"f\",\n    \"average_score\": 52,\n    \"total_agencies\": 201,\n    \"total_overall_score\": 10580,\n    \"total_population\": 18504882,\n    \"police-department\": [\n      {\n        \"agency_name\": \"New York\",\n        \"district\": null,\n        \"grade_class\": \"d\",\n        \"grade_letter\": \"D-\",\n        \"grade_marker\": \"d-minus\",\n        \"latitude\": 40.7123,\n        \"longitude\": -74.0017,\n        \"overall_score\": 62,\n        \"population\": 8523171,\n        \"slug\": \"new-york\",\n        \"title\": \"New York, New York Police Department\",\n        \"url\": \"/?state=ny&type=police-department&location=new-york\",\n        \"url_pretty\": \"/ny/police-department/new-york\"\n      },\n      {\n        \"agency_name\": \"Buffalo\",\n        \"district\": null,\n        \"grade_class\": \"f\",\n        \"grade_letter\": \"F\",\n        \"grade_marker\": \"f\",\n        \"latitude\": 42.8832,\n        \"longitude\": -78.8778,\n        \"overall_score\": 45,\n        \"population\": 258219,\n        \"slug\": \"buffalo\",\n        \"title\": \"Buffalo, New York Police Department\",\n        \"url\": \"/?state=ny&type=police-department&location=buffalo\",\n        \"url_pretty\": \"/ny/police-department/buffalo\"\n      },\n      {\n        \"agency_name\": \"Rochester\",\n        \"district\": null,\n        \"grade_class\": \"f\",\n        \"grade_letter\": \"F\",\n        \"grade_marker\": \"f\",\n        \"latitude\": 43.1518,\n        \"longitude\": -77.6118,\n        \"overall_score\": 34,\n        \"population\": 207701,\n        \"slug\": \"rochester\",\n        \"title\": \"Rochester, New York Police Department\",\n        \"url\": \"/?state=ny&type=police-department&location=rochester\",\n        \"url_pretty\": \"/ny/police-department/rochester\"\n      }\n    ],\n    \"sheriff\": [\n      {\n        \"agency_name\": \"Suffolk County Pd\",\n        \"district\": \"us-ny-103\",\n        \"grade_class\": \"f\",\n        \"grade_letter\": \"F\",\n        \"grade_marker\": \"f\",\n        \"latitude\": null,\n        \"longitude\": null,\n        \"overall_score\": 16,\n        \"population\": 1301590,\n        \"slug\": \"suffolk-county-pd\",\n        \"title\": \"Suffolk County Pd, New York Sheriff\",\n        \"url\": \"/?state=ny&type=sheriff&location=suffolk-county-pd\",\n        \"url_pretty\": \"/ny/sheriff/suffolk-county-pd\"\n      },\n      {\n        \"agency_name\": \"Nassau\",\n        \"district\": \"us-ny-059\",\n        \"grade_class\": \"f\",\n        \"grade_letter\": \"F\",\n        \"grade_marker\": \"f\",\n        \"latitude\": null,\n        \"longitude\": null,\n        \"overall_score\": 43,\n        \"population\": 1047751,\n        \"slug\": \"nassau\",\n        \"title\": \"Nassau, New York Sheriff\",\n        \"url\": \"/?state=ny&type=sheriff&location=nassau\",\n        \"url_pretty\": \"/ny/sheriff/nassau\"\n      },\n      {\n        \"agency_name\": \"Monroe\",\n        \"district\": \"us-ny-055\",\n        \"grade_class\": \"f\",\n        \"grade_letter\": \"F\",\n        \"grade_marker\": \"f\",\n        \"latitude\": null,\n        \"longitude\": null,\n        \"overall_score\": 57,\n        \"population\": 228701,\n        \"slug\": \"monroe\",\n        \"title\": \"Monroe, New York Sheriff\",\n        \"url\": \"/?state=ny&type=sheriff&location=monroe\",\n        \"url_pretty\": \"/ny/sheriff/monroe\"\n      }\n    ]\n  },\n  \"attribution\": {\n    \"text\": \"Data Provided by StayWoke\",\n    \"website\": \"https://staywoke.org\",\n    \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n    \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n    \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n    \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n    \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n  }\n}"
+						},
+						{
+							"name": "Response 400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/state/:state",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"state",
+										":state"
+									],
+									"variable": [
+										{
+											"key": "state",
+											"value": "ZZ",
+											"description": "(required, string) - Two Letter State Abbreviation"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "86398085"
+								},
+								{
+									"key": "Content-Length",
+									"value": "535"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"217-W92nvC84MwWUd+mcqUZOTavh9YA\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Acd1e1be6-18cb-4717-ab61-0673b45e6168.jFVDlklq8%2BKQVuzgkzCGRFZyhXAtqeXlYrwLzUguEdQ; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 31 May 2020 07:32:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [\n        \"Invalid `state` parameter\"\n    ],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 0,\n        \"showing\": 0,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": null,\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "States",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/states",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"states"
+							]
+						},
+						"description": "Get Scorecard Summary for a All States. Returns Police and Sheriff Departments Summary Totals for entire state, and and per department."
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/states",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"states"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85459269"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4424972"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43850c-skjmDsqe1GBfoCZ3zpuqWXxl5KQ\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A7acba749-22f2-462d-a045-fe8bb7784bee.zppOQ5Z49zTWlYGmUqy6Ideay6N2Dkf5SqMYW7%2FIYvk; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 31 May 2020 07:48:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"notices\": [],\n  \"warnings\": [],\n  \"errors\": [],\n  \"field_errors\": {},\n  \"meta\": {\n    \"total\": 1,\n    \"showing\": 1,\n    \"pages\": 1,\n    \"page\": 1\n  },\n  \"data\": {\n    \"AK\": {\n      \"average_grade_class\": \"f\",\n      \"average_grade_letter\": \"F\",\n      \"average_grade_marker\": \"f\",\n      \"average_score\": 50,\n      \"total_agencies\": 4,\n      \"total_overall_score\": 200,\n      \"total_population\": 366071,\n      \"total_people_killed\": 22,\n      \"total_arrests\": 111108,\n      \"total_complaints_reported\": 0,\n      \"total_complaints_sustained\": 0,\n      \"total_black_people_killed\": 3,\n      \"total_black_population\": 17,\n      \"total_hispanic_people_killed\": 2,\n      \"total_hispanic_population\": 34,\n      \"total_white_people_killed\": 8,\n      \"total_white_population\": 258,\n      \"total_low_level_arrests\": 68240,\n      \"total_violent_crime_arrests\": 8304,\n      \"total_arrests_2013\": 21431,\n      \"total_arrests_2014\": 18507,\n      \"total_arrests_2015\": 18039,\n      \"total_arrests_2016\": 17017,\n      \"total_arrests_2017\": 17929,\n      \"total_arrests_2018\": 18197,\n      \"police-department\": [\n        {\n          \"agency_name\": \"Anchorage\",\n          \"district\": null,\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": 61.179,\n          \"longitude\": -149.8078,\n          \"overall_score\": 47,\n          \"population\": 291992,\n          \"people_killed\": 13,\n          \"arrests\": 87870,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 5,\n          \"hispanic_population\": 9,\n          \"white_population\": 59,\n          \"black_people_killed\": 1,\n          \"hispanic_people_killed\": 1,\n          \"white_people_killed\": 5,\n          \"low_level_arrests\": 53660,\n          \"violent_crime_arrests\": 7182,\n          \"arrests_2013\": 17601,\n          \"arrests_2014\": 14748,\n          \"arrests_2015\": 14387,\n          \"arrests_2016\": 13294,\n          \"arrests_2017\": 13871,\n          \"arrests_2018\": 13973,\n          \"slug\": \"anchorage\",\n          \"title\": \"Anchorage, Alaska Police Department\",\n          \"url_pretty\": \"/ak/police-department/anchorage\",\n          \"url\": \"/?state=ak&type=police-department&location=anchorage\"\n        },\n        {\n          \"agency_name\": \"Juneau\",\n          \"district\": null,\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": 58.3559,\n          \"longitude\": -134.508,\n          \"overall_score\": 24,\n          \"population\": 31922,\n          \"people_killed\": 1,\n          \"arrests\": 10248,\n          \"complaints_reported\": null,\n          \"complaints_sustained\": null,\n          \"black_population\": 1,\n          \"hispanic_population\": 7,\n          \"white_population\": 65,\n          \"black_people_killed\": 0,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 0,\n          \"low_level_arrests\": 6615,\n          \"violent_crime_arrests\": 609,\n          \"arrests_2013\": 1447,\n          \"arrests_2014\": 1413,\n          \"arrests_2015\": 1632,\n          \"arrests_2016\": 1760,\n          \"arrests_2017\": 2029,\n          \"arrests_2018\": 1968,\n          \"slug\": \"juneau\",\n          \"title\": \"Juneau, Alaska Police Department\",\n          \"url_pretty\": \"/ak/police-department/juneau\",\n          \"url\": \"/?state=ak&type=police-department&location=juneau\"\n        },\n        {\n          \"agency_name\": \"Fairbanks\",\n          \"district\": null,\n          \"grade_class\": \"d\",\n          \"grade_letter\": \"D\",\n          \"grade_marker\": \"d\",\n          \"latitude\": 64.8392,\n          \"longitude\": -147.7184,\n          \"overall_score\": 64,\n          \"population\": 31635,\n          \"people_killed\": 6,\n          \"arrests\": 8406,\n          \"complaints_reported\": null,\n          \"complaints_sustained\": null,\n          \"black_population\": 9,\n          \"hispanic_population\": 12,\n          \"white_population\": 58,\n          \"black_people_killed\": 0,\n          \"hispanic_people_killed\": 1,\n          \"white_people_killed\": 3,\n          \"low_level_arrests\": 4317,\n          \"violent_crime_arrests\": 428,\n          \"arrests_2013\": 1607,\n          \"arrests_2014\": 1649,\n          \"arrests_2015\": 1269,\n          \"arrests_2016\": 1248,\n          \"arrests_2017\": 1254,\n          \"arrests_2018\": 1381,\n          \"slug\": \"fairbanks\",\n          \"title\": \"Fairbanks, Alaska Police Department\",\n          \"url_pretty\": \"/ak/police-department/fairbanks\",\n          \"url\": \"/?state=ak&type=police-department&location=fairbanks\"\n        }\n      ]\n    },\n    \"AL\": {\n      \"average_grade_class\": \"f\",\n      \"average_grade_letter\": \"F\",\n      \"average_grade_marker\": \"f\",\n      \"average_score\": 44,\n      \"total_agencies\": 117,\n      \"total_overall_score\": 5161,\n      \"total_population\": 3939555,\n      \"total_people_killed\": 109,\n      \"total_arrests\": 465596,\n      \"total_complaints_reported\": 0,\n      \"total_complaints_sustained\": 0,\n      \"total_black_people_killed\": 11,\n      \"total_black_population\": 1654,\n      \"total_hispanic_people_killed\": 1,\n      \"total_hispanic_population\": 192,\n      \"total_white_people_killed\": 24,\n      \"total_white_population\": 3884,\n      \"total_low_level_arrests\": 99489,\n      \"total_violent_crime_arrests\": 9871,\n      \"total_arrests_2013\": 0,\n      \"total_arrests_2014\": 0,\n      \"total_arrests_2015\": 37533,\n      \"total_arrests_2016\": 46239,\n      \"total_arrests_2017\": 34326,\n      \"total_arrests_2018\": 34279,\n      \"police-department\": [\n        {\n          \"agency_name\": \"Mobile\",\n          \"district\": null,\n          \"grade_class\": \"d\",\n          \"grade_letter\": \"D-\",\n          \"grade_marker\": \"d-minus\",\n          \"latitude\": 30.673,\n          \"longitude\": -88.0989,\n          \"overall_score\": 60,\n          \"population\": 245475,\n          \"people_killed\": 6,\n          \"arrests\": 28368,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 51,\n          \"hispanic_population\": 3,\n          \"white_population\": 43,\n          \"black_people_killed\": 4,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 2,\n          \"low_level_arrests\": 11068,\n          \"violent_crime_arrests\": 3141,\n          \"arrests_2013\": null,\n          \"arrests_2014\": null,\n          \"arrests_2015\": 7382,\n          \"arrests_2016\": 6912,\n          \"arrests_2017\": 7122,\n          \"arrests_2018\": 6952,\n          \"slug\": \"mobile\",\n          \"title\": \"Mobile, Alabama Police Department\",\n          \"url_pretty\": \"/al/police-department/mobile\",\n          \"url\": \"/?state=al&type=police-department&location=mobile\"\n        },\n        {\n          \"agency_name\": \"Birmingham\",\n          \"district\": null,\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": 33.5129,\n          \"longitude\": -86.8096,\n          \"overall_score\": 28,\n          \"population\": 210564,\n          \"people_killed\": 7,\n          \"arrests\": 8658,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 70,\n          \"hispanic_population\": 4,\n          \"white_population\": 23,\n          \"black_people_killed\": 4,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 3,\n          \"low_level_arrests\": 5104,\n          \"violent_crime_arrests\": 2292,\n          \"arrests_2013\": null,\n          \"arrests_2014\": null,\n          \"arrests_2015\": null,\n          \"arrests_2016\": 3738,\n          \"arrests_2017\": null,\n          \"arrests_2018\": 4920,\n          \"slug\": \"birmingham\",\n          \"title\": \"Birmingham, Alabama Police Department\",\n          \"url_pretty\": \"/al/police-department/birmingham\",\n          \"url\": \"/?state=al&type=police-department&location=birmingham\"\n        },\n        {\n          \"agency_name\": \"Montgomery\",\n          \"district\": null,\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": 32.3818,\n          \"longitude\": -86.2977,\n          \"overall_score\": 36,\n          \"population\": 198662,\n          \"people_killed\": 3,\n          \"arrests\": 2176,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 61,\n          \"hispanic_population\": 4,\n          \"white_population\": 31,\n          \"black_people_killed\": 2,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 1,\n          \"low_level_arrests\": 329,\n          \"violent_crime_arrests\": 566,\n          \"arrests_2013\": null,\n          \"arrests_2014\": null,\n          \"arrests_2015\": 746,\n          \"arrests_2016\": 539,\n          \"arrests_2017\": 370,\n          \"arrests_2018\": 521,\n          \"slug\": \"montgomery\",\n          \"title\": \"Montgomery, Alabama Police Department\",\n          \"url_pretty\": \"/al/police-department/montgomery\",\n          \"url\": \"/?state=al&type=police-department&location=montgomery\"\n        }\n      ],\n      \"sheriff\": [\n        {\n          \"agency_name\": \"Jefferson\",\n          \"district\": \"us-al-073\",\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": null,\n          \"longitude\": null,\n          \"overall_score\": 22,\n          \"population\": 146385,\n          \"people_killed\": 5,\n          \"arrests\": 3308,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 42,\n          \"hispanic_population\": 4,\n          \"white_population\": 50,\n          \"black_people_killed\": 3,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 1,\n          \"low_level_arrests\": 1978,\n          \"violent_crime_arrests\": 261,\n          \"arrests_2013\": null,\n          \"arrests_2014\": null,\n          \"arrests_2015\": 566,\n          \"arrests_2016\": 765,\n          \"arrests_2017\": 1020,\n          \"arrests_2018\": 958,\n          \"slug\": \"jefferson\",\n          \"title\": \"Jefferson, Alabama Sheriff\",\n          \"url_pretty\": \"/al/sheriff/jefferson\",\n          \"url\": \"/?state=al&type=sheriff&location=jefferson\"\n        },\n        {\n          \"agency_name\": \"Madison\",\n          \"district\": \"us-al-089\",\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": null,\n          \"longitude\": null,\n          \"overall_score\": 33,\n          \"population\": 118757,\n          \"people_killed\": 4,\n          \"arrests\": 9330,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 24,\n          \"hispanic_population\": 5,\n          \"white_population\": 65,\n          \"black_people_killed\": 1,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 2,\n          \"low_level_arrests\": 6263,\n          \"violent_crime_arrests\": 806,\n          \"arrests_2013\": null,\n          \"arrests_2014\": null,\n          \"arrests_2015\": 2720,\n          \"arrests_2016\": 3115,\n          \"arrests_2017\": null,\n          \"arrests_2018\": 3496,\n          \"slug\": \"madison\",\n          \"title\": \"Madison, Alabama Sheriff\",\n          \"url_pretty\": \"/al/sheriff/madison\",\n          \"url\": \"/?state=al&type=sheriff&location=madison\"\n        },\n        {\n          \"agency_name\": \"Baldwin\",\n          \"district\": \"us-al-003\",\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": null,\n          \"longitude\": null,\n          \"overall_score\": 28,\n          \"population\": 100960,\n          \"people_killed\": 3,\n          \"arrests\": 18030,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 10,\n          \"hispanic_population\": 4,\n          \"white_population\": 83,\n          \"black_people_killed\": 0,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 3,\n          \"low_level_arrests\": 11994,\n          \"violent_crime_arrests\": 1996,\n          \"arrests_2013\": null,\n          \"arrests_2014\": null,\n          \"arrests_2015\": 5867,\n          \"arrests_2016\": 6103,\n          \"arrests_2017\": 6062,\n          \"arrests_2018\": null,\n          \"slug\": \"baldwin\",\n          \"title\": \"Baldwin, Alabama Sheriff\",\n          \"url_pretty\": \"/al/sheriff/baldwin\",\n          \"url\": \"/?state=al&type=sheriff&location=baldwin\"\n        }\n      ]\n    },\n    \"AR\": {\n      \"average_grade_class\": \"f\",\n      \"average_grade_letter\": \"F\",\n      \"average_grade_marker\": \"f\",\n      \"average_score\": 46,\n      \"total_agencies\": 106,\n      \"total_overall_score\": 4888,\n      \"total_population\": 2492556,\n      \"total_people_killed\": 79,\n      \"total_arrests\": 656400,\n      \"total_complaints_reported\": 0,\n      \"total_complaints_sustained\": 0,\n      \"total_black_people_killed\": 2,\n      \"total_black_population\": 973,\n      \"total_hispanic_people_killed\": 1,\n      \"total_hispanic_population\": 370,\n      \"total_white_people_killed\": 24,\n      \"total_white_population\": 5246,\n      \"total_low_level_arrests\": 135396,\n      \"total_violent_crime_arrests\": 6992,\n      \"total_arrests_2013\": 28685,\n      \"total_arrests_2014\": 26939,\n      \"total_arrests_2015\": 27942,\n      \"total_arrests_2016\": 29759,\n      \"total_arrests_2017\": 29171,\n      \"total_arrests_2018\": 28482,\n      \"police-department\": [\n        {\n          \"agency_name\": \"Little Rock\",\n          \"district\": null,\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": 34.7494,\n          \"longitude\": -92.2776,\n          \"overall_score\": 45,\n          \"population\": 199288,\n          \"people_killed\": 13,\n          \"arrests\": 52296,\n          \"complaints_reported\": 158,\n          \"complaints_sustained\": 68,\n          \"black_population\": 42,\n          \"hispanic_population\": 7,\n          \"white_population\": 46,\n          \"black_people_killed\": 7,\n          \"hispanic_people_killed\": 1,\n          \"white_people_killed\": 3,\n          \"low_level_arrests\": 33895,\n          \"violent_crime_arrests\": 2624,\n          \"arrests_2013\": 9798,\n          \"arrests_2014\": 5746,\n          \"arrests_2015\": 6961,\n          \"arrests_2016\": 9443,\n          \"arrests_2017\": 9518,\n          \"arrests_2018\": 10835,\n          \"slug\": \"little-rock\",\n          \"title\": \"Little Rock, Arkansas Police Department\",\n          \"url_pretty\": \"/ar/police-department/little-rock\",\n          \"url\": \"/?state=ar&type=police-department&location=little-rock\"\n        },\n        {\n          \"agency_name\": \"Fort Smith\",\n          \"district\": null,\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": 35.3826,\n          \"longitude\": -94.4237,\n          \"overall_score\": 56,\n          \"population\": 88290,\n          \"people_killed\": 1,\n          \"arrests\": 51582,\n          \"complaints_reported\": 129,\n          \"complaints_sustained\": 20,\n          \"black_population\": 10,\n          \"hispanic_population\": 19,\n          \"white_population\": 60,\n          \"black_people_killed\": 1,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 0,\n          \"low_level_arrests\": 40601,\n          \"violent_crime_arrests\": 1620,\n          \"arrests_2013\": 8427,\n          \"arrests_2014\": 7780,\n          \"arrests_2015\": 9038,\n          \"arrests_2016\": 9156,\n          \"arrests_2017\": 8968,\n          \"arrests_2018\": 8217,\n          \"slug\": \"fort-smith\",\n          \"title\": \"Fort Smith, Arkansas Police Department\",\n          \"url_pretty\": \"/ar/police-department/fort-smith\",\n          \"url\": \"/?state=ar&type=police-department&location=fort-smith\"\n        },\n        {\n          \"agency_name\": \"Fayetteville\",\n          \"district\": null,\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": 36.0611,\n          \"longitude\": -94.161,\n          \"overall_score\": 21,\n          \"population\": 87008,\n          \"people_killed\": 2,\n          \"arrests\": 22476,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 7,\n          \"hispanic_population\": 9,\n          \"white_population\": 77,\n          \"black_people_killed\": 1,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 1,\n          \"low_level_arrests\": 16345,\n          \"violent_crime_arrests\": 802,\n          \"arrests_2013\": 3229,\n          \"arrests_2014\": 3108,\n          \"arrests_2015\": 3477,\n          \"arrests_2016\": 3707,\n          \"arrests_2017\": 4376,\n          \"arrests_2018\": 4581,\n          \"slug\": \"fayetteville\",\n          \"title\": \"Fayetteville, Arkansas Police Department\",\n          \"url_pretty\": \"/ar/police-department/fayetteville\",\n          \"url\": \"/?state=ar&type=police-department&location=fayetteville\"\n        }\n      ],\n      \"sheriff\": [\n        {\n          \"agency_name\": \"Garland\",\n          \"district\": \"us-ar-051\",\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": null,\n          \"longitude\": null,\n          \"overall_score\": 40,\n          \"population\": 61898,\n          \"people_killed\": 1,\n          \"arrests\": 9606,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 8,\n          \"hispanic_population\": 5,\n          \"white_population\": 83,\n          \"black_people_killed\": 0,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 1,\n          \"low_level_arrests\": 7253,\n          \"violent_crime_arrests\": 813,\n          \"arrests_2013\": 1362,\n          \"arrests_2014\": 1605,\n          \"arrests_2015\": 1606,\n          \"arrests_2016\": 1787,\n          \"arrests_2017\": 1746,\n          \"arrests_2018\": 1503,\n          \"slug\": \"garland\",\n          \"title\": \"Garland, Arkansas Sheriff\",\n          \"url_pretty\": \"/ar/sheriff/garland\",\n          \"url\": \"/?state=ar&type=sheriff&location=garland\"\n        },\n        {\n          \"agency_name\": \"Saline\",\n          \"district\": \"us-ar-125\",\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": null,\n          \"longitude\": null,\n          \"overall_score\": 50,\n          \"population\": 52241,\n          \"people_killed\": 0,\n          \"arrests\": 1825,\n          \"complaints_reported\": 0,\n          \"complaints_sustained\": 0,\n          \"black_population\": 6,\n          \"hispanic_population\": 5,\n          \"white_population\": 86,\n          \"black_people_killed\": 0,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 0,\n          \"low_level_arrests\": 1093,\n          \"violent_crime_arrests\": 214,\n          \"arrests_2013\": null,\n          \"arrests_2014\": 25,\n          \"arrests_2015\": 199,\n          \"arrests_2016\": 267,\n          \"arrests_2017\": 518,\n          \"arrests_2018\": 817,\n          \"slug\": \"saline\",\n          \"title\": \"Saline, Arkansas Sheriff\",\n          \"url_pretty\": \"/ar/sheriff/saline\",\n          \"url\": \"/?state=ar&type=sheriff&location=saline\"\n        },\n        {\n          \"agency_name\": \"Pulaski\",\n          \"district\": \"us-ar-119\",\n          \"grade_class\": \"f\",\n          \"grade_letter\": \"F\",\n          \"grade_marker\": \"f\",\n          \"latitude\": null,\n          \"longitude\": null,\n          \"overall_score\": 48,\n          \"population\": 50104,\n          \"people_killed\": 1,\n          \"arrests\": 64632,\n          \"complaints_reported\": null,\n          \"complaints_sustained\": null,\n          \"black_population\": 36,\n          \"hispanic_population\": 6,\n          \"white_population\": 53,\n          \"black_people_killed\": 0,\n          \"hispanic_people_killed\": 0,\n          \"white_people_killed\": 1,\n          \"low_level_arrests\": 60325,\n          \"violent_crime_arrests\": 905,\n          \"arrests_2013\": 10189,\n          \"arrests_2014\": 9504,\n          \"arrests_2015\": 10523,\n          \"arrests_2016\": 11742,\n          \"arrests_2017\": 11263,\n          \"arrests_2018\": 11414,\n          \"slug\": \"pulaski\",\n          \"title\": \"Pulaski, Arkansas Sheriff\",\n          \"url_pretty\": \"/ar/sheriff/pulaski\",\n          \"url\": \"/?state=ar&type=sheriff&location=pulaski\"\n        }\n      ]\n    }\n  },\n  \"attribution\": {\n    \"text\": \"Data Provided by StayWoke\",\n    \"website\": \"https://staywoke.org\",\n    \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n    \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n    \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n    \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n    \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n  }\n}"
+						}
+					]
+				}
+			],
+			"description": "The following endpoints for accessing Scorecard Data used across the API.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Scorecard GeoJSON",
+			"item": [
+				{
+					"name": "All Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map"
+							]
+						},
+						"description": "Fetch All Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85953664"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2515814"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"266366-m/e3M/PGarXhUbJT6vWdpV/KERo\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A1ca2416f-623e-4c0f-aa6c-0e2159877ed1.zVHqzOND22zrMMM8yOYRegjVTqt2lrSJANNc1OOM9AQ; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:28:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_us\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Abbeville\",\n                    \"score\": 33,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/abbeville\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -85.2479,\n                        31.56497\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Adamsville\",\n                    \"score\": 35,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/adamsville\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -86.95412,\n                        33.59763\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Alabaster\",\n                    \"score\": 43,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/alabaster\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -86.8159,\n                        33.246\n                    ]\n                }\n            }\n        ]\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "All Police Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/us/police-department",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"us",
+								"police-department"
+							]
+						},
+						"description": "Fetch All Police Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/us/police-department",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"us",
+										"police-department"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85447646"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2040742"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f23a6-AAODYp64uxIoM6Apa8N7r/hVEPI\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A3aeb6854-887e-4dd5-8ddb-01b88fdb4fb6.AW5YacaR89D5m39u%2Fep7Z6W%2B%2FcysSiVmF%2BK2nU3aomo; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:37:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_us_police-department\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Abbeville\",\n                    \"score\": 33,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/abbeville\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -85.2479,\n                        31.56497\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Adamsville\",\n                    \"score\": 35,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/adamsville\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -86.95412,\n                        33.59763\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Alabaster\",\n                    \"score\": 43,\n                    \"state\": \"AL\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/al/police-department/alabaster\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -86.8159,\n                        33.246\n                    ]\n                }\n            }\n        ]        \n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "All Sheriff Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/us/sheriff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"us",
+								"sheriff"
+							]
+						},
+						"description": "Fetch All Sheriff Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/us/sheriff",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"us",
+										"sheriff"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "85305670"
+								},
+								{
+									"key": "Content-Length",
+									"value": "475663"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7420f-tFUV5z0UicEb4Kq1nT2k+O0KPeI\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Ad9311eee-4fe8-4a13-ac56-3d5c0e43ec0f.PqGhhcClIcW5krqgl67y7B7x%2Fpg4A8mpvRCn%2BY9%2Fr70; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:39:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_us_sheriff\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"fips\": \"01001\",\n                    \"grade\": \"f\",\n                    \"name\": \"Autauga\",\n                    \"score\": 46,\n                    \"state\": \"AL\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/al/sheriff/autauga\"\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"fips\": \"01003\",\n                    \"grade\": \"f\",\n                    \"name\": \"Baldwin\",\n                    \"score\": 40,\n                    \"state\": \"AL\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/al/sheriff/baldwin\"\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"fips\": \"01005\",\n                    \"grade\": \"f\",\n                    \"name\": \"Barbour\",\n                    \"score\": 36,\n                    \"state\": \"AL\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/al/sheriff/barbour\"\n                }\n            }\n        ]\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "California Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca"
+							]
+						},
+						"description": "Fetch All California Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "84967865"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105944"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19dd8-hE3mMzFLEca69PJytj2Mt2cY4Dg\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3Ab6bf7a25-020a-46b4-a225-0225aee129ee.tViwNu4ZgD4MR40T%2F0KNI70rG82sYQo7uRgjGH%2BrzFE; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:45:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_ca\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Adelanto\",\n                    \"score\": 52,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/adelanto\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -117.4173,\n                        34.5159\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Agoura Hills\",\n                    \"score\": 52,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/agoura-hills\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -118.1291,\n                        34.0617\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"grade\": \"f\",\n                    \"name\": \"Alameda\",\n                    \"score\": 50,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/alameda\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -122.2428,\n                        37.767\n                    ]\n                }\n            }\n        ]\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "California Police Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/police-department",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"police-department"
+							]
+						},
+						"description": "Fetch All California Police Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/police-department",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"police-department"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "84627949"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96270"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1780e-zyoVcLHceKZp3tYvA2Rs/8IrID0\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A7a90f6f8-5042-4678-8d66-c021aa51ff71.Sgi%2Flkzxt0Vjq0DpodsxsapX2oncu3K39rghM1udeNs; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:50:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_ca_police-department\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Adelanto\",\n                    \"score\": 52,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/adelanto\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -117.4173,\n                        34.5159\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": false,\n                    \"grade\": \"f\",\n                    \"name\": \"Agoura Hills\",\n                    \"score\": 52,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/agoura-hills\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -118.1291,\n                        34.0617\n                    ]\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"grade\": \"f\",\n                    \"name\": \"Alameda\",\n                    \"score\": 50,\n                    \"state\": \"CA\",\n                    \"type\": \"police-department\",\n                    \"url\": \"/ca/police-department/alameda\"\n                },\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -122.2428,\n                        37.767\n                    ]\n                }\n            }\n        ]        \n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "California Sheriff Departments",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"sheriff"
+							]
+						},
+						"description": "Fetch All California Sheriff Departments and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"sheriff"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "84162790"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10265"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2819-sJ16fFL7NCpAyzP+Pyl3eT1h9pM\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A344d542d-7f26-4691-9ae5-124413a1c01d.YQN22ZxII2%2BKE0jGGIvOjI5NoBy6A3xgFDqlU8wO6%2BA; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 00:58:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"type\": \"FeatureCollection\",\n        \"id\": \"scorecard_ca_sheriff\",\n        \"features\": [\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"fips\": \"06001\",\n                    \"grade\": \"f\",\n                    \"name\": \"Alameda\",\n                    \"score\": 55,\n                    \"state\": \"CA\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/ca/sheriff/alameda\"\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"fips\": \"06003\",\n                    \"grade\": \"f\",\n                    \"name\": \"Alpine\",\n                    \"score\": 46,\n                    \"state\": \"CA\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/ca/sheriff/alpine\"\n                }\n            },\n            {\n                \"type\": \"Feature\",\n                \"properties\": {\n                    \"complete\": true,\n                    \"fips\": \"06005\",\n                    \"grade\": \"f\",\n                    \"name\": \"Amador\",\n                    \"score\": 58,\n                    \"state\": \"CA\",\n                    \"type\": \"sheriff\",\n                    \"url\": \"/ca/sheriff/amador\"\n                }\n            }\n        ]        \n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Los Angeles, CA Police Department",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/police-department/los-angeles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"police-department",
+								"los-angeles"
+							]
+						},
+						"description": "Fetch Just the Los Angeles, CA Police Department and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/police-department/los-angeles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"police-department",
+										"los-angeles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "83898057"
+								},
+								{
+									"key": "Content-Length",
+									"value": "791"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"317-JHU6UbDz+StS06NOzcNJhOcswDg\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A64b28bb0-3ea9-4a84-98f1-1a1c8a23ef51.iv4Y8dmlaWgVkaQ7%2BfELZZifFUVS6iSJDKsENw1aH1o; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 01:03:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"geometry\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -118.2411,\n                34.0521\n            ]\n        },\n        \"id\": \"scorecard_ca_police-department_los-angeles\",\n        \"properties\": {\n            \"complete\": true,\n            \"grade\": \"f\",\n            \"name\": \"Los Angeles\",\n            \"score\": 40,\n            \"state\": \"CA\",\n            \"type\": \"police-department\",\n            \"url\": \"/ca/police-department/los-angeles\"\n        },\n        \"type\": \"Feature\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Los Angeles, CA Sheriff Department",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff/los-angeles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"sheriff",
+								"los-angeles"
+							]
+						},
+						"description": "Fetch Just the Los Angeles, CA Sheriff Department and return via Standard API Format ( GeoJSON data will be contain in `response.data` )"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff/los-angeles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"sheriff",
+										"los-angeles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "83789370"
+								},
+								{
+									"key": "Content-Length",
+									"value": "714"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2ca-Ip9ewUPjtvELsVoWqwW9ECzHznk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 01:04:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 1,\n        \"showing\": 1,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": {\n        \"id\": \"scorecard_ca_sheriff_los-angeles\",\n        \"properties\": {\n            \"complete\": true,\n            \"fips\": \"06037\",\n            \"grade\": \"f\",\n            \"name\": \"Los Angeles\",\n            \"score\": 37,\n            \"state\": \"CA\",\n            \"type\": \"sheriff\",\n            \"url\": \"/ca/sheriff/los-angeles\"\n        },\n        \"type\": \"Feature\"\n    },\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "GeoJSON Ouput Only",
+					"protocolProfileBehavior": {
+						"strictSSL": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff/los-angeles?format=geojson",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"scorecard",
+								"map",
+								"ca",
+								"sheriff",
+								"los-angeles"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "geojson",
+									"description": "Passing in `format` Param of `geojson` to convert reponse to pure GeoJSON"
+								}
+							]
+						},
+						"description": "Sample using GeoJSON Format Option"
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/scorecard/map/ca/sheriff/los-angeles?format=geojson",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"scorecard",
+										"map",
+										"ca",
+										"sheriff",
+										"los-angeles"
+									],
+									"query": [
+										{
+											"key": "format",
+											"value": "geojson",
+											"description": "Passing in `format` Param of `geojson` to convert reponse to pure GeoJSON"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "82526163"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d2-XEmUqRSh/XN4iGmcJTXStilibkM\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A3b64db8b-e55d-439b-97ad-cc77fc45a36c.Yj99kry8S5u3qh0LTY9F7K8M2i8LseGjltBboFm0X2Q; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Aug 2020 01:25:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"Feature\",\n    \"id\": \"scorecard_ca_sheriff_los-angeles\",\n    \"properties\": {\n        \"complete\": true,\n        \"fips\": \"06037\",\n        \"grade\": \"f\",\n        \"name\": \"Los Angeles\",\n        \"score\": 37,\n        \"state\": \"CA\",\n        \"type\": \"sheriff\",\n        \"url\": \"/ca/sheriff/los-angeles\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "A Collection of Endpoints that Generate GeoJSON Map Markup",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Geolocation",
+			"item": [
+				{
+					"name": "States",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/geo/states",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"geo",
+								"states"
+							]
+						},
+						"description": "Get a list of stated supported by our Scorecard."
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/v1/geo/states",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"v1",
+										"geo",
+										"states"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "API"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "7200"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, DELETE"
+								},
+								{
+									"key": "X-Rate-Limit-Limit",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Remaining",
+									"value": "Unlimited"
+								},
+								{
+									"key": "X-Rate-Limit-Reset",
+									"value": "82597925"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"851-dub1HqgGTeLD64MUhuLYHQYoZpM\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3A400c36fa-a503-49f3-8a68-1860cdfde68e.clpzne3wnlia67e5AhCZkSi8OXjBSwk4xu0iEw%2BTjUE; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 31 May 2020 09:11:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [],\n    \"warnings\": [],\n    \"errors\": [],\n    \"field_errors\": {},\n    \"meta\": {\n        \"total\": 50,\n        \"showing\": 50,\n        \"pages\": 1,\n        \"page\": 1\n    },\n    \"data\": [\n        {\n            \"name\": \"Alabama\",\n            \"abbr\": \"AL\"\n        },\n        {\n            \"name\": \"Alaska\",\n            \"abbr\": \"AK\"\n        },\n        {\n            \"name\": \"Arizona\",\n            \"abbr\": \"AZ\"\n        },\n        {\n            \"name\": \"Arkansas\",\n            \"abbr\": \"AR\"\n        },\n        {\n            \"name\": \"California\",\n            \"abbr\": \"CA\"\n        },\n        {\n            \"name\": \"North Carolina\",\n            \"abbr\": \"NC\"\n        },\n        {\n            \"name\": \"South Carolina\",\n            \"abbr\": \"SC\"\n        },\n        {\n            \"name\": \"Colorado\",\n            \"abbr\": \"CO\"\n        },\n        {\n            \"name\": \"Connecticut\",\n            \"abbr\": \"CT\"\n        },\n        {\n            \"name\": \"North Dakota\",\n            \"abbr\": \"ND\"\n        },\n        {\n            \"name\": \"South Dakota\",\n            \"abbr\": \"SD\"\n        },\n        {\n            \"name\": \"Delaware\",\n            \"abbr\": \"DE\"\n        },\n        {\n            \"name\": \"Florida\",\n            \"abbr\": \"FL\"\n        },\n        {\n            \"name\": \"Georgia\",\n            \"abbr\": \"GA\"\n        },\n        {\n            \"name\": \"New Hampshire\",\n            \"abbr\": \"NH\"\n        },\n        {\n            \"name\": \"Hawaii\",\n            \"abbr\": \"HI\"\n        },\n        {\n            \"name\": \"Idaho\",\n            \"abbr\": \"ID\"\n        },\n        {\n            \"name\": \"Illinois\",\n            \"abbr\": \"IL\"\n        },\n        {\n            \"name\": \"Indiana\",\n            \"abbr\": \"IN\"\n        },\n        {\n            \"name\": \"Iowa\",\n            \"abbr\": \"IA\"\n        },\n        {\n            \"name\": \"Rhode Island\",\n            \"abbr\": \"RI\"\n        },\n        {\n            \"name\": \"New Jersey\",\n            \"abbr\": \"NJ\"\n        },\n        {\n            \"name\": \"Kansas\",\n            \"abbr\": \"KS\"\n        },\n        {\n            \"name\": \"Kentucky\",\n            \"abbr\": \"KY\"\n        },\n        {\n            \"name\": \"Louisiana\",\n            \"abbr\": \"LA\"\n        },\n        {\n            \"name\": \"Maine\",\n            \"abbr\": \"ME\"\n        },\n        {\n            \"name\": \"Maryland\",\n            \"abbr\": \"MD\"\n        },\n        {\n            \"name\": \"Massachusetts\",\n            \"abbr\": \"MA\"\n        },\n        {\n            \"name\": \"New Mexico\",\n            \"abbr\": \"NM\"\n        },\n        {\n            \"name\": \"Michigan\",\n            \"abbr\": \"MI\"\n        },\n        {\n            \"name\": \"Minnesota\",\n            \"abbr\": \"MN\"\n        },\n        {\n            \"name\": \"Mississippi\",\n            \"abbr\": \"MS\"\n        },\n        {\n            \"name\": \"Missouri\",\n            \"abbr\": \"MO\"\n        },\n        {\n            \"name\": \"Montana\",\n            \"abbr\": \"MT\"\n        },\n        {\n            \"name\": \"Nebraska\",\n            \"abbr\": \"NE\"\n        },\n        {\n            \"name\": \"Nevada\",\n            \"abbr\": \"NV\"\n        },\n        {\n            \"name\": \"New York\",\n            \"abbr\": \"NY\"\n        },\n        {\n            \"name\": \"Ohio\",\n            \"abbr\": \"OH\"\n        },\n        {\n            \"name\": \"Oklahoma\",\n            \"abbr\": \"OK\"\n        },\n        {\n            \"name\": \"Oregon\",\n            \"abbr\": \"OR\"\n        },\n        {\n            \"name\": \"Pennsylvania\",\n            \"abbr\": \"PA\"\n        },\n        {\n            \"name\": \"Tennessee\",\n            \"abbr\": \"TN\"\n        },\n        {\n            \"name\": \"Texas\",\n            \"abbr\": \"TX\"\n        },\n        {\n            \"name\": \"Utah\",\n            \"abbr\": \"UT\"\n        },\n        {\n            \"name\": \"Vermont\",\n            \"abbr\": \"VT\"\n        },\n        {\n            \"name\": \"Virginia\",\n            \"abbr\": \"VA\"\n        },\n        {\n            \"name\": \"West Virginia\",\n            \"abbr\": \"WV\"\n        },\n        {\n            \"name\": \"Washington\",\n            \"abbr\": \"WA\"\n        },\n        {\n            \"name\": \"Wisconsin\",\n            \"abbr\": \"WI\"\n        },\n        {\n            \"name\": \"Wyoming\",\n            \"abbr\": \"WY\"\n        }\n    ],\n    \"attribution\": {\n        \"text\": \"Data Provided by StayWoke\",\n        \"website\": \"https://staywoke.org\",\n        \"link\": \"<a href=\\\"https://staywoke.org\\\">Data Provided by StayWoke</a>\",\n        \"license\": \"https://raw.githubusercontent.com/staywoke/api/master/LICENSE\",\n        \"report_bug\": \"https://github.com/staywoke/api/issues/new\",\n        \"logo\": \"https://cdn.staywoke.org/common/logo.png\",\n        \"icon\": \"https://cdn.staywoke.org/common/icon.png\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "The following endpoints for accessing Geolocation Data used across the API.",
+			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {

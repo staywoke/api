@@ -11,9 +11,12 @@ const bugsnagExpress = require('@bugsnag/plugin-express')
 const Debug = require('debug')
 const dotenv = require('dotenv')
 const express = require('express')
+const flatCache = require('flat-cache')
 const rateLimit = require('express-rate-limit')
 const session = require('express-session')
 const uuid = require('uuid')
+const cors = require('cors')
+const md5 = require('md5')
 
 const analytics = require('./analytics')
 const config = require('./config')
@@ -21,6 +24,83 @@ const router = require('./router')
 const routerUtil = require('./api/v1/routes/util')
 
 const models = require('./models')
+
+/**
+ * Static Cache Wrapper for JSON API Response
+ */
+class Cache {
+  constructor (name, path, cacheTime = 0) {
+    this.name = name
+    this.path = path
+    this.cache = flatCache.load(name, path)
+    this.expire = cacheTime === 0 ? false : cacheTime * 1000 * 60
+  }
+
+  getKey (key) {
+    var now = new Date().getTime()
+    var value = this.cache.getKey(key)
+    if (value === undefined || (value.expire !== false && value.expire < now)) {
+      return undefined
+    } else {
+      return value.data
+    }
+  }
+
+  setKey (key, value) {
+    var now = new Date().getTime()
+    this.cache.setKey(key, {
+      expire: this.expire === false ? false : now + this.expire,
+      data: value
+    })
+  }
+
+  removeKey (key) {
+    this.cache.removeKey(key)
+  }
+
+  save () {
+    this.cache.save(true)
+  }
+
+  remove () {
+    flatCache.clearCacheById(this.name, this.path)
+  }
+}
+
+// create flat cache routes
+const flatCacheMiddleware = (req, res, next) => {
+  if (req && typeof req.method !== 'undefined' && req.method === 'GET') {
+    const url = req.originalUrl || req.url
+    const key = md5('__express__' + url)
+
+    const cacheFile = `${md5(url)}.cache`
+    const cache = new Cache(cacheFile, '.cache')
+    const cacheContent = cache.getKey(key)
+
+    if (cacheContent) {
+      res.send(cacheContent)
+    } else {
+      res.sendResponse = res.send
+      res.send = (body) => {
+        // check if we got a response
+        if (body && typeof body === 'string') {
+          // Check if the response had errors
+          if (body.indexOf('\"errors\": []') === -1) { // eslint-disable-line no-useless-escape
+            res.sendResponse(body)
+          } else {
+            // No errors detected, safe to cache response
+            cache.setKey(key, body)
+            cache.save()
+            res.sendResponse(body)
+          }
+        }
+      }
+      next()
+    }
+  } else {
+    next()
+  }
+}
 
 // Import Environment before Remaining Imports
 dotenv.config({
@@ -46,6 +126,8 @@ process.title = 'api'
 const SetupAPI = (request, response, next) => {
   if ('pretty' in request.query && request.query.pretty !== 'false') {
     app.set('json spaces', 2)
+  } else {
+    app.set('json spaces', 0)
   }
 
   let host = request.headers.origin
@@ -93,6 +175,8 @@ const SetupAPI = (request, response, next) => {
 
         response.setHeader('X-Powered-By', 'API')
         response.setHeader('Content-Type', 'application/json; charset=utf-8')
+        response.setHeader('Access-Control-Max-Age', '7200')
+        response.setHeader('Access-Control-Allow-Credentials', 'true')
         response.setHeader('Access-Control-Allow-Headers', 'Accept, Access-Control-Allow-Methods, Authorization, Content-Type, X-Powered-By')
         response.setHeader('Access-Control-Allow-Methods', acceptedMethods.join(', '))
 
@@ -175,14 +259,36 @@ const SetupAPI = (request, response, next) => {
   }
 }
 
+function logErrors (err, req, res, next) {
+  console.error(err.stack)
+  next(err)
+}
+
+function clientErrorHandler (err, req, res, next) {
+  if (req.xhr) {
+    res.status(500).send({ error: 'Something failed!' })
+  } else {
+    next(err)
+  }
+}
+
+function errorHandler (err, req, res, next) {
+  res.status(500)
+  res.render('error', { error: err })
+}
+
+// Use string ETag
+app.set('etag', 'strong')
+
 app.enable('trust proxy')
+app.use(cors())
 
 /**
  * Allow for Timeout JSON Response
  */
 /* istanbul ignore next */
 app.use((req, res, next) => {
-  res.setTimeout(5000, () => {
+  res.setTimeout(1000000, () => {
     if (req.header('API-Key')) {
       req.query.apikey = req.header('API-Key')
     }
@@ -206,7 +312,7 @@ app.use(session({
 }))
 
 // Check if we should use Bugsnag
-if (config.get('bugsnag') !== '') {
+if (config.get('devFlags.enableBugTracking') && config.get('bugsnag') !== '') {
   const bugsnagClient = bugsnag(config.get('bugsnag'))
 
   bugsnagClient.use(bugsnagExpress)
@@ -234,8 +340,13 @@ app.use(express.json())
 app.use(express.urlencoded({
   extended: false
 }))
+app.use(flatCacheMiddleware)
 app.use(limiter)
 app.use(router)
+
+app.use(logErrors)
+app.use(clientErrorHandler)
+app.use(errorHandler)
 
 // Fallback for Possible Routes used that do not exist
 /* istanbul ignore next */
@@ -275,6 +386,7 @@ const onError = (error) => {
       console.error(`${bind} is already in use`)
       process.exit(1)
     default:
+      console.error(error)
       throw error
   }
 }
@@ -292,5 +404,9 @@ const onListening = () => {
 app.on('error', onError)
 app.on('listening', onListening)
 
-module.exports = app.listen(config.get('port'))
+const server = app.listen(config.get('port'))
+server.keepAliveTimeout = 1000000
+server.headersTimeout = 1005000
+
+module.exports = server
 module.exports.setupAPI = SetupAPI

@@ -253,6 +253,14 @@ const config = convict({
       env: 'API_LOGZIO_DEBUG',
       default: false
     }
+  },
+  documents: {
+    scorecard: {
+      doc: 'Absolute Path to Scorecard Document scorecard.csv',
+      format: String,
+      default: '/path/to/scorecard.csv',
+      env: 'API_DOC_SCORECARD'
+    }
   }
 })
 

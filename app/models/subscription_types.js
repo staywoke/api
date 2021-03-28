@@ -28,11 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     monthly_rate: {
-      type: DataTypes.DECIMAL(8, 2).UNSIGNED,
+      type: DataTypes.FLOAT(8, 2).UNSIGNED,
       allowNull: false
     },
     annual_rate: {
-      type: DataTypes.DECIMAL(8, 2).UNSIGNED,
+      type: DataTypes.FLOAT(8, 2).UNSIGNED,
       allowNull: false
     }
   }, {
