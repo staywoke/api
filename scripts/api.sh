@@ -7,6 +7,7 @@
 DIR=`dirname $0`
 APP_NAME="API"
 PATH_API="$(dirname "$DIR")"
+APP_ENV="Development"
 
 ARG1=1
 ARG2=2
@@ -20,9 +21,50 @@ MS=""
 NX=""
 NS=""
 
+IS_DEVELOPMENT=false
+IS_STAGING=false
+IS_PRODUCTION=false
+
+API_PORT=5000
+
+if test -f "$PATH_API/app/config/local.json"; then
+    IS_DEVELOPMENT=true
+    APP_ENV="local"
+
+    CONFIG_PORT=$(cat $PATH_API/app/config/local.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g')
+
+    if [[ -n $CONFIG_PORT ]]; then
+      API_PORT=$CONFIG_PORT
+    fi
+fi
+
+if test -f "$PATH_API/app/config/staging.json"; then
+    IS_STAGING=true
+    APP_ENV="staging"
+
+    CONFIG_PORT=$(cat $PATH_API/app/config/staging.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g')
+
+    if [[ -n $CONFIG_PORT ]]; then
+      API_PORT=$CONFIG_PORT
+    fi
+fi
+
+if test -f "$PATH_API/app/config/production.json"; then
+    IS_PRODUCTION=true
+    APP_ENV="production"
+
+    CONFIG_PORT=$(cat $PATH_API/app/config/production.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g')
+
+    if [[ -n $CONFIG_PORT ]]; then
+      API_PORT=$CONFIG_PORT
+    fi
+fi
+
+export API_NODE_ENV=$APP_ENV
+
 __make_header(){
     TEXT=$( echo $1 | tr '\n' ' ')
-    echo -e "\n\033[48;5;22m  API › $TEXT  \033[0m\n"
+    echo -e "\n\033[48;5;22m  API $APP_ENV › $TEXT  \033[0m\n"
 }
 
 __output(){
@@ -32,21 +74,21 @@ __output(){
 
 __success(){
     TEXT=$( echo $1 | tr '\n' ' ')
-    echo -e "\033[38;5;34m✓ API › $TEXT\033[0m\n"
+    echo -e "\033[38;5;34m✓ API $APP_ENV › $TEXT\033[0m\n"
 }
 
 __notice(){
     TEXT=$( echo $1 | tr '\n' ' ')
-    echo -e "\033[38;5;220m→ API › $TEXT\033[0m\n"
+    echo -e "\033[38;5;220m→ API $APP_ENV › $TEXT\033[0m\n"
 }
 
 __error(){
     TEXT=$( echo $1 | tr '\n' ' ')
-    echo -e "\033[38;5;196m× API › $TEXT\033[0m\n"
+    echo -e "\033[38;5;196m× API $APP_ENV › $TEXT\033[0m\n"
 }
 
 __confirm(){
-    echo -ne "\n\033[38;5;220m⚠ API › $1\033[0m"
+    echo -ne "\n\033[38;5;220m⚠ API $APP_ENV › $1\033[0m"
 }
 
 function api(){
@@ -63,7 +105,7 @@ function api(){
       api_stop
     ;;
     restart)
-      __error "You are about to restart the $APP_NAME."
+      __error "You are about to restart the $APP_NAME $APP_ENV."
 
       echo -ne "\33[38;5;196mCONTINUE? (y or n) : \33[0m"
       read CONFIRM
@@ -73,7 +115,7 @@ function api(){
             api_start
           ;;
           n|N|no|NO|No)
-            __notice "Skipping Restart of $APP_NAME"
+            __notice "Skipping Restart of $APP_NAME $APP_ENV"
           ;;
           *)
             __notice "Please enter only y or n"
@@ -105,7 +147,7 @@ function api(){
 }
 
 api_install() {
-  __make_header "Installing $APP_NAME"
+  __make_header "Installing $APP_NAME $APP_ENV"
 
   # Change to Doing API Directory
   cd $PATH_API
@@ -116,14 +158,14 @@ api_install() {
 }
 
 api_start() {
-  __make_header "Starting $APP_NAME"
+  __make_header "Starting $APP_NAME $APP_ENV"
 
   # Change to Doing API Directory
   cd $PATH_API
 
   # Cleanup old log files
   rm -f *.log
-  rm -f ~/.forever/web-server.log
+  rm -f ~/.forever/web-server-$APP_ENV.log
 
   # Cleanup old Cache Files
   rm -fr .cache/*.cache
@@ -188,18 +230,18 @@ api_start() {
     npm run -s elasticsearch:update
 
     if [ "$OPTION" == "debug" ]; then
-      __make_header "Starting Node Server in Debug Mode"
+      __make_header "Starting Node Server in Debug Mode on port $API_PORT"
       DEBUG=express:* ./node_modules/nodemon/bin/nodemon.js index.js
     else
-      __make_header "Starting Node Server"
-      forever start -w --minUptime 1000 --spinSleepTime 1000 -m 1 -l web-server.log -o ./web-server-stdout.log -e ./web-server-stderr.log index.js
+      __make_header "Starting Node Server on port $API_PORT"
+      forever start -w --minUptime 1000 --spinSleepTime 1000 -m 1 -l web-server-$APP_ENV.log -o ./web-server-stdout-$APP_ENV.log -e ./web-server-stderr-$APP_ENV.log index.js
     fi
 
   fi
 }
 
 api_stop() {
-  __make_header "Stopping $APP_NAME"
+  __make_header "Stopping $APP_NAME $APP_ENV"
 
   # Change to Doing API Directory
   cd $PATH_API
@@ -272,22 +314,21 @@ api_stop() {
   fi
 
   if [[ -n $NS ]]; then
-    __success "Stopping Node Server"
+    __success "Stopping Node Server on port $API_PORT"
 
     cd $PATH_API
-    forever stop -w --minUptime 1000 --spinSleepTime 1000 -m 1 -l web-server.log -o ./web-server-stdout.log -e ./web-server-stderr.log index.js
+    forever stop -w --minUptime 1000 --spinSleepTime 1000 -m 1 -l web-server-$APP_ENV.log -o ./web-server-stdout-$APP_ENV.log -e ./web-server-stderr-$APP_ENV.log index.js
 
     # kill Known Ports just in case
-    lsof -i TCP:5000 | grep LISTEN | awk '{print $2}' | xargs kill -9;
-    lsof -i TCP:5001 | grep LISTEN | awk '{print $2}' | xargs kill -9;
+    lsof -i TCP:$API_PORT | grep LISTEN | awk '{print $2}' | xargs kill -9;
   else
-    __notice "Node Server was not Running"
+    __notice "Node Server was not Running on port $API_PORT"
   fi
 
 }
 
 api_reset() {
-  __make_header "Resetting $APP_NAME"
+  __make_header "Resetting $APP_NAME $APP_ENV"
 
   # Change to Doing API Directory
   cd $PATH_API
@@ -297,7 +338,7 @@ api_reset() {
 }
 
 api_update() {
-  __make_header "Updating $APP_NAME"
+  __make_header "Updating $APP_NAME $APP_ENV"
 
   # Change to Doing API Directory
   cd $PATH_API
@@ -314,21 +355,21 @@ api_update() {
 }
 
 api_migrate() {
-  __make_header "Migrating $APP_NAME Database"
+  __make_header "Migrating $APP_NAME $APP_ENV Database"
 
   cd $PATH_API
   npm run -s migrate
 }
 
 api_seed() {
-  __make_header "Migrating $APP_NAME Database"
+  __make_header "Migrating $APP_NAME $APP_ENV Database"
 
   cd $PATH_API
   npm run -s seed
 }
 
 api_status() {
-  __make_header "$APP_NAME Status Check"
+  __make_header "$APP_NAME $APP_ENV Status Check"
 
   if [[ -n $NX ]]; then
     __success "Nginx is Running"
@@ -349,9 +390,9 @@ api_status() {
   fi
 
   if [[ -n $NS ]]; then
-    __success "Node Server is Running"
+    __success "Node Server is Running on port $API_PORT"
   else
-    __error "Node Server is Not Running"
+    __error "Node Server is Not Running on port $API_PORT"
   fi
 }
 
@@ -360,12 +401,12 @@ service_check() {
       NX=$(brew services list | grep nginx | awk '{print $2}' | grep started)
       ES=$(brew services list | grep elasticsearch-full | awk '{print $2}' | grep started)
       MS=$(brew services list | grep mysql | awk '{print $2}' | grep started)
-      NS=$(lsof -i TCP:5000 | grep LISTEN | awk '{print $2}')
+      NS=$(lsof -i TCP:$API_PORT | grep LISTEN | awk '{print $2}')
   else
       NX=$(systemctl status nginx | grep 'Main PID' | awk '{print $3}')
       ES=$(systemctl status elasticsearch | grep 'Main PID' | awk '{print $3}')
       MS=$(systemctl list-units --full -all | grep 'mysql' && systemctl status mysql | grep 'Main PID' | awk '{print $3}')
-      NS=$(lsof -i TCP:5000 | grep LISTEN | awk '{print $2}')
+      NS=$(lsof -i TCP:$API_PORT | grep LISTEN | awk '{print $2}')
   fi
 }
 
