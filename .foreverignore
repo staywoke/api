@@ -1,2 +1,8 @@
 web-server-stdout.log
 web-server-stderr.log
+web-server-stdout-local.log
+web-server-stderr-local.log
+web-server-stdout-staging.log
+web-server-stderr-staging.log
+web-server-stdout-production.log
+web-server-stderr-production.log
