@@ -31,7 +31,7 @@ if test -f "$PATH_API/app/config/local.json"; then
     IS_DEVELOPMENT=true
     APP_ENV="local"
 
-    CONFIG_PORT=$(cat $PATH_API/app/config/local.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g')
+    CONFIG_PORT=$(cat $PATH_API/app/config/local.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
     if [[ -n $CONFIG_PORT ]]; then
       API_PORT=$CONFIG_PORT
@@ -42,7 +42,7 @@ if test -f "$PATH_API/app/config/staging.json"; then
     IS_STAGING=true
     APP_ENV="staging"
 
-    CONFIG_PORT=$(cat $PATH_API/app/config/staging.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g')
+    CONFIG_PORT=$(cat $PATH_API/app/config/staging.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
     if [[ -n $CONFIG_PORT ]]; then
       API_PORT=$CONFIG_PORT
@@ -53,7 +53,7 @@ if test -f "$PATH_API/app/config/production.json"; then
     IS_PRODUCTION=true
     APP_ENV="production"
 
-    CONFIG_PORT=$(cat $PATH_API/app/config/production.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g')
+    CONFIG_PORT=$(cat $PATH_API/app/config/production.json | grep port | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
     if [[ -n $CONFIG_PORT ]]; then
       API_PORT=$CONFIG_PORT
@@ -320,7 +320,7 @@ api_stop() {
     forever stop -w --minUptime 1000 --spinSleepTime 1000 -m 1 -l web-server-$APP_ENV.log -o ./web-server-stdout-$APP_ENV.log -e ./web-server-stderr-$APP_ENV.log index.js
 
     # kill Known Ports just in case
-    lsof -i TCP:$API_PORT | grep LISTEN | awk '{print $2}' | xargs kill -9;
+    lsof -i "TCP:$API_PORT" | grep LISTEN | awk '{print $2}' | xargs kill -9;
   else
     __notice "Node Server was not Running on port $API_PORT"
   fi
@@ -401,12 +401,12 @@ service_check() {
       NX=$(brew services list | grep nginx | awk '{print $2}' | grep started)
       ES=$(brew services list | grep elasticsearch-full | awk '{print $2}' | grep started)
       MS=$(brew services list | grep mysql | awk '{print $2}' | grep started)
-      NS=$(lsof -i TCP:$API_PORT | grep LISTEN | awk '{print $2}')
+      NS=$(lsof -i "TCP:$API_PORT" | grep LISTEN | awk '{print $2}')
   else
       NX=$(systemctl status nginx | grep 'Main PID' | awk '{print $3}')
       ES=$(systemctl status elasticsearch | grep 'Main PID' | awk '{print $3}')
       MS=$(systemctl list-units --full -all | grep 'mysql' && systemctl status mysql | grep 'Main PID' | awk '{print $3}')
-      NS=$(lsof -i TCP:$API_PORT | grep LISTEN | awk '{print $2}')
+      NS=$(lsof -i "TCP:$API_PORT" | grep LISTEN | awk '{print $2}')
   fi
 }
 

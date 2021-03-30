@@ -1080,7 +1080,7 @@ const __calcTotalArrests = (row) => {
     totalArrests.push(arrests2019)
   }
 
-  return (totalArrests.length) ? Math.floor(_.sum(totalArrests) / totalArrests.length) * totalArrests.length : 0
+  return (totalArrests.length) ? _.sum(totalArrests) : 0
 }
 
 /**
