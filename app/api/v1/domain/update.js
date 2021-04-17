@@ -411,34 +411,15 @@ const __calcLessLethalForceChange = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentAsianPacificArrests = (row) => {
-  const arrests2013 = util.parseInt(row.arrests_2013) || 0
-  const arrests2014 = util.parseInt(row.arrests_2014) || 0
-  const arrests2015 = util.parseInt(row.arrests_2015) || 0
-  const arrests2016 = util.parseInt(row.arrests_2016) || 0
-  const arrests2017 = util.parseInt(row.arrests_2017) || 0
-  const arrests2018 = util.parseInt(row.arrests_2018) || 0
-  const arrests2019 = util.parseInt(row.arrests_2019) || 0
   const asianPacificArrests = util.parseInt(row.asian_pacific_arrests) || 0
+  const blackArrests = util.parseInt(row.black_arrests) || 0
+  const hispanicArrests = util.parseInt(row.hispanic_arrests) || 0
+  const otherArrests = util.parseInt(row.other_arrests) || 0
+  const whiteArrests = util.parseInt(row.white_arrests) || 0
 
-  if (asianPacificArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
-    return util.parseFloat(
-      (
-        asianPacificArrests / (
-          arrests2013 +
-          arrests2014 +
-          arrests2015 +
-          arrests2016 +
-          arrests2017 +
-          arrests2018 +
-          arrests2019
-        ) * 100
-      ).toFixed(2)
-    )
-  } else if (asianPacificArrests) {
-    return 100
-  }
+  const allArrests = (asianPacificArrests + blackArrests + hispanicArrests + otherArrests + whiteArrests)
 
-  return 0
+  return util.parseFloat((asianPacificArrests / allArrests) * 100).toFixed(2)
 }
 
 /**
@@ -476,34 +457,15 @@ const __calcPercentAsianPacificIslanderDeadlyForce = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentBlackArrests = (row) => {
-  const arrests2013 = util.parseInt(row.arrests_2013) || 0
-  const arrests2014 = util.parseInt(row.arrests_2014) || 0
-  const arrests2015 = util.parseInt(row.arrests_2015) || 0
-  const arrests2016 = util.parseInt(row.arrests_2016) || 0
-  const arrests2017 = util.parseInt(row.arrests_2017) || 0
-  const arrests2018 = util.parseInt(row.arrests_2018) || 0
-  const arrests2019 = util.parseInt(row.arrests_2019) || 0
+  const asianPacificArrests = util.parseInt(row.asian_pacific_arrests) || 0
   const blackArrests = util.parseInt(row.black_arrests) || 0
+  const hispanicArrests = util.parseInt(row.hispanic_arrests) || 0
+  const otherArrests = util.parseInt(row.other_arrests) || 0
+  const whiteArrests = util.parseInt(row.white_arrests) || 0
 
-  if (blackArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
-    return util.parseFloat(
-      (
-        blackArrests / (
-          arrests2013 +
-          arrests2014 +
-          arrests2015 +
-          arrests2016 +
-          arrests2017 +
-          arrests2018 +
-          arrests2019
-        ) * 100
-      ).toFixed(2)
-    )
-  } else if (blackArrests) {
-    return 100
-  }
+  const allArrests = (asianPacificArrests + blackArrests + hispanicArrests + otherArrests + whiteArrests)
 
-  return 0
+  return util.parseFloat((blackArrests / allArrests) * 100).toFixed(2)
 }
 
 /**
@@ -610,34 +572,15 @@ const __calcPercentHealthBudget = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentHispanicArrests = (row) => {
-  const arrests2013 = util.parseInt(row.arrests_2013) || 0
-  const arrests2014 = util.parseInt(row.arrests_2014) || 0
-  const arrests2015 = util.parseInt(row.arrests_2015) || 0
-  const arrests2016 = util.parseInt(row.arrests_2016) || 0
-  const arrests2017 = util.parseInt(row.arrests_2017) || 0
-  const arrests2018 = util.parseInt(row.arrests_2018) || 0
-  const arrests2019 = util.parseInt(row.arrests_2019) || 0
+  const asianPacificArrests = util.parseInt(row.asian_pacific_arrests) || 0
+  const blackArrests = util.parseInt(row.black_arrests) || 0
   const hispanicArrests = util.parseInt(row.hispanic_arrests) || 0
+  const otherArrests = util.parseInt(row.other_arrests) || 0
+  const whiteArrests = util.parseInt(row.white_arrests) || 0
 
-  if (hispanicArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
-    return util.parseFloat(
-      (
-        hispanicArrests / (
-          arrests2013 +
-          arrests2014 +
-          arrests2015 +
-          arrests2016 +
-          arrests2017 +
-          arrests2018 +
-          arrests2019
-        ) * 100
-      ).toFixed(2)
-    )
-  } else if (hispanicArrests) {
-    return 100
-  }
+  const allArrests = (asianPacificArrests + blackArrests + hispanicArrests + otherArrests + whiteArrests)
 
-  return 0
+  return util.parseFloat((hispanicArrests / allArrests) * 100).toFixed(2)
 }
 
 /**
@@ -725,34 +668,15 @@ const __calcPercentMisdemeanorArrests = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentOtherArrests = (row) => {
-  const arrests2013 = util.parseInt(row.arrests_2013) || 0
-  const arrests2014 = util.parseInt(row.arrests_2014) || 0
-  const arrests2015 = util.parseInt(row.arrests_2015) || 0
-  const arrests2016 = util.parseInt(row.arrests_2016) || 0
-  const arrests2017 = util.parseInt(row.arrests_2017) || 0
-  const arrests2018 = util.parseInt(row.arrests_2018) || 0
-  const arrests2019 = util.parseInt(row.arrests_2019) || 0
+  const asianPacificArrests = util.parseInt(row.asian_pacific_arrests) || 0
+  const blackArrests = util.parseInt(row.black_arrests) || 0
+  const hispanicArrests = util.parseInt(row.hispanic_arrests) || 0
   const otherArrests = util.parseInt(row.other_arrests) || 0
+  const whiteArrests = util.parseInt(row.white_arrests) || 0
 
-  if (otherArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
-    return util.parseFloat(
-      (
-        otherArrests / (
-          arrests2013 +
-          arrests2014 +
-          arrests2015 +
-          arrests2016 +
-          arrests2017 +
-          arrests2018 +
-          arrests2019
-        ) * 100
-      ).toFixed(2)
-    )
-  } else if (otherArrests) {
-    return 100
-  }
+  const allArrests = (asianPacificArrests + blackArrests + hispanicArrests + otherArrests + whiteArrests)
 
-  return 0
+  return util.parseFloat((otherArrests / allArrests) * 100).toFixed(2)
 }
 
 /**
@@ -949,34 +873,15 @@ const __calcPercentViolentCrimeArrests = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentWhiteArrests = (row) => {
-  const arrests2013 = util.parseInt(row.arrests_2013) || 0
-  const arrests2014 = util.parseInt(row.arrests_2014) || 0
-  const arrests2015 = util.parseInt(row.arrests_2015) || 0
-  const arrests2016 = util.parseInt(row.arrests_2016) || 0
-  const arrests2017 = util.parseInt(row.arrests_2017) || 0
-  const arrests2018 = util.parseInt(row.arrests_2018) || 0
-  const arrests2019 = util.parseInt(row.arrests_2019) || 0
+  const asianPacificArrests = util.parseInt(row.asian_pacific_arrests) || 0
+  const blackArrests = util.parseInt(row.black_arrests) || 0
+  const hispanicArrests = util.parseInt(row.hispanic_arrests) || 0
+  const otherArrests = util.parseInt(row.other_arrests) || 0
   const whiteArrests = util.parseInt(row.white_arrests) || 0
 
-  if (whiteArrests && (arrests2013 || arrests2014 || arrests2015 || arrests2016 || arrests2017 || arrests2018 || arrests2019)) {
-    return util.parseFloat(
-      (
-        whiteArrests / (
-          arrests2013 +
-          arrests2014 +
-          arrests2015 +
-          arrests2016 +
-          arrests2017 +
-          arrests2018 +
-          arrests2019
-        ) * 100
-      ).toFixed(2)
-    )
-  } else if (whiteArrests) {
-    return 100
-  }
+  const allArrests = (asianPacificArrests + blackArrests + hispanicArrests + otherArrests + whiteArrests)
 
-  return 0
+  return util.parseFloat((whiteArrests / allArrests) * 100).toFixed(2)
 }
 
 /**
@@ -1710,6 +1615,46 @@ module.exports = {
           row.housing_budget = row.housing_budget_2017
           row.police_budget = row.police_budget_2017
           row.total_budget = row.total_budget_2017
+
+          if (row.health_budget_2018) {
+            row.health_budget = row.health_budget_2018
+          }
+          if (row.health_budget_2019) {
+            row.health_budget = row.health_budget_2019
+          }
+          if (row.health_budget_2020) {
+            row.health_budget = row.health_budget_2020
+          }
+
+          if (row.housing_budget_2018) {
+            row.housing_budget = row.housing_budget_2018
+          }
+          if (row.housing_budget_2019) {
+            row.housing_budget = row.housing_budget_2019
+          }
+          if (row.housing_budget_2020) {
+            row.housing_budget = row.housing_budget_2020
+          }
+
+          if (row.police_budget_2018) {
+            row.police_budget = row.police_budget_2018
+          }
+          if (row.police_budget_2019) {
+            row.police_budget = row.police_budget_2019
+          }
+          if (row.police_budget_2020) {
+            row.police_budget = row.police_budget_2020
+          }
+
+          if (row.total_budget_2018) {
+            row.total_budget = row.total_budget_2018
+          }
+          if (row.total_budget_2019) {
+            row.total_budget = row.total_budget_2019
+          }
+          if (row.total_budget_2020) {
+            row.total_budget = row.total_budget_2020
+          }
 
           // Check if we are not doing a Clean Import, and skip rows that are `current`
           if (!cleanImport && row.status.toLowerCase() === 'current') {
