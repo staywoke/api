@@ -21,7 +21,7 @@
     "start": "./scripts/api.sh start",
     "start:debug": "./scripts/api.sh start debug",
     "stop": "./scripts/api.sh stop",
-    "cleanup": "find ~/.forever/ -name '*.log' -delete && find ./ -name '*.log' -delete && rm -fr cleanup && npm run docs:clean && rm -r ./cache/*.cache",
+    "cleanup": "find ~/.forever/ -name '*.log' -delete && find ./ -name '*.log' -delete && rm -fr cleanup && npm run docs:clean && rm -r ./.cache/*.cache",
     "docs": "jsdoc -c ./doc-conf.json -r ./app -R ./apiary.apib -d ./app/static/docs -t ./node_modules/ink-docstrap/template",
     "docs:clean": "rm -r ./app/static/docs || true",
     "test": "API_NODE_ENV=test mocha ./test/**/*_test.js --recursive --exit --require esm ./test/bootstrap.js",
