@@ -115,6 +115,9 @@ module.exports = (sequelize, DataTypes) => {
     low_level_arrests_per_1k_population: {
       type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
+    native_american_deadly_force_disparity_per_population: {
+      type: DataTypes.FLOAT(10, 2).UNSIGNED
+    },
     overall_disparity_index: {
       type: DataTypes.FLOAT(10, 2)
     },
@@ -134,6 +137,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     percent_complaints_in_detention_sustained: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
+    percent_corrections_budget: {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     percent_criminal_complaints_sustained: {
@@ -166,10 +172,31 @@ module.exports = (sequelize, DataTypes) => {
     percent_murders_solved: {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
+    percent_native_american_arrests: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
     percent_other_arrests: {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     percent_other_deadly_force: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
+    percent_officers_asian_pacific: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
+    percent_officers_black: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
+    percent_officers_hispanic: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
+    percent_officers_native_american: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
+    percent_officers_other: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
+    percent_officers_white: {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
     percent_police_budget: {
@@ -248,6 +275,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(10, 2).UNSIGNED
     },
     total_arrests: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    total_low_level_arrests: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     total_jail_deaths_2016_2018: {
