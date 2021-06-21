@@ -45,7 +45,46 @@ module.exports = (sequelize, DataTypes) => {
     arrests_2019: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
+    arrests_2020: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    arrests_2021: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    arrests_2022: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
     low_level_arrests: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2013: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2014: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2015: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2016: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2017: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2018: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2019: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2020: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2021: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    low_level_arrests_2022: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     violent_crime_arrests: {
@@ -61,6 +100,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     asian_pacific_arrests: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    native_american_arrests: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     other_arrests: {

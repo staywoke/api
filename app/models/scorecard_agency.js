@@ -72,6 +72,9 @@ module.exports = (sequelize, DataTypes) => {
     asian_pacific_population: {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
+    native_american_population: {
+      type: DataTypes.FLOAT(5, 2).UNSIGNED
+    },
     other_population: {
       type: DataTypes.FLOAT(5, 2).UNSIGNED
     },
