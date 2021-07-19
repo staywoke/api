@@ -361,6 +361,27 @@ const __calcNativeAmericanDeadlyForceDisparityPerPopulation = (row) => {
 }
 
 /**
+ * Calculate Percent Native American Deadly Force
+ * @param {object} row from CSV File
+ */
+const __calcPercentNativeAmericanDeadlyForce = (row) => {
+  const nativeAmericanPeopleKilled = util.parseInt(row.native_american_people_killed, true) || 0
+  const allPeopleKilled = __calcTotalPeopleKilled(row)
+
+  if (nativeAmericanPeopleKilled >= 0 && allPeopleKilled > 0 && nativeAmericanPeopleKilled < allPeopleKilled) {
+    return util.parseFloat(
+      (
+        nativeAmericanPeopleKilled / allPeopleKilled * 100
+      ).toFixed(2)
+    )
+  } else if (nativeAmericanPeopleKilled === allPeopleKilled) {
+    return 100
+  }
+
+  return 0
+}
+
+/**
  * Calculate Black Murder Unsolved Rate
  * @param {object} row from CSV File
  */
@@ -558,14 +579,22 @@ const __calcPercentDrugPossessionArrests = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentEducationBudget = (row) => {
-  const educationBudget = util.parseInt(row.education_budget, true) || 0
-  const totalBudget = util.parseInt(row.total_budget, true) || 0
+  try {
+    if (!row || !row.education_budget || !row.total_budget) {
+      return 0
+    }
 
-  if (educationBudget >= 0 && totalBudget > 0) {
-    return util.parseFloat(((educationBudget / totalBudget) * 100).toFixed(2))
+    const educationBudget = util.parseInt(row.education_budget, true) || 0
+    const totalBudget = util.parseInt(row.total_budget, true) || 0
+
+    if (educationBudget >= 0 && totalBudget > 0) {
+      return util.parseFloat(((educationBudget / totalBudget) * 100).toFixed(2), true, true)
+    }
+
+    return 0
+  } catch (e) {
+    return 0
   }
-
-  return 0
 }
 
 /**
@@ -573,14 +602,22 @@ const __calcPercentEducationBudget = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentHealthBudget = (row) => {
-  const healthBudget = util.parseInt(row.health_budget, true) || 0
-  const totalBudget = util.parseInt(row.total_budget, true) || 0
+  try {
+    if (!row || !row.health_budget || !row.total_budget) {
+      return 0
+    }
 
-  if (healthBudget >= 0 && totalBudget > 0) {
-    return util.parseFloat(((healthBudget / totalBudget) * 100).toFixed(2))
+    const healthBudget = util.parseInt(row.health_budget, true) || 0
+    const totalBudget = util.parseInt(row.total_budget, true) || 0
+
+    if (healthBudget >= 0 && totalBudget > 0) {
+      return util.parseFloat(((healthBudget / totalBudget) * 100).toFixed(2), true, true)
+    }
+
+    return 0
+  } catch (e) {
+    return 0
   }
-
-  return 0
 }
 
 /**
@@ -588,14 +625,22 @@ const __calcPercentHealthBudget = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentCorrectionsBudget = (row) => {
-  const correctionsBudget = util.parseInt(row.corrections_budget, true) || 0
-  const totalBudget = util.parseInt(row.total_budget, true) || 0
+  try {
+    if (!row || !row.corrections_budget || !row.total_budget) {
+      return 0
+    }
 
-  if (correctionsBudget >= 0 && totalBudget > 0) {
-    return util.parseFloat(((correctionsBudget / totalBudget) * 100).toFixed(2))
+    const correctionsBudget = util.parseInt(row.corrections_budget, true) || 0
+    const totalBudget = util.parseInt(row.total_budget, true) || 0
+
+    if (correctionsBudget >= 0 && totalBudget > 0) {
+      return util.parseFloat(((correctionsBudget / totalBudget) * 100).toFixed(2), false, true)
+    }
+
+    return 0
+  } catch (e) {
+    return 0
   }
-
-  return 0
 }
 
 /**
@@ -636,14 +681,22 @@ const __calcPercentHispanicDeadlyForce = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentHousingBudget = (row) => {
-  const housingBudget = util.parseInt(row.housing_budget, true) || 0
-  const totalBudget = util.parseInt(row.total_budget, true) || 0
+  try {
+    if (!row || !row.housing_budget || !row.total_budget) {
+      return 0
+    }
 
-  if (housingBudget >= 0 && totalBudget > 0) {
-    return util.parseFloat(((housingBudget / totalBudget) * 100).toFixed(2))
+    const housingBudget = util.parseInt(row.housing_budget, true) || 0
+    const totalBudget = util.parseInt(row.total_budget, true) || 0
+
+    if (housingBudget >= 0 && totalBudget > 0) {
+      return util.parseFloat(((housingBudget / totalBudget) * 100).toFixed(2), true, true)
+    }
+
+    return 0
+  } catch (e) {
+    return 0
   }
-
-  return 0
 }
 
 /**
@@ -705,14 +758,22 @@ const __calcPercentOtherDeadlyForce = (row) => {
  * @param {object} row from CSV File
  */
 const __calcPercentPoliceBudget = (row) => {
-  const policeBudget = util.parseInt(row.police_budget, true) || 0
-  const totalBudget = util.parseInt(row.total_budget, true) || 0
+  try {
+    if (!row || !row.police_budget || !row.total_budget) {
+      return 0
+    }
 
-  if (policeBudget >= 0 && totalBudget > 0) {
-    return util.parseFloat(((policeBudget / totalBudget) * 100).toFixed(2))
+    const policeBudget = util.parseInt(row.police_budget, true) || 0
+    const totalBudget = util.parseInt(row.total_budget, true) || 0
+
+    if (policeBudget >= 0 && totalBudget > 0) {
+      return util.parseFloat(((policeBudget / totalBudget) * 100).toFixed(2))
+    }
+
+    return 0
+  } catch (e) {
+    return 0
   }
-
-  return 0
 }
 
 /**
@@ -1548,11 +1609,13 @@ module.exports = {
     })
   },
 
-  importScorecard (rowCount, cleanImport) {
+  async importScorecard (rowCount, cleanImport) {
     return new Promise((resolve) => {
       const scorecard = fs.createReadStream(SCORECARD_PATH)
       const importErrors = []
       const importWarnings = []
+      const oriList = []
+
       let processed = 0
 
       const checkComplete = () => {
@@ -1579,7 +1642,7 @@ module.exports = {
           skip_lines_with_error: true
         })
       )
-        .on('data', row => {
+        .on('data', async row => {
           // Check if we are not doing a Clean Import, and skip rows that are `current`
           if (!cleanImport && row.status.toLowerCase() === 'current') {
             processed += 1
@@ -1588,9 +1651,19 @@ module.exports = {
           }
 
           // Prevent Imports where population is zero
-          if (util.parseInt(row.total_population, false, true) === 0) {
+          if (!row.total_population || row.total_population === '0' || row.total_population === 0 || util.parseInt(row.total_population, false, true) === 0) {
             processed += 1
-            importWarnings.push(`Invalid ${util.titleCase(row.agency_name, true)} 'total_population' cannot be zero`)
+            importWarnings.push(`Invalid 'ori' ${row.ori} - 'total_population' cannot be zero`)
+
+            return checkComplete()
+          }
+
+          // Check that we have a unique ORI
+          if (oriList.indexOf(row.ori) === -1) {
+            oriList.push(row.ori)
+          } else {
+            processed += 1
+            importWarnings.push(`Invalid 'ori' ${row.ori} - Duplicate ORI Entries`)
 
             return checkComplete()
           }
@@ -1728,93 +1801,65 @@ module.exports = {
           // Update Police Budget for Latest Year we have data for
           if (row.police_budget_2010 && row.police_budget_2010.length > 0 && row.total_budget_2010 && row.total_budget_2010.length > 0) {
             row.police_budget = row.police_budget_2010
+            row.total_budget = row.total_budget_2010
           }
           if (row.police_budget_2011 && row.police_budget_2011.length > 0 && row.total_budget_2011 && row.total_budget_2011.length > 0) {
             row.police_budget = row.police_budget_2011
+            row.total_budget = row.total_budget_2011
           }
           if (row.police_budget_2012 && row.police_budget_2012.length > 0 && row.total_budget_2012 && row.total_budget_2012.length > 0) {
             row.police_budget = row.police_budget_2012
+            row.total_budget = row.total_budget_2012
           }
           if (row.police_budget_2013 && row.police_budget_2013.length > 0 && row.total_budget_2013 && row.total_budget_2013.length > 0) {
             row.police_budget = row.police_budget_2013
+            row.total_budget = row.total_budget_2013
           }
           if (row.police_budget_2014 && row.police_budget_2014.length > 0 && row.total_budget_2014 && row.total_budget_2014.length > 0) {
             row.police_budget = row.police_budget_2014
+            row.total_budget = row.total_budget_2014
           }
           if (row.police_budget_2015 && row.police_budget_2015.length > 0 && row.total_budget_2015 && row.total_budget_2015.length > 0) {
             row.police_budget = row.police_budget_2015
+            row.total_budget = row.total_budget_2015
           }
           if (row.police_budget_2016 && row.police_budget_2016.length > 0 && row.total_budget_2016 && row.total_budget_2016.length > 0) {
             row.police_budget = row.police_budget_2016
+            row.total_budget = row.total_budget_2016
           }
           if (row.police_budget_2017 && row.police_budget_2017.length > 0 && row.total_budget_2017 && row.total_budget_2017.length > 0) {
             row.police_budget = row.police_budget_2017
+            row.total_budget = row.total_budget_2017
           }
           if (row.police_budget_2018 && row.police_budget_2018.length > 0 && row.total_budget_2018 && row.total_budget_2018.length > 0) {
             row.police_budget = row.police_budget_2018
+            row.total_budget = row.total_budget_2018
           }
           if (row.police_budget_2019 && row.police_budget_2019.length > 0 && row.total_budget_2019 && row.total_budget_2019.length > 0) {
             row.police_budget = row.police_budget_2019
+            row.total_budget = row.total_budget_2019
           }
           if (row.police_budget_2020 && row.police_budget_2020.length > 0 && row.total_budget_2020 && row.total_budget_2020.length > 0) {
             row.police_budget = row.police_budget_2020
+            row.total_budget = row.total_budget_2020
           }
           if (row.police_budget_2021 && row.police_budget_2021.length > 0 && row.total_budget_2021 && row.total_budget_2021.length > 0) {
             row.police_budget = row.police_budget_2021
+            row.total_budget = row.total_budget_2021
           }
           if (row.police_budget_2022 && row.police_budget_2022.length > 0 && row.total_budget_2022 && row.total_budget_2022.length > 0) {
             row.police_budget = row.police_budget_2022
-          }
-
-          // Update Total Budget for Latest Year we have data for
-          if (row.total_budget_2010 && row.total_budget_2010.length > 0) {
-            row.total_budget = row.total_budget_2010
-          }
-          if (row.total_budget_2011 && row.total_budget_2011.length > 0) {
-            row.total_budget = row.total_budget_2011
-          }
-          if (row.total_budget_2012 && row.total_budget_2012.length > 0) {
-            row.total_budget = row.total_budget_2012
-          }
-          if (row.total_budget_2013 && row.total_budget_2013.length > 0) {
-            row.total_budget = row.total_budget_2013
-          }
-          if (row.total_budget_2014 && row.total_budget_2014.length > 0) {
-            row.total_budget = row.total_budget_2014
-          }
-          if (row.total_budget_2015 && row.total_budget_2015.length > 0) {
-            row.total_budget = row.total_budget_2015
-          }
-          if (row.total_budget_2016 && row.total_budget_2016.length > 0) {
-            row.total_budget = row.total_budget_2016
-          }
-          if (row.total_budget_2017 && row.total_budget_2017.length > 0) {
-            row.total_budget = row.total_budget_2017
-          }
-          if (row.total_budget_2018 && row.total_budget_2018.length > 0) {
-            row.total_budget = row.total_budget_2018
-          }
-          if (row.total_budget_2019 && row.total_budget_2019.length > 0) {
-            row.total_budget = row.total_budget_2019
-          }
-          if (row.total_budget_2020 && row.total_budget_2020.length > 0) {
-            row.total_budget = row.total_budget_2020
-          }
-          if (row.total_budget_2021 && row.total_budget_2021.length > 0) {
-            row.total_budget = row.total_budget_2021
-          }
-          if (row.total_budget_2022 && row.total_budget_2022.length > 0) {
             row.total_budget = row.total_budget_2022
           }
 
-          const importSheriffData = (row, result, cleanData) => {
+          const importSheriffData = async (row, result, cleanData) => {
             // Add
             cleanData.agency.country_id = result.country_id
             cleanData.agency.state_id = result.state_id
             cleanData.agency.county_id = result.id
 
             // Update or Insert Agency
-            __upsertScorecardAgency(cleanData, {
+            await __upsertScorecardAgency(cleanData, {
               ori: row.ori,
               state_id: result.state_id
             }).then(() => {
@@ -1843,7 +1888,7 @@ module.exports = {
             })
           }
 
-          const importPoliceData = (row, result, cleanData) => {
+          const importPoliceData = async (row, result, cleanData) => {
             // Add
             cleanData.agency.country_id = result.country_id
             cleanData.agency.state_id = result.state_id
@@ -1912,6 +1957,46 @@ module.exports = {
           if (!grade || typeof grade.class === 'undefined') {
             return importMissingScore(row)
           }
+
+          const blackDeadlyForceDisparityPerPopulation = __calcBlackDeadlyForceDisparityPerPopulation(row)
+          const blackMurderUnsolvedRate = __calcBlackMurderUnsolvedRate(row)
+          const percentPoliceBudget = __calcPercentPoliceBudget(row)
+          const deadlyForceIncidentsPerArrestPer10k = __calcDeadlyForceIncidentsPerArrestPer10k(row)
+          const deadlyForceIncidentsPerArrest = __calcDeadlyForceIncidentsPerArrest(row)
+          const hispanicDeadlyForceDisparityPerPopulation = __calcHispanicDeadlyForceDisparityPerPopulation(row)
+          const hispanicMurderUnsolvedRate = __calcHispanicMurderUnsolvedRate(row)
+          const lessLethalForceChange = __calcLessLethalForceChange(row)
+          const nativeAmericanDeadlyForceDisparityPerPopulation = __calcNativeAmericanDeadlyForceDisparityPerPopulation(row)
+          const percentAsianPacificArrests = __calcPercentAsianPacificArrests(row)
+          const percentAsianPacificIslanderDeadlyForce = __calcPercentAsianPacificIslanderDeadlyForce(row)
+          const percentBlackArrests = __calcPercentBlackArrests(row)
+          const percentBlackDeadlyForce = __calcPercentBlackDeadlyForce(row)
+          const percentCorrectionsBudget = __calcPercentCorrectionsBudget(row)
+          const percentDrugPossessionArrests = __calcPercentDrugPossessionArrests(row)
+          const percentEducationBudget = __calcPercentEducationBudget(row)
+          const percentHealthBudget = __calcPercentHealthBudget(row)
+          const percentHispanicArrests = __calcPercentHispanicArrests(row)
+          const percentHispanicDeadlyForce = __calcPercentHispanicDeadlyForce(row)
+          const percentHousingBudget = __calcPercentHousingBudget(row)
+          const percentMisdemeanorArrests = __calcPercentMisdemeanorArrests(row)
+          const percentNativeAmericanArrests = __calcPercentNativeAmericanArrests(row)
+          const percentNativeAmericanDeadlyForce = __calcPercentNativeAmericanDeadlyForce(row)
+          const percentOtherArrests = __calcPercentOtherArrests(row)
+          const percentOtherDeadlyForce = __calcPercentOtherDeadlyForce(row)
+          const percentPoliceMisperceiveThePersonToHaveGun = __calcPercentPoliceMisperceiveThePersonToHaveGun(row)
+          const percentShotFirst = __calcPercentShotFirst(row)
+          const percentUsedAgainstPeopleWhoWereNotArmedWithGun = __calcPercentUsedAgainstPeopleWhoWereNotArmedWithGun(row)
+          const percentUsedAgainstPeopleWhoWereUnarmed = __calcPercentUsedAgainstPeopleWhoWereUnarmed(row)
+          const percentViolentCrimeArrests = __calcPercentViolentCrimeArrests(row)
+          const percentWhiteArrests = __calcPercentWhiteArrests(row)
+          const percentWhiteDeadlyForce = __calcPercentWhiteDeadlyForce(row)
+          const policeShootingsIncidents = __calcPoliceShootingsIncidents(row)
+          const timesMoreMisdemeanorArrestsThanViolentCrime = __calcTimesMoreMisdemeanorArrestsThanViolentCrime(row)
+          const totalArrests = __calcTotalArrests(row)
+          const totalLowLevelArrests = __calcTotalLowLevelArrests(row)
+          const totalJailDeaths20162018 = __calcTotalJailDeaths20162018(row)
+          const totalPeopleKilled = __calcTotalPeopleKilled(row)
+          const whiteMurderUnsolvedRate = __calcWhiteMurderUnsolvedRate(row)
 
           // Cleanup CVS Data before handing off to Model
           const cleanData = {
@@ -2207,10 +2292,10 @@ module.exports = {
             },
             report: {
               approach_to_policing_score: util.parseInt(row.calc_approach_to_policing_score, false, true),
-              black_deadly_force_disparity_per_population: __calcBlackDeadlyForceDisparityPerPopulation(row),
+              black_deadly_force_disparity_per_population: blackDeadlyForceDisparityPerPopulation ? blackDeadlyForceDisparityPerPopulation : null,
               black_deadly_force_disparity: util.parseFloat(row.calc_black_deadly_force_disparity, false, true),
               black_drug_arrest_disparity: util.parseFloat(row.calc_black_drug_arrest_disparity, false, true),
-              black_murder_unsolved_rate: __calcBlackMurderUnsolvedRate(row),
+              black_murder_unsolved_rate: blackMurderUnsolvedRate ? blackMurderUnsolvedRate : null,
               change_approach_to_policing_score: util.parseInt(row.change_approach_to_policing_score, false, true),
               change_overall_score: util.parseInt(row.change_overall_score, false, true),
               change_police_accountability_score: util.parseInt(row.change_police_accountability_score, false, true),
@@ -2219,60 +2304,61 @@ module.exports = {
               complaints_sustained: util.parseInt(row.calc_complaints_sustained, false, true),
               currently_updating_union_contract: util.parseBoolean(row.currently_updating_union_contract),
               currently_updating_use_of_force: util.parseBoolean(row.currently_updating_use_of_force),
-              deadly_force_incidents_per_arrest_per_10k: __calcDeadlyForceIncidentsPerArrestPer10k(row),
-              deadly_force_incidents_per_arrest: __calcDeadlyForceIncidentsPerArrest(row),
+              deadly_force_incidents_per_arrest_per_10k: deadlyForceIncidentsPerArrestPer10k ? deadlyForceIncidentsPerArrestPer10k : null,
+              deadly_force_incidents_per_arrest: deadlyForceIncidentsPerArrest ? deadlyForceIncidentsPerArrest : null,
               grade_class: grade.class,
               grade_letter: grade.letter,
               grade_marker: grade.marker,
-              hispanic_deadly_force_disparity_per_population: __calcHispanicDeadlyForceDisparityPerPopulation(row),
+              hispanic_deadly_force_disparity_per_population: hispanicDeadlyForceDisparityPerPopulation ? hispanicDeadlyForceDisparityPerPopulation : null,
               hispanic_deadly_force_disparity: util.parseFloat(row.calc_hispanic_deadly_force_disparity, false, true),
               hispanic_drug_arrest_disparity: util.parseFloat(row.calc_hispanic_drug_arrest_disparity, false, true),
-              hispanic_murder_unsolved_rate: __calcHispanicMurderUnsolvedRate(row),
+              hispanic_murder_unsolved_rate: hispanicMurderUnsolvedRate ? hispanicMurderUnsolvedRate : null,
               jail_deaths_per_1k_jail_population: util.parseFloat(row.calc_jail_deaths_per_1k_jail_population, false, true),
               jail_incarceration_per_1k_population: util.parseFloat(row.calc_jail_incarceration_per_1k_population, false, true),
               killed_by_police_per_10k_arrests: util.parseFloat(row.calc_killed_by_police_per_10k_arrests, false, true),
-              less_lethal_force_change: __calcLessLethalForceChange(row),
+              less_lethal_force_change: lessLethalForceChange ? lessLethalForceChange : null,
               less_lethal_per_10k_arrests: util.parseFloat(row.calc_less_lethal_per_10k_arrests, false, true),
               low_level_arrests_per_1k_population: util.parseFloat(row.calc_low_level_arrests_per_1k_population, false, true),
               most_severe_deadly_force_disparity: util.parseFloat(row.calc_most_severe_deadly_force_disparity, false, true),
               most_severe_drug_arrest_disparity: util.parseFloat(row.calc_most_severe_drug_arrest_disparity, false, true),
-              native_american_deadly_force_disparity_per_population: __calcNativeAmericanDeadlyForceDisparityPerPopulation(row),
+              native_american_deadly_force_disparity_per_population: nativeAmericanDeadlyForceDisparityPerPopulation ? nativeAmericanDeadlyForceDisparityPerPopulation : null,
               overall_disparity_index: util.parseFloat(row.calc_overall_disparity_index, false, true),
               overall_score: util.parseInt(row.calc_overall_score, false, true),
-              percent_asian_pacific_arrests: __calcPercentAsianPacificArrests(row),
-              percent_asian_pacific_islander_deadly_force: __calcPercentAsianPacificIslanderDeadlyForce(row),
-              percent_black_arrests: __calcPercentBlackArrests(row),
-              percent_black_deadly_force: __calcPercentBlackDeadlyForce(row),
+              percent_asian_pacific_arrests: percentAsianPacificArrests ? percentAsianPacificArrests : null,
+              percent_asian_pacific_islander_deadly_force: percentAsianPacificIslanderDeadlyForce ? percentAsianPacificIslanderDeadlyForce : null,
+              percent_black_arrests: percentBlackArrests ? percentBlackArrests : null,
+              percent_black_deadly_force: percentBlackDeadlyForce ? percentBlackDeadlyForce : null,
               percent_complaints_in_detention_sustained: util.parseInt(row.calc_percent_complaints_in_detention_sustained, false, true),
-              percent_corrections_budget: __calcPercentCorrectionsBudget(row),
+              percent_corrections_budget: percentCorrectionsBudget ? percentCorrectionsBudget : null,
               percent_criminal_complaints_sustained: util.parseInt(row.calc_percent_criminal_complaints_sustained, false, true),
               percent_discrimination_complaints_sustained: util.parseInt(row.calc_percent_discrimination_complaints_sustained, false, true),
-              percent_drug_possession_arrests: __calcPercentDrugPossessionArrests(row),
-              percent_education_budget: __calcPercentEducationBudget(row),
-              percent_health_budget: __calcPercentHealthBudget(row),
-              percent_hispanic_arrests: __calcPercentHispanicArrests(row),
-              percent_hispanic_deadly_force: __calcPercentHispanicDeadlyForce(row),
-              percent_housing_budget: __calcPercentHousingBudget(row),
-              percent_misdemeanor_arrests: __calcPercentMisdemeanorArrests(row),
+              percent_drug_possession_arrests: percentDrugPossessionArrests ? percentDrugPossessionArrests : null,
+              percent_education_budget: percentEducationBudget ? percentEducationBudget : null,
+              percent_health_budget: percentHealthBudget ? percentHealthBudget : null,
+              percent_hispanic_arrests: percentHispanicArrests ? percentHispanicArrests : null,
+              percent_hispanic_deadly_force: percentHispanicDeadlyForce ? percentHispanicDeadlyForce : null,
+              percent_housing_budget: percentHousingBudget ? percentHousingBudget : null,
+              percent_misdemeanor_arrests: percentMisdemeanorArrests ? percentMisdemeanorArrests : null,
               percent_murders_solved: util.parseInt(row.calc_percent_murders_solved, false, true),
-              percent_native_american_arrests: __calcPercentNativeAmericanArrests(row),
+              percent_native_american_arrests: percentNativeAmericanArrests ? percentNativeAmericanArrests : null,
+              percent_native_american_deadly_force: percentNativeAmericanDeadlyForce ? percentNativeAmericanDeadlyForce : null,
               percent_officers_asian_pacific: util.parseInt(row.percent_officers_asianpacific, false, true),
               percent_officers_black: util.parseInt(row.percent_officers_black, false, true),
               percent_officers_hispanic: util.parseInt(row.percent_officers_hispanic, false, true),
               percent_officers_native_american: util.parseInt(row.percent_officers_native_american, false, true),
               percent_officers_other: util.parseInt(row.percent_officers_other, false, true),
               percent_officers_white: util.parseInt(row.percent_officers_white, false, true),
-              percent_other_arrests: __calcPercentOtherArrests(row),
-              percent_other_deadly_force: __calcPercentOtherDeadlyForce(row),
-              percent_police_budget: __calcPercentPoliceBudget(row),
-              percent_police_misperceive_the_person_to_have_gun: __calcPercentPoliceMisperceiveThePersonToHaveGun(row),
-              percent_shot_first: __calcPercentShotFirst(row),
+              percent_other_arrests: percentOtherArrests ? percentOtherArrests : null,
+              percent_other_deadly_force: percentOtherDeadlyForce ? percentOtherDeadlyForce : null,
+              percent_police_budget: percentPoliceBudget ? percentPoliceBudget : null,
+              percent_police_misperceive_the_person_to_have_gun: percentPoliceMisperceiveThePersonToHaveGun ? percentPoliceMisperceiveThePersonToHaveGun : null,
+              percent_shot_first: percentShotFirst ? percentShotFirst : null,
               percent_use_of_force_complaints_sustained: util.parseInt(row.calc_percent_use_of_force_complaints_sustained, false, true),
-              percent_used_against_people_who_were_not_armed_with_gun: __calcPercentUsedAgainstPeopleWhoWereNotArmedWithGun(row),
-              percent_used_against_people_who_were_unarmed: __calcPercentUsedAgainstPeopleWhoWereUnarmed(row),
-              percent_violent_crime_arrests: __calcPercentViolentCrimeArrests(row),
-              percent_white_arrests: __calcPercentWhiteArrests(row),
-              percent_white_deadly_force: __calcPercentWhiteDeadlyForce(row),
+              percent_used_against_people_who_were_not_armed_with_gun: percentUsedAgainstPeopleWhoWereNotArmedWithGun ? percentUsedAgainstPeopleWhoWereNotArmedWithGun : null,
+              percent_used_against_people_who_were_unarmed: percentUsedAgainstPeopleWhoWereUnarmed ? percentUsedAgainstPeopleWhoWereUnarmed : null,
+              percent_violent_crime_arrests: percentViolentCrimeArrests ? percentViolentCrimeArrests : null,
+              percent_white_arrests: percentWhiteArrests ? percentWhiteArrests : null,
+              percent_white_deadly_force: percentWhiteDeadlyForce ? percentWhiteDeadlyForce : null,
               percentile_complaints_sustained: util.parseInt(row.calc_percentile_complaints_sustained, false, true),
               percentile_drug_arrest_disparity: util.parseFloat(row.calc_percentile_drug_arrest_disparity, false, true),
               percentile_jail_deaths_per_1k_jail_population: util.parseInt(row.calc_percentile_jail_deaths_per_1k_jail_population, false, true),
@@ -2286,23 +2372,23 @@ module.exports = {
               percentile_unarmed_killed_by_police: util.parseInt(row.calc_percentile_unarmed_killed_by_police, false, true),
               police_accountability_score: util.parseInt(row.calc_police_accountability_score, false, true),
               police_funding_score: util.parseInt(row.calc_police_funding_score, false, true),
-              police_shootings_incidents: __calcPoliceShootingsIncidents(row),
+              police_shootings_incidents: policeShootingsIncidents ? policeShootingsIncidents : null,
               police_spending_per_resident: util.parseFloat(row.calc_police_spending_per_resident, false, true),
               police_violence_score: util.parseInt(row.calc_police_violence_score, false, true),
-              times_more_misdemeanor_arrests_than_violent_crime: __calcTimesMoreMisdemeanorArrestsThanViolentCrime(row),
-              total_arrests: __calcTotalArrests(row),
-              total_low_level_arrests: __calcTotalLowLevelArrests(row),
-              total_jail_deaths_2016_2018: __calcTotalJailDeaths20162018(row),
+              times_more_misdemeanor_arrests_than_violent_crime: timesMoreMisdemeanorArrestsThanViolentCrime ? timesMoreMisdemeanorArrestsThanViolentCrime : null,
+              total_arrests: totalArrests ? totalArrests : null,
+              total_low_level_arrests: totalLowLevelArrests ? totalLowLevelArrests : null,
+              total_jail_deaths_2016_2018: totalJailDeaths20162018 ? totalJailDeaths20162018 : null,
               total_less_lethal_force_estimated: util.parseFloat(row.calc_total_less_lethal_force_estimated, false, true),
-              total_people_killed: __calcTotalPeopleKilled(row),
+              total_people_killed: totalPeopleKilled ? totalPeopleKilled : null,
               unarmed_killed_by_police_per_10k_arrests: util.parseFloat(row.calc_unarmed_killed_by_police_per_10k_arrests, false, true),
-              white_murder_unsolved_rate: __calcWhiteMurderUnsolvedRate(row)
+              white_murder_unsolved_rate: whiteMurderUnsolvedRate ? whiteMurderUnsolvedRate : null
             }
           }
 
           if (row.agency_type === 'sheriff') {
             // Search Counties for Sheriff Department
-            models.geo_counties.findOne({
+            await models.geo_counties.findOne({
               where: {
                 fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
                 fips_county_code: util.leftPad(row.fips_county_code, 3, '0')
@@ -2311,7 +2397,7 @@ module.exports = {
               if (result) {
                 importSheriffData(row, result, cleanData)
               } else {
-                return __upsertCounty(row).then((county) => {
+                __upsertCounty(row).then((county) => {
                   importSheriffData(row, county, cleanData)
                 }).catch(() => {
                   importWarning(row, row.agency_type)
@@ -2322,7 +2408,7 @@ module.exports = {
             })
           } else if (row.agency_type === 'police-department') {
             // Search Counties for Police Department
-            models.geo_cities.findOne({
+            await models.geo_cities.findOne({
               where: {
                 fips_state_code: util.leftPad(row.fips_state_code, 2, '0'),
                 fips_place_code: util.leftPad(row.fips_place_code, 5, '0')
@@ -2331,7 +2417,7 @@ module.exports = {
               if (result) {
                 importPoliceData(row, result, cleanData)
               } else {
-                return __upsertCity(row).then((city) => {
+                __upsertCity(row).then((city) => {
                   importPoliceData(row, city, cleanData)
                 }).catch(() => {
                   importWarning(row, row.agency_type)

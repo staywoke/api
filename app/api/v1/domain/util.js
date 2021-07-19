@@ -672,7 +672,7 @@ module.exports = {
       cleanVal = useZero ? 0 : null
     } else if (typeof val === 'number') {
       cleanVal = parseFloat(val)
-    } else if (typeof val === 'string' && val !== '' && /[0-9.-]/.test(val)) {
+    } else if (typeof val === 'string' && val !== '' && /[0-9,.-]/.test(val)) {
       cleanVal = parseFloat(val.replace(/[^0-9.-]/g, ''))
     }
 
@@ -700,7 +700,7 @@ module.exports = {
       cleanVal = useZero ? 0 : null
     } else if (typeof val === 'number') {
       cleanVal = parseInt(val)
-    } else if (typeof val === 'string' && val !== '' && /[0-9.-]/.test(val)) {
+    } else if (typeof val === 'string' && val !== '' && /[0-9,.-]/.test(val)) {
       cleanVal = parseInt(val.replace(/[^0-9.-]/g, ''))
     }
 

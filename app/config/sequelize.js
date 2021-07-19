@@ -17,7 +17,13 @@ const dbOptions = {
   dialectOptions: {
     supportBigNumbers: true
   },
-  logging: null,
+  logging: false,
+  pool: {
+    max: 30,
+    min: 0,
+    acquire: 60000,
+    idle: 60000
+  },
   define: {
     freezeTableName: true,
     underscored: true,
