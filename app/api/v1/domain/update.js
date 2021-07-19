@@ -1676,125 +1676,125 @@ module.exports = {
           row.total_budget = null
 
           // Update Corrections Budget for Latest Year we have data for
-          if (row.corrections_budget_2010 && row.corrections_budget_2010.length > 0 && row.total_budget_2010 && row.total_budget_2010.length > 0) {
+          if (row.police_budget_2010 && row.police_budget_2010.length > 0 && row.corrections_budget_2010 && row.corrections_budget_2010.length > 0 && row.total_budget_2010 && row.total_budget_2010.length > 0) {
             row.corrections_budget = row.corrections_budget_2010
           }
-          if (row.corrections_budget_2011 && row.corrections_budget_2011.length > 0 && row.total_budget_2011 && row.total_budget_2011.length > 0) {
+          if (row.police_budget_2011 && row.police_budget_2011.length > 0 && row.corrections_budget_2011 && row.corrections_budget_2011.length > 0 && row.total_budget_2011 && row.total_budget_2011.length > 0) {
             row.corrections_budget = row.corrections_budget_2011
           }
-          if (row.corrections_budget_2012 && row.corrections_budget_2012.length > 0 && row.total_budget_2012 && row.total_budget_2012.length > 0) {
+          if (row.police_budget_2012 && row.police_budget_2012.length > 0 && row.corrections_budget_2012 && row.corrections_budget_2012.length > 0 && row.total_budget_2012 && row.total_budget_2012.length > 0) {
             row.corrections_budget = row.corrections_budget_2012
           }
-          if (row.corrections_budget_2013 && row.corrections_budget_2013.length > 0 && row.total_budget_2013 && row.total_budget_2013.length > 0) {
+          if (row.police_budget_2013 && row.police_budget_2013.length > 0 && row.corrections_budget_2013 && row.corrections_budget_2013.length > 0 && row.total_budget_2013 && row.total_budget_2013.length > 0) {
             row.corrections_budget = row.corrections_budget_2013
           }
-          if (row.corrections_budget_2014 && row.corrections_budget_2014.length > 0 && row.total_budget_2014 && row.total_budget_2014.length > 0) {
+          if (row.police_budget_2014 && row.police_budget_2014.length > 0 && row.corrections_budget_2014 && row.corrections_budget_2014.length > 0 && row.total_budget_2014 && row.total_budget_2014.length > 0) {
             row.corrections_budget = row.corrections_budget_2014
           }
-          if (row.corrections_budget_2015 && row.corrections_budget_2015.length > 0 && row.total_budget_2015 && row.total_budget_2015.length > 0) {
+          if (row.police_budget_2015 && row.police_budget_2015.length > 0 && row.corrections_budget_2015 && row.corrections_budget_2015.length > 0 && row.total_budget_2015 && row.total_budget_2015.length > 0) {
             row.corrections_budget = row.corrections_budget_2015
           }
-          if (row.corrections_budget_2016 && row.corrections_budget_2016.length > 0 && row.total_budget_2016 && row.total_budget_2016.length > 0) {
+          if (row.police_budget_2016 && row.police_budget_2016.length > 0 && row.corrections_budget_2016 && row.corrections_budget_2016.length > 0 && row.total_budget_2016 && row.total_budget_2016.length > 0) {
             row.corrections_budget = row.corrections_budget_2016
           }
-          if (row.corrections_budget_2017 && row.corrections_budget_2017.length > 0 && row.total_budget_2017 && row.total_budget_2017.length > 0) {
+          if (row.police_budget_2017 && row.police_budget_2017.length > 0 && row.corrections_budget_2017 && row.corrections_budget_2017.length > 0 && row.total_budget_2017 && row.total_budget_2017.length > 0) {
             row.corrections_budget = row.corrections_budget_2017
           }
-          if (row.corrections_budget_2018 && row.corrections_budget_2018.length > 0 && row.total_budget_2018 && row.total_budget_2018.length > 0) {
+          if (row.police_budget_2018 && row.police_budget_2018.length > 0 && row.corrections_budget_2018 && row.corrections_budget_2018.length > 0 && row.total_budget_2018 && row.total_budget_2018.length > 0) {
             row.corrections_budget = row.corrections_budget_2018
           }
-          if (row.corrections_budget_2019 && row.corrections_budget_2019.length > 0 && row.total_budget_2019 && row.total_budget_2019.length > 0) {
+          if (row.police_budget_2019 && row.police_budget_2019.length > 0 && row.corrections_budget_2019 && row.corrections_budget_2019.length > 0 && row.total_budget_2019 && row.total_budget_2019.length > 0) {
             row.corrections_budget = row.corrections_budget_2019
           }
-          if (row.corrections_budget_2020 && row.corrections_budget_2020.length > 0 && row.total_budget_2020 && row.total_budget_2020.length > 0) {
+          if (row.police_budget_2020 && row.police_budget_2020.length > 0 && row.corrections_budget_2020 && row.corrections_budget_2020.length > 0 && row.total_budget_2020 && row.total_budget_2020.length > 0) {
             row.corrections_budget = row.corrections_budget_2020
           }
-          if (row.corrections_budget_2021 && row.corrections_budget_2021.length > 0 && row.total_budget_2021 && row.total_budget_2021.length > 0) {
+          if (row.police_budget_2021 && row.police_budget_2021.length > 0 && row.corrections_budget_2021 && row.corrections_budget_2021.length > 0 && row.total_budget_2021 && row.total_budget_2021.length > 0) {
             row.corrections_budget = row.corrections_budget_2021
           }
-          if (row.corrections_budget_2022 && row.corrections_budget_2022.length > 0 && row.total_budget_2022 && row.total_budget_2022.length > 0) {
+          if (row.police_budget_2022 && row.police_budget_2022.length > 0 && row.corrections_budget_2022 && row.corrections_budget_2022.length > 0 && row.total_budget_2022 && row.total_budget_2022.length > 0) {
             row.corrections_budget = row.corrections_budget_2022
           }
 
           // Update Health Budget for Latest Year we have data for
-          if (row.health_budget_2010 && row.health_budget_2010.length > 0 && row.total_budget_2010 && row.total_budget_2010.length > 0) {
+          if (row.police_budget_2010 && row.police_budget_2010.length > 0 && row.health_budget_2010 && row.health_budget_2010.length > 0 && row.total_budget_2010 && row.total_budget_2010.length > 0) {
             row.health_budget = row.health_budget_2010
           }
-          if (row.health_budget_2011 && row.health_budget_2011.length > 0 && row.total_budget_2011 && row.total_budget_2011.length > 0) {
+          if (row.police_budget_2011 && row.police_budget_2011.length > 0 && row.health_budget_2011 && row.health_budget_2011.length > 0 && row.total_budget_2011 && row.total_budget_2011.length > 0) {
             row.health_budget = row.health_budget_2011
           }
-          if (row.health_budget_2012 && row.health_budget_2012.length > 0 && row.total_budget_2012 && row.total_budget_2012.length > 0) {
+          if (row.police_budget_2012 && row.police_budget_2012.length > 0 && row.health_budget_2012 && row.health_budget_2012.length > 0 && row.total_budget_2012 && row.total_budget_2012.length > 0) {
             row.health_budget = row.health_budget_2012
           }
-          if (row.health_budget_2013 && row.health_budget_2013.length > 0 && row.total_budget_2013 && row.total_budget_2013.length > 0) {
+          if (row.police_budget_2013 && row.police_budget_2013.length > 0 && row.health_budget_2013 && row.health_budget_2013.length > 0 && row.total_budget_2013 && row.total_budget_2013.length > 0) {
             row.health_budget = row.health_budget_2013
           }
-          if (row.health_budget_2014 && row.health_budget_2014.length > 0 && row.total_budget_2014 && row.total_budget_2014.length > 0) {
+          if (row.police_budget_2014 && row.police_budget_2014.length > 0 && row.health_budget_2014 && row.health_budget_2014.length > 0 && row.total_budget_2014 && row.total_budget_2014.length > 0) {
             row.health_budget = row.health_budget_2014
           }
-          if (row.health_budget_2015 && row.health_budget_2015.length > 0 && row.total_budget_2015 && row.total_budget_2015.length > 0) {
+          if (row.police_budget_2015 && row.police_budget_2015.length > 0 && row.health_budget_2015 && row.health_budget_2015.length > 0 && row.total_budget_2015 && row.total_budget_2015.length > 0) {
             row.health_budget = row.health_budget_2015
           }
-          if (row.health_budget_2016 && row.health_budget_2016.length > 0 && row.total_budget_2016 && row.total_budget_2016.length > 0) {
+          if (row.police_budget_2016 && row.police_budget_2016.length > 0 && row.health_budget_2016 && row.health_budget_2016.length > 0 && row.total_budget_2016 && row.total_budget_2016.length > 0) {
             row.health_budget = row.health_budget_2016
           }
-          if (row.health_budget_2017 && row.health_budget_2017.length > 0 && row.total_budget_2017 && row.total_budget_2017.length > 0) {
+          if (row.police_budget_2017 && row.police_budget_2017.length > 0 && row.health_budget_2017 && row.health_budget_2017.length > 0 && row.total_budget_2017 && row.total_budget_2017.length > 0) {
             row.health_budget = row.health_budget_2017
           }
-          if (row.health_budget_2018 && row.health_budget_2018.length > 0 && row.total_budget_2018 && row.total_budget_2018.length > 0) {
+          if (row.police_budget_2018 && row.police_budget_2018.length > 0 && row.health_budget_2018 && row.health_budget_2018.length > 0 && row.total_budget_2018 && row.total_budget_2018.length > 0) {
             row.health_budget = row.health_budget_2018
           }
-          if (row.health_budget_2019 && row.health_budget_2019.length > 0 && row.total_budget_2019 && row.total_budget_2019.length > 0) {
+          if (row.police_budget_2019 && row.police_budget_2019.length > 0 && row.health_budget_2019 && row.health_budget_2019.length > 0 && row.total_budget_2019 && row.total_budget_2019.length > 0) {
             row.health_budget = row.health_budget_2019
           }
-          if (row.health_budget_2020 && row.health_budget_2020.length > 0 && row.total_budget_2020 && row.total_budget_2020.length > 0) {
+          if (row.police_budget_2020 && row.police_budget_2020.length > 0 && row.health_budget_2020 && row.health_budget_2020.length > 0 && row.total_budget_2020 && row.total_budget_2020.length > 0) {
             row.health_budget = row.health_budget_2020
           }
-          if (row.health_budget_2021 && row.health_budget_2021.length > 0 && row.total_budget_2021 && row.total_budget_2021.length > 0) {
+          if (row.police_budget_2021 && row.police_budget_2021.length > 0 && row.health_budget_2021 && row.health_budget_2021.length > 0 && row.total_budget_2021 && row.total_budget_2021.length > 0) {
             row.health_budget = row.health_budget_2021
           }
-          if (row.health_budget_2022 && row.health_budget_2022.length > 0 && row.total_budget_2022 && row.total_budget_2022.length > 0) {
+          if (row.police_budget_2022 && row.police_budget_2022.length > 0 && row.health_budget_2022 && row.health_budget_2022.length > 0 && row.total_budget_2022 && row.total_budget_2022.length > 0) {
             row.health_budget = row.health_budget_2022
           }
 
           // Update Housing Budget for Latest Year we have data for
-          if (row.housing_budget_2010 && row.housing_budget_2010.length > 0 && row.total_budget_2010 && row.total_budget_2010.length > 0) {
+          if (row.police_budget_2010 && row.police_budget_2010.length > 0 && row.housing_budget_2010 && row.housing_budget_2010.length > 0 && row.total_budget_2010 && row.total_budget_2010.length > 0) {
             row.housing_budget = row.housing_budget_2010
           }
-          if (row.housing_budget_2011 && row.housing_budget_2011.length > 0 && row.total_budget_2011 && row.total_budget_2011.length > 0) {
+          if (row.police_budget_2011 && row.police_budget_2011.length > 0 && row.housing_budget_2011 && row.housing_budget_2011.length > 0 && row.total_budget_2011 && row.total_budget_2011.length > 0) {
             row.housing_budget = row.housing_budget_2011
           }
-          if (row.housing_budget_2012 && row.housing_budget_2012.length > 0 && row.total_budget_2012 && row.total_budget_2012.length > 0) {
+          if (row.police_budget_2012 && row.police_budget_2012.length > 0 && row.housing_budget_2012 && row.housing_budget_2012.length > 0 && row.total_budget_2012 && row.total_budget_2012.length > 0) {
             row.housing_budget = row.housing_budget_2012
           }
-          if (row.housing_budget_2013 && row.housing_budget_2013.length > 0 && row.total_budget_2013 && row.total_budget_2013.length > 0) {
+          if (row.police_budget_2013 && row.police_budget_2013.length > 0 && row.housing_budget_2013 && row.housing_budget_2013.length > 0 && row.total_budget_2013 && row.total_budget_2013.length > 0) {
             row.housing_budget = row.housing_budget_2013
           }
-          if (row.housing_budget_2014 && row.housing_budget_2014.length > 0 && row.total_budget_2014 && row.total_budget_2014.length > 0) {
+          if (row.police_budget_2014 && row.police_budget_2014.length > 0 && row.housing_budget_2014 && row.housing_budget_2014.length > 0 && row.total_budget_2014 && row.total_budget_2014.length > 0) {
             row.housing_budget = row.housing_budget_2014
           }
-          if (row.housing_budget_2015 && row.housing_budget_2015.length > 0 && row.total_budget_2015 && row.total_budget_2015.length > 0) {
+          if (row.police_budget_2015 && row.police_budget_2015.length > 0 && row.housing_budget_2015 && row.housing_budget_2015.length > 0 && row.total_budget_2015 && row.total_budget_2015.length > 0) {
             row.housing_budget = row.housing_budget_2015
           }
-          if (row.housing_budget_2016 && row.housing_budget_2016.length > 0 && row.total_budget_2016 && row.total_budget_2016.length > 0) {
+          if (row.police_budget_2016 && row.police_budget_2016.length > 0 && row.housing_budget_2016 && row.housing_budget_2016.length > 0 && row.total_budget_2016 && row.total_budget_2016.length > 0) {
             row.housing_budget = row.housing_budget_2016
           }
-          if (row.housing_budget_2017 && row.housing_budget_2017.length > 0 && row.total_budget_2017 && row.total_budget_2017.length > 0) {
+          if (row.police_budget_2017 && row.police_budget_2017.length > 0 && row.housing_budget_2017 && row.housing_budget_2017.length > 0 && row.total_budget_2017 && row.total_budget_2017.length > 0) {
             row.housing_budget = row.housing_budget_2017
           }
-          if (row.housing_budget_2018 && row.housing_budget_2018.length > 0 && row.total_budget_2018 && row.total_budget_2018.length > 0) {
+          if (row.police_budget_2018 && row.police_budget_2018.length > 0 && row.housing_budget_2018 && row.housing_budget_2018.length > 0 && row.total_budget_2018 && row.total_budget_2018.length > 0) {
             row.housing_budget = row.housing_budget_2018
           }
-          if (row.housing_budget_2019 && row.housing_budget_2019.length > 0 && row.total_budget_2019 && row.total_budget_2019.length > 0) {
+          if (row.police_budget_2019 && row.police_budget_2019.length > 0 && row.housing_budget_2019 && row.housing_budget_2019.length > 0 && row.total_budget_2019 && row.total_budget_2019.length > 0) {
             row.housing_budget = row.housing_budget_2019
           }
-          if (row.housing_budget_2020 && row.housing_budget_2020.length > 0 && row.total_budget_2020 && row.total_budget_2020.length > 0) {
+          if (row.police_budget_2020 && row.police_budget_2020.length > 0 && row.housing_budget_2020 && row.housing_budget_2020.length > 0 && row.total_budget_2020 && row.total_budget_2020.length > 0) {
             row.housing_budget = row.housing_budget_2020
           }
-          if (row.housing_budget_2021 && row.housing_budget_2021.length > 0 && row.total_budget_2021 && row.total_budget_2021.length > 0) {
+          if (row.police_budget_2021 && row.police_budget_2021.length > 0 && row.housing_budget_2021 && row.housing_budget_2021.length > 0 && row.total_budget_2021 && row.total_budget_2021.length > 0) {
             row.housing_budget = row.housing_budget_2021
           }
-          if (row.housing_budget_2022 && row.housing_budget_2022.length > 0 && row.total_budget_2022 && row.total_budget_2022.length > 0) {
+          if (row.police_budget_2022 && row.police_budget_2022.length > 0 && row.housing_budget_2022 && row.housing_budget_2022.length > 0 && row.total_budget_2022 && row.total_budget_2022.length > 0) {
             row.housing_budget = row.housing_budget_2022
           }
 
@@ -2297,7 +2297,7 @@ module.exports = {
               black_drug_arrest_disparity: util.parseFloat(row.calc_black_drug_arrest_disparity, false, true),
               black_murder_unsolved_rate: blackMurderUnsolvedRate ? blackMurderUnsolvedRate : null,
               change_approach_to_policing_score: util.parseInt(row.change_approach_to_policing_score, false, true),
-              change_overall_score: util.parseInt(row.change_overall_score, false, true),
+              change_overall_score: util.parseInt(row.change_overall_score, false, false),
               change_police_accountability_score: util.parseInt(row.change_police_accountability_score, false, true),
               change_police_funding_score: util.parseInt(row.change_police_funding_score, false, true),
               change_police_violence_score: util.parseInt(row.change_police_violence_score, false, true),
