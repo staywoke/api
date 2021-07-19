@@ -55,6 +55,15 @@ module.exports = (sequelize, DataTypes) => {
     total_officers_2019: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
+    total_officers_2020: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    total_officers_2021: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    total_officers_2022: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
     total_budget_2010: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
@@ -88,6 +97,12 @@ module.exports = (sequelize, DataTypes) => {
     total_budget_2020: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
+    total_budget_2021: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    total_budget_2022: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
     fines_forfeitures_2010: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
@@ -116,6 +131,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
     fines_forfeitures_2019: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    fines_forfeitures_2020: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    fines_forfeitures_2021: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    fines_forfeitures_2022: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
     housing_budget_2010: {
@@ -151,6 +175,12 @@ module.exports = (sequelize, DataTypes) => {
     housing_budget_2020: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
+    housing_budget_2021: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    housing_budget_2022: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
     health_budget_2010: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
@@ -184,6 +214,12 @@ module.exports = (sequelize, DataTypes) => {
     health_budget_2020: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
+    health_budget_2021: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    health_budget_2022: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
     police_budget_2010: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
@@ -215,6 +251,54 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
     police_budget_2020: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    police_budget_2021: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    police_budget_2022: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2010: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2011: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2012: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2013: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2014: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2015: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2016: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2017: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2018: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2019: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2020: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2021: {
+      type: DataTypes.BIGINT(15).UNSIGNED
+    },
+    corrections_budget_2022: {
       type: DataTypes.BIGINT(15).UNSIGNED
     },
     budget_source_name: {

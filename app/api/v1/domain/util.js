@@ -663,12 +663,25 @@ module.exports = {
    * Custom Function to Parse Float from CSV File
    * @param {*} val
    * @param {*} useZero
+   * @param {*} positiveOnly
    */
-  parseFloat (val, useZero) {
-    if (typeof val === 'number') {
-      return parseFloat(val)
-    } else if (typeof val === 'string' && val !== '' && /[0-9.-]/.test(val)) {
-      return parseFloat(val.replace(/[^0-9.-]/g, ''))
+  parseFloat (val, useZero, positiveOnly) {
+    let cleanVal = null
+
+    if (!val) {
+      cleanVal = useZero ? 0 : null
+    } else if (typeof val === 'number') {
+      cleanVal = parseFloat(val)
+    } else if (typeof val === 'string' && val !== '' && /[0-9,.-]/.test(val)) {
+      cleanVal = parseFloat(val.replace(/[^0-9.-]/g, ''))
+    }
+
+    if (cleanVal) {
+      if (positiveOnly && cleanVal < 0) {
+        cleanVal = 0
+      }
+
+      return cleanVal
     }
 
     return useZero ? 0 : null
@@ -678,12 +691,25 @@ module.exports = {
    * Custom Function to Parse Int from CSV File
    * @param {*} val
    * @param {*} useZero
+   * @param {*} positiveOnly
    */
-  parseInt (val, useZero) {
-    if (typeof val === 'number') {
-      return parseInt(val)
-    } else if (typeof val === 'string' && val !== '' && /[0-9.-]/.test(val)) {
-      return parseInt(val.replace(/[^0-9.-]/g, ''))
+  parseInt (val, useZero, positiveOnly) {
+    let cleanVal = null
+
+    if (!val) {
+      cleanVal = useZero ? 0 : null
+    } else if (typeof val === 'number') {
+      cleanVal = parseInt(val)
+    } else if (typeof val === 'string' && val !== '' && /[0-9,.-]/.test(val)) {
+      cleanVal = parseInt(val.replace(/[^0-9.-]/g, ''))
+    }
+
+    if (cleanVal) {
+      if (positiveOnly && cleanVal < 0) {
+        cleanVal = 0
+      }
+
+      return cleanVal
     }
 
     return useZero ? 0 : null
