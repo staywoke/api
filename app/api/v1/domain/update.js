@@ -374,7 +374,7 @@ const __calcPercentNativeAmericanDeadlyForce = (row) => {
         nativeAmericanPeopleKilled / allPeopleKilled * 100
       ).toFixed(2)
     )
-  } else if (nativeAmericanPeopleKilled === allPeopleKilled) {
+  } else if (allPeopleKilled > 0 && nativeAmericanPeopleKilled === allPeopleKilled) {
     return 100
   }
 
@@ -498,7 +498,7 @@ const __calcPercentAsianPacificIslanderDeadlyForce = (row) => {
         asianPacificPeopleKilled / allPeopleKilled * 100
       ).toFixed(2)
     )
-  } else if (asianPacificPeopleKilled === allPeopleKilled) {
+  } else if (allPeopleKilled > 0 && asianPacificPeopleKilled === allPeopleKilled) {
     return 100
   }
 
@@ -542,7 +542,7 @@ const __calcPercentBlackDeadlyForce = (row) => {
 
       ).toFixed(2)
     )
-  } else if (blackPeopleKilled === allPeopleKilled) {
+  } else if (allPeopleKilled > 0 && blackPeopleKilled === allPeopleKilled) {
     return 100
   }
 
@@ -669,7 +669,7 @@ const __calcPercentHispanicDeadlyForce = (row) => {
 
       ).toFixed(2)
     )
-  } else if (hispanicPeopleKilled === allPeopleKilled) {
+  } else if (allPeopleKilled > 0 && hispanicPeopleKilled === allPeopleKilled) {
     return 100
   }
 
@@ -746,7 +746,7 @@ const __calcPercentOtherDeadlyForce = (row) => {
 
       ).toFixed(2)
     )
-  } else if (otherPeopleKilled === allPeopleKilled) {
+  } else if (allPeopleKilled > 0 && otherPeopleKilled === allPeopleKilled) {
     return 100
   }
 
@@ -831,7 +831,7 @@ const __calcPercentUsedAgainstPeopleWhoWereNotArmedWithGun = (row) => {
         )
       ).toFixed(2)
     )
-  } else if (armedPeopleKilled === allPeopleKilled) {
+  } else if (allPeopleKilled > 0 && armedPeopleKilled === allPeopleKilled) {
     return 100
   }
 
@@ -852,7 +852,7 @@ const __calcPercentUsedAgainstPeopleWhoWereUnarmed = (row) => {
         unarmedPeopleKilled / allPeopleKilled * 100
       ).toFixed(2)
     )
-  } else if (unarmedPeopleKilled === allPeopleKilled) {
+  } else if (allPeopleKilled > 0 && unarmedPeopleKilled === allPeopleKilled) {
     return 100
   }
 
@@ -906,7 +906,7 @@ const __calcPercentWhiteDeadlyForce = (row) => {
 
       ).toFixed(2)
     )
-  } else if (whitePeopleKilled === allPeopleKilled) {
+  } else if (allPeopleKilled > 0 && whitePeopleKilled === allPeopleKilled) {
     return 100
   }
 
