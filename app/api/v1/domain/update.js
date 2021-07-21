@@ -713,7 +713,7 @@ const __calcPercentMisdemeanorArrests = (row) => {
         lowLevelArrests / allArrests * 100
       ).toFixed(2)
     )
-  } else if (lowLevelArrests === allArrests) {
+  } else if (allArrests > 0 && lowLevelArrests === allArrests) {
     return 100
   }
 
@@ -806,7 +806,7 @@ const __calcPercentShotFirst = (row) => {
         shotFirst / allShootings
       ) * 100
     )
-  } else if (shotFirst === allShootings) {
+  } else if (allShootings > 0 && shotFirst === allShootings) {
     return 100
   }
 
@@ -873,7 +873,7 @@ const __calcPercentViolentCrimeArrests = (row) => {
         violentCrimeArrests / allArrests * 100
       ).toFixed(2)
     )
-  } else if (violentCrimeArrests === allArrests) {
+  } else if (allArrests > 0 && violentCrimeArrests === allArrests) {
     return 100
   }
 
