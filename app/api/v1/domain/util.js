@@ -704,7 +704,7 @@ module.exports = {
       cleanVal = parseInt(val.replace(/[^0-9.-]/g, ''))
     }
 
-    if (cleanVal) {
+    if (cleanVal !== null) {
       if (positiveOnly && cleanVal < 0) {
         cleanVal = 0
       }
