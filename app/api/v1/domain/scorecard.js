@@ -111,8 +111,8 @@ const __buildGeoJSON = (result, collection) => {
       geoJSON.geometry = {
         type: 'Point',
         coordinates: [
-          parseFloat(result.city.longitude),
-          parseFloat(result.city.latitude)
+          util.parseFloat(result.city.longitude),
+          util.parseFloat(result.city.latitude)
         ]
       }
     }
@@ -192,7 +192,7 @@ module.exports = {
     return models.scorecard_agency.findAll({
       where: where,
       include: includes,
-      limit: parseInt(limit),
+      limit: util.parseInt(limit),
       order: [
         [
           'report', 'overall_score', 'ASC'
@@ -296,7 +296,10 @@ module.exports = {
                 total_arrests_2016: 0,
                 total_arrests_2017: 0,
                 total_arrests_2018: 0,
-                total_arrests_2019: 0
+                total_arrests_2019: 0,
+                total_arrests_2020: 0,
+                total_arrests_2021: 0,
+                total_arrests_2022: 0
               }
             }
 
@@ -316,6 +319,7 @@ module.exports = {
               latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
               longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
               overall_score: agency.dataValues.report.dataValues.overall_score,
+              change_overall_score: agency.dataValues.report.dataValues.change_overall_score,
               population: agency.dataValues.total_population,
               people_killed: agency.dataValues.report.dataValues.total_people_killed,
               arrests: agency.dataValues.report.dataValues.total_arrests,
@@ -340,6 +344,9 @@ module.exports = {
               arrests_2017: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2017 : null,
               arrests_2018: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2018 : null,
               arrests_2019: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2019 : null,
+              arrests_2020: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2020 : null,
+              arrests_2021: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2021 : null,
+              arrests_2022: agency.dataValues.arrests ? agency.dataValues.arrests.dataValues.arrests_2022 : null,
 
               slug: agency.dataValues.slug,
               title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
@@ -352,32 +359,35 @@ module.exports = {
         // Generate Report per State and Prepare for Output
         Object.keys(cleanAgencies).forEach(key => {
           Object.keys(cleanAgencies[key]).forEach(type => {
-            const currentCount = parseInt(cleanAgencies[key].total_agencies) || 0
-            const currentPopulation = parseInt(cleanAgencies[key].total_population) || 0
-            const currentPeopleKilled = parseInt(cleanAgencies[key].total_people_killed) || 0
-            const currentArrests = parseInt(cleanAgencies[key].total_arrests) || 0
-            const currentOverallScore = parseInt(cleanAgencies[key].total_overall_score) || 0
-            const currentComplaintsReported = parseInt(cleanAgencies[key].total_complaints_reported) || 0
-            const currentComplaintsSustained = parseInt(cleanAgencies[key].total_complaints_sustained) || 0
+            const currentCount = util.parseInt(cleanAgencies[key].total_agencies, true) || 0
+            const currentPopulation = util.parseInt(cleanAgencies[key].total_population, true) || 0
+            const currentPeopleKilled = util.parseInt(cleanAgencies[key].total_people_killed, true) || 0
+            const currentArrests = util.parseInt(cleanAgencies[key].total_arrests, true) || 0
+            const currentOverallScore = util.parseInt(cleanAgencies[key].total_overall_score, true) || 0
+            const currentComplaintsReported = util.parseInt(cleanAgencies[key].total_complaints_reported, true) || 0
+            const currentComplaintsSustained = util.parseInt(cleanAgencies[key].total_complaints_sustained, true) || 0
 
-            const currentBlackPeopleKilled = parseInt(cleanAgencies[key].black_people_killed) || 0
-            const currentHispanicPeopleKilled = parseInt(cleanAgencies[key].hispanic_people_killed) || 0
-            const currentWhitePeopleKilled = parseInt(cleanAgencies[key].white_people_killed) || 0
+            const currentBlackPeopleKilled = util.parseInt(cleanAgencies[key].black_people_killed, true) || 0
+            const currentHispanicPeopleKilled = util.parseInt(cleanAgencies[key].hispanic_people_killed, true) || 0
+            const currentWhitePeopleKilled = util.parseInt(cleanAgencies[key].white_people_killed, true) || 0
 
-            const currentBlackPopulation = parseInt(cleanAgencies[key].black_population) || 0
-            const currentHispanicPopulation = parseInt(cleanAgencies[key].hispanic_population) || 0
-            const currentWhitePopulation = parseInt(cleanAgencies[key].white_population) || 0
+            const currentBlackPopulation = util.parseInt(cleanAgencies[key].black_population, true) || 0
+            const currentHispanicPopulation = util.parseInt(cleanAgencies[key].hispanic_population, true) || 0
+            const currentWhitePopulation = util.parseInt(cleanAgencies[key].white_population, true) || 0
 
-            const currentLowLevelArrests = parseInt(cleanAgencies[key].low_level_arrests) || 0
-            const currentViolentCrimeArrests = parseInt(cleanAgencies[key].violent_crime_arrests) || 0
+            const currentLowLevelArrests = util.parseInt(cleanAgencies[key].low_level_arrests, true) || 0
+            const currentViolentCrimeArrests = util.parseInt(cleanAgencies[key].violent_crime_arrests, true) || 0
 
-            const currentArrests2013 = parseInt(cleanAgencies[key].arrests_2013) || 0
-            const currentArrests2014 = parseInt(cleanAgencies[key].arrests_2014) || 0
-            const currentArrests2015 = parseInt(cleanAgencies[key].arrests_2015) || 0
-            const currentArrests2016 = parseInt(cleanAgencies[key].arrests_2016) || 0
-            const currentArrests2017 = parseInt(cleanAgencies[key].arrests_2017) || 0
-            const currentArrests2018 = parseInt(cleanAgencies[key].arrests_2018) || 0
-            const currentArrests2019 = parseInt(cleanAgencies[key].arrests_2019) || 0
+            const currentArrests2013 = util.parseInt(cleanAgencies[key].arrests_2013, true) || 0
+            const currentArrests2014 = util.parseInt(cleanAgencies[key].arrests_2014, true) || 0
+            const currentArrests2015 = util.parseInt(cleanAgencies[key].arrests_2015, true) || 0
+            const currentArrests2016 = util.parseInt(cleanAgencies[key].arrests_2016, true) || 0
+            const currentArrests2017 = util.parseInt(cleanAgencies[key].arrests_2017, true) || 0
+            const currentArrests2018 = util.parseInt(cleanAgencies[key].arrests_2018, true) || 0
+            const currentArrests2019 = util.parseInt(cleanAgencies[key].arrests_2019, true) || 0
+            const currentArrests2020 = util.parseInt(cleanAgencies[key].arrests_2020, true) || 0
+            const currentArrests2021 = util.parseInt(cleanAgencies[key].arrests_2021, true) || 0
+            const currentArrests2022 = util.parseInt(cleanAgencies[key].arrests_2022, true) || 0
 
             cleanAgencies[key][type] = _.reverse(_.sortBy(cleanAgencies[key][type], ['population']))
             cleanAgencies[key].total_agencies = currentCount + cleanAgencies[key][type].length
@@ -406,6 +416,9 @@ module.exports = {
             cleanAgencies[key].total_arrests_2017 = currentArrests2017 + _.sumBy(cleanAgencies[key][type], 'arrests_2017')
             cleanAgencies[key].total_arrests_2018 = currentArrests2018 + _.sumBy(cleanAgencies[key][type], 'arrests_2018')
             cleanAgencies[key].total_arrests_2019 = currentArrests2019 + _.sumBy(cleanAgencies[key][type], 'arrests_2019')
+            cleanAgencies[key].total_arrests_2020 = currentArrests2020 + _.sumBy(cleanAgencies[key][type], 'arrests_2020')
+            cleanAgencies[key].total_arrests_2021 = currentArrests2021 + _.sumBy(cleanAgencies[key][type], 'arrests_2021')
+            cleanAgencies[key].total_arrests_2022 = currentArrests2022 + _.sumBy(cleanAgencies[key][type], 'arrests_2022')
           })
 
           const averageScore = Math.floor(cleanAgencies[key].total_overall_score / cleanAgencies[key].total_agencies)
@@ -486,6 +499,7 @@ module.exports = {
             latitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.latitude) : null,
             longitude: (agency.dataValues.city) ? util.parseFloat(agency.dataValues.city.dataValues.longitude) : null,
             overall_score: agency.dataValues.report.dataValues.overall_score,
+            change_overall_score: agency.dataValues.report.dataValues.change_overall_score,
             population: agency.dataValues.total_population,
             slug: agency.dataValues.slug,
             title: `${agency.dataValues.name}, ${stateDetails.name} ${util.titleCase(agency.dataValues.type, true)}`,
@@ -500,9 +514,9 @@ module.exports = {
             return
           }
 
-          const currentCount = parseInt(cleanAgencies.total_agencies) || 0
-          const currentPopulation = parseInt(cleanAgencies.total_population) || 0
-          const currentOverallScore = parseInt(cleanAgencies.total_overall_score) || 0
+          const currentCount = util.parseInt(cleanAgencies.total_agencies, true) || 0
+          const currentPopulation = util.parseInt(cleanAgencies.total_population, true) || 0
+          const currentOverallScore = util.parseInt(cleanAgencies.total_overall_score, true) || 0
 
           cleanAgencies[type] = _.reverse(_.sortBy(cleanAgencies[type], ['population']))
           cleanAgencies.total_agencies = currentCount + cleanAgencies[type].length

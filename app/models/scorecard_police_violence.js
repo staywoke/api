@@ -40,6 +40,15 @@ module.exports = (sequelize, DataTypes) => {
     less_lethal_force_2019: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
+    less_lethal_force_2020: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    less_lethal_force_2021: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    less_lethal_force_2022: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
     police_shootings_2013: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
@@ -61,6 +70,15 @@ module.exports = (sequelize, DataTypes) => {
     police_shootings_2019: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
+    police_shootings_2020: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    police_shootings_2021: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    police_shootings_2022: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
     white_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
@@ -71,6 +89,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     asian_pacific_people_killed: {
+      type: DataTypes.INTEGER(10).UNSIGNED
+    },
+    native_american_people_killed: {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     other_people_killed: {
