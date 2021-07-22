@@ -464,10 +464,10 @@ const __calcHispanicMurderUnsolvedRate = (row) => {
  */
 const __calcLessLethalForceChange = (row) => {
   const lessLethalForce2016 = util.parseInt(row.less_lethal_force_2016, true) || 0
-  const lessLethalForce2018 = util.parseInt(row.less_lethal_force_2018, true) || 0
+  const lessLethalForce2020 = util.parseInt(row.less_lethal_force_2020, true) || 0
 
-  if (lessLethalForce2016 > 0 && lessLethalForce2018 >= 0) {
-    return Math.floor((lessLethalForce2018 / lessLethalForce2016) * 100) - 100
+  if (lessLethalForce2016 > 0 && lessLethalForce2020 >= 0) {
+    return Math.floor((lessLethalForce2020 / lessLethalForce2016) * 100) - 100
   }
 
   return 0
