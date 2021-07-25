@@ -463,10 +463,10 @@ const __calcHispanicMurderUnsolvedRate = (row) => {
  * @param {object} row from CSV File
  */
 const __calcLessLethalForceChange = (row) => {
-  const lessLethalForce2016 = util.parseInt(row.less_lethal_force_2016, true) || 0
-  const lessLethalForce2020 = util.parseInt(row.less_lethal_force_2020, true) || 0
+  const lessLethalForce2016 = util.parseInt(row.less_lethal_force_2016, false) || null
+  const lessLethalForce2020 = util.parseInt(row.less_lethal_force_2020, false) || null
 
-  if (lessLethalForce2016 > 0 && lessLethalForce2020 >= 0) {
+  if (lessLethalForce2016 !== null && lessLethalForce2020 !== null && lessLethalForce2016 > 0 && lessLethalForce2020 >= 0) {
     return Math.floor((lessLethalForce2020 / lessLethalForce2016) * 100) - 100
   }
 
@@ -2296,11 +2296,11 @@ module.exports = {
               black_deadly_force_disparity: util.parseFloat(row.calc_black_deadly_force_disparity, false, true),
               black_drug_arrest_disparity: util.parseFloat(row.calc_black_drug_arrest_disparity, false, true),
               black_murder_unsolved_rate: blackMurderUnsolvedRate ? blackMurderUnsolvedRate : null,
-              change_approach_to_policing_score: util.parseInt(row.change_approach_to_policing_score, false, true),
+              change_approach_to_policing_score: util.parseInt(row.change_approach_to_policing_score, false, false),
               change_overall_score: util.parseInt(row.change_overall_score, false, false),
-              change_police_accountability_score: util.parseInt(row.change_police_accountability_score, false, true),
-              change_police_funding_score: util.parseInt(row.change_police_funding_score, false, true),
-              change_police_violence_score: util.parseInt(row.change_police_violence_score, false, true),
+              change_police_accountability_score: util.parseInt(row.change_police_accountability_score, false, false),
+              change_police_funding_score: util.parseInt(row.change_police_funding_score, false, false),
+              change_police_violence_score: util.parseInt(row.change_police_violence_score, false, false),
               complaints_sustained: util.parseInt(row.calc_complaints_sustained, false, true),
               currently_updating_union_contract: util.parseBoolean(row.currently_updating_union_contract),
               currently_updating_use_of_force: util.parseBoolean(row.currently_updating_use_of_force),
