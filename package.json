@@ -86,7 +86,7 @@
     "sequelize-slugify": "^0.9.1",
     "uuid": "^3.3.3",
     "validate.js": "^0.13.1",
-    "validator": "^12.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
