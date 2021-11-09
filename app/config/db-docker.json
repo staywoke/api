@@ -1,8 +1,0 @@
-{
-  "username": "docker_api",
-  "password": "d0cK3r^4p1",
-  "database": "docker_api",
-  "host": "database",
-  "dialect": "mysql",
-  "seederStorage": "sequelize"
-}
