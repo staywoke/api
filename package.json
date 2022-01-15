@@ -68,7 +68,7 @@
     "express-rate-limit": "git://github.com/manifestinteractive/express-rate-limit.git#d615bcf3cb50cb67e6a6c05d220d7b86d7f82255",
     "express-session": "^1.17.0",
     "flat-cache": "^2.0.1",
-    "follow-redirects": "^1.12.1",
+    "follow-redirects": "^1.14.7",
     "hashids": "^2.1.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
