@@ -75,7 +75,7 @@
     "logzio-nodejs": "^1.0.7",
     "mandrill-api": "^1.0.45",
     "md5": "^2.2.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.27",
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",
